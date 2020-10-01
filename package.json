@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~5.0.0",
+    "@fitbit/sdk-cli": "^1.7.3"
+  },
+  "fitbit": {
+    "appUUID": "4554c69d-fd33-402e-95d5-9dae5c673d86",
+    "appType": "app",
+    "appDisplayName": "WeatherNerd",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#8bc34a",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "atlas",
+      "vulcan"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "WeatherNerd"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
