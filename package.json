@@ -5,7 +5,7 @@
   },
   "fitbit": {
     "appUUID": "4554c69d-fd33-402e-95d5-9dae5c673d86",
-    "appType": "app",
+    "appType": "clockface",
     "appDisplayName": "WeatherNerd",
     "iconFile": "resources/icon.png",
     "wipeColor": "#8bc34a",
@@ -20,5 +20,8 @@
       }
     },
     "defaultLanguage": "en-US"
+  },
+  "scripts": {
+    "build": "fitbit-build"
   }
 }

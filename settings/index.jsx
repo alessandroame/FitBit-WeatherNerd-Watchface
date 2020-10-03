@@ -1,0 +1,103 @@
+function SettingsPage(props) {
+    return (
+      <Page>
+        <Section
+          title={<Text bold align="center">Seconds hand</Text>}>
+          <ColorSelect
+            settingsKey="secondsHandColor"
+            colors={[
+                {color:'aqua'},
+                {color:'black'},
+                {color:'blue'},
+                {color:'cyan'},
+                {color:'darkgrey'},
+                {color:'grey'},
+                {color:'lightgrey'},
+                {color:'green'},
+                {color:'darkgreen'},
+                {color:'indigo'},
+                {color:'lavender'},
+                {color:'lime'},
+                {color:'magenta'},
+                {color:'orange'},
+                {color:'pink'},
+                {color:'hotpink'},
+                {color:'plum'},
+                {color:'purple'},
+                {color:'red'},
+                {color:'violet'},
+                {color:'white'},
+                {color:'yellow'},
+                {color:'greenyellow'}
+            ]}
+          />
+        </Section>
+
+        <Section
+          title={<Text bold align="center">Minutes hand</Text>}>
+          <ColorSelect
+            settingsKey="minutesHandColor"
+            colors={[
+                {color:'aqua'},
+                {color:'black'},
+                {color:'blue'},
+                {color:'cyan'},
+                {color:'darkgrey'},
+                {color:'grey'},
+                {color:'lightgrey'},
+                {color:'green'},
+                {color:'darkgreen'},
+                {color:'indigo'},
+                {color:'lavender'},
+                {color:'lime'},
+                {color:'magenta'},
+                {color:'orange'},
+                {color:'pink'},
+                {color:'hotpink'},
+                {color:'plum'},
+                {color:'purple'},
+                {color:'red'},
+                {color:'violet'},
+                {color:'white'},
+                {color:'yellow'},
+                {color:'greenyellow'}
+            ]}
+          />
+        </Section>
+
+        <Section
+          title={<Text bold align="center">Hours hand</Text>}>
+          <ColorSelect
+            settingsKey="hoursHandColor"
+            colors={[
+                {color:'aqua'},
+                {color:'black'},
+                {color:'blue'},
+                {color:'cyan'},
+                {color:'darkgrey'},
+                {color:'grey'},
+                {color:'lightgrey'},
+                {color:'green'},
+                {color:'darkgreen'},
+                {color:'indigo'},
+                {color:'lavender'},
+                {color:'lime'},
+                {color:'magenta'},
+                {color:'orange'},
+                {color:'pink'},
+                {color:'hotpink'},
+                {color:'plum'},
+                {color:'purple'},
+                {color:'red'},
+                {color:'violet'},
+                {color:'white'},
+                {color:'yellow'},
+                {color:'greenyellow'}
+            ]}
+          />
+        </Section>
+      </Page>
+    );
+}
+  
+  registerSettingsPage(SettingsPage);
