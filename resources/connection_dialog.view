@@ -15,10 +15,9 @@
      fill="white"
      text-anchor="middle"
      text-length="50">LOST</text>
-    <use id="btn_snooze" href="#square-button-positive" y="75%" x="0" width="50%">
-      <set href="#text" attributeName="text-buffer" to="Snooze" />
-    </use>
-    <use id="btn_dismiss" href="#square-button-negative" y="75%" x="$" width="50%">
-      <set href="#text" attributeName="text-buffer" to="Dismiss" />
-    </use>
+
+
+    <use id="btn_snooze" href="#text-button" class="text-button bottom left secondary application-fill" />
+    <use id="btn_dismiss" href="#text-button" class="text-button bottom right application-fill" />
+
   </svg>

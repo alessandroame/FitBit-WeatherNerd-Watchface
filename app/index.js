@@ -1,5 +1,5 @@
 import * as clock from "./clock"
-import * as connectionWidget from "./connectionWidget"
+import * as connectionWidget from "./connection_widget"
 import * as settings from "./settings"
 
 clock.init();
