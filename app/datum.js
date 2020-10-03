@@ -6,16 +6,18 @@ let datum=document.getElementById("datum");
 let dayOfWeek = document.getElementById("dayOfWeek");
 let dayNumber = document.getElementById("dayNumber");
 let timeoutTimer=null;
-datum.style.opacity=0.5;
+let dimmedOpacity=0.3;
+
+datum.style.opacity=dimmedOpacity;
 
 document.getElementById("datumTouch").onclick=function(){
     datum.style.opacity=1;
     if (timeoutTimer) {
         clearTimeout(timeoutTimer);
         timeoutTimer=null;
-        datum.style.opacity=0.5;
+        datum.style.opacity=dimmedOpacity;
     }else{
-        timeoutTimer=setTimeout(() => {  datum.style.opacity=0.5; }, 5000);
+        timeoutTimer=setTimeout(() => {  datum.style.opacity=dimmedOpacity; }, 5000);
     }
 };
 

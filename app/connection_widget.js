@@ -1,54 +1,62 @@
 import document from "document";
+import { vibration } from "haptics";
+import * as settings from "./settings";
+
 
 import * as messaging from "messaging";
 
 let errorDelay = 200;
 let disconnectedDelay = 200;
+
+const STATE_CONNECTED = 1;
+const STATE_DISCONNECTED = 0;
+const STATE_ERROR = -1;
+let state = STATE_DISCONNECTED;
+
+const COLOR_NORMAL = "#006ED6";
+const COLOR_DIMMED = "gray";
+const COLOR_ERROR = "red";
+let color = COLOR_NORMAL;
+
 let widget = document.getElementById("bt");
-widget.onclick=function(){
-    //dialog test
-    showConnectionLostDialog();
+
+widget.onclick = function () {
+    //    setState(state!=STATE_CONNECTED?STATE_ERROR:STATE_DISCONNECTED);
+    setState(state != STATE_CONNECTED ? STATE_CONNECTED : STATE_DISCONNECTED);
 }
-let blinkingTimer = null;
 
 if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) setConnected();
 
-messaging.peerSocket.addEventListener("open", setConnected);
-messaging.peerSocket.addEventListener("error", setError);
-messaging.peerSocket.addEventListener("close", setClosed);
+messaging.peerSocket.addEventListener("open", () => { setState(STATE_CONNECTED); });
+messaging.peerSocket.addEventListener("close", () => { setState(STATE_DISCONNECTED); });
+messaging.peerSocket.addEventListener("error", () => { setState(STATE_ERROR); });
 
-function setConnected() {
-    console.log("Connected");
-    stopBlinking();
-    widget.style.fill = "#006ED6";
-}
-function setError() {
-    console.log("Connection ERROR");
-    showConnectionLostDialog();
-    startBlinking();
-    widget.style.fill = "red";
-}
-function setClosed() {
-    console.log("Disconnected");
-    showConnectionLostDialog();
-    startBlinking();
-    widget.style.fill = "gray";
-}
-
-function showConnectionLostDialog() {
-    document.location.assign("connection_dialog.view").then(() => {
-        console.log(" another view loaded" + document.getElementById("btn_snooze"));
-        document.getElementById("btn_snooze").addEventListener("click", (evt) => {
-            console.log("btn_snooze");
-            document.history.back();
-        });
-        document.getElementById("btn_dismiss").addEventListener("click", (evt) => {
-            console.log("btn_dismiss");
-            document.history.back();
-        });
-    });
+function setState(newState) {
+    vibration.start("bump");
+    state = newState;
+    console.log("Connection state changed: " + state);
+    switch (state) {
+        case STATE_CONNECTED:
+            color = COLOR_NORMAL;
+            stopBlinking();
+            onConnectionOpen();
+            break;
+        case STATE_DISCONNECTED:
+            color = COLOR_NORMAL;
+            startBlinking();
+            onConnectionLost();
+            break;
+        case STATE_ERROR:
+            color = COLOR_ERROR;
+            startBlinking();
+            onConnectionLost();
+            break;
+        default:
+            break;
+    }
 }
 
+let blinkingTimer = null;
 function startBlinking() {
     if (blinkingTimer) {
         clearTimeout(blinkingTimer);
@@ -58,27 +66,53 @@ function startBlinking() {
     //     console.log(" blinking ");
     //  }, 100);
     blinkingTimer = setInterval(() => {
-        widget.style.display = (widget.style.display == "none" ? "inline" : "none");
-    }, 300);
+        widget.style.fill = COLOR_DIMMED;
+        setTimeout(() => { widget.style.fill = color; }, 300);
+    }, 1000);
 }
 function stopBlinking() {
     if (blinkingTimer) {
         clearTimeout(blinkingTimer);
         blinkingTimer = null;
     }
-    widget.style.visibility = "inline";
+    widget.style.fill = color;
+}
+
+let snoozeTimer = null;
+function onConnectionOpen() {
+    if (snoozeTimer !== null) clearInterval(snoozeTimer);
+}
+function onConnectionLost() {
+    if (!snoozeTimer) {
+        if (settings.get("vibrateOnConnectionLost")) vibration.start("nudge");
+        if (settings.get("snoozeDialogEnabled")) showSnoozeDialog();
+    }
+}
+
+function showSnoozeDialog() {
+    document.location.assign("connection_dialog.view").then(() => {
+        console.log(" another view loaded" + document.getElementById("btn_snooze"));
+        document.getElementById("btn_snooze").addEventListener("click", (evt) => {
+            console.log("btn_snooze");
+            snooze();
+        });
+        document.getElementById("btn_dismiss").addEventListener("click", (evt) => {
+            console.log("btn_dismiss");
+            dismiss();
+        });
+    });
 }
 
 export function init() {
     console.log("connectionWidget init");
 }
-// function dismiss() {
-//     if (connectionLostUpdaterTimerID !== null) clearInterval(connectionLostUpdaterTimerID);
-//     closeConnectionLostDialog();
-// };
-// function snooze() {
-//     closeConnectionLostDialog();
-//     settingsSet("snoozedToTS", new Date().getTime() + 5 * 60 * 1000);
-//     if (connectionLostUpdaterTimerID !== null) clearInterval(connectionLostUpdaterTimerID);
-//     connectionLostUpdaterTimerID = setTimeout(onConnectionLost, 1000 * 30);
-// }
+function dismiss() {
+    if (snoozeTimer !== null) clearInterval(snoozeTimer);
+    document.history.back();
+};
+function snooze() {
+    document.history.back();
+    if (snoozeTimer !== null) clearInterval(snoozeTimer);
+    console.log("snoozed for " + JSON.stringify(settings.get("snoozeDelayMinutes")) + " minutes")
+    snoozeTimer = setTimeout(onConnectionLost, settings.get("snoozeDelayMinutes") * 60 * 1000);
+}

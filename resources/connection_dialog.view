@@ -5,19 +5,19 @@
       fill="white"
       text-anchor="middle"
       text-length="50">Smartphone</text>
-    <text x="50%" y="45%" font-size="48"
+    <text x="50%" y="40%" font-size="48"
      font-family="Tungsten"
      fill="white"
      text-anchor="middle"
      text-length="50">connection</text>
-    <text x="50%" y="65%" font-size="48"
+    <text x="50%" y="55%" font-size="48"
      font-family="Tungsten"
      fill="white"
      text-anchor="middle"
      text-length="50">LOST</text>
 
 
-    <use id="btn_snooze" href="#text-button" class="text-button bottom left secondary application-fill" />
-    <use id="btn_dismiss" href="#text-button" class="text-button bottom right application-fill" />
+    <use id="btn_dismiss" href="#text-button" class="text-button bottom left secondary application-fill" />
+    <use id="btn_snooze" href="#text-button" class="text-button bottom right application-fill" />
 
   </svg>

@@ -14,7 +14,8 @@ try {
     console.error("settings fetch throw exception" + e);
 }
 messaging.subscribe("setting",(data)=>{
-    console.log("settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
+    console.log("notified setting changed: "+JSON.stringify(data));
+    //console.log("settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
     set(data.key,data.value);
 });   
 
@@ -30,6 +31,7 @@ export function subscribe(key,callback){
 export function get(key, defaultValue) {
     return _settings[key] ? _settings[key] : defaultValue;
 }
+
 export function set(key, value) {
     _settings[key] = value;
     mediator.publish("setting_"+key,value);

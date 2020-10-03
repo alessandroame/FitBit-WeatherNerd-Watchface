@@ -20,10 +20,10 @@
         <use href="#datum" x="85%" y="50%"/> 
 
         <g id="mins" pointer-events="visible" transform="translate(50%,50%)">
-            <rect id="hand" x="$-2" y="-120" width="4" height="120" fill="#b0b0b0" />
+            <rect id="hand" x="$-2" y="-120" width="4" height="120" fill="#e0e0e0" />
         </g>
         <g id="hours" pointer-events="visible" transform="translate(50%,50%)">
-            <rect id="hand" x="$-2" y="-85" width="6" height="85" fill="#ffffff" />
+            <rect id="hand" x="$-3" y="-80" width="6" height="80" fill="#ffffff" />
         </g>
         <g id="secs" pointer-events="visible" transform="translate(50%,50%)">
             <rect id="hand" x="$-1" y="-130" width="2" height="150" fill="#ff0000" />
