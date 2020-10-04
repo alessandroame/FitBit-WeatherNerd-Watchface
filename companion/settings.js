@@ -14,7 +14,6 @@ export function init() {
       console.info("1 " + JSON.stringify(evt));
     }
     publishSettingsChanged(evt);
-    
   });
 }
 

@@ -1,6 +1,6 @@
 <svg>
     <defs>
-    <link rel="import" href="datum.view" />
+    <link rel="import" href="datum.defs" />
 
     <symbol id="minTag">
         <g id="main" pointer-events="visible">
