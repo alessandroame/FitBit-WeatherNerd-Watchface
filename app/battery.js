@@ -23,6 +23,7 @@ export function init() {
         //console.log("battery.onchange")
         setBatteryLevel(battery.chargeLevel);
     };
+    setBatteryLevel(battery.chargeLevel);
 }
 
 function setBatteryLevel(batteryLevel) {
