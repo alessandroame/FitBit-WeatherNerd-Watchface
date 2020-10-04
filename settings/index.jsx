@@ -33,16 +33,12 @@ function SettingsPage(props) {
           settingsKey="vibrateOnConnectionLost"
           label="Vibrate"
         />
-
-      </Section>
-
-
-      <Section
-        title={<Text bold align="center">Battery</Text>}>
+        <Text bold align="center">Colors</Text>
+        <Text>Battery</Text>
         <ColorSelect
           settingsKey="batteryColor"
           colors={[
-            { color: '"#006ED6' },
+            { color: '#006ED6' },
             { color: 'black' },
             { color: 'blue' },
             { color: 'cyan' },
@@ -67,10 +63,8 @@ function SettingsPage(props) {
             { color: 'greenyellow' }
           ]}
         />
-      </Section>
 
-      <Section
-        title={<Text bold align="center">Seconds hand</Text>}>
+        <Text bold align="center">Seconds hand</Text>
         <ColorSelect
           settingsKey="secondsHandColor"
           colors={[
@@ -99,10 +93,7 @@ function SettingsPage(props) {
             { color: 'greenyellow' }
           ]}
         />
-      </Section>
-
-      <Section
-        title={<Text bold align="center">Minutes hand</Text>}>
+        <Text bold align="center">Minutes hand</Text>
         <ColorSelect
           settingsKey="minutesHandColor"
           colors={[
