@@ -1,7 +1,12 @@
 <svg viewport-fill="fb-black">
-  <use href="#clock"/>  
-
+  <use href="#clock" />
   <g transform="translate(40,40),rotate(45)">
-    <image id="bt" href="icons/bt.png" x="-16" y="-16" width="32" height="32" fill="gray" pointer-events="all" />
+    <use href="#connection" />
   </g>
+  <g transform="translate(100%-40,40),rotate(45)">
+    <use href="#battery" />
+  </g>
+
+
+
 </svg>

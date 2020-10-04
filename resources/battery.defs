@@ -1,0 +1,11 @@
+<svg>
+	<defs>
+		<symbol id="battery">
+			<svg id="battery">
+				<arc id="rail" x="-50%-2" y="-2" width="100%+4" height="100%+4"  fill="#006ED6" arc-width="2" start-angle="-15" sweep-angle="30"/>
+				<arc id="level" x="-50%-4" y="-4" width="100%+8" height="100%+8"  fill="#006ED6" arc-width="6" start-angle="15" sweep-angle="-8"/>
+			</svg>
+			<rect x="-60" y="-30" width="120" height="60" fill="green" opacity="0" id="batteryTouch" pointer-events="all" />
+		</symbol>
+	</defs>
+</svg>

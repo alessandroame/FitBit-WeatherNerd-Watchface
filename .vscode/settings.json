@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.defs": "svg",
+        "*.view": "svg",
+      }
+}

@@ -36,6 +36,39 @@ function SettingsPage(props) {
 
       </Section>
 
+
+      <Section
+        title={<Text bold align="center">Battery</Text>}>
+        <ColorSelect
+          settingsKey="batteryColor"
+          colors={[
+            { color: '"#006ED6' },
+            { color: 'black' },
+            { color: 'blue' },
+            { color: 'cyan' },
+            { color: 'darkgrey' },
+            { color: 'grey' },
+            { color: 'lightgrey' },
+            { color: 'green' },
+            { color: 'darkgreen' },
+            { color: 'indigo' },
+            { color: 'lavender' },
+            { color: 'lime' },
+            { color: 'magenta' },
+            { color: 'orange' },
+            { color: 'pink' },
+            { color: 'hotpink' },
+            { color: 'plum' },
+            { color: 'purple' },
+            { color: 'red' },
+            { color: 'violet' },
+            { color: 'white' },
+            { color: 'yellow' },
+            { color: 'greenyellow' }
+          ]}
+        />
+      </Section>
+
       <Section
         title={<Text bold align="center">Seconds hand</Text>}>
         <ColorSelect
