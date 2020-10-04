@@ -5,6 +5,31 @@
 .foreground-fill            { fill: fb-white; }
 .background-fill            { fill: fb-white; }
 
+
+.refresh-button #image {
+  href: "icons/btn_refresh.png";
+}
+
+#menu1 {
+  x: 50;
+  y: 50;
+}
+
+#menu2 {
+  x: 100%-135;
+  y: 50;
+}
+
+#menu3 {
+  x: 50;
+  y: 100%-135;
+}
+
+#menu4 {
+  x:  100%-135;
+  y: 100%-135;
+}
+
 #btn_snooze #text {
   text-buffer: "Snooze";
 }

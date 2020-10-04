@@ -28,6 +28,7 @@ export function init() {
 
 function setBatteryLevel(batteryLevel) {
     //console.log("updateBattery");
+    widget.style.opacity=1;
     let color = COLOR_NORMAL;
     if (batteryLevel < 15) {
         color = COLOR_ALERT

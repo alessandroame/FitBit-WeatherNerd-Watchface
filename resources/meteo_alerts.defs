@@ -2,9 +2,9 @@
     <defs>
         <symbol id="alert">
             <arc id="precipitation" x="-50%+10" y="-50%+10" width="100%-20" height="100%-20" fill="red" arc-width="10"
-                start-angle="0" sweep-angle="30" />
+                start-angle="0" sweep-angle="30" opacity="0"/>
             <arc id="ice" x="-50%+30" y="-50%+30" width="100%-60" height="100%-60" fill="cyan" arc-width="10"
-                start-angle="10" sweep-angle="10" /> 
+                start-angle="10" sweep-angle="10"  opacity="0"/> 
         </symbol>
         <symbol id="precipitationAlert">
             <g transform="translate(50%,50%),rotate(0)">

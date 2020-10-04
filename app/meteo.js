@@ -3,7 +3,7 @@ import * as fs from "fs";
 import { vibration } from "haptics";
 import { normalize } from "path";
 let alertsAvailableCallback=null;
-
+const METEO_FN="meteo_data.json";
 export function init(onAlertsAvailableCallback) {
     try {
         alertsAvailableCallback=onAlertsAvailableCallback;
@@ -11,16 +11,18 @@ export function init(onAlertsAvailableCallback) {
             let fn;
             do {
                 fn = inbox.nextFile(); //if (fn) this.log("newfile:"+fn);
-                if (fn == "meteo_data.json") fetchMeteo(fn);
+                if (fn == METEO_FN) fetchMeteo(fn);
             } while (fn);
         };
+        fetchMeteo(METEO_FN);
     } catch (e) {
-        console.error("init throws ex: "+e);
+        console.error("meteo init throws ex: "+e);
         vibration.start("nudge");
     }
 }
 let alerts=[];
 function fetchMeteo(fn) {
+    console.log("meteo fetchMeteo");
     let data = readDataFromFile(fn);
     if (!data) return;
     console.log(JSON.stringify(data));

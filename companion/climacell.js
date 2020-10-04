@@ -1,5 +1,4 @@
 import { settingsStorage } from "settings";
-import { update } from "../app/datum";
 import * as messaging from "../common/message_mediator";
 
 let callback = null;
@@ -29,11 +28,13 @@ let position = null;
 export function setPosition(currentPosition) {
   position = currentPosition;
   getCity(position,(city)=>{
-      console.log("city: "+city);
+    let d=new Date();
+    let lastUpdate=d.getHours()+":"+d.getMinutes()+" @ "+city;
+    console.log("lastMeteoUpdate: "+lastUpdate);
       const data = {
-        key: "city",
+        key: "lastMeteoUpdate",
         oldValue: null,
-        value: city
+        value: lastUpdate
       };    
       messaging.publish("setting", data);
     });

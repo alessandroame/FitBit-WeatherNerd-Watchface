@@ -1,0 +1,11 @@
+<svg>
+    <defs>
+        <symbol id="touchAreas">
+            <rect id="btnTL" opacity="0" x="0" y="0" width="50%" height="50%" fill="red" pointer-events="all" />
+            <rect id="btnTR" opacity="0" x="50%" y="0" width="50%" height="50%" fill="green" pointer-events="all" />
+            <rect id="btnBL" opacity="0" x="0" y="50%" width="50%" height="50%" fill="blue" pointer-events="all" />
+            <rect id="btnBR" opacity="0" x="50%" y="50%" width="50%" height="50%" fill="yellow" pointer-events="all" />
+            <circle id="btnCenter" opacity="0" cx="50%" cy="50%" r="20%" fill="white" pointer-events="all"  />
+        </symbol>
+    </defs>
+</svg>

@@ -1,0 +1,7 @@
+ <svg viewport-fill="fb-black">
+    <use id="menu1" href="#icon-button" class="large-button application-fill refresh-button" />
+    <use id="menu2" href="#icon-button" class="large-button application-fill refresh-button" />
+    <use id="menu3" href="#icon-button" class="large-button application-fill refresh-button" />
+    <use id="menu4" href="#icon-button" class="large-button application-fill refresh-button" />
+
+  </svg>

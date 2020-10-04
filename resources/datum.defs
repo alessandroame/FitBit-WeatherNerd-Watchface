@@ -5,7 +5,6 @@
                 <text x="-20" y="15" id="dayOfWeek" font-family="Tungsten" fill="red" font-size="42" text-anchor="middle">LUN</text>
                 <text x="15" y="15" id="dayNumber" font-family="Tungsten" fill="white" font-size="42"   text-anchor="middle">30</text>
             </svg>
-            <rect x="-60" y="-30" width="120" height="60" fill="red" opacity="0"  id="datumTouch" pointer-events="all" />
         </symbol>
     </defs>
 </svg>

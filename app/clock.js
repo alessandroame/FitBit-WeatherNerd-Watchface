@@ -1,7 +1,6 @@
 import clock from "clock";
 import document from "document";
 import * as settings from "./settings"
-import * as datum from "./datum"
 
 let hourHand = document.getElementById("hours");
 let minHand = document.getElementById("mins");
@@ -41,8 +40,6 @@ function updateClock() {
   hourHand.groupTransform.rotate.angle = hoursToAngle(hours, mins);
   minHand.groupTransform.rotate.angle = minutesToAngle(mins);
   secHand.groupTransform.rotate.angle = secondsToAngle(secs);
-
-  datum.update(now);
 }
 
 function hoursToAngle(hours, minutes) {
