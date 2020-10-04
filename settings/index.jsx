@@ -3,6 +3,24 @@ function SettingsPage(props) {
     <Page>
 
       <Section
+        title={<Text bold align="center">Meteo api (powerd by <Link source="http://climacell.co">Climacell™</Link>)</Text>}
+        description={<Text>To obtian a free <Link source="http://climacell.co">Climacell™</Link> APIkey go <Link source="https://developer.climacell.co/sign-up">https://developer.climacell.co/sign-up</Link></Text>}>
+        <TextInput
+          align="right"
+          title="Climacell™"
+          label="API key"
+          settingsKey="_APIKey"
+          onChange={(value) => {
+            try {
+              props.settingsStorage.setItem('APIKey', JSON.stringify(value.name));
+            } catch (e) {
+              console.error("settings store throw exception" + e);
+            }
+          }}
+        ></TextInput>
+      </Section>
+
+      <Section
         title={<Text bold align="center">Connection LOST handling</Text>}
         description={<Text>How to alert you when connection between phone and watch is lost.</Text>}>
         <Toggle
@@ -127,7 +145,7 @@ function SettingsPage(props) {
             { color: 'greenyellow' }
           ]}
         />
-        <Text bold align="center">Hours hand</Text>}
+        <Text bold align="center">Hours hand</Text>
         <ColorSelect
           settingsKey="hoursHandColor"
           colors={[

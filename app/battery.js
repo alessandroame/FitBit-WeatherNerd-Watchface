@@ -1,6 +1,5 @@
 import document from "document";
 import { battery } from "power";
-import { init } from "./settings";
 import * as settings from "./settings"
 
 let widget = document.getElementById("battery");

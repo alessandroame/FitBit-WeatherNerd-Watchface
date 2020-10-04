@@ -1,6 +1,6 @@
 import document from "document";
 import { vibration } from "haptics";
-import * as settings from "./settings";
+import * as settings from "./settings"
 import * as messaging from "messaging";
 
 let errorDelay = 200;

@@ -1,4 +1,7 @@
 <svg viewport-fill="fb-black">
+  <text id="city" fill="gray" font-family="Tungsten" font-size="30" font-weight="bold"
+        text-anchor="middle" x="50%" y="30%" text-length="100"> ...</text>
+
   <use href="#clock" />
   <g transform="translate(40,40),rotate(45)">
     <use href="#connection" />

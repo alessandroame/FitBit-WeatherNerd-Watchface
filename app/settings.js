@@ -41,7 +41,7 @@ export function set(key, value) {
         console.error("settings store throw exception" + e);
     }
     try {
-        console.log("set " + key + " to " + value);
+        console.log("set " + key + " to " + JSON.stringify(value));
         vibration.start("bump");
     } catch (e) {
         console.error("Pattern search throws: " + e);

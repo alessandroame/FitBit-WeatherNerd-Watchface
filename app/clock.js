@@ -1,6 +1,6 @@
 import clock from "clock";
 import document from "document";
-import * as settings from "./settings";
+import * as settings from "./settings"
 import * as datum from "./datum"
 
 let hourHand = document.getElementById("hours");
