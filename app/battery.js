@@ -3,6 +3,11 @@ import { battery } from "power";
 import { init } from "./settings";
 import * as settings from "./settings"
 
+let widget = document.getElementById("battery");
+let touch = document.getElementById("batteryTouch");
+let rail = widget.getElementById("rail");
+let level = widget.getElementById("level");
+
 let COLOR_NORMAL = "gray";
 settings.subscribe("batteryColor",(value)=>{
     if (!value) value="gray";
@@ -12,11 +17,6 @@ settings.subscribe("batteryColor",(value)=>{
 
 const COLOR_WARNING = "yellow";
 const COLOR_ALERT = "red";
-
-let widget = document.getElementById("battery");
-let touch = document.getElementById("batteryTouch");
-let rail = widget.getElementById("rail");
-let level = widget.getElementById("level");
 
 export function init() {
     console.log("Battery init");
