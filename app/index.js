@@ -1,10 +1,8 @@
-
 import { memory } from "system";
 import document from "document";
-import * as logger from "../common/logger";
 function memStats(desc) {
     let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
-    logger.info(msg);
+    console.log(msg);
 }
 
 memStats("start");
@@ -17,6 +15,7 @@ import * as meteo from "./meteo"
 import * as meteo_alerts from "./meteo_alerts"
 import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
+import * as logger from "../common/logger"
 import * as messaging from "../common/message_mediator";
 
 memStats("after imports");
@@ -24,60 +23,45 @@ memStats("after imports");
 setInterval(() => {
     memStats();
 }, 30000);
-showClock();
 
-function showClock() {
-    datum.init();
+datum.init();
 
-    clock.init();
-    connectionWidget.init();
-    settings.init();
-    battery.init();
-    meteo_alerts.init();
-    meteo.init(meteo_alerts.update);
+clock.init();
+connectionWidget.init();
+settings.init();
+battery.init();
+meteo_alerts.init();
+meteo.init(meteo_alerts.update);
 
-    touch_areas.init(
-        () => {
-            logger.debug("touched Center");
-            datum.highlight();
-        },
-        () => {
-            logger.debug("touched TL");
-            showMenu();
-        },
-        () => {
-            logger.debug("touched TR");
-            log_viewer.showLogger();
-        },
-        () => {
-            logger.debug("touched BL");
-        },
-        () => {
-            logger.debug("touched BR");
-        }
-    );
+touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showWeather, showFitdata);
+
+function showClockData() {
+    datum.highlight();
 }
 
 function showMenu() {
-    document.location.assign("menu.view").then(() => {
-        logger.debug("menu.view");
-        
+    messaging.publish("requestMeteoUpdate", null);
+/*    document.location.assign("menu.view").then(() => {
+        console.log("menu.view");
+
         document.getElementById("menu1").addEventListener("click", (evt) => {
-            logger.debug("menu1 clicked");
-            messaging.publish("forceUpdate", null);
+            console.log("menu1 clicked");
+            messaging.publish("requestMeteoUpdate", null);
             document.history.back();
-            showClock();
         });
 
         document.getElementById("menu2").addEventListener("click", (evt) => {
-            logger.debug("menu2 clicked");
+            console.log("menu2 clicked");
             document.history.back();
             log_viewer.showLogger();
         });
-    });
+    });*/
 }
 
+function showWeather(){}
+function showFitdata(){}
 settings.subscribe("lastMeteoUpdate", (value) => {
+    logger.info("lastUpdate "+value);
     document.getElementById("lastUpdate").textContent = value;
 });
 

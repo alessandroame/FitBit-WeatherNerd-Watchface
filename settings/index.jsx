@@ -14,7 +14,7 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('APIKey', JSON.stringify(value.name));
             } catch (e) {
-              logger.error("settings store throw exception" + e);
+              console.error("settings store throw exception" + e);
             }
           }}
         ></TextInput>
@@ -33,9 +33,8 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('snoozeDelayMinutes', value.values[0].value);
             } catch (e) {
-              logger.error("settings store throw exception" + e);
+              console.error("settings store throw exception" + e);
             }
-            //logger.debug(  props.settingsStorage.getItem('snoozeDelayMinutes'));
           }}
           settingsKey="_snoozeDelayMinutes"
           disabled={!(props.settings.snoozeDialogEnabled === "true")}
@@ -54,7 +53,28 @@ function SettingsPage(props) {
 
       </Section>
 
-
+      <Section
+        title={<Text bold align="center">Logger</Text>}>
+        <Text>Level</Text>
+        <Select
+          label={`Log minimum level`}
+          onSelection={(value) => {
+            try {
+              props.settingsStorage.setItem("logLevel", value.values[0].value);
+            } catch (e) {
+              console.error("settings store throw exception" + e);
+            }
+          }}
+          settingsKey="_logLevel"
+          options={[
+            { name: "Debug", value: "0" },
+            { name: "Info", value: "1" },
+            { name: "Warning", value: "2" },
+            { name: "Error", value: "3" },
+            { name: "Fatal", value: "4" },
+          ]}
+        />
+        </Section>
       <Section
         title={<Text bold align="center">Colors</Text>}>
         <Text>Battery</Text>

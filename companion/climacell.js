@@ -1,11 +1,10 @@
-import * as logger from "../common/logger";
 import { settingsStorage } from "settings";
 import * as messaging from "../common/message_mediator";
 
 let callback = null;
 
 export function init(onDataAvailable) {
-  logger.debug("climacell init")
+  console.log("climacell init")
   callback = onDataAvailable;
   settingsStorage.addEventListener("change", (evt) => {
     if (evt.key == "APIKey") {
@@ -19,7 +18,7 @@ let apiKey = null;
 function setAPIKey(key) {
   apiKey = key;
   if (!apiKey) {
-    logger.error("climacell null apikey");
+    console.error("climacell null apikey");
     //todo show on device dialog
   }
   else {
@@ -35,7 +34,7 @@ export function setPosition(currentPosition) {
 
 function getCity(pos,callback){
   if (!pos) {
-    logger.error("climacell position not available");
+    console.error("climacell position not available");
     return;
   }
   let lat=pos.coords.latitude;
@@ -51,13 +50,13 @@ function getCity(pos,callback){
       });
   })
   .catch(function (err) {
-    logger.error("Error fetching city: " + err);
+    console.error("Error fetching city: " + err);
   });
 }  
 let updateTimerId=null;
 function update() {
   if (!position) {
-    logger.error("climacell position not available");
+    console.error("climacell position not available");
     return;
   }
   if(updateTimerId){
@@ -67,7 +66,7 @@ function update() {
   getCity(position,(city)=>{
     let d=new Date();
     let lastUpdate=d.getHours()+":"+d.getMinutes()+" @ "+city;
-    logger.debug("lastMeteoUpdate: "+lastUpdate);
+    console.log("lastMeteoUpdate: "+lastUpdate);
       const data = {
         key: "lastMeteoUpdate",
         oldValue: null,
@@ -83,7 +82,7 @@ function update() {
     "&lat=" + position.coords.latitude +
     "&lon=" + position.coords.longitude +
     "&fields=precipitation,precipitation_probability,precipitation_type,temp,feels_like";//todo
-  logger.debug("climacell update " + url);
+  console.log("climacell update " + url);
   // var res=parseData(sampleData);
   //if (callback) callback(res);
   fetch(url, {
@@ -93,11 +92,11 @@ function update() {
     }
   })
     .then(function (res) {
-      logger.debug(`res code: ${res.status} ${res.statusText}  `);
+      console.log(`res code: ${res.status} ${res.statusText}  `);
       res.json()
         .then(data => {
           if (data.message) {
-            logger.error(`climacell error: ${JSON.stringify(data)} `);
+            console.error(`climacell error: ${JSON.stringify(data)} `);
             //todo dialog
           } else {
             let res=parseData(data);
@@ -115,7 +114,7 @@ function update() {
 }
 
 function parseData(data) {
-  logger.debug("climacell parsing data");
+  console.log("climacell parsing data");
   let res = [];
   //https://en.wikipedia.org/wiki/Rain#:~:text=The%20following%20categories%20are%20used,mm%20(0.39%20in)%20per%20hour
   for (let i = 0; i < 12; i++) {

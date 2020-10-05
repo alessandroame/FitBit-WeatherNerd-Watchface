@@ -1,4 +1,3 @@
-import * as logger from "../common/logger";
 import { geolocation } from "geolocation";
 
 let watchID = null;
@@ -6,7 +5,7 @@ let currentPosition = null;
 let positionChangedCallback = null;
 
 export function init(onPositionChangedCallback) {
-    logger.debug("geolocator init");
+    console.log("geolocator init");
     positionChangedCallback = onPositionChangedCallback;
     geolocation.getCurrentPosition(locationSuccess);
     setInterval(() => {
@@ -17,16 +16,16 @@ export function init(onPositionChangedCallback) {
 
 function locationSuccess(position) {
     if (position !=currentPosition) {
-        logger.debug("geolocator location received")
+        console.log("geolocator location received")
         currentPosition=position;
         if(positionChangedCallback) {
-            logger.debug("geolocator position changed")
+            console.log("geolocator position changed")
             positionChangedCallback(currentPosition);
         }
     }
 }
 
 function locationError(error) {
-    logger.debug("Error: " + error.code,
+    console.log("Error: " + error.code,
         "Message: " + error.message);
 }

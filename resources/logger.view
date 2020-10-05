@@ -1,12 +1,24 @@
 <svg viewport-fill="black">
-    <text class="h2" x="50%" y="40" fill="greenyellow" font-family="Tungsten" text-anchor="middle">
+    <rect x="0" y="0" width="100%" height="44" fill="gray"/>
+    <text  x="50%" y="37" fill="black" font-family="Tungsten" font-size="48" text-anchor="middle">
         Log viewer
     </text>
-    <textarea id="text"  pointer-events="all" text-length="1000" x="20" y="40" width="100%-40" height="100%-80" font-family="System-Light"
-        fill="greenyellow" font-size="18" text-overflow="ellipsis">...</textarea>
-    <rect x="0" y="100%-40" width="50%" height="40" fill="gray">
-    <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="end" fill="black">Refresh&nbsp;&nbsp;</text>
 
-    <rect x="50%" y="100%-40" width="50%" height="40" fill="silver">
-    <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="start" fill="black">&nbsp;&nbsp;Scroll</text>
+    <textarea id="text" text-length="1000" x="20" y="44" width="100%-44" height="100%-80" font-family="System-Light"
+        fill="white" font-size="18" text-overflow="ellipsis">...</textarea>
+
+
+    <rect x="0" y="100%-40" width="50%" height="40" fill="gray" pointer-events="all" />
+    <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="end" fill="black">Reset&nbsp;&nbsp;</text>
+
+    <rect x="50%" y="100%-40" width="50%" height="40" fill="red" pointer-events="all" />
+    <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="start" fill="white">&nbsp;&nbsp;Close</text>
+
+    <svg opacity="0">
+        <rect id="scrollUp" x="0" y="40" width="100%" height="50%-40" fill="blue" pointer-events="all" />
+        <rect id="scrollDown" x="0" y="50%" width="100%" height="50%-40" fill="green" pointer-events="all" />
+        <rect id="reset" x="0" y="100%-40" width="50%" height="40" fill="yellow" pointer-events="all" />
+        <rect id="close" x="50%" y="100%-40" width="50%" height="40" fill="red" pointer-events="all" />
+    </svg>
+
 </svg>

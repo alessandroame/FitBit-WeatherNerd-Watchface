@@ -1,5 +1,4 @@
 import document from "document";
-import * as logger from "../common/logger";
 import { vibration } from "haptics";
 import * as settings from "./settings"
 import * as messaging from "messaging";
@@ -33,7 +32,7 @@ messaging.peerSocket.addEventListener("error", () => { setState(STATE_ERROR); })
 function setState(newState) {
     vibration.start("bump");
     state = newState;
-    logger.debug("Connection state changed: " + state);
+    console.log("Connection state changed: " + state);
     switch (state) {
         case STATE_CONNECTED:
             color = COLOR_NORMAL;
@@ -62,7 +61,7 @@ function startBlinking() {
         blinkingTimer = null;
     }
     // setInterval(() => {  
-    //     logger.debug(" blinking ");
+    //     console.log(" blinking ");
     //  }, 100);
     blinkingTimer = setInterval(() => {
         widget.style.fill = COLOR_DIMMED;
@@ -90,24 +89,24 @@ function onConnectionLost() {
 
 function showSnoozeDialog() {
     document.location.assign("connection_dialog.view").then(() => {
-        logger.debug(" another view loaded" + document.getElementById("btn_snooze"));
+        console.log(" another view loaded" + document.getElementById("btn_snooze"));
         document.getElementById("btn_snooze").addEventListener("click", (evt) => {
-            logger.debug("btn_snooze");
+            console.log("btn_snooze");
             snooze();
         });
         document.getElementById("btn_dismiss").addEventListener("click", (evt) => {
-            logger.debug("btn_dismiss");
+            console.log("btn_dismiss");
             dismiss();
         });
     });
 }
 
 export function init() {
-    logger.debug("connectionWidget init");
+    console.log("connectionWidget init");
 }
 function resetSnooze() {
     if (snoozeTimer !== null) {
-        logger.debug("resetSnooze");
+        console.log("resetSnooze");
         clearInterval(snoozeTimer);
         snoozeTimer = null;
     }
@@ -119,9 +118,9 @@ function dismiss() {
 function snooze() {
     document.history.back();
     resetSnooze();
-    logger.debug("snoozed for " + settings.get("snoozeDelayMinutes",2)  + " minutes")
+    console.log("snoozed for " + settings.get("snoozeDelayMinutes",2)  + " minutes")
     snoozeTimer = setTimeout(function () {
-        logger.debug("snooze timeout state: " + state);
+        console.log("snooze timeout state: " + state);
         resetSnooze();
         if (state != STATE_CONNECTED) onConnectionLost();
     }, settings.get("snoozeDelayMinutes",2) * 60 * 1000);
