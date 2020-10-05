@@ -1,0 +1,12 @@
+<svg viewport-fill="black">
+    <text class="h2" x="50%" y="40" fill="greenyellow" font-family="Tungsten" text-anchor="middle">
+        Log viewer
+    </text>
+    <textarea id="text"  pointer-events="all" text-length="1000" x="20" y="40" width="100%-40" height="100%-80" font-family="System-Light"
+        fill="greenyellow" font-size="18" text-overflow="ellipsis">...</textarea>
+    <rect x="0" y="100%-40" width="50%" height="40" fill="gray">
+    <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="end" fill="black">Refresh&nbsp;&nbsp;</text>
+
+    <rect x="50%" y="100%-40" width="50%" height="40" fill="silver">
+    <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="start" fill="black">&nbsp;&nbsp;Scroll</text>
+</svg>

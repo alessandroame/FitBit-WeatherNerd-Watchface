@@ -1,3 +1,4 @@
+import * as logger from "../common/logger";
 import { vibration } from "haptics";
 import * as messaging from "../common/message_mediator";
 import * as mediator from "../common/mediator";
@@ -11,17 +12,17 @@ try {
     _settings = data;
     //handle settings from companion
 } catch (e) {
-    console.error("settings fetch throw exception" + e);
+    logger.error("settings fetch throw exception" + e);
 }
 messaging.subscribe("setting",(data)=>{
-    console.log("notified setting changed: "+JSON.stringify(data));
-    //console.log("settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
+    logger.debug("notified setting changed: "+JSON.stringify(data));
+    //logger.debug("settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
     set(data.key,data.value);
 });   
 
 
 export function init(){
-    console.log("settings init")
+    logger.debug("settings init")
 }
   
 export function subscribe(key,callback){
@@ -38,12 +39,12 @@ export function set(key, value) {
     try {
         fs.writeFileSync("settings.json", _settings, "cbor");
     } catch (e) {
-        console.error("settings store throw exception" + e);
+        logger.error("settings store throw exception" + e);
     }
     try {
-        console.log("set " + key + " to " + JSON.stringify(value));
+        logger.debug("set " + key + " to " + JSON.stringify(value));
         vibration.start("bump");
     } catch (e) {
-        console.error("Pattern search throws: " + e);
+        logger.error("Pattern search throws: " + e);
     }
 }

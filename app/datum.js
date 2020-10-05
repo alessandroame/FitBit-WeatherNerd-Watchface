@@ -1,5 +1,6 @@
 import { locale } from "user-settings";
 import document from "document";
+import * as logger from "../common/logger";
 
 let oldDate = null;
 let datum=document.getElementById("datum");
@@ -22,7 +23,7 @@ export function highlight(){
 }
 
 export function init(){
-    console.log("datum init");
+    logger.debug("datum init");
     setInterval(() => {
         update();
     }, 30);
@@ -31,7 +32,7 @@ export function init(){
 function update(){
     let now=new Date();
     if (!oldDate || oldDate != now.getDate()) {
-        console.log("datum update");
+        logger.debug("datum update");
         let dow = {
             it: 'dom_lun_mar_mer_gio_ven_sab'.split('_'),
             de: 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),

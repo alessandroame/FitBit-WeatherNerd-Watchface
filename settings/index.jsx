@@ -14,7 +14,7 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('APIKey', JSON.stringify(value.name));
             } catch (e) {
-              console.error("settings store throw exception" + e);
+              logger.error("settings store throw exception" + e);
             }
           }}
         ></TextInput>
@@ -33,9 +33,9 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('snoozeDelayMinutes', value.values[0].value);
             } catch (e) {
-              console.error("settings store throw exception" + e);
+              logger.error("settings store throw exception" + e);
             }
-            //console.log(  props.settingsStorage.getItem('snoozeDelayMinutes'));
+            //logger.debug(  props.settingsStorage.getItem('snoozeDelayMinutes'));
           }}
           settingsKey="_snoozeDelayMinutes"
           disabled={!(props.settings.snoozeDialogEnabled === "true")}

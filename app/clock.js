@@ -1,5 +1,6 @@
 import clock from "clock";
 import document from "document";
+import * as logger from "../common/logger";
 import * as settings from "./settings"
 
 let hourHand = document.getElementById("hours");
@@ -8,18 +9,18 @@ let secHand = document.getElementById("secs");
 let center = document.getElementById("center");
 
 settings.subscribe("secondsHandColor",(value)=>{
-  console.log("seconds hand color: "+value);
+  logger.debug("seconds hand color: "+value);
   secHand.getElementById("hand").style.fill=value;
   center.style.fill=value;
 });
 
 settings.subscribe("minutesHandColor",(value)=>{
-  console.log("minutes hand color: "+value);
+  logger.debug("minutes hand color: "+value);
   minHand.getElementById("hand").style.fill=value;
 });
 
 settings.subscribe("hoursHandColor",(value)=>{
-  console.log("hours hand color: "+value);
+  logger.debug("hours hand color: "+value);
   hourHand.getElementById("hand").style.fill=value;
 });
 
@@ -28,7 +29,7 @@ clock.addEventListener("tick", updateClock);
 
 
 export function init(){
-  console.log("clock init");
+  logger.debug("clock init");
 }
 
 function updateClock() {

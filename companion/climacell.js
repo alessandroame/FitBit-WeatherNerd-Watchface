@@ -1,9 +1,11 @@
+import * as logger from "../common/logger";
 import { settingsStorage } from "settings";
 import * as messaging from "../common/message_mediator";
 
 let callback = null;
+
 export function init(onDataAvailable) {
-  console.log("climacell init")
+  logger.debug("climacell init")
   callback = onDataAvailable;
   settingsStorage.addEventListener("change", (evt) => {
     if (evt.key == "APIKey") {
@@ -17,30 +19,25 @@ let apiKey = null;
 function setAPIKey(key) {
   apiKey = key;
   if (!apiKey) {
-    console.error("climacell null apikey");
+    logger.error("climacell null apikey");
     //todo show on device dialog
   }
   else {
     update();
   }
 }
+
 let position = null;
 export function setPosition(currentPosition) {
   position = currentPosition;
-  getCity(position,(city)=>{
-    let d=new Date();
-    let lastUpdate=d.getHours()+":"+d.getMinutes()+" @ "+city;
-    console.log("lastMeteoUpdate: "+lastUpdate);
-      const data = {
-        key: "lastMeteoUpdate",
-        oldValue: null,
-        value: lastUpdate
-      };    
-      messaging.publish("setting", data);
-    });
   update();
 }
+
 function getCity(pos,callback){
+  if (!pos) {
+    logger.error("climacell position not available");
+    return;
+  }
   let lat=pos.coords.latitude;
   let lon=pos.coords.longitude;
   var url="https://nominatim.openstreetmap.org/reverse?&lat="+lat+"&lon="+lon+"&format=json";
@@ -54,22 +51,39 @@ function getCity(pos,callback){
       });
   })
   .catch(function (err) {
-    console.error("Error fetching city: " + err);
+    logger.error("Error fetching city: " + err);
   });
 }  
-
+let updateTimerId=null;
 function update() {
   if (!position) {
-    console.error("climacell position not available");
+    logger.error("climacell position not available");
     return;
   }
+  if(updateTimerId){
+    clearInterval(updateTimerId);
+    updateTimerId=null;
+  }
+  getCity(position,(city)=>{
+    let d=new Date();
+    let lastUpdate=d.getHours()+":"+d.getMinutes()+" @ "+city;
+    logger.debug("lastMeteoUpdate: "+lastUpdate);
+      const data = {
+        key: "lastMeteoUpdate",
+        oldValue: null,
+        value: lastUpdate
+      };    
+      messaging.publish("setting", data);
+    });
+
+
   var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
     "apikey=" + apiKey +
     "&unit_system=si" +//todo
     "&lat=" + position.coords.latitude +
     "&lon=" + position.coords.longitude +
     "&fields=precipitation,precipitation_probability,precipitation_type,temp,feels_like";//todo
-  console.log("climacell update " + url);
+  logger.debug("climacell update " + url);
   // var res=parseData(sampleData);
   //if (callback) callback(res);
   fetch(url, {
@@ -79,11 +93,11 @@ function update() {
     }
   })
     .then(function (res) {
-      console.log(`res code: ${res.status} ${res.statusText}  `);
+      logger.debug(`res code: ${res.status} ${res.statusText}  `);
       res.json()
         .then(data => {
           if (data.message) {
-            console.error(`climacell error: ${JSON.stringify(data)} `);
+            logger.error(`climacell error: ${JSON.stringify(data)} `);
             //todo dialog
           } else {
             let res=parseData(data);
@@ -95,10 +109,13 @@ function update() {
     .catch(function (err) {
       console.assert("climacell error fetching weather forecasts: " + err);
     });
+    updateTimerId=setTimeout(() => {
+      update();
+    }, 1000*5*60);
 }
 
 function parseData(data) {
-  console.log("climacell parsing data");
+  logger.debug("climacell parsing data");
   let res = [];
   //https://en.wikipedia.org/wiki/Rain#:~:text=The%20following%20categories%20are%20used,mm%20(0.39%20in)%20per%20hour
   for (let i = 0; i < 12; i++) {

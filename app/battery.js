@@ -1,4 +1,5 @@
 import document from "document";
+import * as logger from "../common/logger";
 import { battery } from "power";
 import * as settings from "./settings"
 
@@ -18,16 +19,16 @@ const COLOR_WARNING = "yellow";
 const COLOR_ALERT = "red";
 
 export function init() {
-    console.log("Battery init");
+    logger.debug("Battery init");
     battery.onchange = (charger, evt) => {
-        //console.log("battery.onchange")
+        //logger.debug("battery.onchange")
         setBatteryLevel(battery.chargeLevel);
     };
     setBatteryLevel(battery.chargeLevel);
 }
 
 function setBatteryLevel(batteryLevel) {
-    //console.log("updateBattery");
+    //logger.debug("updateBattery");
     widget.style.opacity=1;
     let color = COLOR_NORMAL;
     if (batteryLevel < 15) {

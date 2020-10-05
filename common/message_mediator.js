@@ -2,7 +2,7 @@ import * as messaging from "messaging";
 import * as mediator from "./mediator";
 
 messaging.peerSocket.onerror = function (err) {
-    console.error("MessageMediator error: " + err.code + " - " + err.message);
+    logger.error("MessageMediator error: " + err.code + " - " + err.message);
 }
 
 messaging.peerSocket.onmessage = function (evt) {

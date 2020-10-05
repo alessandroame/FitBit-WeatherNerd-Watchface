@@ -10,7 +10,7 @@
    viewBox="0 0 64 64"
    version="1.1"
    id="svg38"
-   sodipodi:docname="Bluetooth.svg"
+   sodipodi:docname="bt.svg"
    width="64"
    height="64"
    inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\svg\Bluetooth.png"
@@ -25,7 +25,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -44,20 +44,30 @@
      inkscape:window-height="1284"
      id="namedview40"
      showgrid="false"
-     inkscape:zoom="16.52459"
-     inkscape:cx="34.850407"
-     inkscape:cy="32.488645"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:zoom="8.262295"
+     inkscape:cx="8.5330018"
+     inkscape:cy="38.643262"
+     inkscape:window-x="2391"
+     inkscape:window-y="527"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg38" />
+     inkscape:current-layer="svg38"
+     inkscape:document-rotation="0" />
   <path
-     d="M 19.141461,18.582689 43.460913,43.061612 31.739734,57.254604 V 6.5425667 L 43.460913,20.097672 19.141461,43.938707"
+     d="M 19.840326,18.684118 44.159778,43.163041 32.438599,57.356033 V 6.6439955 L 44.159778,20.199101 19.840326,44.040136"
+     stroke="#ffffff"
+     stroke-width="4.226"
+     fill="none"
+     id="path36-7"
+     style="fill:none;stroke:#1a1a1a;stroke-width:7.026;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+  <path
+     d="M 19.840311,18.684114 44.159763,43.163037 32.438584,57.356029 V 6.6439916 L 44.159763,20.199097 19.840311,44.040132"
      stroke="#ffffff"
      stroke-width="4.226"
      fill="none"
      id="path36"
-     style="fill:none;stroke:#ffffff;stroke-opacity:1;stroke-width:4.226;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:round;stroke-linejoin:round"
+     style="opacity:1;fill:none;stroke:#ffffff;stroke-width:4.226;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      inkscape:export-xdpi="96"
      inkscape:export-ydpi="96" />
 </svg>

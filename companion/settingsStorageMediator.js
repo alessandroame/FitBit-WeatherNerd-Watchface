@@ -1,8 +1,9 @@
+import * as logger from "../common/logger";
 import { settingsStorage } from "settings";
 import * as messaging from "../common/message_mediator";
 
 export function init() {
-  console.log("settingsStorageMediator init")
+  logger.debug("settingsStorageMediator init")
 
   settingsStorage.addEventListener("change", (evt) => {
     if (evt.key[0] == '_') {
