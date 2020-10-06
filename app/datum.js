@@ -2,24 +2,9 @@ import { locale } from "user-settings";
 import document from "document";
 
 let oldDate = null;
-let datum=document.getElementById("datum");
+export let widget=document.getElementById("datum");
 let dayOfWeek = document.getElementById("dayOfWeek");
 let dayNumber = document.getElementById("dayNumber");
-let timeoutTimer=null;
-let dimmedOpacity=0.3;
-
-datum.style.opacity=dimmedOpacity;
-
-export function highlight(){
-    datum.style.opacity=1;
-    if (timeoutTimer) {
-        clearTimeout(timeoutTimer);
-        timeoutTimer=null;
-        datum.style.opacity=dimmedOpacity;
-    }else{
-        timeoutTimer=setTimeout(() => {  datum.style.opacity=dimmedOpacity; }, 5000);
-    }
-}
 
 export function init(){
     console.log("datum init");

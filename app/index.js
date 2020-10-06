@@ -32,18 +32,41 @@ settings.init();
 battery.init();
 meteo_alerts.init();
 meteo.init(meteo_alerts.update);
-
+let statusMessage=document.getElementById("lastUpdate");
+dimClockData();
 touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showWeather, showFitdata);
 
+let dimmerTimer;
 function showClockData() {
-    datum.highlight();
+    datum.widget.style.opacity=1;
+    statusMessage.style.opacity=1;
+
+    if (dimmerTimer) {
+        clearTimeout(dimmerTimer);
+        dimmerTimer=null;
+        dimClockData();
+    }else{
+        dimmerTimer=setTimeout(() => {  dimClockData() }, 5000);
+    }
 }
+
+function dimClockData(){
+    let dimmedOpacity=0.3;
+    datum.widget.style.opacity=dimmedOpacity;
+    statusMessage.style.opacity=dimmedOpacity;
+}
+
+settings.subscribe("lastMeteoUpdate", (value) => {
+    logger.info("lastUpdate "+value);
+    statusMessage.textContent = value;
+});
+
+
 
 function showMenu() {
     messaging.publish("requestMeteoUpdate", null);
-/*    document.location.assign("menu.view").then(() => {
+    /*document.location.assign("menu.view").then(() => {
         console.log("menu.view");
-
         document.getElementById("menu1").addEventListener("click", (evt) => {
             console.log("menu1 clicked");
             messaging.publish("requestMeteoUpdate", null);
@@ -60,9 +83,5 @@ function showMenu() {
 
 function showWeather(){}
 function showFitdata(){}
-settings.subscribe("lastMeteoUpdate", (value) => {
-    logger.info("lastUpdate "+value);
-    document.getElementById("lastUpdate").textContent = value;
-});
 
 memStats("app started");

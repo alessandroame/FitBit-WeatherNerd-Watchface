@@ -71,7 +71,7 @@ function readDataFromFile(fn) {
         console.error("readDataFromFile throws ex: " + e);
         logger.error("readDataFromFile throws ex: " + e);
         
-        vibration.start("nudge");
+        //vibration.start("nudge");
     }
     return null;
 }

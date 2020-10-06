@@ -2,6 +2,7 @@ import document from "document";
 import { vibration } from "haptics";
 import * as settings from "./settings"
 import * as messaging from "messaging";
+import * as logger from "../common/logger";
 
 let errorDelay = 200;
 let disconnectedDelay = 200;
@@ -30,21 +31,25 @@ messaging.peerSocket.addEventListener("close", () => { setState(STATE_DISCONNECT
 messaging.peerSocket.addEventListener("error", () => { setState(STATE_ERROR); });
 
 function setState(newState) {
-    vibration.start("bump");
+    if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
     state = newState;
     console.log("Connection state changed: " + state);
     switch (state) {
         case STATE_CONNECTED:
+            logger.info("Connected");
             color = COLOR_NORMAL;
+            dismiss();
             stopBlinking();
             onConnectionOpen();
             break;
         case STATE_DISCONNECTED:
+            logger.info("Disconnected");
             color = COLOR_NORMAL;
             startBlinking();
             onConnectionLost();
             break;
         case STATE_ERROR:
+            logger.error("Connection error");
             color = COLOR_ERROR;
             startBlinking();
             onConnectionLost();
@@ -82,7 +87,7 @@ function onConnectionOpen() {
 }
 function onConnectionLost() {
     if (!snoozeTimer) {
-        if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge");
+        if (settings.get("vibrateOnConnectionLost"),true) settimeout(()=>{vibration.start("nudge-max");},400);
         if (settings.get("snoozeDialogEnabled"),true) showSnoozeDialog();
     }
 }
@@ -112,6 +117,7 @@ function resetSnooze() {
     }
 }
 function dismiss() {
+    if (!document.getElementById("btn_snooze")) return;
     resetSnooze();
     document.history.back();
 };

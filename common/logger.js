@@ -53,6 +53,6 @@ function log(level, msg) {
 
 function buildLogRow(msg) {
     let now = new Date();
-    let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
+    let nowString = now.getHours() + ':' + now.getMinutes();// + '.' + now.getSeconds();
     return nowString + ' ' + msg;
 }
