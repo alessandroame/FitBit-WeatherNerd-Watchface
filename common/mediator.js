@@ -23,7 +23,7 @@ function notify(evt) {
 }
 
 export function publish(topic,data) {
-  console.log("Mediator #"+intanceID+" publishing topic: "+topic);
+  //console.log("Mediator #"+intanceID+" publishing topic: "+topic);
   let callbacks=subscriptions[topic];
   if (callbacks==null || callbacks.length==0) {
     console.warn("Mediator #"+intanceID+" found no subscription for topic: "+topic+"   stack:"+new Error().stack);

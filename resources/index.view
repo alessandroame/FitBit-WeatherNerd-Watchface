@@ -1,6 +1,6 @@
 <svg viewport-fill="fb-black">
 
-  <text id="lastUpdate" fill="white" opacity="0.2" font-family="Tungsten" font-size="30" font-weight="bold" text-anchor="middle"
+  <text id="statusMessage" fill="white" opacity="0.2" font-family="Tungsten" font-size="30" font-weight="bold" text-anchor="middle"
     x="50%" y="30%" text-length="100"> ...</text>
 
   <use href="#datum" x="85%" y="50%" />

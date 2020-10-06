@@ -2,6 +2,7 @@ import { vibration } from "haptics";
 import * as messaging from "../common/message_mediator";
 import * as mediator from "../common/mediator";
 import * as fs from "fs";
+import { display } from "display";
 
 let _settings={};
 
@@ -17,6 +18,7 @@ messaging.subscribe("setting",(data)=>{
     console.log("notified setting changed: "+JSON.stringify(data));
     //console.log("settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
     set(data.key,data.value);
+    display.poke();
 });   
 
 

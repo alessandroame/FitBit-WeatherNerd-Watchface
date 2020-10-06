@@ -15,6 +15,7 @@ export function subscribe(topic, callback) {
 }
 
 export function publish(topic, data) {
+    //console.log("message_mediator publish on topic "+topic);
     if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
         messaging.peerSocket.send({
             topic: topic,

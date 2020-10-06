@@ -8,7 +8,7 @@ function memStats(desc) {
 memStats("start");
 import * as clock from "./clock"
 import * as datum from "./datum"
-import * as connectionWidget from "./connection_widget"
+import * as connection from "./connection"
 import * as settings from "./settings"
 import * as battery from "./battery"
 import * as meteo from "./meteo"
@@ -16,7 +16,7 @@ import * as meteo_alerts from "./meteo_alerts"
 import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
 import * as logger from "../common/logger"
-import * as messaging from "../common/message_mediator";
+import * as message_mediator from "../common/message_mediator";
 
 memStats("after imports");
 
@@ -24,17 +24,28 @@ setInterval(() => {
     memStats();
 }, 30000);
 
-datum.init();
+let statusMessage=document.getElementById("statusMessage");
 
+datum.init();
 clock.init();
-connectionWidget.init();
+connection.init();
 settings.init();
 battery.init();
 meteo_alerts.init();
-meteo.init(meteo_alerts.update);
-let statusMessage=document.getElementById("lastUpdate");
+meteo.init(onMeteoDataAvailable);
 dimClockData();
 touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showWeather, showFitdata);
+
+
+message_mediator.subscribe("Error",(data)=>{
+    //TODO build a dialog
+    logger.error(JSON.stringify(data));
+});
+
+function onMeteoDataAvailable(data){
+    meteo_alerts.update(data.alerts);
+    statusMessage.textContent=`${data.lastUpdate}@${data.city}`;
+}
 
 let dimmerTimer;
 function showClockData() {
@@ -55,16 +66,10 @@ function dimClockData(){
     datum.widget.style.opacity=dimmedOpacity;
     statusMessage.style.opacity=dimmedOpacity;
 }
-
-settings.subscribe("lastMeteoUpdate", (value) => {
-    logger.info("lastUpdate "+value);
-    statusMessage.textContent = value;
-});
-
-
-
 function showMenu() {
-    messaging.publish("requestMeteoUpdate", null);
+    logger.info("meteo update request");
+    message_mediator.publish("requestMeteoUpdate", null);
+
     /*document.location.assign("menu.view").then(() => {
         console.log("menu.view");
         document.getElementById("menu1").addEventListener("click", (evt) => {
@@ -81,7 +86,7 @@ function showMenu() {
     });*/
 }
 
-function showWeather(){}
-function showFitdata(){}
+function showWeather(){ connection.setState(0);}
+function showFitdata(){ connection.setState(1);}
 
 memStats("app started");

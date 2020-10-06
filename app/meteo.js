@@ -13,13 +13,13 @@ export function init(onAlertsAvailableCallback) {
             let fn;
             do {
                 fn = inbox.nextFile(); //if (fn) this.log("newfile:"+fn);
-                if (fn == METEO_FN) fetchMeteo(fn);
+                if (fn == METEO_FN) {
+                    logger.info("rx new meteo file");
+                    fetchMeteo();
+                }
             } while (fn);
         };
-        fetchMeteo(METEO_FN);
-        vibration.start("nudge");
-        setTimeout(() => { vibration.start("nudge"); }, 500);
-        setTimeout(() => { vibration.start("nudge"); }, 1000);
+        fetchMeteo();
     } catch (e) {
         console.error("meteo init throws ex: " + e);
         logger.error("meteo init throws ex: " + e);
@@ -27,14 +27,15 @@ export function init(onAlertsAvailableCallback) {
     }
 }
 let alerts = [];
-function fetchMeteo(fn) {
+function fetchMeteo() {
     console.log("meteo fetchMeteo");
-    let data = readDataFromFile(fn);
-    if (!data) return;
-    console.log(JSON.stringify(data));
+    let meteoData = readDataFromFile(METEO_FN);
+    if (!meteoData) return;
+    //console.log(JSON.stringify(meteoData));
+    var forecasts=meteoData.forecasts;
     alerts = [];
     for (let i = 0; i < 12; i++) {
-        let d = data[i];
+        let d = forecasts[i];
         let h = new Date(d.d).getHours();
         if (h > 11) h = h - 12;
         alerts[h] = {
@@ -49,8 +50,13 @@ function fetchMeteo(fn) {
         };
     }
     console.log(JSON.stringify(alerts));
-    logger.info("meteo fetched "+settings.get("lastMeteoUpdate"));
-    if (alertsAvailableCallback) alertsAvailableCallback(alerts);
+    var data={
+        city:meteoData.city,
+        lastUpdate:meteoData.lastUpdate,
+        alerts:alerts
+    };
+    logger.info("meteo fetched "+data.city+"@"+data.lastUpdate);
+    if (alertsAvailableCallback) alertsAvailableCallback(data);
 }
 function normalizeValue(value, min, max) {
     let v = value - min;
@@ -70,8 +76,6 @@ function readDataFromFile(fn) {
     } catch (e) {
         console.error("readDataFromFile throws ex: " + e);
         logger.error("readDataFromFile throws ex: " + e);
-        
-        //vibration.start("nudge");
     }
     return null;
 }

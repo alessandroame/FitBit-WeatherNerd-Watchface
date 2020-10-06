@@ -30,7 +30,7 @@ messaging.peerSocket.addEventListener("open", () => { setState(STATE_CONNECTED);
 messaging.peerSocket.addEventListener("close", () => { setState(STATE_DISCONNECTED); });
 messaging.peerSocket.addEventListener("error", () => { setState(STATE_ERROR); });
 
-function setState(newState) {
+export function setState(newState) {
     if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
     state = newState;
     console.log("Connection state changed: " + state);
@@ -87,7 +87,7 @@ function onConnectionOpen() {
 }
 function onConnectionLost() {
     if (!snoozeTimer) {
-        if (settings.get("vibrateOnConnectionLost"),true) settimeout(()=>{vibration.start("nudge-max");},400);
+        if (settings.get("vibrateOnConnectionLost"),true) setTimeout(()=>{vibration.start("nudge-max");},400);
         if (settings.get("snoozeDialogEnabled"),true) showSnoozeDialog();
     }
 }

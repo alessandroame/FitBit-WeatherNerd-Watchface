@@ -12,7 +12,7 @@ export function init()
 
 export function update(alerts){
     console.log("meteo_alerts update");
-//    console.log(JSON.stringify(alerts));
+    //console.log(JSON.stringify(alerts));
     for (let i=0;i<12;i++) {
       //  console.log(`alert #${i} opacity:${alerts[i].precipitation.probability} size:${alerts[i].precipitation.quantity}  `)
         let prec=alertWidgets[i].getElementById("precipitation");

@@ -1,31 +1,29 @@
 import { geolocation } from "geolocation";
+import * as message_mediator from "../common/message_mediator";
 
-let watchID = null;
-let currentPosition = null;
 let positionChangedCallback = null;
 
 export function init(onPositionChangedCallback) {
     console.log("geolocator init");
     positionChangedCallback = onPositionChangedCallback;
-    geolocation.getCurrentPosition(locationSuccess);
-    setInterval(() => {
-        geolocation.getCurrentPosition(locationSuccess,locationError);
-    }, 120*1000);
-    //TODO https://dev.fitbit.com/build/guides/companion/
 }
 
-function locationSuccess(position) {
-    if (position !=currentPosition) {
-        console.log("geolocator location received")
-        currentPosition=position;
-        if(positionChangedCallback) {
-            console.log("geolocator position changed")
-            positionChangedCallback(currentPosition);
-        }
+export function getCurrentPosition() {
+    geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+}
+
+function onLocationSuccess(position) {
+    if (positionChangedCallback) {
+        console.log("geolocator position changed")
+        positionChangedCallback(position);
     }
 }
 
-function locationError(error) {
-    console.log("Error: " + error.code,
-        "Message: " + error.message);
+function onLocationError(error) {
+    var msg = "onLocationError: " + error.code + "Message: " + error.message;
+    console.error(msg);
+    message_mediator.publish("Error", {
+        code: 1,
+        msg: msg
+    });
 }

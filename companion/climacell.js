@@ -1,5 +1,5 @@
 import { settingsStorage } from "settings";
-import * as messaging from "../common/message_mediator";
+import * as message_mediator from "../common/message_mediator";
 
 let callback = null;
 
@@ -26,61 +26,61 @@ function setAPIKey(key) {
   }
 }
 
-let position = null;
-export function setPosition(currentPosition) {
-  position = currentPosition;
-  update();
+let currentPosition = null;
+let city = null;
+export function setPosition(position) {
+  currentPosition = position;
+  getCity(currentPosition, (cityName) => {
+    city = cityName;
+    update();
+  });
 }
 
-function getCity(pos,callback){
+function getCity(pos, callback) {
   if (!pos) {
     console.error("climacell position not available");
     return;
   }
-  let lat=pos.coords.latitude;
-  let lon=pos.coords.longitude;
-  var url="https://nominatim.openstreetmap.org/reverse?&lat="+lat+"&lon="+lon+"&format=json";
-  fetch(url) 
-  .then(function (response) {
+  let lat = pos.coords.latitude;
+  let lon = pos.coords.longitude;
+  var url = "https://nominatim.openstreetmap.org/reverse?&lat=" + lat + "&lon=" + lon + "&format=json";
+  fetch(url)
+    .then(function (response) {
       response.json()
-      .then(function(data) {
-        var a=data.address;
-        var res=a["village"]||a["town"]||a["city"]||a["suburb"]||a["county"]||a["state"]||a["country"];
-        callback(res);
+        .then(function (data) {
+          var a = data.address;
+          var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
+          callback(res);
+        });
+    })
+    .catch(function (err) {
+      let msg="Error fetching city: " + err;
+      console.error(msg);
+      message_mediator.publish("Error", {
+        code: 3,
+        msg: msg
       });
-  })
-  .catch(function (err) {
-    console.error("Error fetching city: " + err);
-  });
-}  
-let updateTimerId=null;
+
+    });
+}
+
+let updateTimerId = null;
 function update() {
-  if (!position) {
+  if (!currentPosition) {
     console.error("climacell position not available");
     return;
   }
-  if(updateTimerId){
+  if (updateTimerId) {
     clearInterval(updateTimerId);
-    updateTimerId=null;
+    updateTimerId = null;
   }
-  getCity(position,(city)=>{
-    let d=new Date();
-    let lastUpdate=d.getHours()+":"+d.getMinutes()+" @ "+city;
-    console.log("lastMeteoUpdate: "+lastUpdate);
-      const data = {
-        key: "lastMeteoUpdate",
-        oldValue: null,
-        value: lastUpdate
-      };    
-      messaging.publish("setting", data);
-    });
 
 
   var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
     "apikey=" + apiKey +
     "&unit_system=si" +//todo
-    "&lat=" + position.coords.latitude +
-    "&lon=" + position.coords.longitude +
+    "&lat=" + currentPosition.coords.latitude +
+    "&lon=" + currentPosition.coords.longitude +
     "&fields=precipitation,precipitation_probability,precipitation_type,temp,feels_like";//todo
   console.log("climacell update " + url);
   // var res=parseData(sampleData);
@@ -92,25 +92,41 @@ function update() {
     }
   })
     .then(function (res) {
-      console.log(`res code: ${res.status} ${res.statusText}  `);
+      //console.log(`res code: ${res.status} ${res.statusText}  `);
       res.json()
         .then(data => {
           if (data.message) {
-            console.error(`climacell error: ${JSON.stringify(data)} `);
-            //todo dialog
+            let msg=`climacell error: ${JSON.stringify(data)} `;
+            console.error(msg);
+            message_mediator.publish("Error", {
+              code: 5,
+              msg: msg
+            });
           } else {
-            let res=parseData(data);
-            if (callback) callback(res);
+            let parsedData = parseData(data);
+            let d = new Date();
+            let meteoData = {
+              city: city,
+              lastUpdate: d.getHours() + ":" + d.getMinutes(),
+              forecasts: parsedData
+            }
+            if (callback) callback(meteoData);
           }
 
         });
     })
     .catch(function (err) {
-      console.assert("climacell error fetching weather forecasts: " + err);
+      let msg = "climacell error fetching weather forecasts: " + err;
+      console.error(msg);
+      message_mediator.publish("Error", {
+        code: 2,
+        msg: msg
+      });
+
     });
-    updateTimerId=setTimeout(() => {
-      update();
-    }, 1000*5*60);
+  updateTimerId = setTimeout(() => {
+    update();
+  }, 1000 * 5 * 60);
 }
 
 function parseData(data) {

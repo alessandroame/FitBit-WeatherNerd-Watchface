@@ -19,8 +19,9 @@ console.log("Companion code started");
 
 let currentPosition=null;
 
+geolocator.getCurrentPosition();
 message_mediator.subscribe("requestMeteoUpdate",()=>{
-    climacell.setPosition(currentPosition);
+    geolocator.getCurrentPosition();
 });
 
 function onPositionChanged(position){
@@ -36,6 +37,12 @@ function onMeteoAvailable(data) {
         console.log(`onMeteoAvailable Transfer of ${ft.name} successfully queued.`);
     })
     .catch((error) => {
-        console.error(`onMeteoAvailable Failed to queue ${fn}: ${error}`);
+        let msg=`onMeteoAvailable Failed to queue ${fn}: ${error}`;
+        console.error(msg);
+        message_mediator.publish("Error", {
+            code: 4,
+            msg: msg
+          });
+    
     });
 }
