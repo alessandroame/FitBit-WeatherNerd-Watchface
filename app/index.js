@@ -47,6 +47,9 @@ function onMeteoDataAvailable(data){
     statusMessage.textContent=`${data.lastUpdate}@${data.city}`;
 }
 
+setInterval(() => {
+        message_mediator.publish("requestMeteoUpdate", null);
+}, 5*60*1000);
 let dimmerTimer;
 function showClockData() {
     datum.widget.style.opacity=1;

@@ -6,11 +6,22 @@ import * as settingsStorageMediator from "./settingsStorageMediator";
 import * as climacell from "./climacell";
 import * as geolocator from "./geolocator";
 
+
+import * as messaging from "messaging";
+
+let now=new Date();
+let launchReasons=JSON.stringify(me.launchReasons,null,1)+"@"+now.getHours()+":"+now.getMinutes();
+messaging.peerSocket.addEventListener("open", () => {
+    message_mediator.publish("Error", launchReasons);
+
+});
+
+
+
 let wakeInterval= 5*60*1000; 
 me.wakeInterval = wakeInterval;
 me.monitorSignificantLocationChanges = true;
 
-console.log("Companion launchReason: "+JSON.stringify(me.launchReasons));
 
 settingsStorageMediator.init();
 climacell.init(onMeteoAvailable);

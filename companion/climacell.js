@@ -64,17 +64,11 @@ function getCity(pos, callback) {
     });
 }
 
-let updateTimerId = null;
 function update() {
   if (!currentPosition) {
     console.error("climacell position not available");
     return;
   }
-  if (updateTimerId) {
-    clearInterval(updateTimerId);
-    updateTimerId = null;
-  }
-
 
   var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
     "apikey=" + apiKey +
@@ -124,9 +118,6 @@ function update() {
       });
 
     });
-  updateTimerId = setTimeout(() => {
-    update();
-  }, 1000 * 5 * 60);
 }
 
 function parseData(data) {
@@ -135,6 +126,7 @@ function parseData(data) {
   //https://en.wikipedia.org/wiki/Rain#:~:text=The%20following%20categories%20are%20used,mm%20(0.39%20in)%20per%20hour
   for (let i = 0; i < 12; i++) {
     let d = data[i];
+    
     res.push({
       d: d.observation_time.value,
       t: {

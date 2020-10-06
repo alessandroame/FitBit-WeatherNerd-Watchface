@@ -14,7 +14,7 @@ function notify(evt) {
   if (callbacks==null || callbacks.length==0) {
     console.warn("Mediator #"+intanceID+" found no subscription for topic: "+packet.topic+"   stack:"+new Error().stack);
     return;
-  }
+  }BigInt
   //console.log("Mediator #"+intanceID+" ["+callbacks.length+"] FOUND subscription for topic: "+packet.topic);
   callbacks.forEach(
     (callback)=>{
