@@ -31,11 +31,11 @@ messaging.peerSocket.addEventListener("close", () => { setState(STATE_DISCONNECT
 messaging.peerSocket.addEventListener("error", () => { setState(STATE_ERROR); });
 
 export function setState(newState) {
-    if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
     state = newState;
     console.log("Connection state changed: " + state);
     switch (state) {
         case STATE_CONNECTED:
+            if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
             logger.info("Connected");
             color = COLOR_NORMAL;
             dismiss();
@@ -43,6 +43,10 @@ export function setState(newState) {
             onConnectionOpen();
             break;
         case STATE_DISCONNECTED:
+            if (settings.get("vibrateOnConnectionLost"),true){
+                vibration.start("nudge-max");
+                setTimeout(()=>{vibration.start("nudge-max");},400);
+            } 
             logger.info("Disconnected");
             color = COLOR_NORMAL;
             startBlinking();
@@ -57,6 +61,10 @@ export function setState(newState) {
         default:
             break;
     }
+}
+
+messaging.peerSocket.onmessage=function(){
+    if (state!=STATE_CONNECTED) setState(STATE_CONNECTED);
 }
 
 let blinkingTimer = null;
