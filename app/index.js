@@ -17,6 +17,7 @@ import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
 import * as logger from "../common/logger"
 import * as mediator from "../common/mediator"
+import { vibration } from "haptics"
 
 memStats("after imports");
 
@@ -73,7 +74,7 @@ function dimClockData(){
 function showMenu() {
     logger.info("meteo update request");
     mediator.publish("requestMeteoUpdate", null);
-
+    vibration.start("bump");
     /*document.location.assign("menu.view").then(() => {
         console.log("menu.view");
         document.getElementById("menu1").addEventListener("click", (evt) => {
@@ -90,7 +91,12 @@ function showMenu() {
     });*/
 }
 
-function showWeather(){ connection.setState(0);}
-function showFitdata(){ connection.setState(1);}
+function showWeather(){ 
+    //console.log(settings.get("APIKey","fottiti"));
+    //connection.setState(0);
+}
+function showFitdata(){
+    //connection.setState(1);
+}
 
 memStats("app started");

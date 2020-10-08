@@ -4,7 +4,7 @@ const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let cache = "v0.0.40";
+let cache = "v0.0.50";
 export let minLevel = LOGLEVEL_INFO;
 
 export function debug(msg) {
@@ -46,13 +46,11 @@ export function reset() {
 
 function log(level, msg) {
     if (level < minLevel) return;
-    var entry = buildLogRow(`${levelDescriptions[level]}:${msg}\n`);
+    let now = new Date();
+
+    let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
+    var entry = `${nowString} ${msg}\n`;
+//    var entry = `${nowString} ${levelDescriptions[level]} ${msg}\n`;
     cache = entry + cache;
     if (cache.length > 1000) cache = cache.substr(0, 1000);
-}
-
-function buildLogRow(msg) {
-    let now = new Date();
-    let nowString = now.getHours() + ':' + now.getMinutes();// + '.' + now.getSeconds();
-    return nowString + ' ' + msg;
 }

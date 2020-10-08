@@ -63,9 +63,9 @@ export function setState(newState) {
     }
 }
 
-messaging.peerSocket.onmessage=function(){
+messaging.peerSocket.addEventListener("message",(evt)=>{
     if (state!=STATE_CONNECTED) setState(STATE_CONNECTED);
-}
+});
 
 let blinkingTimer = null;
 function startBlinking() {

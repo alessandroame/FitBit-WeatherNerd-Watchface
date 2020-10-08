@@ -14,8 +14,7 @@ try {
     console.error("settings fetch throw exception" + e);
 }
 mediator.subscribe("setting",(data)=>{
-    console.log("notified setting changed: "+JSON.stringify(data));
-    //console.log("settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
+    console.log("notify settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
     set(data.key,data.value);
     display.poke();
 });   
@@ -25,26 +24,26 @@ export function init(){
     console.log("settings init")
 }
   
-export function subscribe(key,callback){
-    mediator.subscribe("setting_"+key,callback);
-    if (_settings[key]) callback(_settings[key]);
+export function subscribe(key,callback,defValue){
+    mediator.subscribe("setting_"+key,(value)=>{
+        value=value|| defValue;
+        callback(value);
+    });
+    //callback(_settings[key]||defValue);
 }
+
 export function get(key, defaultValue) {
     return _settings[key] ? _settings[key] : defaultValue;
 }
 
 export function set(key, value) {
     _settings[key] = value;
-    mediator.publish("setting_"+key,value);
+    mediator.localPublish("setting_"+key,value);
     try {
         fs.writeFileSync("settings.json", _settings, "cbor");
     } catch (e) {
         console.error("settings store throw exception" + e);
     }
-    try {
-        console.log("set " + key + " to " + JSON.stringify(value));
-        vibration.start("bump");
-    } catch (e) {
-        console.error("Pattern search throws: " + e);
-    }
+//    console.log("set " + key + " to " + JSON.stringify(value));
+    vibration.start("bump");
 }

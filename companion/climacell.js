@@ -1,4 +1,4 @@
-import { settingsStorage } from "settings";
+import * as settings from "./settings";
 import * as mediator from "../common/mediator";
 
 let callback = null;
@@ -6,12 +6,7 @@ let callback = null;
 export function init(onDataAvailable) {
   console.log("climacell init")
   callback = onDataAvailable;
-  settingsStorage.addEventListener("change", (evt) => {
-    if (evt.key == "APIKey") {
-      setAPIKey(JSON.parse(evt.newValue));
-    }
-  });
-  setAPIKey(JSON.parse(settingsStorage.getItem("APIKey", null)));
+  settings.subscribe( "APIKey",setAPIKey);
 }
 
 let apiKey = null;

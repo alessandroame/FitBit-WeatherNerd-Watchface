@@ -1,26 +1,24 @@
 import * as messaging from "messaging";
-import { showLogger } from "../app/log_viewer";
 let subscriptions = {};
-let intanceID = new Date().getUTCMilliseconds();
 
 export function subscribe(topic, callback) {
   if (!subscriptions[topic]) subscriptions[topic] = [];
   subscriptions[topic].push(callback);
-  console.log("Mediator #" + intanceID + " subscribe to " + topic);
+  console.log("mediator subscribe to " + topic);
 }
 
 function notify(evt) {
   var packet = evt.data;
   let callbacks = subscriptions[packet.topic];
   if (callbacks != null && callbacks.length > 0) {
-    //console.log("Mediator #"+intanceID+" ["+callbacks.length+"] FOUND subscription for topic: "+packet.topic);
+    //console.log(mMediator ["+callbacks.length+"] FOUND subscription for topic: "+packet.topic);
     callbacks.forEach(
       (callback) => {
         callback(packet.data);
       });
   }
   else {
-    console.warn("Mediator #" + intanceID + " no subscription for topic: " + packet.topic + "   stack:" + new Error().stack);
+    console.warn("mediator no subscription for topic: " + packet.topic + "   stack:" + new Error().stack);
   }
   remotePublish(topic, data);
 }
@@ -29,11 +27,11 @@ export function publish(topic, data) {
   localPublish(topic, data);
   remotePublish(topic, data);
 }
-function localPublish(topic, data) {
-  //console.log("Mediator #" + intanceID + " publishing topic: " + topic);
+export function localPublish(topic, data) {
+  //console.log("mediator local publishing topic: " + topic);
   let callbacks = subscriptions[topic];
   if (callbacks != null && callbacks.length > 0) {
-    console.log("Mediator #" + intanceID + " found " + callbacks.length + " callbacks for topic: " + topic);
+    //console.log("mediator found " + callbacks.length + " callbacks for topic: " + topic);
     callbacks.forEach(
       (callback) => {
         callback(data);
@@ -41,8 +39,8 @@ function localPublish(topic, data) {
   }
 }
 
-function remotePublish(topic, data) {
-  //console.log("mediator publish on topic "+topic);
+export function remotePublish(topic, data) {
+  //console.log("mediator remote publish on topic "+topic);
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send({
       topic: topic,
@@ -50,13 +48,9 @@ function remotePublish(topic, data) {
     });
     return true;
   } else {
-    console.warn("mediator.publish: no peerSocket connection");
+    console.warn("mediator remote publish: no peerSocket connection");
     return false;
   }
-}
-
-messaging.peerSocket.onerror = function (err) {
-  console.error("mediator error: " + err.code + " - " + err.message);
 }
 
 export function ping() {
@@ -72,7 +66,7 @@ function pong(ping) {
   }
 }
 
-messaging.peerSocket.onmessage = function (evt) {
+messaging.peerSocket.addEventListener("message",(evt)=>{
   //console.trace(JSON.stringify(evt));
   var packet = evt.data;
   if (packet.ping) {
@@ -87,5 +81,5 @@ messaging.peerSocket.onmessage = function (evt) {
   } else if (packet.topic) {
     localPublish(packet.topic, packet.data);
   }
-}
+});
 

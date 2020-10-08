@@ -11,17 +11,17 @@ settings.subscribe("secondsHandColor",(value)=>{
   console.log("seconds hand color: "+value);
   secHand.getElementById("hand").style.fill=value;
   center.style.fill=value;
-});
+},"red");
 
 settings.subscribe("minutesHandColor",(value)=>{
   console.log("minutes hand color: "+value);
   minHand.getElementById("hand").style.fill=value;
-});
+},"white");
 
 settings.subscribe("hoursHandColor",(value)=>{
   console.log("hours hand color: "+value);
   hourHand.getElementById("hand").style.fill=value;
-});
+},"white");
 
 clock.granularity = "seconds";
 clock.addEventListener("tick", updateClock);

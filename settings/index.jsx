@@ -37,6 +37,7 @@ function SettingsPage(props) {
           onChange={(value) => {
             try {
               props.settingsStorage.setItem('APIKey', JSON.stringify(value.name));
+              console.log("$$$$$$$$$$$$$$$$$$$$$$$$$");
             } catch (e) {
               console.error("settings store throw exception" + e);
             }
@@ -52,6 +53,7 @@ function SettingsPage(props) {
           label="Show snooze/dismiss dialog"
         />
         <Select
+          title={`Snooze delay `}
           label={`Snooze delay `}
           onSelection={(value) => {
             try {
