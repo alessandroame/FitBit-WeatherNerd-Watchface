@@ -38,6 +38,6 @@ function setBatteryLevel(batteryLevel) {
     }
     level.style.fill = color;
     level.sweepAngle = -(30 / 100 * batteryLevel);
-    rail.style.fill = color;
+    rail.style.fill = COLOR_NORMAL;//color;
 }
 
