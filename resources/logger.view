@@ -4,8 +4,8 @@
         Log viewer
     </text>
 
-    <textarea id="text" text-length="1000" x="20" y="44" width="100%-44" height="100%-80" font-family="System-Light"
-        fill="white" font-size="18" text-overflow="ellipsis">...</textarea>
+    <textarea id="text" text-length="1000" x="0" y="44" width="100%" height="100%-80" font-family="System-Light"
+        fill="white" font-size="22" text-overflow="ellipsis">...</textarea>
 
 
     <rect x="0" y="100%-40" width="50%" height="40" fill="gray" pointer-events="all" />

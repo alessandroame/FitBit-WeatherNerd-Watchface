@@ -14,7 +14,7 @@ export function init(onAlertsAvailableCallback) {
             do {
                 fn = inbox.nextFile(); //if (fn) this.log("newfile:"+fn);
                 if (fn == METEO_FN) {
-                    logger.info("rx new meteo file");
+                    logger.debug("rx new meteo file");
                     fetchMeteo();
                 }
             } while (fn);

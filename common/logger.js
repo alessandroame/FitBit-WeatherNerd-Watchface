@@ -4,7 +4,7 @@ const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let cache = "";
+let cache = "v0.0.40";
 export let minLevel = LOGLEVEL_INFO;
 
 export function debug(msg) {

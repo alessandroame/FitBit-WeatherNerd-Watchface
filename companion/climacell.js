@@ -1,5 +1,5 @@
 import { settingsStorage } from "settings";
-import * as message_mediator from "../common/message_mediator";
+import * as mediator from "../common/mediator";
 
 let callback = null;
 
@@ -56,7 +56,7 @@ function getCity(pos, callback) {
     .catch(function (err) {
       let msg="Error fetching city: " + err;
       console.error(msg);
-      message_mediator.publish("Error", {
+      mediator.publish("Error", {
         code: 3,
         msg: msg
       });
@@ -92,7 +92,7 @@ function update() {
           if (data.message) {
             let msg=`climacell error: ${JSON.stringify(data)} `;
             console.error(msg);
-            message_mediator.publish("Error", {
+            mediator.publish("Error", {
               code: 5,
               msg: msg
             });
@@ -112,7 +112,7 @@ function update() {
     .catch(function (err) {
       let msg = "climacell error fetching weather forecasts: " + err;
       console.error(msg);
-      message_mediator.publish("Error", {
+      mediator.publish("Error", {
         code: 2,
         msg: msg
       });

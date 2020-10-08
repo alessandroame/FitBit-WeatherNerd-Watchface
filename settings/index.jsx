@@ -3,8 +3,32 @@ function SettingsPage(props) {
     <Page>
 
       <Section
-        title={<Text bold align="center">Meteo api (powerd by <Link source="http://climacell.co">Climacell™</Link>)</Text>}
-        description={<Text>To obtian a free <Link source="http://climacell.co">Climacell™</Link> APIkey go <Link source="https://developer.climacell.co/sign-up">https://developer.climacell.co/sign-up</Link></Text>}>
+        title={<Text bold align="center">Meteo</Text>}
+        description={<Text> api (powerd by <Link source="http://climacell.co">Climacell™</Link>) to obtian a free APIkey go <Link source="https://developer.climacell.co/sign-up">https://developer.climacell.co/sign-up</Link></Text>}>
+
+        <Select
+          label={`Update interval`}
+          onSelection={(value) => {
+            try {
+              props.settingsStorage.setItem('minMeteoUpdateInteval', value.values[0].value);
+            } catch (e) {
+              console.error("settings store throw exception" + e);
+            }
+          }}
+          settingsKey="_minMeteoUpdateInteval"
+          options={[
+            { name: "1 minute (not suggested only for testing)", value: "1" },
+            { name: "2 minutes", value: "2" },
+            { name: "3 minutes", value: "3" },
+            { name: "5 minutes", value: "5" },
+            { name: "10 minutes", value: "10" },
+            { name: "15 minutes", value: "15" },
+            { name: "20 minutes", value: "20" },
+            { name: "15 minutes", value: "30" },
+            { name: "1 hour", value: "60" },
+          ]}
+        />
+
         <TextInput
           align="right"
           title="Climacell™"
@@ -74,7 +98,7 @@ function SettingsPage(props) {
             { name: "Fatal", value: "4" },
           ]}
         />
-        </Section>
+      </Section>
       <Section
         title={<Text bold align="center">Colors</Text>}>
         <Text>Battery</Text>

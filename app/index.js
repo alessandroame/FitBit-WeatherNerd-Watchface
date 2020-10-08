@@ -16,13 +16,14 @@ import * as meteo_alerts from "./meteo_alerts"
 import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
 import * as logger from "../common/logger"
-import * as message_mediator from "../common/message_mediator";
+import * as mediator from "../common/mediator"
 
 memStats("after imports");
 
-setInterval(() => {
-    memStats();
-}, 30000);
+// setInterval(() => {
+//     memStats();
+// }, 30000);
+
 
 let statusMessage=document.getElementById("statusMessage");
 
@@ -37,7 +38,7 @@ dimClockData();
 touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showWeather, showFitdata);
 
 
-message_mediator.subscribe("Error",(data)=>{
+mediator.subscribe("Error",(data)=>{
     //TODO build a dialog
     logger.error(JSON.stringify(data));
 });
@@ -48,7 +49,7 @@ function onMeteoDataAvailable(data){
 }
 
 setInterval(() => {
-        message_mediator.publish("requestMeteoUpdate", null);
+        mediator.publish("requestMeteoUpdate", null);
 }, 5*60*1000);
 let dimmerTimer;
 function showClockData() {
@@ -71,7 +72,7 @@ function dimClockData(){
 }
 function showMenu() {
     logger.info("meteo update request");
-    message_mediator.publish("requestMeteoUpdate", null);
+    mediator.publish("requestMeteoUpdate", null);
 
     /*document.location.assign("menu.view").then(() => {
         console.log("menu.view");

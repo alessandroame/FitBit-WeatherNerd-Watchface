@@ -1,5 +1,5 @@
 import { settingsStorage } from "settings";
-import * as messaging from "../common/message_mediator";
+import * as mediator from "../common/mediator";
 
 export function init() {
   console.log("settingsStorageMediator init")
@@ -21,6 +21,6 @@ function publishSettingsChanged(evt) {
     oldValue: JSON.parse(evt.oldValue),
     value: JSON.parse(evt.newValue)
   };
-  messaging.publish("setting", data);
+  mediator.publish("setting", data);
 
 }
