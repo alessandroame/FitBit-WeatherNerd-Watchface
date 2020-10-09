@@ -14,6 +14,7 @@ Funcionality:
 todo:
 app
     macchina a stati (clock, clock data, forecasts etc)
-
+    companion log in setting
+    
 controllare mediator e message_mediator
 dall'app mostrare log app e companion
