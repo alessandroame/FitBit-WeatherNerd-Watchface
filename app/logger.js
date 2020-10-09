@@ -1,11 +1,14 @@
+import * as settings from "./settings"
+
 const LOGLEVEL_DEBUG = 0;
 const LOGLEVEL_INFO = 1;
 const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let cache = "v0.0.50";
-export let minLevel = LOGLEVEL_INFO;
+let cache = "STARTED -> v0.0.55";
+export let minLevel = LOGLEVEL_DEBUG;
+settings.subscribe("logLevel",(v)=>{minLevel=v;});
 
 export function debug(msg) {
     log(LOGLEVEL_DEBUG, msg);

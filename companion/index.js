@@ -38,17 +38,17 @@ function init() {
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
         if (updateMeteoTimerID){
-            console.log("updateMeteoTimer restarted ("+(updateMeteoInterval/1000)+"secs)");
+            console.log("updateMeteoTimer restarted ("+updateMeteoInterval+"secs)");
             clearInterval(updateMeteoTimerID);
             updateMeteoTimerID=null;
         }
-        /*
+        
         updateMeteoTimerID=setInterval(() => {
             update("Timer");
-        },  * 60000);//todo min value should be 5*/
+        },  updateMeteoInterval* 60000);//todo min value should be 5
     },5);
 
-    setInterval( mediator.ping, 60000);
+    mediator.publish("Error", "caompanion init");
 }
 
 function onPositionChanged(position) {
@@ -65,8 +65,8 @@ function update(reason) {
 }
 
 function forceUpdate(reason){
-    //climacell.setPosition(currentPosition);
-    geolocator.getCurrentPosition();
+    climacell.setPosition(currentPosition);
+    //geolocator.getCurrentPosition();
     console.error("update->" + reason);
     mediator.publish("Error", "update->" + reason);
 }

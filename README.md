@@ -12,8 +12,5 @@ Funcionality:
 
 
 todo:
-app
-    macchina a stati (clock, clock data, forecasts etc)
-
-controllare mediator e message_mediator
-dall'app mostrare log app e companion
+verificare doppie mediator.localpublish
+verificare initial value from settings (il livello di log ad esempio)

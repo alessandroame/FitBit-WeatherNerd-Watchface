@@ -5,11 +5,15 @@ let positionChangedCallback = null;
 
 export function init(onPositionChangedCallback) {
     console.log("geolocator init");
-    positionChangedCallback = onPositionChangedCallback;
+    positionChangedCallback=onPositionChangedCallback;
+    //getCurrentPosition();
 }
 
+
+//TODO REMOVE 
+setInterval(getCurrentPosition,120000);
 export function getCurrentPosition() {
-    geolocation.getCurrentPosition(onLocationSuccess, onLocationError);
+    geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { timeout: 20 * 1000 });
 }
 
 function onLocationSuccess(position) {

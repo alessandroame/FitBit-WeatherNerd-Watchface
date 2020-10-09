@@ -2,7 +2,7 @@ import document from "document";
 import { vibration } from "haptics";
 import * as settings from "./settings"
 import * as messaging from "messaging";
-import * as logger from "../common/logger";
+import * as logger from "./logger";
 
 let errorDelay = 200;
 let disconnectedDelay = 200;

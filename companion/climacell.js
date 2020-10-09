@@ -49,7 +49,7 @@ function getCity(pos, callback) {
         });
     })
     .catch(function (err) {
-      let msg="Error fetching city: " + err;
+      let msg="Error fetching city for "+ lat + "&lon=" + lon + ": " + err;
       console.error(msg);
       mediator.publish("Error", {
         code: 3,
