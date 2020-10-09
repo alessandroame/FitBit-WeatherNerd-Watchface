@@ -37,7 +37,6 @@ function SettingsPage(props) {
           onChange={(value) => {
             try {
               props.settingsStorage.setItem('APIKey', JSON.stringify(value.name));
-              console.log("$$$$$$$$$$$$$$$$$$$$$$$$$");
             } catch (e) {
               console.error("settings store throw exception" + e);
             }
@@ -136,140 +135,140 @@ function SettingsPage(props) {
             { color: 'lightgoldenrodyellow' }
           ]}
         />
-          <Text>Clock background</Text>
-          <ColorSelect
-            settingsKey="clockBackgroundColor"
-            colors={[
-              { color: 'black' },
-              { color: 'dimgrey' },
-              { color: 'grey' },
-              { color: 'darkgrey' },
-              { color: 'lightgrey' },
-              { color: 'white' },
+        <Text>Clock background</Text>
+        <ColorSelect
+          settingsKey="clockBackgroundColor"
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
 
-              { color: 'purple' },
-              { color: '#006ED6' },
-              { color: 'green' },
-              { color: 'orange' },
-              { color: 'red' },
-              { color: 'yellow' },
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
 
-              { color: 'magenta' },
-              { color: 'deepskyblue' },
-              { color: 'lime' },
-              { color: 'orangered' },
-              { color: 'deeppink' },
-              { color: 'gold' },
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
 
-              { color: 'lavender' },
-              { color: 'cyan' },
-              { color: 'lawngreen' },
-              { color: 'lightsalmon' },
-              { color: 'lightpink' },
-              { color: 'lightgoldenrodyellow' }
-            ]}
-          />
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
 
-          <Text bold align="center">Seconds hand</Text>
-          <ColorSelect
-            settingsKey="secondsHandColor"
-            colors={[
-              { color: 'black' },
-              { color: 'dimgrey' },
-              { color: 'grey' },
-              { color: 'darkgrey' },
-              { color: 'lightgrey' },
-              { color: 'white' },
+        <Text bold align="center">Seconds hand</Text>
+        <ColorSelect
+          settingsKey="secondsHandColor"
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
 
-              { color: 'purple' },
-              { color: '#006ED6' },
-              { color: 'green' },
-              { color: 'orange' },
-              { color: 'red' },
-              { color: 'yellow' },
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
 
-              { color: 'magenta' },
-              { color: 'deepskyblue' },
-              { color: 'lime' },
-              { color: 'orangered' },
-              { color: 'deeppink' },
-              { color: 'gold' },
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
 
-              { color: 'lavender' },
-              { color: 'cyan' },
-              { color: 'lawngreen' },
-              { color: 'lightsalmon' },
-              { color: 'lightpink' },
-              { color: 'lightgoldenrodyellow' }
-            ]}
-          />
-          <Text bold align="center">Minutes hand</Text>
-          <ColorSelect
-            settingsKey="minutesHandColor"
-            colors={[
-              { color: 'black' },
-              { color: 'dimgrey' },
-              { color: 'grey' },
-              { color: 'darkgrey' },
-              { color: 'lightgrey' },
-              { color: 'white' },
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
+        <Text bold align="center">Minutes hand</Text>
+        <ColorSelect
+          settingsKey="minutesHandColor"
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
 
-              { color: 'purple' },
-              { color: '#006ED6' },
-              { color: 'green' },
-              { color: 'orange' },
-              { color: 'red' },
-              { color: 'yellow' },
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
 
-              { color: 'magenta' },
-              { color: 'deepskyblue' },
-              { color: 'lime' },
-              { color: 'orangered' },
-              { color: 'deeppink' },
-              { color: 'gold' },
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
 
-              { color: 'lavender' },
-              { color: 'cyan' },
-              { color: 'lawngreen' },
-              { color: 'lightsalmon' },
-              { color: 'lightpink' },
-              { color: 'lightgoldenrodyellow' }
-            ]}
-          />
-          <Text bold align="center">Hours hand</Text>
-          <ColorSelect
-            settingsKey="hoursHandColor"
-            colors={[
-              { color: 'black' },
-              { color: 'dimgrey' },
-              { color: 'grey' },
-              { color: 'darkgrey' },
-              { color: 'lightgrey' },
-              { color: 'white' },
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
+        <Text bold align="center">Hours hand</Text>
+        <ColorSelect
+          settingsKey="hoursHandColor"
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
 
-              { color: 'purple' },
-              { color: '#006ED6' },
-              { color: 'green' },
-              { color: 'orange' },
-              { color: 'red' },
-              { color: 'yellow' },
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
 
-              { color: 'magenta' },
-              { color: 'deepskyblue' },
-              { color: 'lime' },
-              { color: 'orangered' },
-              { color: 'deeppink' },
-              { color: 'gold' },
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
 
-              { color: 'lavender' },
-              { color: 'cyan' },
-              { color: 'lawngreen' },
-              { color: 'lightsalmon' },
-              { color: 'lightpink' },
-              { color: 'lightgoldenrodyellow' }
-            ]}
-          />
-        </Section>
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
+      </Section>
     </Page>
   );
 }

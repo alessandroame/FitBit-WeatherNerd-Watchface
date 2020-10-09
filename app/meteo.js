@@ -2,7 +2,7 @@ import * as settings from "./settings";
 import { inbox } from "file-transfer";
 import * as fs from "fs";
 import { vibration } from "haptics";
-import * as logger from "../common/logger"
+import * as logger from "./logger"
 
 let alertsAvailableCallback = null;
 const METEO_FN = "meteo_data.json";

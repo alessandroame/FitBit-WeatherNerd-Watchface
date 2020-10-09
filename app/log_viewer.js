@@ -1,4 +1,4 @@
-import * as logger from "../common/logger"
+import * as logger from "./logger"
 import document from "document";
 
 export function showLogger(){

@@ -38,12 +38,12 @@ export function get(key, defaultValue) {
 
 export function set(key, value) {
     _settings[key] = value;
+    console.warn("set " + key + " to " + JSON.stringify(value));
     mediator.localPublish("setting_"+key,value);
     try {
         fs.writeFileSync("settings.json", _settings, "cbor");
     } catch (e) {
         console.error("settings store throw exception" + e);
     }
-//    console.log("set " + key + " to " + JSON.stringify(value));
     vibration.start("bump");
 }

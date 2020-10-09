@@ -15,9 +15,13 @@ import * as meteo from "./meteo"
 import * as meteo_alerts from "./meteo_alerts"
 import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
-import * as logger from "../common/logger"
+import * as logger from "./logger"
 import * as mediator from "../common/mediator"
 import { vibration } from "haptics"
+import * as ping from  "./ping"
+
+ping.ping();
+setInterval( ping.ping, 60000);
 
 memStats("after imports");
 
@@ -92,6 +96,8 @@ function showMenu() {
 }
 
 function showWeather(){ 
+    ping.ping();
+    vibration.start("bump");
     //console.log(settings.get("APIKey","fottiti"));
     //connection.setState(0);
 }

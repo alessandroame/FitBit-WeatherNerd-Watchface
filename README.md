@@ -12,6 +12,8 @@ Funcionality:
 
 
 todo:
+verificare doppie mediator.localpublish
+verificare initial value from settings (il livello di log ad esempio)
 app
     macchina a stati (clock, clock data, forecasts etc)
     companion log in setting
