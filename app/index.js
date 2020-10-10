@@ -20,7 +20,8 @@ import * as mediator from "../common/mediator"
 import { vibration } from "haptics"
 import * as ping from  "./ping"
 
-ping.ping();
+setTimeout( ping.ping, 3000);
+
 setInterval( ping.ping, 60000);
 
 memStats("after imports");

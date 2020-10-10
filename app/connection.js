@@ -1,22 +1,15 @@
 import document from "document";
 import { vibration } from "haptics";
 import * as settings from "./settings"
-import * as messaging from "messaging";
+import * as mediator from "../common/mediator";
 import * as logger from "./logger";
-
-let errorDelay = 200;
-let disconnectedDelay = 200;
-
-const STATE_CONNECTED = 1;
-const STATE_DISCONNECTED = 0;
-const STATE_ERROR = -1;
-let state = STATE_DISCONNECTED;
 
 const COLOR_NORMAL = "#006ED6";
 const COLOR_DIMMED = "gray";
 const COLOR_ERROR = "red";
 let color = COLOR_NORMAL;
-
+let blinkingTimer = null;
+let snoozeTimer = null;
 let widget = document.getElementById("bt");
 
 widget.onclick = function () {
@@ -24,36 +17,35 @@ widget.onclick = function () {
     setState(state != STATE_CONNECTED ? STATE_CONNECTED : STATE_DISCONNECTED);
 }
 
-if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) setState(STATE_CONNECTED);
+mediator.addConnectionStateListener(onConnectionStateChange);
 
-messaging.peerSocket.addEventListener("open", () => { setState(STATE_CONNECTED); });
-messaging.peerSocket.addEventListener("close", () => { setState(STATE_DISCONNECTED); });
-messaging.peerSocket.addEventListener("error", () => { setState(STATE_ERROR); });
+export function init() {
+    console.log("connectionWidget init");
+}
 
-export function setState(newState) {
-    state = newState;
-    console.log("Connection state changed: " + state);
+function onConnectionStateChange(state){
+    
     switch (state) {
-        case STATE_CONNECTED:
-            if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
+        case mediator.STATE_CONNECTED:
             logger.info("Connected");
+            if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
             color = COLOR_NORMAL;
             dismiss();
             stopBlinking();
             onConnectionOpen();
             break;
-        case STATE_DISCONNECTED:
+        case mediator.STATE_DISCONNECTED:
+            logger.info("Disconnected");
             if (settings.get("vibrateOnConnectionLost"),true){
                 vibration.start("nudge-max");
                 setTimeout(()=>{vibration.start("nudge-max");},400);
             } 
-            logger.info("Disconnected");
             color = COLOR_NORMAL;
             startBlinking();
             onConnectionLost();
             break;
-        case STATE_ERROR:
-            logger.error("Connection error");
+        case mediator.STATE_ERROR:
+            logger.info("Connection error");
             color = COLOR_ERROR;
             startBlinking();
             onConnectionLost();
@@ -63,22 +55,14 @@ export function setState(newState) {
     }
 }
 
-messaging.peerSocket.addEventListener("message",(evt)=>{
-    if (state!=STATE_CONNECTED) setState(STATE_CONNECTED);
-});
-
-let blinkingTimer = null;
 function startBlinking() {
     if (blinkingTimer) {
         clearTimeout(blinkingTimer);
         blinkingTimer = null;
     }
-    // setInterval(() => {  
-    //     console.log(" blinking ");
-    //  }, 100);
     blinkingTimer = setInterval(() => {
         widget.style.fill = COLOR_DIMMED;
-        setTimeout(() => { widget.style.fill = color; }, 300);
+        setTimeout(() => { widget.style.fill = color; }, 600);
     }, 1000);
 }
 function stopBlinking() {
@@ -89,9 +73,8 @@ function stopBlinking() {
     widget.style.fill = color;
 }
 
-let snoozeTimer = null;
-function onConnectionOpen() {
-    //resetSnooze();
+function onConnectionOpen(){
+
 }
 function onConnectionLost() {
     if (!snoozeTimer) {
@@ -114,9 +97,6 @@ function showSnoozeDialog() {
     });
 }
 
-export function init() {
-    console.log("connectionWidget init");
-}
 function resetSnooze() {
     if (snoozeTimer !== null) {
         console.log("resetSnooze");

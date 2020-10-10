@@ -6,7 +6,8 @@ const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let cache = "STARTED -> v0.0.55";
+let version="v0.0.60";
+let cache = "STARTED "+version;
 export let minLevel = LOGLEVEL_DEBUG;
 settings.subscribe("logLevel",(v)=>{minLevel=v;});
 
@@ -44,7 +45,7 @@ export function getCache(page) {
 }
 
 export function reset() {
-    return cache="";
+    return cache="reset "+version;
 }
 
 function log(level, msg) {
