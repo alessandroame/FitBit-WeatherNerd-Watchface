@@ -1,7 +1,6 @@
 import * as logger from "./logger"
 import * as messaging from "messaging";
 import { memory } from "system";
-import { vibration } from "haptics"
 
 let pingTimeoutID = null;
 
@@ -14,11 +13,9 @@ export function ping() {
       console.log(msg);
       logger.info(msg);
     }, 5000);
-    vibration.start("bump");
   } catch (e) {
     console.error("send fails:"+ e);
     logPingResponse("ping no network");
-    vibration.start("nudge-max");
     return false;
   }
 }
