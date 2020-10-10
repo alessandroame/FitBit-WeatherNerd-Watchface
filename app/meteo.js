@@ -55,7 +55,7 @@ function fetchMeteo() {
         lastUpdate:meteoData.lastUpdate,
         alerts:alerts
     };
-    logger.info("meteo fetched "+data.city+"@"+data.lastUpdate);
+    logger.debug("meteo fetched "+data.city+"@"+data.lastUpdate);
     if (alertsAvailableCallback) alertsAvailableCallback(data);
 }
 function normalizeValue(value, min, max) {

@@ -15,8 +15,11 @@ try {
 }
 mediator.subscribe("setting",(data)=>{
     console.log("notify settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
+    
     set(data.key,data.value);
-    display.poke();
+    if (!data.key == '_') {
+        display.poke();
+    }    
 });   
 
 
@@ -29,7 +32,7 @@ export function subscribe(key,callback,defValue){
         value=value|| defValue;
         callback(value);
     });
-    //callback(_settings[key]||defValue);
+    callback(_settings[key]||defValue);
 }
 
 export function get(key, defaultValue) {
