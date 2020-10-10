@@ -1,4 +1,5 @@
 <svg viewport-fill="fb-black">
+  <rect id="background" x="0" y="0" width="100%" height="100%" fill="green"/>
 
   <text id="statusMessage" fill="white" opacity="0.2" font-family="Tungsten" font-size="30" font-weight="bold" text-anchor="middle"
     x="50%" y="30%" text-length="100"> ...</text>

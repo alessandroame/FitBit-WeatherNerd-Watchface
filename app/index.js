@@ -1,5 +1,7 @@
 import { memory } from "system";
 import document from "document";
+import * as settings from "./settings";
+
 function memStats(desc) {
     let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
     console.log(msg);
@@ -21,14 +23,13 @@ import { vibration } from "haptics"
 import * as ping from  "./ping"
 
 setTimeout( ping.ping, 3000);
-
 setInterval( ping.ping, 60000);
 
 memStats("after imports");
 
-// setInterval(() => {
-//     memStats();
-// }, 30000);
+settings.subscribe("clockBackgroundColor",(color)=>{
+    document.getElementById("background").style.fill=color;
+},"black");
 
 
 let statusMessage=document.getElementById("statusMessage");
@@ -42,12 +43,6 @@ meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
 dimClockData();
 touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showWeather, showFitdata);
-
-
-mediator.subscribe("Error",(data)=>{
-    //TODO build a dialog
-    logger.error(JSON.stringify(data));
-});
 
 function onMeteoDataAvailable(data){
     meteo_alerts.update(data.alerts);
