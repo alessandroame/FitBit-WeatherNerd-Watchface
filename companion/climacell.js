@@ -34,6 +34,10 @@ export function setPosition(position) {
 function getCity(pos, callback) {
   if (!pos) {
     console.error("climacell position not available");
+    mediator.publish("Error", {
+      code: 11,
+      msg: "getcity pos is null"
+    });
     return;
   }
   let lat = pos.coords.latitude;
@@ -46,6 +50,10 @@ function getCity(pos, callback) {
           var a = data.address;
           var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
           callback(res);
+          mediator.publish("Error", {
+            code: 10,
+            msg: "city response: "+res
+          });
         });
     })
     .catch(function (err) {
