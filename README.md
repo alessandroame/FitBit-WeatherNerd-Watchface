@@ -4,11 +4,11 @@ Fitbit watch face with hourly forcase alerts.
 
 Forecasts are provided by 
 
-[Climacell™]: label={`Logminimumlevel`}
+[https://www.climacell.co/weather-api/]: Climacell™	"Climacell™"
 
 To obtain a free APIkey signup here 
 
-[https://developer.climacell.co/sign-up]: https://developer.climacell.co/sign-up
+[https://developer.climacell.co/sign-up]: https://developer.climacell.co/sign-up	"APIKey"
 
 Installation from smartphone: 
 
