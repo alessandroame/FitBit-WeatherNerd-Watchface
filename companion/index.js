@@ -37,11 +37,11 @@ function init() {
     me.monitorSignificantLocationChanges = true;
     me.addEventListener("significantlocationchange", onPositionChanged);
 
-    setInterval(()=>
+   /* setInterval(()=>
     {
         console.log("ssssssssssssssssssss")
         geolocator.getCurrentPosition();
-    },120000);
+    },120000);*/
     
     logger.warning("companion init");
 }
@@ -56,6 +56,7 @@ function startUpdateTimer(){
     
     updateMeteoTimerID=setInterval(() => {
         updateMeteo("Timer");
+        geolocator.getCurrentPosition();
     },  updateMeteoInterval* 60000);//todo min value should be 5
 }
 

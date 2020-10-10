@@ -11,7 +11,7 @@ export function init(onPositionChangedCallback) {
 
 
 //TODO REMOVE 
-setInterval(getCurrentPosition, 120000);
+//setInterval(getCurrentPosition, 120000);
 
 export function getCurrentPosition() {
 //  geolocation.getCurrentPosition(, onLocationError, { timeout: 10 * 1000 });
