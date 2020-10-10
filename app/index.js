@@ -98,6 +98,7 @@ function showWeather(){
     //connection.setState(0);
 }
 function showFitdata(){
+    mediator.publish("requestGetCurrentPosition");
     //connection.setState(1);
 }
 

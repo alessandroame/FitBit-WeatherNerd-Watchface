@@ -2,14 +2,23 @@ import * as settings from "./settings";
 import * as logger from "./logger";
 
 let callback = null;
+let currentPosition = null;
+let city = null;
+let apiKey = null;
 
 export function init(onDataAvailable) {
   console.log("climacell init")
   callback = onDataAvailable;
   settings.subscribe("APIKey", setAPIKey);
+  settings.subscribe("currentPosition", setPosition);
+  console.warn("11111111111111");
 }
 
-let apiKey = null;
+export function update(reason) {
+  console.info("climacell update "+reason);
+  getForcasts();
+}
+
 function setAPIKey(key) {
   apiKey = key;
   if (!apiKey) {
@@ -17,19 +26,23 @@ function setAPIKey(key) {
     //todo show on device dialog
   }
   else {
-    update();
+    getForcasts();
   }
 }
 
-let currentPosition = null;
-let city = null;
-export function setPosition(position) {
-  currentPosition = position;
-  getCity(currentPosition, (cityName) => {
-    city = cityName;
-    update();
-  });
+function setPosition(position) {
+  logger.info("pos changed " + position);
+  if (position) {
+    currentPosition = position;
+    getCity(position, (response) => {
+      city=response;
+      logger.debug("city updated to"+city );
+    });
+  } else {
+    logger.error("pos is null");
+  }
 }
+
 
 function getCity(pos, callback) {
   if (!pos) {
@@ -46,7 +59,7 @@ function getCity(pos, callback) {
           var a = data.address;
           var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
           callback(res);
-          logger.warning("city response: " + res);
+          //logger.warning("city response: " + res);
         });
     })
     .catch(function (err) {
@@ -55,9 +68,13 @@ function getCity(pos, callback) {
     });
 }
 
-function update() {
+function getForcasts() {
   if (!currentPosition) {
     console.error("climacell position not available");
+    return;
+  }
+  if (!apiKey) {
+    console.error("climacell apikey not available");
     return;
   }
 
@@ -83,7 +100,7 @@ function update() {
           if (data.message) {
             logger.info(`climacell error: ${JSON.stringify(data)} `);
           } else {
-            let parsedData = parseData(data);
+            let parsedData = parseForecast(data);
             let d = new Date();
             let meteoData = {
               city: city,
@@ -100,7 +117,7 @@ function update() {
     });
 }
 
-function parseData(data) {
+function parseForecast(data) {
   console.log("climacell parsing data");
   let res = [];
   //https://en.wikipedia.org/wiki/Rain#:~:text=The%20following%20categories%20are%20used,mm%20(0.39%20in)%20per%20hour

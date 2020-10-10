@@ -15,33 +15,37 @@ let currentPosition = null;
 init();
 
 function init() {
-    settings.init();
-    let now = new Date();
-    let launchReasons = JSON.stringify(me.launchReasons, null, 1) + "@" + now.getHours() + ":" + now.getMinutes();
-    messaging.peerSocket.addEventListener("open", () => {
-        update("connection opened");
-    });
-    me.wakeInterval = wakeInterval;
-    me.addEventListener("wakeinterval", () => {
-        update("wakeinterval triggered");
-    });
-    
-    me.monitorSignificantLocationChanges = true;
-    me.addEventListener("significantlocationchange", onPositionChanged);
+    settings.init();  
 
     climacell.init(onMeteoAvailable);
     geolocator.init(onPositionChanged);
-    geolocator.getCurrentPosition();
+
     console.log("Companion code started");
     mediator.subscribe("requestMeteoUpdate", () => forceUpdate("requested from watch"));
+    mediator.subscribe("requestGetCurrentPosition", geolocator.getCurrentPosition);
 
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
+        geolocator.getCurrentPosition();
         startUpdateTimer();
     },5);
 
+    me.wakeInterval = wakeInterval;
+    me.addEventListener("wakeinterval", () => {
+        updateMeteo("wakeinterval triggered");
+    });
+    me.monitorSignificantLocationChanges = true;
+    me.addEventListener("significantlocationchange", onPositionChanged);
+
+
     logger.warning("companion init");
 }
+
+setInterval(()=>
+{
+    console.log("ssssssssssssssssssss")
+    geolocator.getCurrentPosition();
+},120000);
 
 function startUpdateTimer(){
     if (updateMeteoTimerID){
@@ -51,7 +55,7 @@ function startUpdateTimer(){
     }
     
     updateMeteoTimerID=setInterval(() => {
-        update("Timer");
+        updateMeteo("Timer");
     },  updateMeteoInterval* 60000);//todo min value should be 5
 }
 
@@ -59,24 +63,22 @@ function startUpdateTimer(){
 function onPositionChanged(position) {
     console.log("geolocator positionChanged: " + JSON.stringify(position));
     currentPosition = position;
-    //update("position changed");
-    climacell.setPosition(currentPosition);
+    settings.set("currentPosition", JSON.stringify(position));
+    updateMeteo("position changed");
 }
 
-function update(reason) {
+function updateMeteo(reason) {
     throttle(() => {
         forceUpdate(reason);
     }, updateMeteoInterval * 6000,"update "+reason);
 }
 
 function forceUpdate(reason){
-    climacell.setPosition(currentPosition);
-    //geolocator.getCurrentPosition();
-    logger.info("update->" + reason);
+    climacell.update(reason);
 }
 
 function onMeteoAvailable(data) {
-    logger.info("Meteo data received");
+    logger.info("Meteo available");
     let json = JSON.stringify(data);
     outbox
         .enqueue("meteo_data.json", encode(json)).then((ft) => {
@@ -86,7 +88,6 @@ function onMeteoAvailable(data) {
             logger.error(`onMeteoAvailable Failed to queue ${fn}: ${error}`);
         });
 }
-
 
 let throttleTimers = {};
 function throttle(func, delay,msg) {

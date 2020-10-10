@@ -91,7 +91,7 @@ export function localPublish(topic, data) {
 
 export function remotePublish(topic, data) {
   //console.log("mediator remote publish on topic "+topic);
-  return !trySend({
+  return trySend({
     sender: mediatorID,
     topic: topic,
     data: data

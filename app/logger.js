@@ -7,7 +7,7 @@ const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let version="v0.0.60";
+let version="v0.0.61";
 let cache = "STARTED "+version;
 export let minLevel = LOGLEVEL_DEBUG;
 settings.subscribe("logLevel",(v)=>{minLevel=v;});
@@ -15,7 +15,7 @@ settings.subscribe("logLevel",(v)=>{minLevel=v;});
 
 mediator.subscribe("logEntry",(entry)=>{
     //console.error(JSON.stringify(entry));
-    log(entry.level,entry.msg);
+    log(entry.level," > "+entry.msg);
 });
 
 
@@ -62,7 +62,7 @@ function log(level, msg) {
 
     let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
 //    var entry = `${nowString} ${msg}\n`;
-    var entry = `${nowString} ${levelDescriptions[level]} ${msg}\n`;
+    var entry = `  ${levelDescriptions[level]} ${msg} ${nowString}\n`;
     cache = entry + cache;
     if (cache.length > 1000) cache = cache.substr(0, 1000);
 }
