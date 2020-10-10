@@ -71,7 +71,7 @@ function onPositionChanged(position) {
 function updateMeteo(reason) {
     throttle(() => {
         forceUpdate(reason);
-    }, updateMeteoInterval * 6000,"update "+reason);
+    }, updateMeteoInterval * 60000,"update "+reason);
 }
 
 function forceUpdate(reason){

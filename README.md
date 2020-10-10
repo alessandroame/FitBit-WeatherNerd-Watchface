@@ -17,7 +17,7 @@ Installation from smartphone [download here](https://gallery.fitbit.com/details/
 - Date number
 - Connection status 
 
-## Funcionality:
+## Functions:
 
 - Follow mode to obtain forecast of the current position
 - Hourly precipitation/ice alert on clock

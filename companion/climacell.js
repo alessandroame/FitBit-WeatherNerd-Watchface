@@ -14,7 +14,7 @@ export function init(onDataAvailable) {
 }
 
 export function update(reason) {
-  console.info("climacell update "+reason);
+  logger.warning("climacell update "+reason);
   getForcasts();
 }
 
@@ -30,7 +30,7 @@ function setAPIKey(key) {
 }
 
 function setPosition(position) {
-  logger.info("pos changed " + position);
+  logger.debug("pos changed ");
   if (position) {
     currentPosition = position;
     getCity(position, (response) => {
@@ -41,7 +41,6 @@ function setPosition(position) {
     logger.error("pos is null");
   }
 }
-
 
 function getCity(pos, callback) {
   if (!pos || !pos.coords) {
@@ -75,7 +74,7 @@ function getForcasts() {
     return;
   }
   if (!apiKey) {
-    console.error("climacell apikey not available");
+    logger.error("climacell apikey not available");
     return;
   }
 
