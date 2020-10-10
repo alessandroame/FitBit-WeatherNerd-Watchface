@@ -1,16 +1,28 @@
-FitBit.WeatherNerd
+# FitBit.WeatherNerd
 
-Available data:
+Fitbit watch face with hourly forcase alerts.
+
+Forecasts are provided by 
+
+[Climacell™]: label={`Logminimumlevel`}
+
+To obtain a free APIkey signup here 
+
+[https://developer.climacell.co/sign-up]: https://developer.climacell.co/sign-up
+
+## Available data:
+
 - Analog clock
 - Date of week
 - Date number
 - Connection status 
 
-Funcionality:
+## Funcionality:
+
+- Follow mode to obtain forecast of the current position
 - Hourly precipitation/ice alert on clock
 - Connection with lost alert with snooze function
 
+## TODOs:
 
-todo:
-verificare doppie mediator.localpublish
-verificare initial value from settings (il livello di log ad esempio)
+check why appeans double mediator.localpublish (is only on the simulator?)

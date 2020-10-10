@@ -1,5 +1,5 @@
 import { geolocation } from "geolocation";
-import * as mediator from "../common/mediator";
+import * as logger  from "./logger";
 
 let positionChangedCallback = null;
 
@@ -24,10 +24,5 @@ function onLocationSuccess(position) {
 }
 
 function onLocationError(error) {
-    var msg = "onLocationError: " + error.code + "Message: " + error.message;
-    console.error(msg);
-    mediator.publish("Error", {
-        code: 1,
-        msg: msg
-    });
+    logger.error("onLocationError: " + error.code + "Message: " + error.message);
 }

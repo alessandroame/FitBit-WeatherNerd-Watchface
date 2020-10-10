@@ -29,7 +29,7 @@ export function subscribe(key,callback,defValue){
         value=value|| defValue;
         callback(value);
     });
-    //callback(_settings[key]||defValue);
+    callback(_settings[key]||defValue);
 }
 
 export function get(key, defaultValue) {

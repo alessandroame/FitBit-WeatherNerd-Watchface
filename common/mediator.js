@@ -2,7 +2,7 @@ import * as messaging from "messaging";
 let subscriptions = {};
 //to handling doblue publish when in simulator
 let mediatorID = new Date().getTime();
-console.error("mediator init with ID:" + mediatorID);
+console.warn("mediator init with ID:" + mediatorID);
 let listeners = [];
 export const STATE_ERROR = -1;
 export const STATE_DISCONNECTED = 0;
@@ -52,7 +52,7 @@ messaging.peerSocket.addEventListener("message", (evt) => {
   //console.warn(mediatorID+" "+JSON.stringify(evt));
   var packet = evt.data;
   if (packet.sender && packet.sender == mediatorID) {
-    console.warn("skipping message is from same mediator  why??");
+    console.error("skipping message is from same mediator  why??");
     return;
   }
   if (packet.ping) {

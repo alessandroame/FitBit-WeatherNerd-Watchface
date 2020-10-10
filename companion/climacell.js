@@ -1,12 +1,12 @@
 import * as settings from "./settings";
-import * as mediator from "../common/mediator";
+import * as logger from "./logger";
 
 let callback = null;
 
 export function init(onDataAvailable) {
   console.log("climacell init")
   callback = onDataAvailable;
-  settings.subscribe( "APIKey",setAPIKey);
+  settings.subscribe("APIKey", setAPIKey);
 }
 
 let apiKey = null;
@@ -33,11 +33,7 @@ export function setPosition(position) {
 
 function getCity(pos, callback) {
   if (!pos) {
-    console.error("climacell position not available");
-    mediator.publish("Error", {
-      code: 11,
-      msg: "getcity pos is null"
-    });
+    logger.error("getcity pos is null");
     return;
   }
   let lat = pos.coords.latitude;
@@ -50,19 +46,11 @@ function getCity(pos, callback) {
           var a = data.address;
           var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
           callback(res);
-          mediator.publish("Error", {
-            code: 10,
-            msg: "city response: "+res
-          });
+          logger.warning("city response: " + res);
         });
     })
     .catch(function (err) {
-      let msg="Error fetching city for "+ lat + "&lon=" + lon + ": " + err;
-      console.error(msg);
-      mediator.publish("Error", {
-        code: 3,
-        msg: msg
-      });
+      logger.error("Error fetching city for " + lat + "&lon=" + lon + ": " + err);
 
     });
 }
@@ -93,12 +81,7 @@ function update() {
       res.json()
         .then(data => {
           if (data.message) {
-            let msg=`climacell error: ${JSON.stringify(data)} `;
-            console.error(msg);
-            mediator.publish("Error", {
-              code: 5,
-              msg: msg
-            });
+            logger.info(`climacell error: ${JSON.stringify(data)} `);
           } else {
             let parsedData = parseData(data);
             let d = new Date();
@@ -113,13 +96,7 @@ function update() {
         });
     })
     .catch(function (err) {
-      let msg = "climacell error fetching weather forecasts: " + err;
-      console.error(msg);
-      mediator.publish("Error", {
-        code: 2,
-        msg: msg
-      });
-
+      logger.error("climacell error fetching weather forecasts: " + err);
     });
 }
 
@@ -129,7 +106,7 @@ function parseData(data) {
   //https://en.wikipedia.org/wiki/Rain#:~:text=The%20following%20categories%20are%20used,mm%20(0.39%20in)%20per%20hour
   for (let i = 0; i < 12; i++) {
     let d = data[i];
-    
+
     res.push({
       d: d.observation_time.value,
       t: {

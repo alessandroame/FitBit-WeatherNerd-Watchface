@@ -6,7 +6,7 @@ import * as settings from "./settings";
 import * as climacell from "./climacell";
 import * as geolocator from "./geolocator";
 import * as messaging from "messaging";
-
+import * as logger from "./logger";
 
 let wakeInterval = 5 * 60 * 1000;
 let updateMeteoInterval=5;
@@ -40,7 +40,7 @@ function init() {
         startUpdateTimer();
     },5);
 
-    console.log("Error", "companion init");
+    logger.warning("companion init");
 }
 
 function startUpdateTimer(){
@@ -72,25 +72,18 @@ function update(reason) {
 function forceUpdate(reason){
     climacell.setPosition(currentPosition);
     //geolocator.getCurrentPosition();
-    console.info("update meteo->" + reason);
-    mediator.publish("Error", "update->" + reason);
+    logger.info("update->" + reason);
 }
 
 function onMeteoAvailable(data) {
-    //console.log("onMeteoAvailable " + JSON.stringify(data));
-    mediator.publish("Error", "onMeteoAvailable");
+    logger.info("Meteo data received");
     let json = JSON.stringify(data);
     outbox
         .enqueue("meteo_data.json", encode(json)).then((ft) => {
             console.log(`onMeteoAvailable Transfer of ${ft.name} successfully queued.`);
         })
         .catch((error) => {
-            let msg = `onMeteoAvailable Failed to queue ${fn}: ${error}`;
-            console.error(msg);
-            mediator.publish("Error", {
-                code: 4,
-                msg: msg
-            });
+            logger.error(`onMeteoAvailable Failed to queue ${fn}: ${error}`);
         });
 }
 
