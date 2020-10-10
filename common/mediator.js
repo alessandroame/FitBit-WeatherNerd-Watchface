@@ -7,7 +7,7 @@ let listeners = [];
 export const STATE_ERROR = -1;
 export const STATE_DISCONNECTED = 0;
 export const STATE_CONNECTED = 1;
-let connectionState = STATE_DISCONNECTED;
+let connectionState = -99;
 
 
 export function addConnectionStateListener(callback) {
@@ -27,7 +27,7 @@ function notifyConnectionEvent(state) {
       cb(state);
     } catch (e) {
       console.error("notifyConnectionEvent fails: " + e);
-      console.trace();
+      //console.trace();
     }
   });
 }
@@ -38,8 +38,7 @@ function trySend(data) {
     return true;
   } catch (e) {
     console.error("Send fails: " + e);
-    console.trace();
-    console.warn("Data not sent: " + JSON.stringify(data));
+//    console.warn("Data not sent: " + JSON.stringify(data));
     setConnectionState(STATE_DISCONNECTED);
     return false;
   }

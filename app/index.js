@@ -99,6 +99,7 @@ function showWeather(){
 }
 function showFitdata(){
     mediator.publish("requestGetCurrentPosition");
+    vibration.start("bump");
     //connection.setState(1);
 }
 

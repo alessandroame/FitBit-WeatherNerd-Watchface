@@ -2,17 +2,11 @@
 
 Fitbit watch face with hourly forcase alerts.
 
-Forecasts are provided by 
+Forecasts are provided by : [Climacell™](https://www.climacell.co/weather-api/)	
 
-[https://www.climacell.co/weather-api/]: Climacell™	"Climacell™"
+To obtain a free APIkey [signup here](https://developer.climacell.co/sign-up)
 
-To obtain a free APIkey signup here 
-
-[https://developer.climacell.co/sign-up]: https://developer.climacell.co/sign-up	"APIKey"
-
-Installation from smartphone: 
-
-[https://gallery.fitbit.com/details/4554c69d-fd33-402e-95d5-9dae5c673d86]: https://gallery.fitbit.com/details/4554c69d-fd33-402e-95d5-9dae5c673d86
+Installation from smartphone [download here](https://gallery.fitbit.com/details/4554c69d-fd33-402e-95d5-9dae5c673d86)
 
 
 

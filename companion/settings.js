@@ -7,16 +7,7 @@ export function init() {
   settingsStorage.addEventListener("change", (evt) => {
     console.trace();
     console.warn("<<<<<<<< " + evt.key + " >>>>>>>>");
-    if (evt.key[0] == '_') return;
-    /*{
-      console.warn("<<<<<<<< accrocchio " + evt.key + " >>>>>>>>");
-      evt.key = evt.key.substring(1);
-      evt.oldValue = null;
-      evt.newValue = settingsStorage.getItem(evt.key);
-      notify(evt);
-    } else */{
-      notify(evt);
-    }
+    notify(evt);
   });
 }
 
@@ -29,12 +20,12 @@ export function set(key, value) {
   });
 }
 export function get(key, defvalue) {
-  let json="";
+  let json = "";
   try {
-    json=settingsStorage.getItem(key, defvalue);
+    json = settingsStorage.getItem(key, defvalue);
     return JSON.parse(json);
-  } catch (e) { 
-    console.error("get setting "+key+" throws:"+e +"\nJSON:"+json);
+  } catch (e) {
+    console.error("get setting " + key + " throws:" + e + "\nJSON:" + json);
     return defvalue;
   }
 }

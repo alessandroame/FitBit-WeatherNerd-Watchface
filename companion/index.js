@@ -37,15 +37,15 @@ function init() {
     me.monitorSignificantLocationChanges = true;
     me.addEventListener("significantlocationchange", onPositionChanged);
 
-
+    setInterval(()=>
+    {
+        console.log("ssssssssssssssssssss")
+        geolocator.getCurrentPosition();
+    },120000);
+    
     logger.warning("companion init");
 }
 
-setInterval(()=>
-{
-    console.log("ssssssssssssssssssss")
-    geolocator.getCurrentPosition();
-},120000);
 
 function startUpdateTimer(){
     if (updateMeteoTimerID){
@@ -63,7 +63,7 @@ function startUpdateTimer(){
 function onPositionChanged(position) {
     console.log("geolocator positionChanged: " + JSON.stringify(position));
     currentPosition = position;
-    settings.set("currentPosition", JSON.stringify(position));
+    settings.set("_currentPosition", JSON.stringify(position));
     updateMeteo("position changed");
 }
 

@@ -10,8 +10,7 @@ export function init(onDataAvailable) {
   console.log("climacell init")
   callback = onDataAvailable;
   settings.subscribe("APIKey", setAPIKey);
-  settings.subscribe("currentPosition", setPosition);
-  console.warn("11111111111111");
+  settings.subscribe("_currentPosition", setPosition);
 }
 
 export function update(reason) {
@@ -45,9 +44,11 @@ function setPosition(position) {
 
 
 function getCity(pos, callback) {
-  if (!pos) {
+  if (!pos || !pos.coords) {
     logger.error("getcity pos is null");
     return;
+  }else {
+    //console.log("___________"+JSON.stringify(pos));
   }
   let lat = pos.coords.latitude;
   let lon = pos.coords.longitude;
@@ -69,7 +70,7 @@ function getCity(pos, callback) {
 }
 
 function getForcasts() {
-  if (!currentPosition) {
+  if (!currentPosition || !currentPosition.coords) {
     console.error("climacell position not available");
     return;
   }

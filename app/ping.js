@@ -41,7 +41,7 @@ messaging.peerSocket.addEventListener("message", (evt) => {
 });
 
 function logPingResponse(msg) {
-  msg += `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}%`;
+  msg += ` MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}%`;
   console.log(msg);
   logger.info(msg);
 }

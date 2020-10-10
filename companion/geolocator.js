@@ -12,13 +12,23 @@ export function init(onPositionChangedCallback) {
 
 //TODO REMOVE 
 setInterval(getCurrentPosition, 120000);
+
 export function getCurrentPosition() {
-    geolocation.getCurrentPosition(onLocationSuccess, onLocationError, { timeout: 20 * 1000 });
-}
+//  geolocation.getCurrentPosition(, onLocationError, { timeout: 10 * 1000 });
+  geolocation.getCurrentPosition(function(position) {
+    onLocationSuccess({
+        coords:{
+            latitude:position.coords.latitude ,
+            longitude: position.coords.longitude
+        }
+    });
+    //console.log(position.coords.latitude + ", " + position.coords.longitude+"-->"+JSON.stringify(position));
+ },onLocationError)
+ }
 
 function onLocationSuccess(position) {
+    console.log("geolocator position changed "+JSON.stringify(position));
     if (positionChangedCallback) {
-        console.log("geolocator position changed")
         positionChangedCallback(position);
     }
 }
