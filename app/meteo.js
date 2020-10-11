@@ -1,4 +1,3 @@
-import * as settings from "./settings";
 import { inbox } from "file-transfer";
 import * as fs from "fs";
 import { vibration } from "haptics";
@@ -25,16 +24,18 @@ export function init(onAlertsAvailableCallback) {
         vibration.start("nudge");
     }
 }
-let alerts = [];
+
 function fetchMeteo() {
     console.log("meteo fetchMeteo");
+    let alerts = [];
+    let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
     if (!meteoData) return;
     //console.log(JSON.stringify(meteoData));
-    var forecasts=meteoData.forecasts;
-    alerts = [];
+    var f=meteoData.forecasts;
+    
     for (let i = 0; i < 12; i++) {
-        let d = forecasts[i];
+        let d = f[i];
         let h = new Date(d.d).getHours();
         if (h > 11) h = h - 12;
         alerts[h] = {
@@ -47,12 +48,20 @@ function fetchMeteo() {
                 quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
             }
         };
+//        console.log(JSON.stringify(d));
+        forecasts[h]={
+            icon: d.m.i,
+            temp:d.t.r,
+            tempPerc:d.t.p,
+        };
+        console.log(JSON.stringify(d));
     }
     console.log(JSON.stringify(alerts));
     var data={
         city:meteoData.city,
         lastUpdate:meteoData.lastUpdate,
-        alerts:alerts
+        alerts:alerts,
+        forecasts:forecasts
     };
     logger.debug("meteo load "+data.city+"@"+data.lastUpdate);
     if (alertsAvailableCallback) alertsAvailableCallback(data);

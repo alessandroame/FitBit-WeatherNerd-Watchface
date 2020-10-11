@@ -2,7 +2,6 @@
     <defs>
         <symbol id="touchAreas">
             <svg opacity="0">
-
                 <rect id="btnTL" x="0" y="0" width="50%" height="50%" fill="red" pointer-events="all" />
                 <rect id="btnTR" x="50%" y="0" width="50%" height="50%" fill="green" pointer-events="all" />
                 <rect id="btnBL" x="0" y="50%" width="50%" height="50%" fill="blue" pointer-events="all" />

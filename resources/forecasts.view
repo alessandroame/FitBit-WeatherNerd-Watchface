@@ -1,0 +1,27 @@
+<svg viewport-fill="fb-black" opacity="0.8"> 
+    <defs>
+        <symbol id="hourlyForecast">
+            <g id="mainContainer" transform="translate(50%,50%)">
+                <g id="iconContainer" transform="translate(0,-50%+16)">
+                    <image id="icon" x="-16" y="-16" width="32" height="32" href="icons/meteo/mostly_clear_day.png" />
+                </g>
+                <g id="tempContainer" transform="translate(0,-50%+50)">
+                    <text id="temp" x="0" y="8" font-size="24" text-anchor="middle" fill="white" text-length="10">--°</text>
+                </g>
+            </g>
+        </symbol>
+    </defs>
+    <use id="forecast_0" href="#hourlyForecast" />
+    <use id="forecast_1" href="#hourlyForecast" />
+    <use id="forecast_2" href="#hourlyForecast" />
+    <use id="forecast_3" href="#hourlyForecast" />
+    <use id="forecast_4" href="#hourlyForecast" />
+    <use id="forecast_5" href="#hourlyForecast" />
+    <use id="forecast_6" href="#hourlyForecast" />
+    <use id="forecast_7" href="#hourlyForecast" />
+    <use id="forecast_8" href="#hourlyForecast" />
+    <use id="forecast_9" href="#hourlyForecast" />
+    <use id="forecast_10" href="#hourlyForecast" />
+    <use id="forecast_11" href="#hourlyForecast" />
+    <rect id="touch" x="0" y="0" opacity="0"  width="100%" height="100%" fill="yellow" pointer-events="all"/>
+</svg>

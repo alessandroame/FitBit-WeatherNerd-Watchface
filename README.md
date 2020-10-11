@@ -9,7 +9,6 @@ To obtain a free APIkey [signup here](https://developer.climacell.co/sign-up)
 Installation from smartphone [download here](https://gallery.fitbit.com/details/4554c69d-fd33-402e-95d5-9dae5c673d86)
 
 
-
 ## Available data:
 
 - Analog clock
@@ -22,6 +21,10 @@ Installation from smartphone [download here](https://gallery.fitbit.com/details/
 - Follow mode to obtain forecast of the current position
 - Hourly precipitation/ice alert on clock
 - Connection with lost alert with snooze function
+
+
+Refs:
+- Weather icons: https://developer.climacell.co/v3/docs/weather-codes
 
 ## TODOs:
 

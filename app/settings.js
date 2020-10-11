@@ -48,5 +48,5 @@ export function set(key, value) {
     } catch (e) {
         console.error("settings store throw exception" + e);
     }
-    vibration.start("bump");
+    //vibration.start("bump");
 }

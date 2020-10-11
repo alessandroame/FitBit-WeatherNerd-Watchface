@@ -20,19 +20,19 @@ import * as log_viewer from "./log_viewer"
 import * as logger from "./logger"
 import * as mediator from "../common/mediator"
 import { vibration } from "haptics"
-import * as ping from  "./ping"
-
+import * as ping from "./ping"
+import * as forecasts from "./forecasts"
 // setTimeout( ping.ping, 3000);
 // setInterval( ping.ping, 60000);
 
 memStats("after imports");
 
-settings.subscribe("clockBackgroundColor",(color)=>{
-    document.getElementById("background").style.fill=color;
-},"black");
+settings.subscribe("clockBackgroundColor", (color) => {
+    document.getElementById("background").style.fill = color;
+}, "black");
 
 
-let statusMessage=document.getElementById("statusMessage");
+let statusMessage = document.getElementById("statusMessage");
 
 datum.init();
 clock.init();
@@ -42,11 +42,12 @@ battery.init();
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
 dimClockData();
-touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showWeather, showFitdata);
+touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showFitdata, showWeather);
 
-function onMeteoDataAvailable(data){
+function onMeteoDataAvailable(data) {
     meteo_alerts.update(data.alerts);
-    statusMessage.textContent=`${data.lastUpdate}@${data.city}`;
+    forecasts.setData(data.forecasts);
+    statusMessage.textContent = `${data.lastUpdate}@${data.city}`;
 }
 
 // setInterval(() => {
@@ -54,22 +55,22 @@ function onMeteoDataAvailable(data){
 // }, 5*60*1000);
 let dimmerTimer;
 function showClockData() {
-    datum.widget.style.opacity=1;
-    statusMessage.style.opacity=1;
+    datum.widget.style.opacity = 1;
+    statusMessage.style.opacity = 1;
 
     if (dimmerTimer) {
         clearTimeout(dimmerTimer);
-        dimmerTimer=null;
+        dimmerTimer = null;
         dimClockData();
-    }else{
-        dimmerTimer=setTimeout(() => {  dimClockData() }, 5000);
+    } else {
+        dimmerTimer = setTimeout(() => { dimClockData() }, 5000);
     }
 }
 
-function dimClockData(){
-    let dimmedOpacity=0.3;
-    datum.widget.style.opacity=dimmedOpacity;
-    statusMessage.style.opacity=dimmedOpacity;
+function dimClockData() {
+    let dimmedOpacity = 0.3;
+    datum.widget.style.opacity = dimmedOpacity;
+    statusMessage.style.opacity = dimmedOpacity;
 }
 function showMenu() {
     logger.info("meteo requested");
@@ -91,16 +92,26 @@ function showMenu() {
     });*/
 }
 
-function showWeather(){ 
-    ping.ping();
-    vibration.start("bump");
-    //console.log(settings.get("APIKey","fottiti"));
-    //connection.setState(0);
+function showWeather() {
+    document.location.assign("forecasts.view").then(() => {
+        console.log("forecasts.view");
+        forecasts.init();
+    });
 }
-function showFitdata(){
-    mediator.publish("requestGetCurrentPosition");
+function showFitdata() {
     vibration.start("bump");
+    mediator.publish("requestGetCurrentPosition");
+    mediator.publish("requestMeteoUpdate", null);
+    //ping.ping();
+    //     mediator.publish("requestGetCurrentPosition");
+    // vibration.start("bump");
     //connection.setState(1);
 }
+//ping.ping();
+//vibration.start("bump");
+//console.log(settings.get("APIKey","fottiti"));
+//connection.setState(0);
+
+
 
 memStats("app started");
