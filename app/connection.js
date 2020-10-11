@@ -27,7 +27,7 @@ function onConnectionStateChange(state){
     
     switch (state) {
         case mediator.STATE_CONNECTED:
-            logger.info("Connected");
+            logger.warning("Connected");
             if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
             color = COLOR_NORMAL;
             dismiss();
@@ -35,7 +35,7 @@ function onConnectionStateChange(state){
             onConnectionOpen();
             break;
         case mediator.STATE_DISCONNECTED:
-            logger.info("Disconnected");
+            logger.warning("Disconnected");
             if (settings.get("vibrateOnConnectionLost"),true){
                 vibration.start("nudge-max");
                 setTimeout(()=>{vibration.start("nudge-max");},400);
@@ -45,7 +45,7 @@ function onConnectionStateChange(state){
             onConnectionLost();
             break;
         case mediator.STATE_ERROR:
-            logger.info("Connection error");
+            logger.error("Connection error");
             color = COLOR_ERROR;
             startBlinking();
             onConnectionLost();

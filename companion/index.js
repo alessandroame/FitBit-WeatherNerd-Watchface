@@ -27,7 +27,9 @@ function init() {
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
         geolocator.getCurrentPosition();
-        startUpdateTimer();
+        setTimeout(() => {
+            startUpdateTimer();
+        }, 1000);
     },5);
 
     me.wakeInterval = wakeInterval;
@@ -36,24 +38,20 @@ function init() {
     });
     me.monitorSignificantLocationChanges = true;
     me.addEventListener("significantlocationchange", onPositionChanged);
-
-   /* setInterval(()=>
-    {
-        console.log("ssssssssssssssssssss")
-        geolocator.getCurrentPosition();
-    },120000);*/
     
     logger.warning("companion init");
 }
 
-
 function startUpdateTimer(){
     if (updateMeteoTimerID){
-        console.log("updateMeteoTimer restarted ("+updateMeteoInterval+"secs)");
+        console.log("updateMeteoTimer reset");
         clearInterval(updateMeteoTimerID);
         updateMeteoTimerID=null;
+    }else{
+        forceUpdate("Timer init");
     }
     
+    console.log("updateMeteoTimer start ("+updateMeteoInterval+"min)");
     updateMeteoTimerID=setInterval(() => {
         updateMeteo("Timer");
         geolocator.getCurrentPosition();
@@ -79,7 +77,7 @@ function forceUpdate(reason){
 }
 
 function onMeteoAvailable(data) {
-    logger.info("Meteo available");
+    logger.debug("meteo available");
     let json = JSON.stringify(data);
     outbox
         .enqueue("meteo_data.json", encode(json)).then((ft) => {

@@ -22,8 +22,8 @@ import * as mediator from "../common/mediator"
 import { vibration } from "haptics"
 import * as ping from  "./ping"
 
-setTimeout( ping.ping, 3000);
-setInterval( ping.ping, 60000);
+// setTimeout( ping.ping, 3000);
+// setInterval( ping.ping, 60000);
 
 memStats("after imports");
 
@@ -49,9 +49,9 @@ function onMeteoDataAvailable(data){
     statusMessage.textContent=`${data.lastUpdate}@${data.city}`;
 }
 
-setInterval(() => {
-        mediator.publish("requestMeteoUpdate", null);
-}, 5*60*1000);
+// setInterval(() => {
+//         mediator.publish("requestMeteoUpdate", null);
+// }, 5*60*1000);
 let dimmerTimer;
 function showClockData() {
     datum.widget.style.opacity=1;
@@ -72,7 +72,7 @@ function dimClockData(){
     statusMessage.style.opacity=dimmedOpacity;
 }
 function showMenu() {
-    logger.info("meteo update request");
+    logger.info("meteo requested");
     mediator.publish("requestMeteoUpdate", null);
     vibration.start("bump");
     /*document.location.assign("menu.view").then(() => {

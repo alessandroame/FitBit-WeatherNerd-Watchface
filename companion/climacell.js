@@ -14,7 +14,7 @@ export function init(onDataAvailable) {
 }
 
 export function update(reason) {
-  logger.warning("climacell update "+reason);
+  logger.warning("updating: "+reason);
   getForcasts();
 }
 
@@ -30,12 +30,12 @@ function setAPIKey(key) {
 }
 
 function setPosition(position) {
-  logger.debug("pos changed ");
+  logger.debug("pos changed");
   if (position) {
     currentPosition = position;
     getCity(position, (response) => {
       city=response;
-      logger.debug("city updated to"+city );
+      logger.debug("city "+city );
     });
   } else {
     logger.error("pos is null");
@@ -74,7 +74,7 @@ function getForcasts() {
     return;
   }
   if (!apiKey) {
-    logger.error("climacell apikey not available");
+    logger.error("apikey not available");
     return;
   }
 
@@ -98,7 +98,7 @@ function getForcasts() {
       res.json()
         .then(data => {
           if (data.message) {
-            logger.info(`climacell error: ${JSON.stringify(data)} `);
+            logger.error(`api error: ${JSON.stringify(data)} `);
           } else {
             let parsedData = parseForecast(data);
             let d = new Date();
@@ -113,7 +113,7 @@ function getForcasts() {
         });
     })
     .catch(function (err) {
-      logger.error("climacell error fetching weather forecasts: " + err);
+      logger.error("api req error: " + err);
     });
 }
 

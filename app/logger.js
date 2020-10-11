@@ -15,24 +15,29 @@ settings.subscribe("logLevel",(v)=>{minLevel=v;});
 
 mediator.subscribe("logEntry",(entry)=>{
     //console.error(JSON.stringify(entry));
-    log(entry.level," > "+entry.msg);
+    log(entry.level,entry.msg,true);
 });
 
 
 export function debug(msg) {
+    console.log(msg);
     log(LOGLEVEL_DEBUG, msg);
 }
 export function info(msg) {
+    console.log(msg);
     log(LOGLEVEL_INFO, msg);
 }
 export function warning(msg) {
+    console.warn(msg);
     log(LOGLEVEL_WARNING, msg)
 }
 export function error(msg) {
+    console.error(msg);
     log(LOGLEVEL_ERROR, msg)
 }
 
 export function fatal(msg) {
+    console.error(msg);
     log(LOGLEVEL_FATAL, msg)
 }
 
@@ -56,13 +61,13 @@ export function reset() {
     return cache="reset "+version;
 }
 
-function log(level, msg) {
+function log(level, msg,fromCompanion) {
     if (level < minLevel) return;
     let now = new Date();
 
     let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
 //    var entry = `${nowString} ${msg}\n`;
-    var entry = `  ${levelDescriptions[level]} ${msg} ${nowString}\n`;
+    var entry = `   ${levelDescriptions[level]} ${nowString} sender: ${fromCompanion?"companion":"app"}\n    ${msg}\n`;
     cache = entry + cache;
     if (cache.length > 1000) cache = cache.substr(0, 1000);
 }

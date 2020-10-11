@@ -14,14 +14,13 @@ export function init(onAlertsAvailableCallback) {
             do {
                 fn = inbox.nextFile(); //if (fn) this.log("newfile:"+fn);
                 if (fn == METEO_FN) {
-                    logger.debug("rx new meteo file");
+                    logger.debug("meteo available");
                     fetchMeteo();
                 }
             } while (fn);
         };
         fetchMeteo();
     } catch (e) {
-        console.error("meteo init throws ex: " + e);
         logger.error("meteo init throws ex: " + e);
         vibration.start("nudge");
     }
@@ -55,7 +54,7 @@ function fetchMeteo() {
         lastUpdate:meteoData.lastUpdate,
         alerts:alerts
     };
-    logger.debug("meteo fetched "+data.city+"@"+data.lastUpdate);
+    logger.debug("meteo load "+data.city+"@"+data.lastUpdate);
     if (alertsAvailableCallback) alertsAvailableCallback(data);
 }
 function normalizeValue(value, min, max) {
@@ -74,7 +73,6 @@ function readDataFromFile(fn) {
         let data = JSON.parse(json);
         return data;
     } catch (e) {
-        console.error("readDataFromFile throws ex: " + e);
         logger.error("readDataFromFile throws ex: " + e);
     }
     return null;

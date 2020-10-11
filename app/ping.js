@@ -10,7 +10,6 @@ export function ping() {
     messaging.peerSocket.send({ ping: new Date().getTime() });
     pingTimeoutID = setTimeout(() => {
       let msg = "ping fails";
-      console.log(msg);
       logger.info(msg);
     }, 5000);
   } catch (e) {
@@ -42,6 +41,5 @@ messaging.peerSocket.addEventListener("message", (evt) => {
 
 function logPingResponse(msg) {
   msg += ` MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}%`;
-  console.log(msg);
   logger.info(msg);
 }
