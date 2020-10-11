@@ -14,7 +14,7 @@ export function init(onDataAvailable) {
 }
 
 export function update(reason) {
-  logger.warning("updating: "+reason);
+  logger.warning("updating: " + reason);
   getForcasts();
 }
 
@@ -34,8 +34,8 @@ function setPosition(position) {
   if (position) {
     currentPosition = position;
     getCity(position, (response) => {
-      city=response;
-      logger.debug("city "+city );
+      city = response;
+      logger.debug("city " + city);
     });
   } else {
     logger.error("pos is null");
@@ -46,7 +46,7 @@ function getCity(pos, callback) {
   if (!pos || !pos.coords) {
     logger.error("getcity pos is null");
     return;
-  }else {
+  } else {
     //console.log("___________"+JSON.stringify(pos));
   }
   let lat = pos.coords.latitude;
@@ -100,13 +100,11 @@ function getForcasts() {
           if (data.message) {
             logger.error(`api error: ${JSON.stringify(data)} `);
           } else {
-            let parsedData = parseForecast(data);
+            let meteoData = parseForecast(data);
             let d = new Date();
-            let meteoData = {
-              city: city,
-              lastUpdate: d.getHours() + ":" + d.getMinutes(),
-              forecasts: parsedData
-            }
+            meteoData.city = city;
+            meteoData.lastUpdate = d.getHours() + ":" + d.getMinutes();
+            console.log(JSON.stringify(meteoData));
             if (callback) callback(meteoData);
           }
 
@@ -120,17 +118,21 @@ function getForcasts() {
 function parseForecast(data) {
   console.log("climacell parsing data");
   let res = [];
+  let sunrise = null;
+  let sunset = null;
   //https://en.wikipedia.org/wiki/Rain#:~:text=The%20following%20categories%20are%20used,mm%20(0.39%20in)%20per%20hour
   for (let i = 0; i < 12; i++) {
     let d = data[i];
-    let sunrise=new Date(d.sunrise.value);
-    let sunset=new Date(d.sunset.value);
-    let dt=new Date(d.observation_time.value);
-    let isDay=(dt>sunrise) && (dt<sunset);
+    let sr = new Date(d.sunrise.value);
+    let ss = new Date(d.sunset.value);
+    let dt = new Date(d.observation_time.value);
+    let isDay = (dt > sr) && (dt < ss);
+    if (sr > dt) sunrise = sr;
+    if (ss > dt) sunset = ss;
     //console.log(JSON.stringify(d));
     res.push({
       d: d.observation_time.value,
-      is:isDay,
+      is: isDay,
       t: {
         r: d.temp.value,
         p: d.feels_like.value
@@ -140,19 +142,23 @@ function parseForecast(data) {
         p: d.precipitation_probability.value,
         q: d.precipitation.value
       },
-      m:{
-        i:iconName(d.weather_code.value,isDay)
+      m: {
+        i: iconName(d.weather_code.value, isDay)
       }
     });
   }
-  return res;
+  return { 
+    forecasts: res,
+    sr:sunrise,
+    ss:sunset
+   };
 }
 
-let dayNightIcons=["clear","mostly_clear","partly_cloudy"];
-function iconName(code,isDay){
-  let i=dayNightIcons.indexOf(code);
-  let res=code;
-  if (i!=-1) res+=(isDay?"_day":"_night");
+let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];
+function iconName(code, isDay) {
+  let i = dayNightIcons.indexOf(code);
+  let res = code;
+  if (i != -1) res += (isDay ? "_day" : "_night");
   //console.log(res,isDay);
   return res;
 }

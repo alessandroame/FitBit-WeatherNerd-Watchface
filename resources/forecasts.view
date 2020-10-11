@@ -8,6 +8,9 @@
                 <g id="tempContainer" transform="translate(0,-50%+50)">
                     <text id="temp" x="0" y="8" font-size="24" text-anchor="middle" fill="white" text-length="10">--°</text>
                 </g>
+                <g id="tempPercContainer" transform="translate(0,-50%+80)">
+                    <text id="tempPerc" x="0" y="8" font-size="12" text-anchor="middle" fill="white" text-length="10">--°</text>
+                </g>
             </g>
         </symbol>
     </defs>

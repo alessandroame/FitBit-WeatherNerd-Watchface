@@ -54,7 +54,6 @@ function fetchMeteo() {
             temp:d.t.r,
             tempPerc:d.t.p,
         };
-        console.log(JSON.stringify(d));
     }
     console.log(JSON.stringify(alerts));
     var data={
