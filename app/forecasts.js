@@ -1,9 +1,10 @@
 import document from "document";
 
+let timeoutID = null;
 export function init() {
     console.log("forecast init")
     var touch = document.getElementById("touch");
-    touch.onclick = () => { document.history.back(); };
+    touch.onclick = () => { back(); };
     for (var i = 0; i < 12; i++) {
         try {
             var f = document.getElementById("forecast_" + i);
@@ -21,11 +22,21 @@ export function init() {
         }
     }
     if (forecasts) redraw();
+    timeoutID = setTimeout(back, 10000);
+}
+
+function back() {
+    if (timeoutID) {
+        clearTimeout(timeoutID);
+        timeoutID = null;
+    }
+    document.history.back();
 }
 
 let forecasts = null;
 export function setData(data) {
     forecasts = data;
+    if (document.getElementById("forecasts")) redraw();
 }
 
 function redraw() {
