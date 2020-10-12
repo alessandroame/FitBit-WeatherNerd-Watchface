@@ -105,7 +105,7 @@ function getForcasts() {
             let d = new Date();
             meteoData.city = city;
             meteoData.lastUpdate = d.getHours() + ":" + d.getMinutes();
-            console.log(JSON.stringify(meteoData));
+//            console.log(JSON.stringify(meteoData));
             if (callback) callback(meteoData);
           }
 

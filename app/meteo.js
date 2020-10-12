@@ -53,7 +53,7 @@ function fetchMeteo() {
             icon: d.w.i,
             temp: d.t.r,
             tempPerc: d.t.p,
-            tempUnits:d.t.u
+            tempUnits: d.t.u
         };
     }
     console.log(JSON.stringify(alerts));
@@ -61,7 +61,9 @@ function fetchMeteo() {
         city: meteoData.city,
         lastUpdate: meteoData.lastUpdate,
         alerts: alerts,
-        forecasts: forecasts
+        forecasts: forecasts,
+        sunset: meteoData.ss,
+        sunrise: meteoData.sr
     };
     logger.debug("meteo load " + data.city + "@" + data.lastUpdate);
     if (alertsAvailableCallback) alertsAvailableCallback(data);

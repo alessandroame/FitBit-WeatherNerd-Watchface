@@ -46,10 +46,20 @@ touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showFitdata, sh
 
 function onMeteoDataAvailable(data) {
     meteo_alerts.update(data.alerts);
-    forecasts.setData(data.forecasts);
+    forecasts.setData(data);
     statusMessage.textContent = `${data.lastUpdate}@${data.city}`;
-}
 
+    let sr=new Date(data.sunrise);
+    let ss=new Date(data.sunset);
+    console.log(ss,sr);
+    document.getElementById("sunriseHand").groupTransform.rotate.angle = hoursToAngle(sr.getHours(),sr.getMinutes());
+    document.getElementById("sunsetHand").groupTransform.rotate.angle = hoursToAngle(ss.getHours(), ss.getMinutes());    
+}
+function hoursToAngle(hours, minutes) {
+    let hourAngle = (360 / 12) * hours;
+    let minAngle = (360 / 12 / 60) * minutes;
+    return hourAngle + minAngle;
+  }
 // setInterval(() => {
 //         mediator.publish("requestMeteoUpdate", null);
 // }, 5*60*1000);
