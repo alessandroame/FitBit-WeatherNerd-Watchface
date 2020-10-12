@@ -47,9 +47,9 @@ function redraw() {
         var icon = mainContainer.getElementById("icon");
         icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
         var temp = mainContainer.getElementById("temp");
-        temp.textContent = parseTemp(forecasts[i].temp) + "°";
+        temp.textContent = parseTemp(forecasts[i].temp) + forecasts[i].tempUnits;
         var tempPerc = mainContainer.getElementById("tempPerc");
-        tempPerc.textContent = parseTemp(forecasts[i].tempPerc) + "°";
+        tempPerc.textContent = parseTemp(forecasts[i].tempPerc) + forecasts[i].tempUnits;
 
     }
 }

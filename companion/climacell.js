@@ -1,5 +1,6 @@
 import * as settings from "./settings";
 import * as logger from "./logger";
+import { locale } from "user-settings";
 
 let callback = null;
 let currentPosition = null;
@@ -80,10 +81,10 @@ function getForcasts() {
 
   var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
     "apikey=" + apiKey +
-    "&unit_system=si" +//todo
+    "&unit_system=" +settings.get("unitSystem",locale.temperature=="C"?"si":"us")+
     "&lat=" + currentPosition.coords.latitude +
     "&lon=" + currentPosition.coords.longitude +
-    "&fields=sunrise,sunset,weather_code,precipitation,precipitation_probability,precipitation_type,temp,feels_like";//todo
+    "&fields=sunrise,sunset,weather_code,precipitation,precipitation_probability,precipitation_type,temp,feels_like";
   console.log("climacell update " + url);
   // var res=parseData(sampleData);
   //if (callback) callback(res);
@@ -133,25 +134,26 @@ function parseForecast(data) {
     res.push({
       d: d.observation_time.value,
       is: isDay,
-      t: {
+      t: {//temp
         r: d.temp.value,
-        p: d.feels_like.value
+        p: d.feels_like.value,
+        u: d.temp.units.replace("C","°")
       },
-      p: {
+      p: {//precipitation
         t: d.precipitation_type.value,
         p: d.precipitation_probability.value,
         q: d.precipitation.value
       },
-      m: {
+      w: {//weather
         i: iconName(d.weather_code.value, isDay)
       }
     });
   }
-  return { 
+  return {
     forecasts: res,
-    sr:sunrise,
-    ss:sunset
-   };
+    sr: sunrise,
+    ss: sunset
+  };
 }
 
 let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];

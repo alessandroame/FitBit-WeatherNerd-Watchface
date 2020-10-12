@@ -29,6 +29,18 @@ function SettingsPage(props) {
           ]}
         />
 
+        <Select
+          onSelection={(value) => {
+            props.settingsStorage.setItem('unitSystem', JSON.stringify( value.values[0].value));
+          }}
+          label={`System of measurement`}
+          settingsKey="_unitSystem"
+          options={[
+            { name: "Metric", value: "si" },
+            { name: "Imperial", value: "us" },
+          ]}
+        />
+
         <TextInput
           align="right"
           title="Climacell™"

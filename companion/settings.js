@@ -22,7 +22,7 @@ export function set(key, value) {
 export function get(key, defvalue) {
   let json = "";
   try {
-    json = settingsStorage.getItem(key, defvalue);
+    json = settingsStorage.getItem(key)??defvalue;
     return JSON.parse(json);
   } catch (e) {
     console.error("get setting " + key + " throws:" + e + "\nJSON:" + json);

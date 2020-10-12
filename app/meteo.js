@@ -32,8 +32,8 @@ function fetchMeteo() {
     let meteoData = readDataFromFile(METEO_FN);
     if (!meteoData) return;
     //console.log(JSON.stringify(meteoData));
-    var f=meteoData.forecasts;
-    
+    var f = meteoData.forecasts;
+
     for (let i = 0; i < 12; i++) {
         let d = f[i];
         let h = new Date(d.d).getHours();
@@ -48,21 +48,22 @@ function fetchMeteo() {
                 quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
             }
         };
-//        console.log(JSON.stringify(d));
-        forecasts[h]={
-            icon: d.m.i,
-            temp:d.t.r,
-            tempPerc:d.t.p,
+        //        console.log(JSON.stringify(d));
+        forecasts[h] = {
+            icon: d.w.i,
+            temp: d.t.r,
+            tempPerc: d.t.p,
+            tempUnits:d.t.u
         };
     }
     console.log(JSON.stringify(alerts));
-    var data={
-        city:meteoData.city,
-        lastUpdate:meteoData.lastUpdate,
-        alerts:alerts,
-        forecasts:forecasts
+    var data = {
+        city: meteoData.city,
+        lastUpdate: meteoData.lastUpdate,
+        alerts: alerts,
+        forecasts: forecasts
     };
-    logger.debug("meteo load "+data.city+"@"+data.lastUpdate);
+    logger.debug("meteo load " + data.city + "@" + data.lastUpdate);
     if (alertsAvailableCallback) alertsAvailableCallback(data);
 }
 function normalizeValue(value, min, max) {

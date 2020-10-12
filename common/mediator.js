@@ -37,7 +37,7 @@ function trySend(data) {
     messaging.peerSocket.send(data);
     return true;
   } catch (e) {
-    console.error("Send fails: " + e);
+//    console.error("Send fails: " + e);
 //    console.warn("Data not sent: " + JSON.stringify(data));
     setConnectionState(STATE_DISCONNECTED);
     return false;
