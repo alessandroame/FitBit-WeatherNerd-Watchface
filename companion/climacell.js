@@ -128,8 +128,8 @@ function parseForecast(data) {
     let ss = new Date(d.sunset.value);
     let dt = new Date(d.observation_time.value);
     let isDay = (dt > sr) && (dt < ss);
-    if (sr > dt) sunrise = sr;
-    if (ss > dt) sunset = ss;
+    if (sr > sunrise) sunrise = sr;
+    if (ss > sunset) sunset = ss;
     //console.log(JSON.stringify(d));
     res.push({
       d: d.observation_time.value,
@@ -149,6 +149,7 @@ function parseForecast(data) {
       }
     });
   }
+
   return {
     forecasts: res,
     sr: sunrise,
