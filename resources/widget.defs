@@ -10,5 +10,8 @@
     <link rel="import" href="clock.defs" />
     <link rel="import" href="connection.defs" />
     <link rel="import" href="battery.defs" />
+    <link rel="import" href="datum.defs" />
+    <link rel="import" href="meteo_alerts.defs" />
+    <link rel="import" href="forecasts.defs" />
   </defs>
 </svg>

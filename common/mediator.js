@@ -63,7 +63,6 @@ messaging.peerSocket.addEventListener("message", (evt) => {
   }
 });
 
-
 export function subscribe(topic, callback) {
   if (!subscriptions[topic]) subscriptions[topic] = [];
   subscriptions[topic].push(callback);

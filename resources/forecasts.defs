@@ -1,0 +1,42 @@
+<svg>
+    <defs>
+        <symbol id="hourlyForecast">
+            <g id="mainContainer" transform="translate(50%,50%)">
+                <g id="iconContainer" transform="translate(0,-50%+16)">
+                    <image id="icon" x="-16" y="-16" width="32" height="32" />
+                </g>
+                <g id="tempContainer" transform="translate(0,-50%+50)">
+                    <text id="temp" x="0" y="8" font-size="24" text-anchor="middle" fill="white"
+                        text-length="10">--°</text>
+                </g>
+                <g id="tempPercContainer" transform="translate(0,-50%+90)">
+                    <text id="tempPerc" x="0" y="4" font-size="12" text-anchor="middle" fill="white"
+                        text-length="10">--°</text>
+                </g>
+            </g>
+        </symbol>
+        <symbol id="forecasts">
+            <use id="forecast_0" href="#hourlyForecast" />
+            <use id="forecast_1" href="#hourlyForecast" />
+            <use id="forecast_2" href="#hourlyForecast" />
+            <use id="forecast_3" href="#hourlyForecast" />
+            <use id="forecast_4" href="#hourlyForecast" />
+            <use id="forecast_5" href="#hourlyForecast" />
+            <use id="forecast_6" href="#hourlyForecast" />
+            <use id="forecast_7" href="#hourlyForecast" />
+            <use id="forecast_8" href="#hourlyForecast" />
+            <use id="forecast_9" href="#hourlyForecast" />
+            <use id="forecast_10" href="#hourlyForecast" />
+            <use id="forecast_11" href="#hourlyForecast" />
+
+            <g id="sunriseHand" transform="translate(50%,50%)">
+                <rect id="hand" x="$-2" y="-50%" width="4" height="50" fill="yellow" />
+            </g>
+            <g id="sunsetHand" transform="translate(50%,50%)">
+                <rect id="hand" x="$-2" y="-50%" width="4" height="50" fill="blue" />
+            </g>
+
+            <rect id="touch" x="0" y="0" opacity="0" width="100%" height="100%" fill="yellow" pointer-events="all" />
+        </symbol>
+    </defs>
+</svg>

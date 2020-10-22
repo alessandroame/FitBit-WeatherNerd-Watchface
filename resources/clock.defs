@@ -1,8 +1,5 @@
 <svg>
     <defs>
-        <link rel="import" href="datum.defs" />
-        <link rel="import" href="meteo_alerts.defs" />
-
         <symbol id="minTag">
             <g id="main" pointer-events="visible">
                 <line x1="-2" y1="50%-2" x2="-2" y2="50%-6" fill="#888888" stroke-width="4" />
@@ -25,8 +22,7 @@
                 </use>
             </g>
         </symbol>
-        <symbol id="clock">
-
+        <symbol id="clockHands">
             <!--arc x="0" y="0" width="100%" height="100%" arc-width="1" start-angle="0" sweep-angle="360" fill="blue" /-->
 
             <use href="#hourTag">
@@ -66,9 +62,10 @@
                 <set href="main" attributeName="transform" to="translate(50%,50%),rotate(330)" />
             </use>
 
-            <use href="#precipitationAlert" />
+        </symbol>
 
 
+        <symbol id="dial">
             <g id="mins" transform="translate(50%,50%)">
                 <rect id="hand" x="$-2" y="-120" width="4" height="120" fill="#e0e0e0" />
             </g>
