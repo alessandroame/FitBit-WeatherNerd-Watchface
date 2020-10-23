@@ -2,14 +2,14 @@
     <defs>
         <symbol id="hourlyForecast">
             <g id="mainContainer" transform="translate(50%,50%)">
-                <g id="iconContainer" transform="translate(0,-50%+16)">
-                    <image id="icon" x="-16" y="-16" width="32" height="32" />
+                <g id="iconContainer" transform="translate(0,-50%+24)">
+                    <image id="icon" x="-24" y="-24" width="48" height="48" />
                 </g>
-                <g id="tempContainer" transform="translate(0,-50%+50)">
+                <g id="tempContainer" transform="translate(0,-50%+70)">
                     <text id="temp" x="0" y="8" font-size="24" text-anchor="middle" fill="white"
                         text-length="10">--°</text>
                 </g>
-                <g id="tempPercContainer" transform="translate(0,-50%+90)">
+                <g id="tempPercContainer" transform="translate(0,-50%+100)">
                     <text id="tempPerc" x="0" y="4" font-size="12" text-anchor="middle" fill="white"
                         text-length="10">--°</text>
                 </g>

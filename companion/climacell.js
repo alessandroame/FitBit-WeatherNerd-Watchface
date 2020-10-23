@@ -84,7 +84,7 @@ function getForcasts() {
     "&unit_system=" +settings.get("unitSystem",locale.temperature=="C"?"si":"us")+
     "&lat=" + currentPosition.coords.latitude +
     "&lon=" + currentPosition.coords.longitude +
-    "&fields=sunrise,sunset,weather_code,precipitation,precipitation_probability,precipitation_type,temp,feels_like";
+    "&fields=sunrise,sunset,weather_code,precipitation,precipitation_probability,precipitation_type,temp,feels_like,wind_speed,wind_gust,wind_direction";
   console.log("climacell update " + url);
   // var res=parseData(sampleData);
   //if (callback) callback(res);
