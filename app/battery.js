@@ -2,10 +2,6 @@ import document from "document";
 import { battery } from "power";
 import * as settings from "./settings"
 
-let widget = document.getElementById("battery");
-let touch = document.getElementById("batteryTouch");
-let rail = widget.getElementById("rail");
-let level = widget.getElementById("level");
 
 let COLOR_NORMAL = "gray";
 settings.subscribe("batteryColor",(value)=>{
@@ -28,7 +24,7 @@ export function init() {
 
 function setBatteryLevel(batteryLevel) {
     //console.log("updateBattery");
-    widget.style.opacity=1;
+    let level = document.getElementById("batteryLevel");
     let color = COLOR_NORMAL;
     if (batteryLevel < 15) {
         color = COLOR_ALERT
@@ -37,7 +33,9 @@ function setBatteryLevel(batteryLevel) {
         color = COLOR_WARNING;
     }
     level.style.fill = color;
-    level.sweepAngle = -(30 / 100 * batteryLevel);
-    rail.style.fill = COLOR_NORMAL;//color;
+    level.textContent=`${batteryLevel}%`;
+    document.getElementById("frame_1").style.fill=color;
+    document.getElementById("frame_2").style.fill=color;
+    document.getElementById("frame_empty").width=15*(1-batteryLevel/100);
 }
 

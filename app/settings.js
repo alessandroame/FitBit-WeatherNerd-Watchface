@@ -17,8 +17,9 @@ mediator.subscribe("setting",(data)=>{
     console.log("notify settings ["+data.key+"] changed from: "+data.oldValue+" to: "+data.value);
     
     set(data.key,data.value);
-    if (!data.key == '_') {
+    if (data.key.toLowerCase().indexOf('color')!=-1) {
         display.poke();
+        console.warn("poke");
     }    
 });   
 
