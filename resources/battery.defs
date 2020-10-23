@@ -1,11 +1,14 @@
 <svg>
 	<defs>
 		<symbol id="battery">
-			<svg id="battery" opacity="0">
-				<arc id="rail" x="-50%-2" y="-2" width="100%+4" height="100%+4"  fill="#006ED6" arc-width="2" start-angle="-15" sweep-angle="30"/>
-				<arc id="level" x="-50%-4" y="-4" width="100%+8" height="100%+8"  fill="#006ED6" arc-width="6" start-angle="15" sweep-angle="-8"/>
-			</svg>
-			<rect x="-60" y="-30" width="120" height="60" fill="green" opacity="0" id="batteryTouch" pointer-events="all" />
+			<g transform="translate(15,0)">
+				<rect id="frame_1" x="-10" y="-5" width="20" height="10" fill="greenyellow" />
+				<rect id="frame_2" x="-12" y="-3" width="2" height="6" fill="greenyellow" />
+				<rect id="frame_empty" x="-8" y="-2" width="16" height="4" fill="black" />
+			</g>
+			<text x="0" y="8" text-length="5" fill="white" font-family="Tungsten" font-size="22" opacity="1"
+				id="batteryLevel" text-anchor="end">...%</text>
+
 		</symbol>
 	</defs>
 </svg>
