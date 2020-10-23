@@ -33,6 +33,7 @@ export function warning(msg) {
 }
 export function error(msg) {
     console.error(msg);
+    console.trace();
     log(LOGLEVEL_ERROR, msg)
 }
 

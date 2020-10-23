@@ -1,48 +1,50 @@
 import document from "document";
+import * as geom from './geom';
 
-let timeoutID = null;
-export function init() {
+let hourlyForecastsUI = null;
+export function init(closeCallback) {
     console.log("forecast init")
+    hourlyForecastsUI = document.getElementById("hourlyForecasts");
     var touch = document.getElementById("touch");
-    touch.onclick = () => { back(); };
+    touch.layer=999;
+    touch.onclick = closeCallback;
     for (var i = 0; i < 12; i++) {
         try {
             var f = document.getElementById("forecast_" + i);
             var mainContainer = f.getElementById("mainContainer");
             var iconContainer = mainContainer.getElementById("iconContainer");
             var tempContainer = mainContainer.getElementById("tempContainer");
-            var tempPercContainer = mainContainer.getElementById("tempPercContainer");
-            mainContainer.groupTransform.rotate.angle = i * 30;
-            iconContainer.groupTransform.rotate.angle = -i * 30;
-            tempContainer.groupTransform.rotate.angle = -i * 30;
-            tempPercContainer.groupTransform.rotate.angle = -i * 30;
+            var angle=i * 30;
+            mainContainer.groupTransform.rotate.angle = angle;
+            iconContainer.groupTransform.rotate.angle = -angle;
+            tempContainer.groupTransform.rotate.angle = -angle;
         } catch (e) {
             console.error("initForecastView fails:" + e);
             console.trace();
         }
     }
     if (meteo) redraw();
-    timeoutID = setTimeout(back, 10000);
 }
 
-function back() {
-    if (timeoutID) {
-        clearTimeout(timeoutID);
-        timeoutID = null;
-    }
-    document.history.back();
+export function show() {
+    hourlyForecastsUI.style.display = "inline";
 }
+
+export function hide() {
+    hourlyForecastsUI.style.display = "none";
+}
+
 
 let meteo = null;
 export function setData(data) {
     meteo = data;
     console.log(JSON.stringify(data));
-    if (document.getElementById("forecasts")) redraw();
+    redraw();
 }
 
 function redraw() {
     try {
-        let forecasts=meteo.forecasts;
+        let forecasts = meteo.forecasts;
         let d = new Date().getHours();
         if (d > 11) d = d - 12;
         for (var i = 0; i < 12; i++) {
@@ -59,22 +61,15 @@ function redraw() {
             icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
             var temp = mainContainer.getElementById("temp");
             temp.textContent = parseTemp(forecasts[i].temp) + forecasts[i].tempUnits;
-            var tempPerc = mainContainer.getElementById("tempPerc");
-            tempPerc.textContent = parseTemp(forecasts[i].tempPerc) + forecasts[i].tempUnits;
         }
 
-        let sr=new Date(meteo.sunrise);
-        let ss=new Date(meteo.sunset);
-        document.getElementById("sunriseHand").groupTransform.rotate.angle = hoursToAngle(sr.getHours(),sr.getMinutes());
-        document.getElementById("sunsetHand").groupTransform.rotate.angle = hoursToAngle(ss.getHours(), ss.getMinutes());
+        let sr = new Date(meteo.sunrise);
+        let ss = new Date(meteo.sunset);
+        // document.getElementById("sunriseHand").groupTransform.rotate.angle = geom.hoursToAngle(sr.getHours(),sr.getMinutes());
+        // document.getElementById("sunsetHand").groupTransform.rotate.angle = geom.hoursToAngle(ss.getHours(), ss.getMinutes());
     } catch (e) {
         console.error(e);
     }
-}
-function hoursToAngle(hours, minutes) {
-    let hourAngle = (360 / 12) * hours;
-    let minAngle = (360 / 12 / 60) * minutes;
-    return hourAngle + minAngle;
 }
 function parseTemp(v) {
     if (v < 0 && v > -1) v = 0;

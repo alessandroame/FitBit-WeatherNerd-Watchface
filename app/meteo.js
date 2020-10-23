@@ -40,8 +40,8 @@ function fetchMeteo() {
         if (h > 11) h = h - 12;
         alerts[h] = {
             precipitation: {
-                probability: normalizeValue(d.p.p, 0, 50),
-                quantity: normalizeValue(d.p.q, 0, 2)
+                probability: normalizeValue(d.p.p, 0, 100),
+                quantity: normalizeValue(d.p.q, 0, 10)
             },
             ice: {
                 probability: d.t.r < 0 ? 1 : 0,

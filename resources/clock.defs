@@ -87,5 +87,14 @@
             </g>
 
         </symbol>
+
+        <symbol id="clock">
+            <svg id='clock'>
+                <use href="#dial" />
+                <use href="#datum" x="75%" y="50%" />
+                <use href="#clockHands" />
+            </svg>
+        </symbol>
+
     </defs>
 </svg>

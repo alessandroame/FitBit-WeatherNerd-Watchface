@@ -9,7 +9,6 @@ function memStats(desc) {
 
 memStats("start");
 import * as clock from "./clock"
-import * as datum from "./datum"
 import * as connection from "./connection"
 import * as settings from "./settings"
 import * as battery from "./battery"
@@ -22,6 +21,7 @@ import * as mediator from "../common/mediator"
 import { vibration } from "haptics"
 import * as ping from "./ping"
 import * as forecasts from "./forecasts"
+import * as sunDial from './sun_dial'
 // setTimeout( ping.ping, 3000);
 // setInterval( ping.ping, 60000);
 
@@ -32,56 +32,34 @@ settings.subscribe("clockBackgroundColor", (color) => {
 }, "black");
 
 
-let statusMessage = document.getElementById("statusMessage");
-
-datum.init();
 clock.init();
 connection.init();
 settings.init();
 battery.init();
+forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
-dimClockData();
-touch_areas.init(showClockData, showMenu, log_viewer.showLogger, showFitdata, showWeather);
+touch_areas.init(()=>console.log("center clicked"), showMenu, log_viewer.showLogger, showFitdata, showWeather);
+showClock();
 
 function onMeteoDataAvailable(data) {
     meteo_alerts.update(data.alerts);
     forecasts.setData(data);
-    statusMessage.textContent = `${data.lastUpdate}@${data.city}`;
+    //statusMessage.textContent = `${data.lastUpdate}@${data.city}`;
 
     let sr=new Date(data.sunrise);
     let ss=new Date(data.sunset);
-    console.log(ss,sr);
-    document.getElementById("sunriseHand").groupTransform.rotate.angle = hoursToAngle(sr.getHours(),sr.getMinutes());
-    document.getElementById("sunsetHand").groupTransform.rotate.angle = hoursToAngle(ss.getHours(), ss.getMinutes());    
-}
-function hoursToAngle(hours, minutes) {
-    let hourAngle = (360 / 12) * hours;
-    let minAngle = (360 / 12 / 60) * minutes;
-    return hourAngle + minAngle;
-  }
-// setInterval(() => {
-//         mediator.publish("requestMeteoUpdate", null);
-// }, 5*60*1000);
-let dimmerTimer;
-function showClockData() {
-    datum.widget.style.opacity = 1;
-    statusMessage.style.opacity = 1;
-
-    if (dimmerTimer) {
-        clearTimeout(dimmerTimer);
-        dimmerTimer = null;
-        dimClockData();
-    } else {
-        dimmerTimer = setTimeout(() => { dimClockData() }, 5000);
-    }
+    // console.log(ss,sr);
+    sunDial.update(sr,ss);
 }
 
-function dimClockData() {
-    let dimmedOpacity = 0.3;
-    datum.widget.style.opacity = dimmedOpacity;
-    statusMessage.style.opacity = dimmedOpacity;
+function showClock() {
+    console.trace();
+    clock.show();
+    forecasts.hide();
 }
+
+
 function showMenu() {
     logger.info("meteo requested");
     mediator.publish("requestMeteoUpdate", null);
@@ -103,10 +81,13 @@ function showMenu() {
 }
 
 function showWeather() {
-    document.location.assign("forecasts.view").then(() => {
+/*    document.location.assign("forecasts.view").then(() => {
         console.log("forecasts.view");
         forecasts.init();
-    });
+    });*/
+    forecasts.show();    
+    clock.hide();
+    startClockDispayTimeout();
 }
 function showFitdata() {
     vibration.start("bump");
@@ -122,6 +103,17 @@ function showFitdata() {
 //console.log(settings.get("APIKey","fottiti"));
 //connection.setState(0);
 
+
+let clockDisplayTimeout=null;
+function startClockDispayTimeout(){
+    if (clockDisplayTimeout){
+        clearTimeout(clockDisplayTimeout);
+        clockDisplayTimeout=null;
+    }
+    clockDisplayTimeout=setTimeout(() => {
+        showClock();
+    }, 10000);
+}
 
 
 memStats("app started");

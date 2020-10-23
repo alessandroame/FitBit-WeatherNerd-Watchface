@@ -2,8 +2,8 @@
     <defs>
         <symbol id="datum">
             <svg id="datum">
-                <text x="-20" y="15" id="dayOfWeek" font-family="Tungsten" fill="red" font-size="42" text-anchor="middle">LUN</text>
-                <text x="15" y="15" id="dayNumber" font-family="Tungsten" fill="white" font-size="42"   text-anchor="middle">30</text>
+                <text x="-2" y="15" id="dayOfWeek" font-family="Tungsten" fill="red" font-size="42" text-anchor="end">LUN</text>
+                <text x="2" y="15" id="dayNumber" font-family="Tungsten" fill="white" font-size="42"   text-anchor="start">30</text>
             </svg>
         </symbol>
     </defs>

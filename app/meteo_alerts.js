@@ -21,7 +21,8 @@ export function update(alerts){
         // prec.startAngle=15-prec.sweepAngle/2;
 
         prec.style.opacity=alerts[i].precipitation.probability;
-        prec.arcWidth=20*alerts[i].precipitation.quantity;
+        prec.arcWidth=30*alerts[i].precipitation.quantity;
+//        console.log(prec.style.opacity,prec.arcWidth);
         // prec.sweepAngle=5+25*alerts[i].precipitation.quantity;
         // prec.startAngle=15-prec.sweepAngle/2;
 
