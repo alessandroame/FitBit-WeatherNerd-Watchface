@@ -1,10 +1,12 @@
 <svg>
 	<defs>
 		<symbol id="battery">
-			<rect id="frame_1" x="5" y="-7" width="20" height="14" fill="greenyellow" />
-			<rect id="frame_2" x="2" y="-4" width="3" height="8" fill="greenyellow" />
-			<rect id="frame_empty" x="7" y="-4" width="16" height="8" fill="black" />
-			<text x="0" y="8" text-length="5" fill="white" font-family="Tungsten" font-size="24" opacity="1"
+			<g transform="translate(15,0)">
+				<rect id="frame_1" x="-10" y="-5" width="20" height="10" fill="greenyellow" />
+				<rect id="frame_2" x="-12" y="-3" width="2" height="6" fill="greenyellow" />
+				<rect id="frame_empty" x="-8" y="-2" width="16" height="4" fill="black" />
+			</g>
+			<text x="0" y="8" text-length="5" fill="white" font-family="Tungsten" font-size="22" opacity="1"
 				id="batteryLevel" text-anchor="end">...%</text>
 
 		</symbol>

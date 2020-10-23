@@ -36,6 +36,6 @@ function setBatteryLevel(batteryLevel) {
     level.textContent=`${batteryLevel}%`;
     document.getElementById("frame_1").style.fill=color;
     document.getElementById("frame_2").style.fill=color;
-    document.getElementById("frame_empty").width=15*(1-batteryLevel/100);
+    document.getElementById("frame_empty").width=16-16/100*batteryLevel;
 }
 
