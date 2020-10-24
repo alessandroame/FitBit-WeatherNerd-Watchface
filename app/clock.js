@@ -5,14 +5,35 @@ import * as settings from "./settings"
 import * as geom from './geom'
 
 let clockContainer = document.getElementById("clock");
-let hourHand = document.getElementById("hours");
-let minHand = document.getElementById("mins");
-let secHand = document.getElementById("secs");
-let center = document.getElementById("center");
+let hands = clockContainer.getElementById("hands");
+let hourHand = hands.getElementById("hours");
+let minHand = hands.getElementById("mins");
+let secHand = hands.getElementById("secs");
+let center = hands.getElementById("center");
+
+let handsShadow = clockContainer.getElementById("handsShadow");
+let hourHandShadow = handsShadow.getElementById("hours");
+let minHandShadow = handsShadow.getElementById("mins");
+let secHandShadow = handsShadow.getElementById("secs");
+let centerShadow = handsShadow.getElementById("center");
+
+
+let layer=98;
+center.layer=layer;
+secHand.layer=layer;
+centerShadow.layer=layer;
+secHandShadow.layer=layer-1;
+
+minHand.layer=layer-2;
+minHandShadow.layer=layer-3;
+
+hourHand.layer=layer-4;
+hourHand.layer=layer-5;
 
 settings.subscribe("secondsHandColor",(value)=>{
   console.log("seconds hand color: "+value);
-  secHand.getElementById("hand").style.fill=value;
+  secHand.getElementById("hand_1").style.fill=value;
+  secHand.getElementById("hand_2").style.fill=value;
   center.style.fill=value;
 },"red");
 
@@ -42,26 +63,6 @@ export function hide(){
   clockContainer.style.display="none";
 }
 
-// let dimmerTimer;
-// function showClockData() {
-//     datum.widget.style.opacity = 1;
-//     statusMessage.style.opacity = 1;
-
-//     if (dimmerTimer) {
-//         clearTimeout(dimmerTimer);
-//         dimmerTimer = null;
-//         dimClockData();
-//     } else {
-//         dimmerTimer = setTimeout(() => { dimClockData() }, 5000);
-//     }
-// }
-
-// function dimClockData() {
-//     let dimmedOpacity = 0.3;
-//     datum.widget.style.opacity = dimmedOpacity;
-//     statusMessage.style.opacity = dimmedOpacity;
-// }
-
 function updateClock() {
   let now = new Date();
   let hours = now.getHours() % 12;
@@ -71,4 +72,8 @@ function updateClock() {
   hourHand.groupTransform.rotate.angle = geom.hoursToAngle(hours, mins);
   minHand.groupTransform.rotate.angle = geom.minutesToAngle(mins);
   secHand.groupTransform.rotate.angle = geom.secondsToAngle(secs);
+
+  hourHandShadow.groupTransform.rotate.angle = geom.hoursToAngle(hours, mins);
+  minHandShadow.groupTransform.rotate.angle = geom.minutesToAngle(mins);
+  secHandShadow.groupTransform.rotate.angle = geom.secondsToAngle(secs);
 }

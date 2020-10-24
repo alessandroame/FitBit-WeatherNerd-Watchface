@@ -22,6 +22,7 @@ import { vibration } from "haptics"
 import * as ping from "./ping"
 import * as forecasts from "./forecasts"
 import * as sunDial from './sun_dial'
+import * as fitWidget from "./fit_widget"
 // setTimeout( ping.ping, 3000);
 // setInterval( ping.ping, 60000);
 
@@ -39,7 +40,7 @@ battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
-touch_areas.init(()=>console.log("center clicked"), showMenu, log_viewer.showLogger, showFitdata, showWeather);
+touch_areas.init(()=>console.log("center clicked"), log_viewer.showLogger,  showWeather,fitWidget.prev,fitWidget.next);
 showClock();
 
 function onMeteoDataAvailable(data) {
