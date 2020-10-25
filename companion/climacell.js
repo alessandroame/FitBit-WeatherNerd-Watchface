@@ -57,6 +57,7 @@ function getCity(pos, callback) {
     .then(function (response) {
       response.json()
         .then(function (data) {
+          console.log(JSON.stringify(data));
           var a = data.address;
           var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
           callback(res);

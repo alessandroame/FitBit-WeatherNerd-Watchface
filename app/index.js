@@ -30,6 +30,7 @@ memStats("after imports");
 
 settings.subscribe("clockBackgroundColor", (color) => {
     document.getElementById("background").gradient.colors.c1 = color;
+//    document.getElementById("background").style.fill = color;
 }, "#333333");
 
 
