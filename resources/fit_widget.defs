@@ -1,15 +1,16 @@
 <svg>
     <defs>
         <symbol id="fitWidget" fill="greenyellow">
-            <text id="value" x="50%" y="75%" text-length="8" text-anchor="middle" font-size="48"
+            <image id="icon" href="icons/hr_1.png" x="50%-12" y="75%-65" width="24" height="24" />
+
+            <text id="value" x="50%" y="75%-3" text-length="8" text-anchor="middle" font-size="48"
                 font-family="Tungsten">198</text>
 
-            <image id="icon" href="icons/hr_1.png" x="50%-12" y="75%-60" width="24" height="24" />
-            <text id="units" x="50%" y="75%+22" text-length="8" text-anchor="middle" font-size="24"
+            <text id="units" x="50%" y="75%+20" text-length="8" text-anchor="middle" font-size="24"
                 font-family="Tungsten">BPM</text>
 
-            <arc id="goalRail" x="15%" y="15%" width="70%" height="70%" arc-width="1" start-angle="120" sweep-angle="120" />
-            <arc id="goal" x="15%" y="15%" width="70%" height="70%" arc-width="4" start-angle="240" sweep-angle="-40" />
+            <arc id="goalRail" x="14%" y="14%" width="72%" height="72%" arc-width="6" start-angle="120" sweep-angle="120" opacity="0.2"/>
+            <arc id="goal" x="15%" y="15%" width="70%" height="70%" arc-width="5" start-angle="240" sweep-angle="-40" />
         </symbol>
     </defs>
 </svg>

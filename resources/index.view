@@ -1,13 +1,10 @@
 <svg viewport-fill="fb-black">
 
-  <rect id="background" x="0" y="0" width="100%" height="100%" fill="green" />
 
-  <!-- <text id="statusMessage" fill="white" opacity="0.2" font-family="Tungsten" font-size="30" font-weight="bold"
-    text-anchor="middle" x="50%" y="30%" text-length="100"> ...</text> -->
+  <gradientRect id="background" x="0" y="0" width="100%" height="100%" gradient-type="radial" gradient-x1="50%"
+    gradient-y1="50%" gradient-x2="50%+300" gradient-y2="50%+300" gradient-color1="red" gradient-color2="black" opacity="0.6" />
 
-
-
-  <use href="#clock" />
+   <use href="#clock" />
 
   <use href="#hourlyAlerts" />
 
@@ -18,6 +15,6 @@
     <use href="#battery" />
   </g>
   <use href="#hourlyForecasts" />
-  <use href="#touchAreas" />
+  <use href="#touchAreas" layer="900"/>
 
 </svg>

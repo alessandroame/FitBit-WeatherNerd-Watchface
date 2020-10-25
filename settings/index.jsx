@@ -182,11 +182,11 @@ function SettingsPage(props) {
           settingsKey="clockBackgroundColor"
           colors={[
             { color: 'black' },
+            { color: '#333333' },
             { color: 'dimgrey' },
             { color: 'grey' },
             { color: 'darkgrey' },
             { color: 'lightgrey' },
-            { color: 'white' },
 
             { color: 'purple' },
             { color: '#006ED6' },

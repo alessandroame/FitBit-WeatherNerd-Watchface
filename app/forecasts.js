@@ -44,6 +44,10 @@ export function setData(data) {
 
 function redraw() {
     try {
+        let location=meteo.city;
+        if (location.length>15) location=`${location.substr(0,14)}...`;
+        document.getElementById("location").textContent = location;
+        document.getElementById("lastUpdate").textContent = meteo.lastUpdate;
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
         if (d > 11) d = d - 12;

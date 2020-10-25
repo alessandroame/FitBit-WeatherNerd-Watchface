@@ -29,8 +29,8 @@ import * as fitWidget from "./fit_widget"
 memStats("after imports");
 
 settings.subscribe("clockBackgroundColor", (color) => {
-    document.getElementById("background").style.fill = color;
-}, "black");
+    document.getElementById("background").gradient.colors.c1 = color;
+}, "#333333");
 
 
 clock.init();
@@ -40,13 +40,17 @@ battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
-touch_areas.init(()=>console.log("center clicked"), log_viewer.showLogger,  showWeather,fitWidget.prev,fitWidget.next);
+touch_areas.init(()=>{
+    logger.info("meteo requested");
+    mediator.publish("requestGetCurrentPosition", null);
+    vibration.start("bump");
+}, log_viewer.showLogger,  showWeather,fitWidget.prev,fitWidget.next);
 showClock();
 
 function onMeteoDataAvailable(data) {
     meteo_alerts.update(data.alerts);
     forecasts.setData(data);
-    //statusMessage.textContent = `${data.lastUpdate}@${data.city}`;
+    
 
     let sr=new Date(data.sunrise);
     let ss=new Date(data.sunset);
@@ -55,7 +59,6 @@ function onMeteoDataAvailable(data) {
 }
 
 function showClock() {
-    console.trace();
     clock.show();
     forecasts.hide();
 }

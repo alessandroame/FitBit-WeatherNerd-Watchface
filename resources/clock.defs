@@ -1,7 +1,7 @@
 <svg>
     <defs>
         <symbol id="minTag">
-            <g id="main" pointer-events="visible">
+            <g id="main">
                 <line x1="-2" y1="50%-2" x2="-2" y2="50%-6" fill="#888888" stroke-width="4" />
             </g>
         </symbol>
@@ -75,10 +75,7 @@
                 <rect id="hand_1" x="$-1" y="-130" width="2" height="130" fill="black" />
                 <rect  id="hand_2"  x="$-2" y="0" width="4" height="25" fill="black" />
             </g>
-            <circle id="center" cx="50%" cy="50%" r="8" fill="black" />
-            <circle cx="50%" cy="50%" r="4" fill="black" />
-
-
+            <circle id="center" cx="50%" cy="50%" r="8" fill="black"/>
         </symbol>
 
         <symbol id="clock">
@@ -90,6 +87,7 @@
 
                 <use id="handsShadow" href="#clockHands" x="-2" y="-2" opacity="0.5"/>
                 <use id="hands" href="#clockHands" />
+                <circle cx="50%" cy="50%" r="4" fill="black" layer="100" />
 
                 <g id="sunriseHand" transform="translate(50%,50%)">
                     <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="yellow" />

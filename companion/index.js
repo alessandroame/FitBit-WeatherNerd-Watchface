@@ -22,11 +22,11 @@ function init() {
 
     console.log("Companion code started");
     mediator.subscribe("requestMeteoUpdate", () => forceUpdate("requested from watch"));
-    mediator.subscribe("requestGetCurrentPosition", geolocator.getCurrentPosition);
+    mediator.subscribe("requestGetCurrentPosition", ()=>geolocator.getCurrentPosition(true));
 
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
-        geolocator.getCurrentPosition();
+        geolocator.getCurrentPosition(true);
         setTimeout(() => {
             startUpdateTimer();
         }, 1000);
@@ -62,8 +62,14 @@ function startUpdateTimer(){
 function onPositionChanged(position) {
     console.log("geolocator positionChanged: " + JSON.stringify(position));
     currentPosition = position;
+    if (position.coords.forceUpdate){
+        forceUpdate("position changed forceUpdate");
+    } 
+    else {
+        updateMeteo("position changed");
+    }
+    currentPosition.coords.forceUpdate=null;
     settings.set("_currentPosition", JSON.stringify(position));
-    updateMeteo("position changed");
 }
 
 function updateMeteo(reason) {

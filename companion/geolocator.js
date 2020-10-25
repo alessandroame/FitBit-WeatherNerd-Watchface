@@ -7,12 +7,13 @@ export function init(onPositionChangedCallback) {
     console.log("geolocator init");
     positionChangedCallback = onPositionChangedCallback;
 }
-export function getCurrentPosition() {
+export function getCurrentPosition(forceUpdate) {
   geolocation.getCurrentPosition(function(position) {
     onLocationSuccess({
         coords:{
             latitude:position.coords.latitude ,
-            longitude: position.coords.longitude
+            longitude: position.coords.longitude,
+            forceUpdate:forceUpdate
         }
     });
     //console.log(position.coords.latitude + ", " + position.coords.longitude+"-->"+JSON.stringify(position));

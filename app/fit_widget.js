@@ -16,7 +16,7 @@ let goalRail = widget.getElementById("goalRail");
 
 let sensorIndex = -1;
 
-let sensorUnits = ["BPM", "STP", "FLO", "CAL"];
+let sensorUnits = ["BPM", "Steps", "Floors", "Calories"];
 let sensorIcons = ["hr", "stp", "ele", "cal"];
 
 let hrm = new HeartRateSensor();
@@ -102,7 +102,7 @@ let toggle = false;
 let oldValue=null;
 function updateValue(v) {
     try {
-        if(oldValue && oldValue!=v){
+        if(sensorIndex==0 || oldValue && oldValue!=v){
             toggle = !toggle;
         }
         oldValue=v;
