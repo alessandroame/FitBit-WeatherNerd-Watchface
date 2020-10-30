@@ -82,7 +82,7 @@ function getForcasts() {
 
   var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
     "apikey=" + apiKey +
-    "&unit_system=" +settings.get("unitSystem",locale.temperature=="C"?"si":"us")+
+    "&unit_system=" + settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
     "&lat=" + currentPosition.coords.latitude +
     "&lon=" + currentPosition.coords.longitude +
     "&fields=sunrise,sunset,weather_code,precipitation,precipitation_probability,precipitation_type,temp,feels_like,wind_speed,wind_gust,wind_direction";
@@ -106,7 +106,7 @@ function getForcasts() {
             let d = new Date();
             meteoData.city = city;
             meteoData.lastUpdate = d.getHours() + ":" + d.getMinutes();
-//            console.log(JSON.stringify(meteoData));
+            //            console.log(JSON.stringify(meteoData));
             if (callback) callback(meteoData);
           }
 
@@ -138,7 +138,7 @@ function parseForecast(data) {
       t: {//temp
         r: d.temp.value,
         p: d.feels_like.value,
-        u: d.temp.units.replace("C","°")
+        u: d.temp.units.replace("C", "°")
       },
       p: {//precipitation
         t: d.precipitation_type.value,
@@ -158,6 +158,13 @@ function parseForecast(data) {
   };
 }
 
+function getCurrentWeather(){
+
+}
+
+function parseCurrentWeather(){
+
+}
 let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];
 function iconName(code, isDay) {
   let i = dayNightIcons.indexOf(code);
@@ -166,3 +173,42 @@ function iconName(code, isDay) {
   //console.log(res,isDay);
   return res;
 }
+
+/*
+
+export function updateAll() {
+  return new Promise(
+    (resolve, reject) => {
+      updatePosition()
+        .then((pos) =>
+          updateCity(pos)
+            .then(
+              updateCurrentWeather(pos)
+                .then((data) => {
+                  updateNowcast(pos)
+                    .then((data) => {
+                      updateForecast(pos)
+                        .then((data) => {
+                          resolve(data);
+                        })
+                        .catch(reject);
+                    })
+                    .catch(reject);
+                })
+                .catch(reject)
+            )
+            .catch(reject)
+        )
+        .catch(reject);
+
+    }
+  );
+}
+
+function updatePosition() {
+  return new Promise(
+    (resolve, reject) => {
+      geolocator.getCurrentPosition(true, resolve, reject);
+    }
+  );
+}*/

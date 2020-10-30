@@ -31,7 +31,7 @@ function SettingsPage(props) {
 
         <Select
           onSelection={(value) => {
-            props.settingsStorage.setItem('unitSystem', JSON.stringify( value.values[0].value));
+            props.settingsStorage.setItem('unitSystem', JSON.stringify(value.values[0].value));
           }}
           label={`System of measurement`}
           settingsKey="_unitSystem"
@@ -187,6 +187,40 @@ function SettingsPage(props) {
             { color: 'grey' },
             { color: 'darkgrey' },
             { color: 'lightgrey' },
+
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
+
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
+
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
+
+        <Text>Clock dial</Text>
+        <ColorSelect
+          settingsKey="clockDialColor"
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
 
             { color: 'purple' },
             { color: '#006ED6' },

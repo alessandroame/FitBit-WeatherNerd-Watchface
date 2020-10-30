@@ -30,6 +30,17 @@ minHandShadow.layer=layer-3;
 hourHand.layer=layer-4;
 hourHand.layer=layer-5;
 
+
+settings.subscribe("clockBackgroundColor", (color) => {
+  //    document.getElementById("background").gradient.colors.c1 = color;
+      document.getElementById("clockBackground").style.fill = color;
+  }, "#333333");
+  
+settings.subscribe("clockDialColor", (color) => {
+  //    document.getElementById("background").gradient.colors.c1 = color;
+      document.getElementById("clockDial").style.fill = color;
+  }, "#333333");
+  
 settings.subscribe("secondsHandColor",(value)=>{
   console.log("seconds hand color: "+value);
   secHand.getElementById("hand_1").style.fill=value;
