@@ -32,10 +32,11 @@ function setBatteryLevel(batteryLevel) {
     else if (batteryLevel < 30) {
         color = COLOR_WARNING;
     }
-    level.style.fill = color;
-    level.textContent=`${batteryLevel}%`;
-    document.getElementById("frame_1").style.fill=color;
-    document.getElementById("frame_2").style.fill=color;
+    //level.style.fill = color;
+    level.textContent=batteryLevel;
+    // document.getElementById("frame_1").style.fill=color;
+    // document.getElementById("frame_2").style.fill=color;
+     document.getElementById("batteryWidget").style.fill=color;
     document.getElementById("frame_empty").width=16-16/100*batteryLevel;
 }
 

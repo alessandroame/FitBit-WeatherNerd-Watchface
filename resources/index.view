@@ -14,7 +14,7 @@
     <use href="#connection" />
   </g>
   <g transform="translate(100%-40,40),rotate(45)">
-    <use href="#battery" />
+    <use href="#battery" id="batteryWidget"/>
   </g>
   <use href="#hourlyForecasts" />
   <use href="#touchAreas" layer="900"/>
