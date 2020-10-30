@@ -19,6 +19,7 @@ mediator.subscribe("setting",(data)=>{
     set(data.key,data.value);
     if (data.key.toLowerCase().indexOf('color')!=-1) {
         display.poke();
+        vibration.start("bump");
         console.warn("poke");
     }    
 });   
