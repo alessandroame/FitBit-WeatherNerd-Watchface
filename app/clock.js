@@ -10,14 +10,10 @@ let hands = clockContainer.getElementById("hands");
 let hourHand = hands.getElementById("hours");
 let minHand = hands.getElementById("mins");
 let secHand = hands.getElementById("secs");
-let center = hands.getElementById("center");
 
-let handsShadow = clockContainer.getElementById("handsShadow");
-let hourHandShadow = handsShadow.getElementById("hours");
-let minHandShadow = handsShadow.getElementById("mins");
-let secHandShadow = handsShadow.getElementById("secs");
-let centerShadow = handsShadow.getElementById("center");
-
+let hourHandShadow = clockContainer.getElementById("hoursShadow");
+let minHandShadow = clockContainer.getElementById("minsShadow");
+let secHandShadow = clockContainer.getElementById("secsShadow");
 
 let layer = 98;
 secHand.layer = layer--;
@@ -78,6 +74,7 @@ display.addEventListener("change", () => {
   animated=true;
   if (display.on) {
     stopAnimationTimer();
+    return;
     animationTimeoutId = setTimeout(() => {
       animated=false;
     }, 5000);

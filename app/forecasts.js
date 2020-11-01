@@ -1,5 +1,12 @@
 import document from "document";
 import * as geom from './geom';
+import * as settings from "./settings"
+
+
+
+settings.subscribe("clockBackgroundColor", (color) => {
+    document.getElementById("forecastBackground").gradient.colors.c1 = color;
+  }, "#333333");
 
 let hourlyForecastsUI = null;
 export function init(closeCallback) {

@@ -1,32 +1,36 @@
 import document from "document";
 
-let alertWidgets=[];
-export function init()
-{
+let alertWidgets = [];
+export function init() {
     console.log("meteo_alerts init");
-    for (let i=0;i<12;i++) {
-        alertWidgets[i]=document.getElementById("meteoAlert"+i);
+    for (let i = 0; i < 12; i++) {
+        alertWidgets[i] = document.getElementById("meteoAlert" + i);
         //console.log("----------"+alertWidgets[i]);
     }
 }
 
-export function update(alerts){
+export function update(alerts) {
     console.log("meteo_alerts update");
     //console.log(JSON.stringify(alerts));
-    for (let i=0;i<12;i++) {
-      //  console.log(`alert #${i} opacity:${alerts[i].precipitation.probability} size:${alerts[i].precipitation.quantity}  `)
-        let prec=alertWidgets[i].getElementById("precipitation");
-        // prec.style.opacity=alerts[i].precipitation.probability;
-        // prec.sweepAngle=5+25*alerts[i].precipitation.quantity;
-        // prec.startAngle=15-prec.sweepAngle/2;
+    for (let i = 0; i < 12; i++) {
+        let prec = alertWidgets[i].getElementById("precipitation");
+        prec.style.opacity = alerts[i].precipitation.probability;
+        prec.arcWidth = 14 * alerts[i].precipitation.quantity;
 
-        prec.style.opacity=alerts[i].precipitation.probability;
-        prec.arcWidth=30*alerts[i].precipitation.quantity;
-//        console.log(prec.style.opacity,prec.arcWidth);
-        // prec.sweepAngle=5+25*alerts[i].precipitation.quantity;
-        // prec.startAngle=15-prec.sweepAngle/2;
+        let ice = alertWidgets[i].getElementById("ice");
+        ice.style.opacity = alerts[i].ice.probability;
+    }
+}
+export function test() {
+    console.log("meteo_alerts test");
+    for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+            let prec = alertWidgets[i].getElementById("precipitation");
+            prec.style.opacity = (i + 1) / 12;
+            prec.arcWidth = 13 * (i + 1) / 12;
 
-        let ice=alertWidgets[i].getElementById("ice");
-        ice.style.opacity=alerts[i].ice.probability; 
+            let ice = alertWidgets[i].getElementById("ice");
+            ice.style.opacity = (i + 1) / 12;
+        }, 20 * i);
     }
 }

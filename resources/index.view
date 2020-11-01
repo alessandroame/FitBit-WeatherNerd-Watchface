@@ -1,8 +1,7 @@
 <svg viewport-fill="fb-black">
+  <use href="#clock" />
 
   <use href="#hourlyAlerts" />
-
-  <use href="#clock" />
 
 
   <g transform="translate(40,40),rotate(45)">
@@ -11,7 +10,7 @@
   <g transform="translate(100%-40,40),rotate(45)">
     <use href="#battery" id="batteryWidget"/>
   </g>
-  <use href="#hourlyForecasts" />
+  <use href="#hourlyForecasts" id='hourlyForecasts' />
   <use href="#touchAreas" layer="900"/>
 
 </svg>

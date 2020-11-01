@@ -1,52 +1,56 @@
 <svg>
     <defs>
         <symbol id="houryAlert">
-            <arc id="precipitation" x="-50%+10" y="-50%+10" width="100%-20" height="100%-20" fill="red" arc-width="10"
-                start-angle="0" sweep-angle="30" opacity="0"/>
-            <arc id="ice" x="-50%" y="-50%" width="100%" height="100%" fill="cyan" arc-width="2"
-                start-angle="5" sweep-angle="20"  opacity="0"/> 
+            <arc id="precipitation" x="-50%+10" y="-50%+10" width="100%-20" height="100%-20" fill="red" arc-width="10" start-angle="0" sweep-angle="30" opacity="0"/>
+            <arc id="ice" x="-50%" y="-50%" width="100%" height="100%" fill="cyan" arc-width="10" start-angle="0" sweep-angle="30" opacity="0"/>
         </symbol>
         <symbol id="minutlyAlert">
-            <arc id="precipitation" x="-50%+10" y="-50%+10" width="100%-20" height="100%-20" fill="red" arc-width="10"
-                start-angle="0" sweep-angle="1" opacity="0"/>
+            <arc id="precipitation" x="-50%+10" y="-50%+10" width="100%-20" height="100%-20" fill="red" arc-width="10" start-angle="0" sweep-angle="1" opacity="0"/>
         </symbol>
         <symbol id="hourlyAlerts">
-            <g transform="translate(50%,50%),rotate(0)">
-                <use href="#houryAlert" id="meteoAlert0" />
-            </g>
-            <g transform="translate(50%,50%),rotate(30)">
-                <use href="#houryAlert" id="meteoAlert1" />
-            </g>
-            <g transform="translate(50%,50%),rotate(60)">
-                <use href="#houryAlert" id="meteoAlert2" />
-            </g>
-            <g transform="translate(50%,50%),rotate(90)">
-                <use href="#houryAlert" id="meteoAlert3" />
-            </g>
-            <g transform="translate(50%,50%),rotate(120)">
-                <use href="#houryAlert" id="meteoAlert4" />
-            </g>
-            <g transform="translate(50%,50%),rotate(150)">
-                <use href="#houryAlert" id="meteoAlert5" />
-            </g>
-            <g transform="translate(50%,50%),rotate(180)">
-                <use href="#houryAlert" id="meteoAlert6" />
-            </g>
-            <g transform="translate(50%,50%),rotate(210)">
-                <use href="#houryAlert" id="meteoAlert7" />
-            </g>
-            <g transform="translate(50%,50%),rotate(240)">
-                <use href="#houryAlert" id="meteoAlert8" />
-            </g>
-            <g transform="translate(50%,50%),rotate(270)">
-                <use href="#houryAlert" id="meteoAlert9" />
-            </g>
-            <g transform="translate(50%,50%),rotate(300)">
-                <use href="#houryAlert" id="meteoAlert10" />
-            </g>
-            <g transform="translate(50%,50%),rotate(330)">
-                <use href="#houryAlert" id="meteoAlert11" />
-            </g>
+            <!-- <image href='alerts_frame.png' width='336' height='336' fill='white'/> -->
+            <mask id='mask'>
+                <g transform="translate(50%,50%),rotate(0)">
+                    <use href="#houryAlert" id="meteoAlert0" />
+                </g>
+                <g transform="translate(50%,50%),rotate(30)">
+                    <use href="#houryAlert" id="meteoAlert1" />
+                </g>
+                <g transform="translate(50%,50%),rotate(60)">
+                    <use href="#houryAlert" id="meteoAlert2" />
+                </g>
+                <g transform="translate(50%,50%),rotate(90)">
+                    <use href="#houryAlert" id="meteoAlert3" />
+                </g>
+                <g transform="translate(50%,50%),rotate(120)">
+                    <use href="#houryAlert" id="meteoAlert4" />
+                </g>
+                <g transform="translate(50%,50%),rotate(150)">
+                    <use href="#houryAlert" id="meteoAlert5" />
+                </g>
+                <g transform="translate(50%,50%),rotate(180)">
+                    <use href="#houryAlert" id="meteoAlert6" />
+                </g>
+                <g transform="translate(50%,50%),rotate(210)">
+                    <use href="#houryAlert" id="meteoAlert7" />
+                </g>
+                <g transform="translate(50%,50%),rotate(240)">
+                    <use href="#houryAlert" id="meteoAlert8" />
+                </g>
+                <g transform="translate(50%,50%),rotate(270)">
+                    <use href="#houryAlert" id="meteoAlert9" />
+                </g>
+                <g transform="translate(50%,50%),rotate(300)">
+                    <use href="#houryAlert" id="meteoAlert10" />
+                </g>
+                <g transform="translate(50%,50%),rotate(330)">
+                    <use href="#houryAlert" id="meteoAlert11" />
+                </g>
+            </mask>
+            <svg mask='#mask' width='100%' height='100%'>
+                <image href='ice_alerts.png' width='100%' height='100%' fill='cyan'/>
+                <image href='precipitation_alerts.png' width='100%' height='100%' fill='red'/>
+            </svg>
         </symbol>
     </defs>
 </svg>

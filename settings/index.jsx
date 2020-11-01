@@ -278,7 +278,7 @@ function SettingsPage(props) {
             { color: 'lightgoldenrodyellow' }
           ]}
         />        
-        <Text>Day of weel color</Text>
+        <Text>Day of week color</Text>
         <ColorSelect
           settingsKey="datumDOWColor"
           colors={[

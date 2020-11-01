@@ -4,7 +4,7 @@
             <svg id="datum">
                 <text x="-2" y="14" id="dayOfWeek" font-family="Tungsten" fill="white" font-size="38" text-anchor="end">LUN</text>
                 <text x="2" y="15" id="dayNumber" font-family="Tungsten" fill="white" font-size="42"   text-anchor="start">30</text>
-                <image href='datum_shadow.png' x='-55' y='-22' width='89' height='42' fill="black" opacity='1'/>
+                <image href='datum_shadow.png' x='-55' y='-22' width='89' height='42' fill="black" opacity='0.8'/>
                 <image id='datumBackground' href='datum_background.png' x='-55' y='-22' width='89' height='42' fill="white" opacity='1'/>
             </svg>
         </symbol>
