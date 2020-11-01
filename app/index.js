@@ -40,7 +40,9 @@ touch_areas.init(()=>{
     mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
 }, log_viewer.showLogger,  showWeather,fitWidget.prev,fitWidget.next);
-showClock();
+
+  
+  showClock();
 
 function onMeteoDataAvailable(data) {
     meteo_alerts.update(data.alerts);

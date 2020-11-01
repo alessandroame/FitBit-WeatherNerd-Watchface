@@ -29,7 +29,6 @@ minHandShadow.layer = layer--;
 hourHand.layer = layer--;
 hourHandShadow.layer = layer--;
 
-
 settings.subscribe("clockBackgroundColor", (color) => {
   document.getElementById("background").gradient.colors.c1 = color;
 }, "#333333");

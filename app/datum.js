@@ -1,11 +1,24 @@
 import { locale } from "user-settings";
 import document from "document";
+import * as settings from "./settings"
 
 let oldDate = null;
 export let widget=document.getElementById("datum");
 let dayOfWeek = document.getElementById("dayOfWeek");
 let dayNumber = document.getElementById("dayNumber");
 
+settings.subscribe("datumBackgroundColor", (color) => {
+    document.getElementById("datumBackground").style.fill = color;
+  }, "#333333");
+  
+  settings.subscribe("datumDayColor", (color) => {
+    dayNumber.style.fill = color;
+  }, "white");
+  settings.subscribe("datumDOWColor", (color) => {
+    dayOfWeek.style.fill = color;
+  }, "red");
+  
+  
 export function init(){
     console.log("datum init");
     setInterval(() => {
