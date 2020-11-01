@@ -1,23 +1,23 @@
 <svg>
     <defs>
         <symbol id="clockHands">
-            <g id="hours" transform="translate(50%,50%)">
-                <image id='hand' href='hand_hours.png' x='-50%' y='-50%' fill='white'/>
-            </g>
             <g id="hoursShadow" transform="translate(50%+1,50%+2)">
                 <image id='hand' href='hand_hours.png' x='-50%' y='-50%' fill='black'/>
             </g>
-            <g id="mins" transform="translate(50%,50%)">
-                <image id='hand' href='hand_minutes.png' x='-50%' y='-50%' fill='white'/>
+            <g id="hours" transform="translate(50%,50%)">
+                <image id='hand' href='hand_hours.png' x='-50%' y='-50%' fill='white'/>
             </g>
             <g id="minsShadow" transform="translate(50%+2,50%+3)">
                 <image id='hand' href='hand_minutes.png' x='-50%' y='-50%' fill='black'/>
             </g>
-            <g id="secs" transform="translate(50%,50%)">
-                <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='red'/>
+            <g id="mins" transform="translate(50%,50%)">
+                <image id='hand' href='hand_minutes.png' x='-50%' y='-50%' fill='white'/>
             </g>
             <g id="secsShadow" transform="translate(50%+3,50%+4)">
                 <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='black'/>
+            </g>
+            <g id="secs" transform="translate(50%,50%)">
+                <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='red'/>
             </g>
         </symbol>
 
@@ -26,7 +26,7 @@
                 <mask id="mask">
                     <circle cx="50%" cy="50%" r="145" />
                 </mask>
-                <svg  width="100%" height="100%">
+                <svg mask="#mask" width="100%" height="100%">
                     <gradientRect id="background" x="20" y="20" width="100%-40" height="100%-40" gradient-type="radial" gradient-x1="50%" gradient-y1="50%" gradient-x2="50%+300" gradient-y2="50%+300" gradient-color1="red" gradient-color2="black" opacity="0.6" />
 
 
@@ -40,13 +40,15 @@
                     <!-- <use id="handsShadow" href="#clockHands" x="-2" y="4" opacity="1" /> -->
                     <use id="hands" href="#clockHands" />
                 </svg>
+
+
                 <g id="sunsetHand" transform="translate(50%,50%)">
-                    <!-- <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="blue" /> -->
-                    <image href='sunset.png' x='-7' y='-50%' width='14' height='36' fill="#006ED6"/>
+                        <circle cx='0' cy='10-50%' r='12' fill='black' opacity='0.5'/>
+                        <image href='sunset.png' x='-13' y='-50%' width='26' height='41' fill="#006ED6"/>
                 </g>
                 <g id="sunriseHand" transform="translate(50%,50%)">
-                    <!-- <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="yellow" /> -->
-                    <image href='sunrise.png' x='-12' y='-50%' width='24' height='39' fill="yellow"/>
+                    <circle cx='0' cy='10-50%' r='13' fill='black' opacity='0.5'/>
+                    <image href='sunrise.png' x='-13' y='-50%' width='26' height='41' fill="yellow"/>
                 </g>
             </svg>
 

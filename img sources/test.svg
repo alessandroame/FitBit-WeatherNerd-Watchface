@@ -15,7 +15,7 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="test.svg"
-   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\ice_alerts.png"
+   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\precipation_alerts.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -1016,7 +1016,7 @@
        style="display:inline">
       <path
          id="path4104"
-         style="fill:none;stroke:#ffffff;stroke-width:0.26458333;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:#ffffff;stroke:#000000;stroke-width:0.26458333;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
          d="m 42.275455,1.5792317 4.316016,0.00827 m -3.91675,-1.40409173 3.699023,-0.0358029 c 0.201018,-0.001946 0.487091,0.21631042 0.476083,0.41851418 L 46.598169,5.1891465 C 46.587162,5.3913506 46.436325,5.556259 46.235303,5.5546757 L 43.015358,5.5293146 C 42.814336,5.5277313 42.512293,5.3901934 42.500617,5.1880271 L 42.237302,0.62886107 c -0.01168,-0.2021663 0.2364,-0.44350544 0.437419,-0.4454511 z"
          inkscape:transform-center-x="0.0131915"
          inkscape:transform-center-y="-41.432722"
@@ -1037,8 +1037,7 @@
          inkscape:transform-center-x="-37.020173"
          inkscape:transform-center-y="-8.5160194"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1049,8 +1048,7 @@
          inkscape:transform-center-x="-41.303622"
          inkscape:transform-center-y="-7.8375876"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1061,8 +1059,7 @@
          inkscape:transform-center-x="-45.492689"
          inkscape:transform-center-y="-6.7151301"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1073,8 +1070,7 @@
          inkscape:transform-center-x="-49.54148"
          inkscape:transform-center-y="-5.1609448"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1085,8 +1081,7 @@
          inkscape:transform-center-x="-53.405635"
          inkscape:transform-center-y="-3.1920595"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1097,8 +1092,7 @@
          inkscape:transform-center-x="-57.042816"
          inkscape:transform-center-y="-0.83004589"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1109,8 +1103,7 @@
          inkscape:transform-center-x="-60.413176"
          inkscape:transform-center-y="1.8992174"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1121,8 +1114,7 @@
          inkscape:transform-center-x="-63.479786"
          inkscape:transform-center-y="4.965828"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1133,8 +1125,7 @@
          inkscape:transform-center-x="-66.209049"
          inkscape:transform-center-y="8.3361874"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1145,8 +1136,7 @@
          inkscape:transform-center-x="-68.571062"
          inkscape:transform-center-y="11.973369"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1157,8 +1147,7 @@
          inkscape:transform-center-x="-70.539947"
          inkscape:transform-center-y="15.837524"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1169,8 +1158,7 @@
          inkscape:transform-center-x="-72.094133"
          inkscape:transform-center-y="19.886315"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1181,8 +1169,7 @@
          inkscape:transform-center-x="-73.21659"
          inkscape:transform-center-y="24.075383"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1193,8 +1180,7 @@
          inkscape:transform-center-x="-73.895021"
          inkscape:transform-center-y="28.358831"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1205,8 +1191,7 @@
          inkscape:transform-center-x="-74.121994"
          inkscape:transform-center-y="32.676538"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1217,8 +1202,7 @@
          inkscape:transform-center-x="-73.895021"
          inkscape:transform-center-y="37.020628"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1229,8 +1213,7 @@
          inkscape:transform-center-x="-73.216589"
          inkscape:transform-center-y="41.304077"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1241,8 +1224,7 @@
          inkscape:transform-center-x="-72.094132"
          inkscape:transform-center-y="45.493145"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1253,8 +1235,7 @@
          inkscape:transform-center-x="-70.539946"
          inkscape:transform-center-y="49.541935"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1265,8 +1246,7 @@
          inkscape:transform-center-x="-68.571061"
          inkscape:transform-center-y="53.40609"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1277,8 +1257,7 @@
          inkscape:transform-center-x="-66.209047"
          inkscape:transform-center-y="57.043272"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1289,8 +1268,7 @@
          inkscape:transform-center-x="-63.479784"
          inkscape:transform-center-y="60.413631"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1301,8 +1279,7 @@
          inkscape:transform-center-x="-60.413173"
          inkscape:transform-center-y="63.480241"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1313,8 +1290,7 @@
          inkscape:transform-center-x="-57.042814"
          inkscape:transform-center-y="66.209504"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1325,8 +1301,7 @@
          inkscape:transform-center-x="-53.405632"
          inkscape:transform-center-y="68.571518"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1337,8 +1312,7 @@
          inkscape:transform-center-x="-49.541477"
          inkscape:transform-center-y="70.540403"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1349,8 +1323,7 @@
          inkscape:transform-center-x="-45.492686"
          inkscape:transform-center-y="72.094588"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1361,8 +1334,7 @@
          inkscape:transform-center-x="-41.303619"
          inkscape:transform-center-y="73.217045"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1373,8 +1345,7 @@
          inkscape:transform-center-x="-37.02017"
          inkscape:transform-center-y="73.895476"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1385,8 +1356,7 @@
          inkscape:transform-center-x="-32.702463"
          inkscape:transform-center-y="74.122449"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1397,8 +1367,7 @@
          inkscape:transform-center-x="-28.358373"
          inkscape:transform-center-y="73.895476"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1409,8 +1378,7 @@
          inkscape:transform-center-x="-24.074925"
          inkscape:transform-center-y="73.217044"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1421,8 +1389,7 @@
          inkscape:transform-center-x="-19.885857"
          inkscape:transform-center-y="72.094587"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1433,8 +1400,7 @@
          inkscape:transform-center-x="-15.837066"
          inkscape:transform-center-y="70.540401"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1445,8 +1411,7 @@
          inkscape:transform-center-x="-11.972911"
          inkscape:transform-center-y="68.571516"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1457,8 +1422,7 @@
          inkscape:transform-center-x="-8.3357297"
          inkscape:transform-center-y="66.209503"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1469,8 +1433,7 @@
          inkscape:transform-center-x="-4.9653705"
          inkscape:transform-center-y="63.480239"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1481,8 +1444,7 @@
          inkscape:transform-center-x="-1.8987601"
          inkscape:transform-center-y="60.413629"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1493,8 +1455,7 @@
          inkscape:transform-center-x="0.83050291"
          inkscape:transform-center-y="57.043269"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1505,8 +1466,7 @@
          inkscape:transform-center-x="3.1925163"
          inkscape:transform-center-y="53.406087"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1517,8 +1477,7 @@
          inkscape:transform-center-x="5.1614013"
          inkscape:transform-center-y="49.541933"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1529,8 +1488,7 @@
          inkscape:transform-center-x="6.7155863"
          inkscape:transform-center-y="45.493142"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1541,8 +1499,7 @@
          inkscape:transform-center-x="7.8380435"
          inkscape:transform-center-y="41.304074"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1553,8 +1510,7 @@
          inkscape:transform-center-x="8.5164749"
          inkscape:transform-center-y="37.020625"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1565,8 +1521,7 @@
          inkscape:transform-center-x="8.7434475"
          inkscape:transform-center-y="32.702918"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1577,8 +1532,7 @@
          inkscape:transform-center-x="8.5164746"
          inkscape:transform-center-y="28.358828"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1589,8 +1543,7 @@
          inkscape:transform-center-x="7.8380429"
          inkscape:transform-center-y="24.07538"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1601,8 +1554,7 @@
          inkscape:transform-center-x="6.7155854"
          inkscape:transform-center-y="19.886312"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1613,8 +1565,7 @@
          inkscape:transform-center-x="5.1614"
          inkscape:transform-center-y="15.837521"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1625,8 +1576,7 @@
          inkscape:transform-center-x="3.1925148"
          inkscape:transform-center-y="11.973367"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1637,8 +1587,7 @@
          inkscape:transform-center-x="0.83050115"
          inkscape:transform-center-y="8.336185"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1649,8 +1598,7 @@
          inkscape:transform-center-x="-1.8987621"
          inkscape:transform-center-y="4.9658257"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1661,8 +1609,7 @@
          inkscape:transform-center-x="-4.9653727"
          inkscape:transform-center-y="1.8992154"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1673,8 +1620,7 @@
          inkscape:transform-center-x="-8.3357321"
          inkscape:transform-center-y="-0.83004765"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1685,8 +1631,7 @@
          inkscape:transform-center-x="-11.972914"
          inkscape:transform-center-y="-3.192061"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1697,8 +1642,7 @@
          inkscape:transform-center-x="-15.837069"
          inkscape:transform-center-y="-5.160946"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1709,8 +1653,7 @@
          inkscape:transform-center-x="-19.88586"
          inkscape:transform-center-y="-6.7151311"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1721,8 +1664,7 @@
          inkscape:transform-center-x="-24.074928"
          inkscape:transform-center-y="-7.8375882"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <use
          x="0"
          y="0"
@@ -1733,14 +1675,19 @@
          inkscape:transform-center-x="-28.358376"
          inkscape:transform-center-y="-8.5160197"
          width="100%"
-         height="100%"
-         style="fill:none;stroke:#ffffff;stroke-opacity:1" />
+         height="100%" />
       <circle
          style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path4234"
          cx="-44.936237"
          cy="-18.150751"
          r="42.860912" />
+      <circle
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.58750001;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         id="path4234-0"
+         cx="44.450001"
+         cy="44.449982"
+         r="43.641785" />
     </g>
     <g
        inkscape:groupmode="layer"

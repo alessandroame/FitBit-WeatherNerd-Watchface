@@ -1,8 +1,6 @@
 <svg viewport-fill="fb-black">
   <use href="#clock" />
-
-  <use href="#hourlyAlerts" />
-
+                <use href="#hourlyAlerts" />
 
   <g transform="translate(40,40),rotate(45)">
     <use href="#connection" />

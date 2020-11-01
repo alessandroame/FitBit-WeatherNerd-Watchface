@@ -15,7 +15,7 @@ let hourHandShadow = clockContainer.getElementById("hoursShadow");
 let minHandShadow = clockContainer.getElementById("minsShadow");
 let secHandShadow = clockContainer.getElementById("secsShadow");
 
-let layer = 98;
+/*let layer = 98;
 secHand.layer = layer--;
 secHandShadow.layer = layer--;
 
@@ -23,7 +23,7 @@ minHand.layer = layer--;
 minHandShadow.layer = layer--;
 
 hourHand.layer = layer--;
-hourHandShadow.layer = layer--;
+hourHandShadow.layer = layer--;*/
 
 settings.subscribe("clockBackgroundColor", (color) => {
   document.getElementById("background").gradient.colors.c1 = color;
@@ -68,27 +68,6 @@ export function hide() {
   clockContainer.style.display = "none";
 }
 
-let animated=false;
-let animationTimeoutId = null;
-display.addEventListener("change", () => {
-  animated=true;
-  if (display.on) {
-    stopAnimationTimer();
-    return;
-    animationTimeoutId = setTimeout(() => {
-      animated=false;
-    }, 5000);
-  } else {
-    stopAnimationTimer()
-  }
-});
-
-function stopAnimationTimer() {
-  if (animationTimeoutId) {
-    clearTimeout(animationTimeoutId);
-    animationTimeoutId = null;
-  }
-}
 function updateClock() {
   let now = new Date();
   let hours = now.getHours() % 12;
@@ -101,24 +80,6 @@ function updateClock() {
   hourHandShadow.groupTransform.rotate.angle = geom.hoursToAngle(hours, mins);
   minHandShadow.groupTransform.rotate.angle = geom.minutesToAngle(mins);
   let secAng = geom.secondsToAngle(secs);
-  if (animated){
-    animateSeconds(secHand, secAng);
-    animateSeconds(secHandShadow, secAng);
-  }else{
-    secHand.groupTransform.rotate.angle =secAng;
-    secHandShadow.groupTransform.rotate.angle = geom.secondsToAngle(secs);
-  }
-
-}
-
-function animateSeconds(hand, secAng) {
-  hand.getElementById("t1").from = secAng;
-  hand.getElementById("t1").to = secAng + 2;
-
-  hand.getElementById("t2").from = secAng + 2;
-  hand.getElementById("t2").to = secAng + 4;
-
-  hand.getElementById("t3").from = secAng + 4;
-  hand.getElementById("t3").to = secAng + 6;
-  hand.animate("enable");
+  secHand.groupTransform.rotate.angle =secAng;
+  secHandShadow.groupTransform.rotate.angle = geom.secondsToAngle(secs);
 }
