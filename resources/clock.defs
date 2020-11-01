@@ -42,11 +42,11 @@
                 </svg>
 
 
-                <g id="sunsetHand" transform="translate(50%,50%)">
+                <g id="sunsetHand" transform="translate(50%,50%)" opacity='0.8'>
                         <circle cx='0' cy='10-50%' r='12' fill='black' opacity='0.5'/>
                         <image href='sunset.png' x='-13' y='-50%' width='26' height='41' fill="#006ED6"/>
                 </g>
-                <g id="sunriseHand" transform="translate(50%,50%)">
+                <g id="sunriseHand" transform="translate(50%,50%)" opacity='0.8'>
                     <circle cx='0' cy='10-50%' r='13' fill='black' opacity='0.5'/>
                     <image href='sunrise.png' x='-13' y='-50%' width='26' height='41' fill="yellow"/>
                 </g>
