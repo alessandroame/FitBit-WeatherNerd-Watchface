@@ -15,15 +15,9 @@
             </g>
             <g id="secs" transform="translate(50%,50%)">
                 <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='red'/>
-                <animateTransform id="t1" attributeType="rotate" from="0" to="0" begin="enable" dur="0.1" final="keep" />
-                <animateTransform id="t2" attributeType="rotate" from="0" to="0" begin="enable+0.33" dur="0.1" final="keep"/>
-                <animateTransform id="t3" attributeType="rotate" from="0" to="0" begin="enable+0.66" dur="0.1" final="keep"/>
             </g>
             <g id="secsShadow" transform="translate(50%+3,50%+4)">
                 <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='black'/>
-                <animateTransform id="t1" attributeType="rotate" from="0" to="0" begin="enable" dur="0.1" final="keep" />
-                <animateTransform id="t2" attributeType="rotate" from="0" to="0" begin="enable+0.33" dur="0.1" final="keep"/>
-                <animateTransform id="t3" attributeType="rotate" from="0" to="0" begin="enable+0.66" dur="0.1" final="keep"/>
             </g>
         </symbol>
 
