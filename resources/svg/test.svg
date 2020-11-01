@@ -19,7 +19,75 @@
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
-     id="defs2" />
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2272">
+      <stop
+         style="stop-color:#222222;stop-opacity:1"
+         offset="0"
+         id="stop2268" />
+      <stop
+         style="stop-color:#5f5f5f;stop-opacity:1"
+         offset="1"
+         id="stop2270" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2264">
+      <stop
+         style="stop-color:#3a3a3a;stop-opacity:1"
+         offset="0"
+         id="stop2260" />
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1"
+         id="stop2262" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2264"
+       id="linearGradient2266"
+       x1="61.846355"
+       y1="50.932293"
+       x2="61.714062"
+       y2="41.936459"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(1.1244792,-0.6614574)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2272"
+       id="linearGradient2274"
+       x1="66.145836"
+       y1="44.450001"
+       x2="66.079681"
+       y2="51.229942"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(1.1244792,-0.6614574)" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter2728"
+       x="-0.12732613"
+       width="1.2546523"
+       y="-0.2930129"
+       height="1.5860258">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="4.8675717"
+         id="feGaussianBlur2730" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2272"
+       id="linearGradient2274-2"
+       x1="66.145836"
+       y1="44.450001"
+       x2="66.079681"
+       y2="51.229942"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(1.1244766,-0.66145716)" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#767676"
@@ -28,10 +96,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="8"
-     inkscape:cx="160.00196"
-     inkscape:cy="50.150416"
+     inkscape:cx="235.52816"
+     inkscape:cy="175.55716"
      inkscape:document-units="px"
-     inkscape:current-layer="g2252"
+     inkscape:current-layer="layer19"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -87,7 +155,7 @@
      id="layer9"
      inkscape:label="dial"
      sodipodi:insensitive="true"
-     style="display:none">
+     style="display:inline">
     <g
        inkscape:groupmode="layer"
        id="layer10"
@@ -632,7 +700,7 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="HANDS"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
@@ -743,7 +811,7 @@
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="mask"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <path
        id="rect1077"
@@ -759,13 +827,13 @@
        inkscape:groupmode="layer"
        id="layer18"
        inkscape:label="arrow"
-       style="display:none">
+       style="display:inline">
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 44.449999,7.3421874 -1.653645,-0.033073 1.653645,2.9898096 V 7.507552"
          id="path2244"
          sodipodi:nodetypes="cccc"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrset.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
       <use
@@ -776,7 +844,7 @@
          transform="matrix(-1,0,0,1,88.899998,0)"
          width="100%"
          height="100%"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrset.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
     </g>
@@ -784,9 +852,9 @@
        inkscape:groupmode="layer"
        id="layer15"
        inkscape:label="sunrise"
-       style="display:none">
+       style="display:inline">
       <circle
-         style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path2095"
          cx="44.450001"
          cy="3.0427084"
@@ -987,13 +1055,13 @@
        inkscape:groupmode="layer"
        id="g2252"
        inkscape:label="arrow copy"
-       style="display:inline">
+       style="display:none">
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 44.45,10.265813 1.653913,0.01439 -1.687323,-2.9709334 0.03154,2.7911934"
          id="path2248"
          sodipodi:nodetypes="cccc"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrset.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunset.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
       <use
@@ -1004,7 +1072,7 @@
          transform="matrix(0.99993616,-0.01129978,-0.01129978,-0.99993616,0.08580396,18.109807)"
          width="100%"
          height="100%"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrset.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunset.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
     </g>
@@ -1012,15 +1080,53 @@
        inkscape:groupmode="layer"
        id="layer16"
        inkscape:label="sunset"
-       style="display:inline">
+       style="display:none">
       <path
-         style="fill:none;stroke:#ffffff;stroke-width:0.320049px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.320049px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
          d="m 44.754127,1.102604 c 0,0 -1.732715,0.2764142 -1.986037,2.0040022 -0.09119,0.9378335 0.445845,1.8657949 1.286872,2.2014405 0.729565,0.2566703 1.996171,0.069104 1.996171,0.069104 0,0 -1.823913,-0.5133429 -2.056969,-1.6979746 C 43.832038,2.5739005 44.754127,1.102604 44.754127,1.102604"
          id="path2222"
          sodipodi:nodetypes="cccccc"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrset.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunset.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer19"
+     inkscape:label="datum frame">
+    <rect
+       style="opacity:1;fill:url(#linearGradient2266);fill-opacity:1;stroke:url(#linearGradient2274);stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect2258"
+       width="24.27552"
+       height="10.583333"
+       x="50.799999"
+       y="39.158333"
+       rx="2.3761775"
+       ry="2.3761775"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\datum_background.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="rect2258-3"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill;filter:url(#filter2728)"
+       d="M 200.98047 148 C 196.00509 148 192 152.00509 192 156.98047 L 192 179.01953 C 192 183.48912 195.23576 187.16573 199.5 187.86914 L 199.5 166.10547 C 199.5 161.13009 203.50509 157.125 208.48047 157.125 L 282.26953 157.125 C 282.77533 157.125 283.26744 157.17626 283.75 157.25586 L 283.75 156.98047 C 283.75 152.00509 279.74491 148 274.76953 148 L 200.98047 148 z "
+       transform="scale(0.26458333)" />
+    <path
+       id="rect2258-6"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       d="m 50.43103,35.983333 c -1.316402,0 -2.376082,1.05968 -2.376082,2.376083 v 11.817365 c 0,1.316403 1.05968,2.376083 2.376082,2.376083 h 24.68273 c 1.316403,0 2.376083,-1.05968 2.376083,-2.376083 V 38.359416 c 0,-1.316403 -1.05968,-2.376083 -2.376083,-2.376083 z m 2.745052,3.175 h 19.523356 c 1.316402,0 2.376082,1.05968 2.376082,2.376083 v 5.831167 c 0,1.316403 -1.05968,2.376083 -2.376082,2.376083 H 53.176082 C 51.85968,49.741666 50.8,48.681986 50.8,47.365583 v -5.831167 c 0,-1.316403 1.05968,-2.376083 2.376082,-2.376083 z" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:url(#linearGradient2274-2);stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect2258-9"
+       width="24.27552"
+       height="10.583333"
+       x="50.799995"
+       y="39.158333"
+       rx="2.3761775"
+       ry="2.3761775"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\datum_background.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
 </svg>

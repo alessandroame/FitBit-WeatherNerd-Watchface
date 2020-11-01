@@ -30,8 +30,11 @@ function update(){
             cn: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
             tw: '週日_週一_週二_週三_週四_週五_週六'.split('_')
         };
+        let dayNo="0"+ now.getDate();
+        dayNumber.text =dayNo.substr(dayNo.length-2,2);
         dayOfWeek.text = dow[locale.language.substr(3, 2)][now.getDay()].toUpperCase();
-        dayNumber.text = now.getDate();
+        // dayNumber.text ='09';
+        // dayOfWeek.text = 'DOM';
         oldDate = now.getDate();
     }
 }
