@@ -211,9 +211,43 @@ function SettingsPage(props) {
           ]}
         />
 
-        <Text>Clock dial</Text>
+<Text>Clock dial hours</Text>
         <ColorSelect
-          settingsKey="clockDialColor"
+          settingsKey="clockDialHoursColor"
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
+
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
+
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
+
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
+
+<Text>Clock dial minutes</Text>
+        <ColorSelect
+          settingsKey="clockDialMinutesColor"
           colors={[
             { color: 'black' },
             { color: 'dimgrey' },

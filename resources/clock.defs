@@ -1,62 +1,37 @@
 <svg>
     <defs>
-        <symbol id="minTag">
-            <g id="main">
-                <line x1="-2" y1="50%-2" x2="-2" y2="50%-6" fill="#888888" stroke-width="4" />
-            </g>
-        </symbol>
-        <symbol id="hourTag">
-            <g id="main" fill-opacity="0.5">
-                <line x1="-2" y1="50%-3" x2="-2" y2="50%-20" fill="#ffffff" stroke-width="4" />
-                <use href="#minTag">
-                    <set href="main" attributeName="transform" to="rotate(6)" />
-                </use>
-                <use href="#minTag">
-                    <set href="main" attributeName="transform" to="rotate(12)" />
-                </use>
-                <use href="#minTag">
-                    <set href="main" attributeName="transform" to="rotate(18)" />
-                </use>
-                <use href="#minTag">
-                    <set href="main" attributeName="transform" to="rotate(24)" />
-                </use>
-            </g>
-        </symbol>
-
-
         <symbol id="clockHands">
-            <g id="mins" transform="translate(50%,50%)">
-                <rect id="hand" x="$-2" y="-120" width="4" height="120" fill="black" />
-            </g>
             <g id="hours" transform="translate(50%,50%)">
-                <rect id="hand" x="$-3" y="-80" width="6" height="80" fill="black" />
+                <image id='hand' href='hand_hours.png' x='-50%' y='-50%' fill='black'/>
+            </g>
+            <g id="mins" transform="translate(50%,50%)">
+                <image id='hand' href='hand_minutes.png' x='-50%' y='-50%' fill='black'/>
             </g>
             <g id="secs" transform="translate(50%,50%)">
-                <rect id="hand_1" x="$-1" y="-130" width="2" height="130" fill="black" />
-                <rect id="hand_2" x="$-2" y="0" width="4" height="25" fill="black" />
+                <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='black'/>
             </g>
-            <circle id="center" cx="50%" cy="50%" r="8" fill="black" />
         </symbol>
 
         <symbol id="clock">
             <svg id='clock'>
-                <image id="clockBackground" href="background.png" x="0" y="0" width="100%" height="100%" fill="red"
-                    opacity="1" />
-                <image id="clockDial" href="dial.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
+
+                <image id="clockDialHours" href="dial_hours.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
+                <image id="clockDialMinutes" href="dial_minutes.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
 
 
                 <use href="#fitWidget" id="fitWidget" />
                 <use href="#datum" x="75%" y="50%" />
 
-                <use id="handsShadow" href="#clockHands" x="-2" y="2" opacity="0.5" />
+                <use id="handsShadow" href="#clockHands" x="-2" y="4" opacity="0.5" />
                 <use id="hands" href="#clockHands" />
-                <circle cx="50%" cy="50%" r="4" fill="black" layer="100" />
 
-                <g id="sunriseHand" transform="translate(50%,50%)">
-                    <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="yellow" />
-                </g>
                 <g id="sunsetHand" transform="translate(50%,50%)">
-                    <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="blue" />
+                    <!-- <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="blue" /> -->
+                    <image href='sunset.png' x='-7' y='-50%' width='14' height='36' fill="#006ED6"/>
+                </g>
+                <g id="sunriseHand" transform="translate(50%,50%)">
+                    <!-- <rect id="hand" x="$-2" y="-50%" width="4" height="20" fill="yellow" /> -->
+                    <image href='sunrise.png' x='-12' y='-50%' width='24' height='39' fill="yellow"/>
                 </g>
             </svg>
 

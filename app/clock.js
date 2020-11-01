@@ -18,60 +18,58 @@ let secHandShadow = handsShadow.getElementById("secs");
 let centerShadow = handsShadow.getElementById("center");
 
 
-let layer=98;
-center.layer=layer;
-secHand.layer=layer;
-centerShadow.layer=layer;
-secHandShadow.layer=layer-1;
+let layer = 98;
+secHand.layer = layer--;
+secHandShadow.layer = layer--;
 
-minHand.layer=layer-2;
-minHandShadow.layer=layer-3;
+minHand.layer = layer --;
+minHandShadow.layer = layer --;
 
-hourHand.layer=layer-4;
-hourHand.layer=layer-5;
+hourHand.layer = layer --;
+hourHandShadow.layer = layer --;
 
 
 settings.subscribe("clockBackgroundColor", (color) => {
-  //    document.getElementById("background").gradient.colors.c1 = color;
-      document.getElementById("clockBackground").style.fill = color;
-  }, "#333333");
-  
-settings.subscribe("clockDialColor", (color) => {
-  //    document.getElementById("background").gradient.colors.c1 = color;
-      document.getElementById("clockDial").style.fill = color;
-  }, "#333333");
-  
-settings.subscribe("secondsHandColor",(value)=>{
-  console.log("seconds hand color: "+value);
-  secHand.getElementById("hand_1").style.fill=value;
-  secHand.getElementById("hand_2").style.fill=value;
-  center.style.fill=value;
-},"red");
+  document.getElementById("background").gradient.colors.c1 = color;
+}, "#333333");
 
-settings.subscribe("minutesHandColor",(value)=>{
-  console.log("minutes hand color: "+value);
-  minHand.getElementById("hand").style.fill=value;
-},"white");
+settings.subscribe("clockDialHoursColor", (color) => {
+  document.getElementById("clockDialHours").style.fill = color;
+}, "#333333");
 
-settings.subscribe("hoursHandColor",(value)=>{
-  console.log("hours hand color: "+value);
-  hourHand.getElementById("hand").style.fill=value;
-},"white");
+settings.subscribe("clockDialMinutesColor", (color) => {
+  document.getElementById("clockDialMinutes").style.fill = color;
+}, "#333333");
+
+settings.subscribe("secondsHandColor", (value) => {
+  console.log("seconds hand color: " + value);
+  secHand.getElementById("hand").style.fill = value;
+}, "red");
+
+settings.subscribe("minutesHandColor", (value) => {
+  console.log("minutes hand color: " + value);
+  minHand.getElementById("hand").style.fill = value;
+}, "white");
+
+settings.subscribe("hoursHandColor", (value) => {
+  console.log("hours hand color: " + value);
+  hourHand.getElementById("hand").style.fill = value;
+}, "white");
 
 clock.granularity = "seconds";
 clock.addEventListener("tick", updateClock);
 
 
-export function init(){
+export function init() {
   console.log("clock init");
   datum.init();
 }
 
-export function show(){
-  clockContainer.style.display="inline";
+export function show() {
+  clockContainer.style.display = "inline";
 }
-export function hide(){
-  clockContainer.style.display="none";
+export function hide() {
+  clockContainer.style.display = "none";
 }
 
 function updateClock() {
