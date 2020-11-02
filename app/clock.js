@@ -67,20 +67,17 @@ export function show() {
 export function hide() {
   clockContainer.style.display = "none";
 }
-let oldHours, oldMins, oldSecs;
+let oldMins, oldSecs;
 function updateClock() {
   let now = new Date();
   let hours = now.getHours() % 12;
   let mins = now.getMinutes();
   let secs = now.getSeconds();
 
-  if (oldHours != hours) {
+  if (oldMins != mins) {
     hourHand.groupTransform.rotate.angle = geom.hoursToAngle(hours, mins);
     hourHandShadow.groupTransform.rotate.angle = geom.hoursToAngle(hours, mins);
-    oldHours = hours;
-  }
 
-  if (oldMins != mins) {
     minHand.groupTransform.rotate.angle = geom.minutesToAngle(mins);
     minHandShadow.groupTransform.rotate.angle = geom.minutesToAngle(mins);
     oldMins = mins;
