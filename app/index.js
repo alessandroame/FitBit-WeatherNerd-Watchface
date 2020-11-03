@@ -2,9 +2,11 @@ import { memory } from "system";
 import document from "document";
 import * as settings from "./settings";
 
+
 function memStats(desc) {
     let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
     console.log(msg);
+    return msg;
 }
 
 memStats("start");
@@ -36,6 +38,7 @@ forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
 touch_areas.init(()=>{
+    logger.warning(memStats("update request"));
     logger.info("meteo requested");
     mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
@@ -46,6 +49,7 @@ touch_areas.init(()=>{
   showClock();
 
 function onMeteoDataAvailable(data) {
+    logger.warning(memStats("onMeteoDataAvailable"));
     meteo_alerts.update(data.alerts);
     forecasts.setData(data);
     

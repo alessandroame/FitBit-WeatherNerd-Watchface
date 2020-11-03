@@ -1,8 +1,9 @@
 import document from 'document'
 import * as geom from './geom'
 
-document.getElementById("sunriseHand").layer=90;
-document.getElementById("sunsetHand").layer=90;
+//this generate errors with mask 
+//document.getElementById("sunriseHand").layer=90;
+//document.getElementById("sunsetHand").layer=90;
 
 let oldSs,oldSr;
 export function update(sunrise,sunset){

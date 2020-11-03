@@ -15,16 +15,6 @@ let hourHandShadow = clockContainer.getElementById("hoursShadow");
 let minHandShadow = clockContainer.getElementById("minsShadow");
 let secHandShadow = clockContainer.getElementById("secsShadow");
 
-/*let layer = 98;
-secHand.layer = layer--;
-secHandShadow.layer = layer--;
-
-minHand.layer = layer--;
-minHandShadow.layer = layer--;
-
-hourHand.layer = layer--;
-hourHandShadow.layer = layer--;*/
-
 settings.subscribe("clockBackgroundColor", (color) => {
   document.getElementById("background").gradient.colors.c1 = color;
 }, "#333333");

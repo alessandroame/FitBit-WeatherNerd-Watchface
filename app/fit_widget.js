@@ -106,7 +106,7 @@ function updateValue(v) {
             toggle = !toggle;
         }
         oldValue=v;
-        value.textContent = v;
+        value.textContent = v??"--";
         icon.href = `icons/${sensorIcons[sensorIndex]}_${toggle ? '1' : '0'}.png`;
 
         let goalPerc = null;

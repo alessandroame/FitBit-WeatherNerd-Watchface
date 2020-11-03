@@ -14,11 +14,11 @@
     <rect x="50%" y="100%-40" width="50%" height="40" fill="red" pointer-events="all" />
     <text x="50%" y="100%-10" font-family="Tungsten" text-anchor="start" fill="white">&nbsp;&nbsp;Close</text>
 
-    <svg opacity="0">
+    <g opacity="0">
         <rect id="scrollUp" x="0" y="40" width="100%" height="50%-40" fill="blue" pointer-events="all" />
         <rect id="scrollDown" x="0" y="50%" width="100%" height="50%-40" fill="green" pointer-events="all" />
         <rect id="reset" x="0" y="100%-40" width="50%" height="40" fill="yellow" pointer-events="all" />
         <rect id="close" x="50%" y="100%-40" width="50%" height="40" fill="red" pointer-events="all" />
-    </svg>
+    </g>
 
 </svg>

@@ -1,13 +1,13 @@
 <svg>
     <defs>
         <symbol id="touchAreas">
-            <svg opacity="0">
+            <g opacity="0">
                 <rect id="btnTL" x="0" y="0" width="50%" height="50%" fill="red" pointer-events="all" />
                 <rect id="btnTR" x="50%" y="0" width="50%" height="50%" fill="green" pointer-events="all" />
                 <rect id="btnBL" x="0" y="50%" width="50%" height="50%" fill="blue" pointer-events="all" />
                 <rect id="btnBR" x="50%" y="50%" width="50%" height="50%" fill="yellow" pointer-events="all" />
                 <circle id="btnCenter" cx="50%" cy="50%" r="20%" fill="white" pointer-events="all" />
-            </svg>
+            </g>
         </symbol>
     </defs>
 </svg>

@@ -1,58 +1,56 @@
 <svg>
-    <defs>
-        <symbol id="clockHands">
-            <g id="hoursShadow" transform="translate(50%+1,50%+2)">
-                <image id='hand' href='hand_hours.png' x='-50%' y='-50%' fill='black'/>
-            </g>
-            <g id="hours" transform="translate(50%,50%)">
-                <image id='hand' href='hand_hours.png' x='-50%' y='-50%' fill='white'/>
-            </g>
-            <g id="minsShadow" transform="translate(50%+2,50%+3)">
-                <image id='hand' href='hand_minutes.png' x='-50%' y='-50%' fill='black'/>
-            </g>
-            <g id="mins" transform="translate(50%,50%)">
-                <image id='hand' href='hand_minutes.png' x='-50%' y='-50%' fill='white'/>
-            </g>
-            <g id="secsShadow" transform="translate(50%+3,50%+4)">
-                <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='black'/>
-            </g>
-            <g id="secs" transform="translate(50%,50%)">
-                <image id='hand' href='hand_seconds.png' x='-50%' y='-50%' fill='red'/>
-            </g>
-        </symbol>
-
-        <symbol id="clock">
-            <svg id='clock'>
-                <mask id="mask">
-                    <circle cx="50%" cy="50%" r="145" />
-                </mask>
-                <svg mask="#mask" width="100%" height="100%">
-                    <gradientRect id="background" x="20" y="20" width="100%-40" height="100%-40" gradient-type="radial" gradient-x1="50%" gradient-y1="50%" gradient-x2="50%+300" gradient-y2="50%+300" gradient-color1="red" gradient-color2="black" opacity="0.6" />
-
-
-                    <image id="clockDialHours" href="dial_hours.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
-                    <image id="clockDialMinutes" href="dial_minutes.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
-
-
-                    <use href="#fitWidget" id="fitWidget" />
-                    <use href="#datum" x="75%" y="50%" />
-
-                    <!-- <use id="handsShadow" href="#clockHands" x="-2" y="4" opacity="1" /> -->
-                    <use id="hands" href="#clockHands" />
-                </svg>
-
-
-                <g id="sunsetHand" transform="translate(50%,50%)" opacity='0.8'>
-                        <circle cx='0' cy='10-50%' r='12' fill='black' opacity='0.5'/>
-                        <image href='sunset.png' x='-13' y='-50%' width='26' height='41' fill="#006ED6"/>
-                </g>
-                <g id="sunriseHand" transform="translate(50%,50%)" opacity='0.8'>
-                    <circle cx='0' cy='10-50%' r='13' fill='black' opacity='0.5'/>
-                    <image href='sunrise.png' x='-13' y='-50%' width='26' height='41' fill="yellow"/>
-                </g>
-            </svg>
-
-        </symbol>
-
-    </defs>
+	<defs>
+		<symbol id="clockHands">
+			<g id="hoursShadow" transform="translate(50%+1,50%+2)">
+				<image id="hand" href="hand_hours.png" x="-50%" y="-50%" fill="black" opacity="0.7" />
+			</g>
+			<g id="hours" transform="translate(50%,50%)">
+				<image id="hand" href="hand_hours.png" x="-50%" y="-50%" fill="white" />
+			</g>
+			<g id="minsShadow" transform="translate(50%+2,50%+3)">
+				<image id="hand" href="hand_minutes.png" x="-50%" y="-50%" fill="black" opacity="0.7" />
+			</g>
+			<g id="mins" transform="translate(50%,50%)">
+				<image id="hand" href="hand_minutes.png" x="-50%" y="-50%" fill="white" />
+			</g>
+			<g id="secsShadow" transform="translate(50%+3,50%+4)">
+				<image id="hand" href="hand_seconds.png" x="-50%" y="-50%" fill="black" opacity="0.7" />
+			</g>
+			<g id="secs" transform="translate(50%,50%)">
+				<image id="hand" href="hand_seconds.png" x="-50%" y="-50%" fill="red" />
+			</g>
+		</symbol>
+		<symbol id="clock">
+			<mask id="clockMask">
+				<circle cx="50%" cy="50%" r="145" />
+			</mask>
+			<svg mask="#clockMask">
+				<image id="clockDialHours" href="dial_hours.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
+				<image id="clockDialMinutes" href="dial_minutes.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
+				<use href="#fitWidget" id="fitWidget" />
+				<use href="#datum" x="75%" y="50%" id="datum" />
+				<!-- <use id="handsShadow" href="#clockHands" x="-2" y="4" opacity="1" /> -->
+				<use id="hands" href="#clockHands" />
+			</svg>
+			<g id="sunsetHand" transform="translate(50%,50%)">
+				<!-- <rect x="-13" y="-50%" width="26" height="41" fill="white" opacity="0.5" />
+				<mask id="sunsetMask">
+					<rect x="-13" y="-50%" width="26" height="41" />
+				</mask>
+				<g mask="#sunsetMask"> -->
+					<circle cx="0" cy="10-50%" r="12" fill="black" opacity="0.5" />
+					<image href="sunset.png" x="-13" y="-50%" width="26" height="41" fill="#006ED6" opacity="0.8" />
+				<!-- </g> -->
+			</g>
+			<g id="sunriseHand" transform="translate(50%,50%)" opacity="0.8">
+				<!-- <mask id="sunriseMask">
+					<rect x="-13" y="-50%" width="26" height="41" />
+				</mask>
+				<svg mask="#sunriseMask"> -->
+					<circle cx="0" cy="10-50%" r="13" fill="black" opacity="0.5" />
+					<image href="sunrise.png" x="-13" y="-50%" width="26" height="41" fill="yellow" />
+				<!-- </svg> -->
+			</g>
+		</symbol>
+	</defs>
 </svg>
