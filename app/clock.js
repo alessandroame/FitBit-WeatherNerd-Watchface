@@ -16,7 +16,8 @@ let minHandShadow = clockContainer.getElementById("minsShadow");
 let secHandShadow = clockContainer.getElementById("secsShadow");
 
 settings.subscribe("clockBackgroundColor", (color) => {
-  document.getElementById("clockBackground").gradient.colors.c1 = color;
+//  document.getElementById("clockBackground").gradient.colors.c1 = color;
+  document.getElementById("clockBackgroundGradient").style.fill = color;
 }, "#333333");
 
 settings.subscribe("clockDialHoursColor", (color) => {

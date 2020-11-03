@@ -15,17 +15,17 @@ export function update(alerts) {
             try {
                 let precUI = document.getElementById("p_" + (i * 5 + n));
                 if (precData.probability > 0) {
-                    precUI.style.display = "inline";
                     precUI.style.opacity = precData.probability;
                     precUI.arcWidth = 16 * precData.quantity;
+                    precUI.style.display = "inline";
                 } else {
                     precUI.style.display = "none";
                 }
 
                 let ice = document.getElementById("i_" + (i * 5 + n));
                 if (alert.ice.probability > 0) {
-                    ice.style.display = "inline";
                     ice.style.opacity = alert.ice.probability;
+                    ice.style.display = "inline";
                 } else {
                     ice.style.display = "none";
                 }
@@ -46,13 +46,13 @@ export function test() {
     for (let i = 0; i < 60; i++) {
         //setTimeout(() => {
         let prec = document.getElementById("p_" + i);
-        prec.style.display = "inline";
         prec.style.opacity = (i + 1) / 60;
         prec.arcWidth = 15 * (i + 1) / 60;
+        prec.style.display = "inline";
 
         let ice = document.getElementById("i_" + i);
-        ice.style.display = "inline";
         ice.style.opacity = (i + 1) / 60;
+        ice.style.display = "inline";
         //}, 30 * i);
     }
 }
