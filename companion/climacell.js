@@ -149,6 +149,7 @@ function parseForecast(data) {
         i: iconName(d.weather_code.value, isDay)
       }
     });
+    console.log("===="+d.precipitation_probability.value)
   }
 
   return {

@@ -72,7 +72,7 @@ function normalizeValue(value, min, max) {
     let v = value - min;
     let vMax = max - min;
     let res = value / vMax;
-    //console.log(`normalizeValue value: v: ${v} min: ${min} max:{max} ${value} vMax: ${vMax} res: ${res}  `);
+//    console.log(`normalizeValue value: v: ${v} min: ${min} max:{max} ${value} vMax: ${vMax} res: ${res}  `);
     if (res < 0) res = 0;
     if (res > 1) res = 1;
     return res;

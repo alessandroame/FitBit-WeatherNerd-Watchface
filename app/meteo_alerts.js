@@ -15,8 +15,9 @@ export function update(alerts) {
             try {
                 let precUI = document.getElementById("p_" + (i * 5 + n));
                 if (precData.probability > 0) {
-                    precUI.style.opacity = precData.probability;
-                    precUI.arcWidth = 16 * precData.quantity;
+                    //console.log(JSON.stringify(precData))
+                    precUI.style.opacity = 0.3 + 0.7 * precData.probability;
+                    precUI.arcWidth = 2 + 14 * precData.quantity;
                     precUI.style.display = "inline";
                 } else {
                     precUI.style.display = "none";
@@ -54,5 +55,24 @@ export function test() {
         ice.style.opacity = (i + 1) / 60;
         ice.style.display = "inline";
         //}, 30 * i);
+    }
+}
+
+function updateAlertUI(index, iceProb, precProb, precQuantity) {
+    let precUI = document.getElementById("p_" + index;
+    if (precProb > 0) {
+        precUI.style.opacity = 0.3 + 0.7 * precProb;
+        precUI.arcWidth = 2 + 14 * precQuantity;
+        precUI.style.display = "inline";
+    } else {
+        precUI.style.display = "none";
+    }
+
+    let ice = document.getElementById("i_" + (i * 5 + n));
+    if (iceProb > 0) {
+        ice.style.opacity = iceProb;
+        ice.style.display = "inline";
+    } else {
+        ice.style.display = "none";
     }
 }
