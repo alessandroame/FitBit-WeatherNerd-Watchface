@@ -15,7 +15,7 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="test.svg"
-   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\background_gradient.png"
+   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\hand_hours.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -167,7 +167,7 @@
      inkscape:cx="56.70443"
      inkscape:cy="160.73861"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer13"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -222,7 +222,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="bg gradient"
-     style="display:inline">
+     style="display:none">
     <circle
        style="fill:url(#radialGradient1082);fill-opacity:1;stroke:none;stroke-width:0.588865;stroke-linecap:round;stroke-linejoin:round"
        id="path1290"
@@ -1738,28 +1738,13 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="HANDS"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
-    <g
-       inkscape:groupmode="layer"
-       id="layer3"
-       inkscape:label="frame 1">
-      <rect
-         style="fill:#000000;stroke:none;stroke-width:1.587;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers stroke fill"
-         id="rect1074"
-         width="7.9375"
-         height="13.229167"
-         x="40.481251"
-         y="37.835415"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\hand_seconds.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-    </g>
     <g
        inkscape:groupmode="layer"
        id="layer13"
        inkscape:label="hours"
-       style="display:none;opacity:1">
+       style="display:inline;opacity:1">
       <circle
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path2076"
@@ -1867,7 +1852,7 @@
        inkscape:groupmode="layer"
        id="layer14"
        inkscape:label="seconds"
-       style="display:inline">
+       style="display:none">
       <circle
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path2082"
