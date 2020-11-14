@@ -8,12 +8,10 @@ export function init() {
 export function update(alerts) {
     console.log("meteo_alerts update");
     //console.log(JSON.stringify(alerts));
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 60; i++) {
         let alert = alerts[i];
         let precData = alert.precipitation;
-        for (let n = 0; n < 5; n++) {
-            updateAlertItem(i*5+n,alert.ice.probability, precData.probability, precData.quantity);
-        }
+        updateAlertItem(i,alert.ice.probability, precData.probability, precData.quantity);
     }
 }
 export function test() {

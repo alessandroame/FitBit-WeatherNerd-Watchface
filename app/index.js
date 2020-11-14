@@ -68,7 +68,7 @@ function showClock() {
 
 function showMenu() {
     logger.info("meteo requested");
-    mediator.publish("requestMeteoUpdate", null);
+    mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
     /*document.location.assign("menu.view").then(() => {
         console.log("menu.view");

@@ -3,7 +3,7 @@ import clock from "clock";
 import * as datum from "./datum"
 import document from "document";
 import * as settings from "./settings"
-import * as geom from './geom'
+import * as geom from '../common/geom'
 
 let clockContainer = document.getElementById("clock");
 let hands = clockContainer.getElementById("hands");
@@ -46,6 +46,14 @@ settings.subscribe("hoursHandColor", (value) => {
 clock.granularity = "seconds";
 clock.addEventListener("tick", updateClock);
 
+display.addEventListener("change", () => {
+  if (display.on) {
+      setSensor(sensorIndex);
+  } else {
+      stopHRM();
+      stopInterval();
+  }
+});
 
 export function init() {
   console.log("clock init");

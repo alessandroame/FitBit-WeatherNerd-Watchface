@@ -1,7 +1,9 @@
-import { inbox } from "file-transfer";
-import * as fs from "fs";
-import { vibration } from "haptics";
+import { inbox } from "file-transfer"
+import * as fs from "fs"
+import { vibration } from "haptics"
 import * as logger from "./logger"
+import * as geom from '../common/geom'
+
 
 let alertsAvailableCallback = null;
 const METEO_FN = "meteo_data.json";
@@ -31,9 +33,27 @@ function fetchMeteo() {
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
     if (!meteoData) return;
-    //console.log(JSON.stringify(meteoData));
-    var f = meteoData.forecasts;
-
+    //console.log(JSON.stringify(meteo));
+    let dt=new Date(meteoData.data[0].d);
+    let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
+    var offset=(angle/360*60).toFixed()*1;
+    for (let i=0;i<meteoData.data.length;i++){
+        let d=meteoData.data[i];
+        let index=i+offset;
+        if (index>59) index=index-60;
+        alerts[index]={
+            precipitation: {
+                probability: normalizeValue(d.p.p, 0, 100),
+                quantity: normalizeValue(d.p.q, 0, 10)
+            },
+            ice: {
+                probability: d.t.r < 0 ? 1 : 0,
+                quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
+            }
+        }
+        console.log("p",d.d,d.p.q);
+    }
+    /*var f = meteoData.forecasts;
     for (let i = 0; i < 12; i++) {
         let d = f[i];
         let h = new Date(d.d).getHours();
@@ -55,7 +75,7 @@ function fetchMeteo() {
             tempPerc: d.t.p,
             tempUnits: d.t.u
         };
-    }
+    }*/
     console.log(JSON.stringify(alerts));
     var data = {
         city: meteoData.city,
