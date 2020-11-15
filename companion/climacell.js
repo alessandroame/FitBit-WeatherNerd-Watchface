@@ -1,7 +1,6 @@
 import * as settings from "./settings";
 import * as logger from "./logger";
 import { locale } from "user-settings";
-import * as geom from '../common/geom'
 
 let callback = null;
 let currentPosition = null;

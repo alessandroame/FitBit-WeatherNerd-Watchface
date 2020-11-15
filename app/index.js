@@ -25,7 +25,7 @@ import * as ping from "./ping"
 import * as forecasts from "./forecasts"
 import * as sunDial from './sun_dial'
 import * as fitWidget from "./fit_widget"
-// setTimeout( ping.ping, 3000);
+//setInterval( memStats, 3000);
 // setInterval( ping.ping, 60000);
 
 memStats("after imports");
@@ -58,6 +58,10 @@ function onMeteoDataAvailable(data) {
     let ss=new Date(data.sunset);
     // console.log(ss,sr);
     sunDial.update(sr,ss);
+    
+    logger.warning(memStats("end Meteo"));
+
+    setTimeout(()=>{     logger.warning(memStats("after Meteo"));}, 5000);
 }
 
 function showClock() {

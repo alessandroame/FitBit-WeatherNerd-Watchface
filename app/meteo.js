@@ -51,35 +51,21 @@ function fetchMeteo() {
                 quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
             }
         }
-        console.log("p",d.d,d.p.q);
+        if (i%5==0){
+            forecasts[i/5] = {
+                icon: d.w.i,
+                temp: d.t.r,
+                tempPerc: d.t.p,
+                tempUnits: d.t.u
+            };
+        }
+        //console.log(d.d+" - "+d.p.q+" "+d.p.p);
+        //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
     }
-    /*var f = meteoData.forecasts;
-    for (let i = 0; i < 12; i++) {
-        let d = f[i];
-        let h = new Date(d.d).getHours();
-        if (h > 11) h = h - 12;
-        alerts[h] = {
-            precipitation: {
-                probability: normalizeValue(d.p.p, 0, 100),
-                quantity: normalizeValue(d.p.q, 0, 10)
-            },
-            ice: {
-                probability: d.t.r < 0 ? 1 : 0,
-                quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
-            }
-        };
-        //        console.log(JSON.stringify(d));
-        forecasts[h] = {
-            icon: d.w.i,
-            temp: d.t.r,
-            tempPerc: d.t.p,
-            tempUnits: d.t.u
-        };
-    }*/
     console.log(JSON.stringify(alerts));
     var data = {
-        city: meteoData.city,
-        lastUpdate: meteoData.lastUpdate,
+        city: meteoData.c,
+        lastUpdate: new Date(meteoData.lu),
         alerts: alerts,
         forecasts: forecasts,
         sunset: meteoData.ss,
@@ -88,6 +74,20 @@ function fetchMeteo() {
     logger.debug("meteo load " + data.city + "@" + data.lastUpdate);
     if (alertsAvailableCallback) alertsAvailableCallback(data);
 }
+
+function findFirst(data, d, precision) {
+    let ts=d.getTime();
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].d.getTime()+precision*60*1000 > ts) {
+//            console.error(data[i].d,d)
+//            console.error(data[i].d.getTime()+precision*60 ,ts)
+            return data[i];
+        }
+        //console.warn(data[i].d.getTime()+precision*60 ,ts)
+    }
+    return null;
+}
+
 function normalizeValue(value, min, max) {
     let v = value - min;
     let vMax = max - min;

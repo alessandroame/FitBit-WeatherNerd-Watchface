@@ -18,7 +18,7 @@ init();
 function init() {
     settings.init();  
 
-    climacell.init(onMeteoAvailable);
+    //climacell.init(onMeteoAvailable);
     geolocator.init(onPositionChanged);
 
     console.log("Companion code started");

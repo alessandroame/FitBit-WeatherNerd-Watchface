@@ -53,17 +53,25 @@ function buildData(city, present, nowcast, forecast) {
     }
     let res = {
         c: city,
+        lu: new Date(),
         sr: new Date(forecast[forecast.length - 1].sr),
         ss: new Date(forecast[forecast.length - 1].ss),
         data: data
     }
+    //console.error(JSON.stringify(res));
     return res;
 }
 
 function findFirst(data, d, precision) {
-    let ts=d.getTime();
+    let ts = d.getTime();
     for (let i = 0; i < data.length; i++) {
-        if (data[i].d.getTime()+precision*60*1000 > d) return data[i];
+        if (data[i].d.getTime() + precision * 60 * 1000 > ts) {
+            //            console.error(data[i].d,d)
+            //            console.error(data[i].d.getTime()+precision*60 ,ts)
+            return data[i];
+        }
+        //console.warn(data[i].d.getTime()+precision*60 ,ts)
+
     }
     return null;
 }
@@ -75,16 +83,21 @@ function getCity(lat, lon) {
             .then(function (response) {
                 response.json()
                     .then(function (data) {
-                        //console.log(JSON.stringify(data));
+                        try {
+                    //console.log(JSON.stringify(data));
                         var a = data.address;
                         var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
                         resolve(res);
                         //logger.warning("city response: " + res);
-                    });
+                    } catch (err) {
+                        logger.error("getForecast exception: " + err);
+                        resolve("unknown location");
+                    }
+                });
             })
             .catch(function (err) {
                 logger.error("Error fetching city for lat: " + lat + " lon:" + lon + " -> " + err);
-                reject(err);
+                resolve("unknown location");
             });
     });
 }
@@ -151,6 +164,7 @@ function getNowcast(lat, lon) {
                             } else {
                                 var res = [];
                                 for (var i = 0; i < data.length; i++) res.push(parseWeather(data[i]));
+                                //res=buildTestNowcast();
                                 resolve(res);
                             }
                         });
@@ -158,12 +172,42 @@ function getNowcast(lat, lon) {
                 .catch(function (err) {
                     logger.error("getNowcast exception: " + err);
                 });
-            console.error("getNowcast resolved");
+            //console.error("getNowcast resolved");
         } catch (e) {
             reject(e);
         }
     });
 }
+
+function buildTestNowcast() {
+    let res = [];
+    for (var i = 0; i < 30; i++) {
+        let now = new Date();
+        now.setMinutes(now.getMinutes() + 12 * i);
+        res[i] = {
+            sr: now,
+            ss: now,
+            d: now,
+            id: true,
+            t: {//temp
+                r: -15 + i,
+                p: -15 + i,
+                u: "C"
+            },
+            p: {//precipitation
+                t: "rain",
+                p: 30 / (i + 1),
+                q: i
+            },
+            w: {//weather
+                i: "asasdf"
+            }
+        };
+    }
+    //    for (var i=0;i<res.length;i++) console.warn(res[i].d);
+    return res;
+}
+
 
 function getForecast(startTime, endTime, lat, lon) {
     return new Promise((resolve, reject) => {
@@ -195,19 +239,51 @@ function getForecast(startTime, endTime, lat, lon) {
                                     res.push(parseWeather(data[i]));
                                 }
                                 resolve(res);
+                                //resolve(buildTestForecast());
                             }
                         });
                 })
                 .catch(function (err) {
                     logger.error("getForecast exception: " + err);
+                    reject(e);
                 });
-            console.error("Forecast resolved");
+//            console.error("Forecast resolved");
         } catch (e) {
             reject(e);
         }
     });
 }
 
+function buildTestForecast() {
+    let res = [];
+    for (var i = 0; i < 12; i++) {
+        let now = new Date();
+        now.setHours(now.getHours() + i);
+        res[i] = {
+            sr: now,
+            ss: now,
+            d: now,
+            id: true,
+            t: {//temp
+                r: -6 + i,
+                p: -6 + i,
+                u: "C"
+            },
+            p: {//precipitation
+                t: "rain",
+                p: 12 / (i + 1),
+                q: i
+            },
+            w: {//weather
+                i: "asasdf"
+            }
+        };
+        console.error(res[i].d);
+
+    }
+    //    for (var i=0;i<res.length;i++) console.warn(res[i].d);
+    return res;
+}
 
 function parseWeather(data, time) {
     let dt = new Date(time ?? data.observation_time.value);
