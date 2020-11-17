@@ -43,7 +43,7 @@ memStats(11111);
     //console.log(JSON.stringify(meteo));
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
-    var offset=(angle/360*60).toFixed()*1;
+    var offset=Math.floor(angle/360*60);
 memStats(5555);
 
     for (let i=0;i<meteoData.data.length;i++){
@@ -61,8 +61,8 @@ memStats(5555);
             }
         }
         if (i%5==0){
-            let forecastIndex=(index/5).toFixed();
-            //console.error(i+" "+index+" "+forecastIndex+" "+d.t.r);
+            let forecastIndex=Math.floor(index/5);
+            //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
             forecasts[forecastIndex] = {
                 icon: d.w.i,
                 temp: d.t.r,
