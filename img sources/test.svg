@@ -15,7 +15,7 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="test.svg"
-   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\dial_minutes.png"
+   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\background_gradient.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -32,11 +32,11 @@
          offset="0.35706136"
          id="stop1068" />
       <stop
-         style="stop-color:#323232;stop-opacity:1"
-         offset="0.82594472"
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1"
          id="stop1084" />
       <stop
-         style="stop-color:#ffffff;stop-opacity:1"
+         style="stop-color:#000000;stop-opacity:1"
          offset="1"
          id="stop1078" />
     </linearGradient>
@@ -168,10 +168,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.1439855"
-     inkscape:cx="138.54573"
-     inkscape:cy="198.56811"
+     inkscape:cx="85.840151"
+     inkscape:cy="123.94074"
      inkscape:document-units="px"
-     inkscape:current-layer="layer8"
+     inkscape:current-layer="layer11"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -226,8 +226,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="bg gradient"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <circle
        style="fill:url(#radialGradient1082);fill-opacity:1;stroke:none;stroke-width:0.588866;stroke-linecap:round;stroke-linejoin:round"
        id="path1290"
@@ -242,12 +241,13 @@
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="dial"
-     style="display:inline">
+     style="display:none"
+     sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
        id="layer10"
        inkscape:label="hours"
-       style="display:none"
+       style="display:inline"
        sodipodi:insensitive="true">
       <use
          x="0"
@@ -668,7 +668,8 @@
        inkscape:groupmode="layer"
        id="layer8"
        inkscape:label="minutes"
-       style="display:inline">
+       style="display:inline"
+       sodipodi:insensitive="true">
       <g
          id="g1118"
          transform="translate(0.38325735,-0.0335872)">
@@ -1748,7 +1749,7 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="HANDS"
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
@@ -1862,7 +1863,7 @@
        inkscape:groupmode="layer"
        id="layer14"
        inkscape:label="seconds"
-       style="display:none">
+       style="display:inline">
       <circle
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path2082"
