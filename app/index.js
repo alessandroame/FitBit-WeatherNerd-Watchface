@@ -49,19 +49,19 @@ touch_areas.init(()=>{
   showClock();
 
 function onMeteoDataAvailable(data) {
-    logger.warning(memStats("onMeteoDataAvailable"));
+    //logger.warning(memStats("onMeteoDataAvailable"));
     meteo_alerts.update(data.alerts);
+
     forecasts.setData(data);
-    
 
     let sr=new Date(data.sunrise);
     let ss=new Date(data.sunset);
     // console.log(ss,sr);
     sunDial.update(sr,ss);
     
-    logger.warning(memStats("end Meteo"));
+    //logger.warning(memStats("end Meteo"));
 
-    setTimeout(()=>{     logger.warning(memStats("after Meteo"));}, 5000);
+    //setTimeout(()=>{     logger.warning(memStats("after Meteo"));}, 5000);
 }
 
 function showClock() {

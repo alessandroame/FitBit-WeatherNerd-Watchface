@@ -9,9 +9,7 @@ export function update(alerts) {
     console.log("meteo_alerts update");
     //console.log(JSON.stringify(alerts));
     for (let i = 0; i < 60; i++) {
-        let alert = alerts[i];
-        let precData = alert.precipitation;
-        updateAlertItem(i,alert.ice.probability, precData.probability, precData.quantity);
+        updateAlertItem(i,alerts[i].ice.probability, alerts[i].precipitation.probability, alerts[i].precipitation.quantity);
     }
 }
 export function test() {
@@ -28,6 +26,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity) {
     let precUI = document.getElementById("p_" + index);
     if (precProb > 0) {
         precUI.style.opacity = 0.3 + 0.7 * precProb;
+       // console.log(precUI.style.opacity,precProb);  
         precUI.arcWidth = 2 + 18* precQuantity;
         precUI.style.display = "inline";
     } else {

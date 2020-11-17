@@ -3,8 +3,14 @@ import * as fs from "fs"
 import { vibration } from "haptics"
 import * as logger from "./logger"
 import * as geom from '../common/geom'
+import { memory } from "system";
 
 
+function memStats(desc) {
+    let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
+    console.log(msg);
+    return msg;
+}
 let alertsAvailableCallback = null;
 const METEO_FN = "meteo_data.json";
 export function init(onAlertsAvailableCallback) {
@@ -29,6 +35,7 @@ export function init(onAlertsAvailableCallback) {
 
 function fetchMeteo() {
     console.log("meteo fetchMeteo");
+memStats(11111);
     let alerts = [];
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
@@ -37,13 +44,15 @@ function fetchMeteo() {
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
     var offset=(angle/360*60).toFixed()*1;
+memStats(5555);
+
     for (let i=0;i<meteoData.data.length;i++){
         let d=meteoData.data[i];
         let index=i+offset;
         if (index>59) index=index-60;
         alerts[index]={
             precipitation: {
-                probability: normalizeValue(d.p.p, 0, 100),
+                probability: d.p.p,
                 quantity: normalizeValue(d.p.q, 0, 10)
             },
             ice: {
@@ -52,7 +61,9 @@ function fetchMeteo() {
             }
         }
         if (i%5==0){
-            forecasts[i/5] = {
+            let forecastIndex=(index/5).toFixed();
+            console.error(i+" "+index+" "+forecastIndex+" "+d.t.r);
+            forecasts[forecastIndex] = {
                 icon: d.w.i,
                 temp: d.t.r,
                 tempPerc: d.t.p,
@@ -62,30 +73,16 @@ function fetchMeteo() {
         //console.log(d.d+" - "+d.p.q+" "+d.p.p);
         //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
     }
-    console.log(JSON.stringify(alerts));
-    var data = {
+//    console.log(JSON.stringify(alerts));
+memStats(9999);
+    if (alertsAvailableCallback) alertsAvailableCallback({
         city: meteoData.c,
         lastUpdate: new Date(meteoData.lu),
         alerts: alerts,
         forecasts: forecasts,
         sunset: meteoData.ss,
         sunrise: meteoData.sr
-    };
-    logger.debug("meteo load " + data.city + "@" + data.lastUpdate);
-    if (alertsAvailableCallback) alertsAvailableCallback(data);
-}
-
-function findFirst(data, d, precision) {
-    let ts=d.getTime();
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].d.getTime()+precision*60*1000 > ts) {
-//            console.error(data[i].d,d)
-//            console.error(data[i].d.getTime()+precision*60 ,ts)
-            return data[i];
-        }
-        //console.warn(data[i].d.getTime()+precision*60 ,ts)
-    }
-    return null;
+    });
 }
 
 function normalizeValue(value, min, max) {
@@ -100,9 +97,7 @@ function normalizeValue(value, min, max) {
 function readDataFromFile(fn) {
     try {
         console.log("readDataFromFile " + fn);
-        let json = fs.readFileSync(fn, "cbor");
-        let data = JSON.parse(json);
-        return data;
+        return JSON.parse(fs.readFileSync(fn, "cbor"));
     } catch (e) {
         logger.error("readDataFromFile throws ex: " + e);
     }

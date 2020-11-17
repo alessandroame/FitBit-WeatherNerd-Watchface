@@ -28,7 +28,12 @@ export function update(pos) {
         ])
             .then((values) => {
                 var res = buildData(values[0], values[1], values[2], values[3]);
-                //console.log("res",JSON.stringify(res));
+                //console.warn("res",JSON.stringify(values[2]));
+                //console.warn("res",JSON.stringify(res));
+                for (let i=0;i<values[2].length;i++){
+                    let r=values[2][i];
+                    //console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
+                }
                 resolve(res);
             });
     });
@@ -129,9 +134,10 @@ function getPresent(lat, lon) {
                         });
                 })
                 .catch(function (err) {
-                    logger.error("getPresent exception: " + err);
+                    logger.error("getPresent ex: " + err);
                 });
         } catch (e) {
+            logger.error("getPresent exception: " + err);
             reject(e);
         }
     });
@@ -163,17 +169,20 @@ function getNowcast(lat, lon) {
                                 logger.error(`getNowcast error: ${JSON.stringify(data)} `);
                             } else {
                                 var res = [];
-                                for (var i = 0; i < data.length; i++) res.push(parseWeather(data[i]));
+                                for (var i = 0; i < data.length; i++) {
+                                    res.push(parseWeather(data[i]));
+                                } 
                                 //res=buildTestNowcast();
                                 resolve(res);
                             }
                         });
                 })
                 .catch(function (err) {
-                    logger.error("getNowcast exception: " + err);
+                    logger.error("getNowcast ex: " + err);
                 });
             //console.error("getNowcast resolved");
         } catch (e) {
+            logger.error("getNowcast exception: " + err);
             reject(e);
         }
     });
@@ -244,11 +253,12 @@ function getForecast(startTime, endTime, lat, lon) {
                         });
                 })
                 .catch(function (err) {
-                    logger.error("getForecast exception: " + err);
+                    logger.error("getForecast ex: " + err);
                     reject(e);
                 });
 //            console.error("Forecast resolved");
         } catch (e) {
+            logger.error("getForecast exception: " + err);
             reject(e);
         }
     });
@@ -302,7 +312,7 @@ function parseWeather(data, time) {
         },
         p: {//precipitation
             t: data.precipitation_type.value,
-            p: data.precipitation_probability?.value ?? 1,
+            p: data.precipitation_probability?.value ?? data.precipitation.value>0?1:0,
             q: data.precipitation.value
         },
         w: {//weather

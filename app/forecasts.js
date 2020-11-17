@@ -43,7 +43,6 @@ export function hide() {
 let meteo = null;
 export function setData(data) {
     meteo = data;
-    console.log(JSON.stringify(data));
     redraw();
 }
 
@@ -88,5 +87,5 @@ function redraw() {
 }
 function parseTemp(v) {
     if (v < 0 && v > -1) v = 0;
-    return v.toFixed(0);
+    return v.toFixed();
 }
