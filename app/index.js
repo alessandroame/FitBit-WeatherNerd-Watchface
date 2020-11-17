@@ -25,7 +25,7 @@ import * as ping from "./ping"
 import * as forecasts from "./forecasts"
 import * as sunDial from './sun_dial'
 import * as fitWidget from "./fit_widget"
-// setTimeout( ping.ping, 3000);
+//setInterval( memStats, 3000);
 // setInterval( ping.ping, 60000);
 
 memStats("after imports");
@@ -49,15 +49,19 @@ touch_areas.init(()=>{
   showClock();
 
 function onMeteoDataAvailable(data) {
-    logger.warning(memStats("onMeteoDataAvailable"));
+    //logger.warning(memStats("onMeteoDataAvailable"));
     meteo_alerts.update(data.alerts);
+
     forecasts.setData(data);
-    
 
     let sr=new Date(data.sunrise);
     let ss=new Date(data.sunset);
     // console.log(ss,sr);
     sunDial.update(sr,ss);
+    
+    //logger.warning(memStats("end Meteo"));
+
+    //setTimeout(()=>{     logger.warning(memStats("after Meteo"));}, 5000);
 }
 
 function showClock() {
@@ -68,7 +72,7 @@ function showClock() {
 
 function showMenu() {
     logger.info("meteo requested");
-    mediator.publish("requestMeteoUpdate", null);
+    mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
     /*document.location.assign("menu.view").then(() => {
         console.log("menu.view");

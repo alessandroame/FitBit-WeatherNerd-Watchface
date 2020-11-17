@@ -1,5 +1,5 @@
 import document from 'document'
-import * as geom from './geom'
+import * as geom from '../common/geom'
 
 //this generate errors with mask 
 //document.getElementById("sunriseHand").layer=90;
@@ -17,6 +17,6 @@ export function update(sunrise,sunset){
             oldSs=sunset;
         }
     }catch(e){
-        log.error(e);
+        console.error(e);
     }
 }

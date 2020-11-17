@@ -2,18 +2,16 @@ import document from "document";
 import * as geom from './geom';
 import * as settings from "./settings"
 
-
-
 settings.subscribe("clockBackgroundColor", (color) => {
     document.getElementById("forecastBackground").gradient.colors.c1 = color;
-  }, "#333333");
+}, "#333333");
 
 let hourlyForecastsUI = null;
 export function init(closeCallback) {
     console.log("forecast init")
     hourlyForecastsUI = document.getElementById("hourlyForecasts");
     var touch = document.getElementById("touch");
-    touch.layer=999;
+    touch.layer = 999;
     touch.onclick = closeCallback;
     for (var i = 0; i < 12; i++) {
         try {
@@ -21,7 +19,7 @@ export function init(closeCallback) {
             var mainContainer = f.getElementById("mainContainer");
             var iconContainer = mainContainer.getElementById("iconContainer");
             var tempContainer = mainContainer.getElementById("tempContainer");
-            var angle=i * 30;
+            var angle = i * 30;
             mainContainer.groupTransform.rotate.angle = angle;
             iconContainer.groupTransform.rotate.angle = -angle;
             tempContainer.groupTransform.rotate.angle = -angle;
@@ -45,16 +43,21 @@ export function hide() {
 let meteo = null;
 export function setData(data) {
     meteo = data;
-    console.log(JSON.stringify(data));
     redraw();
+}
+
+function zeroPad(s) {
+    if (s.length < 2) s = "0" + s;
+    return s;
 }
 
 function redraw() {
     try {
-        let location=meteo.city;
-        if (location.length>11) location=`${location.substr(0,10)}...`;
+        let location = meteo.city;
+        if (location.length > 11) location = `${location.substr(0, 10)}...`;
         document.getElementById("location").textContent = location;
-        document.getElementById("lastUpdate").textContent = meteo.lastUpdate;
+        document.getElementById("lastUpdate").textContent = zeroPad(meteo.lastUpdate.getHours()) + ":" + zeroPad(meteo.lastUpdate.getMinutes());
+
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
         if (d > 11) d = d - 12;
@@ -84,5 +87,5 @@ function redraw() {
 }
 function parseTemp(v) {
     if (v < 0 && v > -1) v = 0;
-    return v.toFixed(0);
+    return v.toFixed();
 }

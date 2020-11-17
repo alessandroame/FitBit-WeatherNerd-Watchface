@@ -57,7 +57,7 @@ function getCity(pos, callback) {
     .then(function (response) {
       response.json()
         .then(function (data) {
-          console.log(JSON.stringify(data));
+          //console.log(JSON.stringify(data));
           var a = data.address;
           var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
           callback(res);
@@ -79,12 +79,17 @@ function getForcasts() {
     logger.error("apikey not available");
     return;
   }
+  let startTime=new Date();
+  let endTime=new Date();
+  endTime.setHours(startTime.getHours()+12);
 
   var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
     "apikey=" + apiKey +
     "&unit_system=" + settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
     "&lat=" + currentPosition.coords.latitude +
     "&lon=" + currentPosition.coords.longitude +
+    "&start_time="+startTime.toISOString()+
+    "&end_time="+endTime.toISOString()+
     "&fields=sunrise,sunset,weather_code,precipitation,precipitation_probability,precipitation_type,temp,feels_like,wind_speed,wind_gust,wind_direction";
   console.log("climacell update " + url);
   // var res=parseData(sampleData);

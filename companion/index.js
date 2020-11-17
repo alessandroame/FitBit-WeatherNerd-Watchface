@@ -4,6 +4,7 @@ import { encode } from 'cbor';
 import * as mediator from "../common/mediator";
 import * as settings from "./settings";
 import * as climacell from "./climacell";
+import * as climacell_v2 from "./climacell_v2";
 import * as geolocator from "./geolocator";
 import * as messaging from "messaging";
 import * as logger from "./logger";
@@ -17,7 +18,7 @@ init();
 function init() {
     settings.init();  
 
-    climacell.init(onMeteoAvailable);
+    //climacell.init(onMeteoAvailable);
     geolocator.init(onPositionChanged);
 
     console.log("Companion code started");
@@ -26,7 +27,7 @@ function init() {
 
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
-        geolocator.getCurrentPosition(true);
+        geolocator.getCurrentPosition();
         setTimeout(() => {
             startUpdateTimer();
         }, 1000);
@@ -79,7 +80,8 @@ function updateMeteo(reason) {
 }
 
 function forceUpdate(reason){
-    climacell.update(reason);
+    climacell_v2.update(currentPosition).then(onMeteoAvailable);
+    //climacell.update(reason);
 }
 
 function onMeteoAvailable(data) {
