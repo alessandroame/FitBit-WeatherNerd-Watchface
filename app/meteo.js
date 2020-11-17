@@ -62,7 +62,7 @@ memStats(5555);
         }
         if (i%5==0){
             let forecastIndex=(index/5).toFixed();
-            console.error(i+" "+index+" "+forecastIndex+" "+d.t.r);
+            //console.error(i+" "+index+" "+forecastIndex+" "+d.t.r);
             forecasts[forecastIndex] = {
                 icon: d.w.i,
                 temp: d.t.r,
