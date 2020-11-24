@@ -4,7 +4,7 @@ function SettingsPage(props) {
 
       <Section
         title={<Text bold align="center">Meteo</Text>}
-        description={<Text> Forecast api powerd by <Link source="http://climacell.co">Climacell™</Link> to obtian a free APIkey go <Link source="https://developer.climacell.co/sign-up">https://developer.climacell.co/sign-up</Link></Text>}>
+        description={<Text> Forecast api powerd by <Link source="http://climacell.co">Climacell™</Link>. To obtian a free APIkey go <Link source="https://developer.climacell.co/sign-up">https://developer.climacell.co/sign-up</Link></Text>}>
 
         <Select
           label={`Update interval`}
@@ -61,7 +61,7 @@ function SettingsPage(props) {
         description={<Text>How to alert you when connection between phone and watch is lost.</Text>}>
         <Toggle
           settingsKey="snoozeDialogEnabled"
-          label="Show snooze/dismiss dialog"
+          label="Show dialog"
         />
         <Select
           title={`Snooze delay `}
@@ -83,6 +83,7 @@ function SettingsPage(props) {
             { name: "10 minutes", value: "10" },
           ]}
         />
+
         <Toggle
           settingsKey="vibrateOnConnectionLost"
           label="Vibrate"
