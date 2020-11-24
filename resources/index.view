@@ -7,6 +7,7 @@
 	<g transform="translate(100%-40,40),rotate(45)">
 		<use href="#battery" id="batteryWidget" />
 	</g>
+	
 	<use href="#hourlyForecasts" id="hourlyForecasts" />
 	<use href="#touchAreas" layer="900" />
 </svg>
