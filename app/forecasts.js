@@ -62,9 +62,9 @@ function redraw() {
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
         if (d > 11) d = d - 12;
-        for (var i = 0; i < 12; i++) {
-            var f = document.getElementById("forecast_" + i);
-            var mainContainer = f.getElementById("mainContainer");
+        for (let i = 0; i < 12; i++) {
+            let f = document.getElementById("forecast_" + i);
+            let mainContainer = f.getElementById("mainContainer");
 
 
             let dist = i >= d ? i - d : i + 12 - d;
@@ -72,9 +72,9 @@ function redraw() {
             mainContainer.style.opacity = o;
 
             //var iconContainer = mainContainer.getElementById("iconContainer");
-            var icon = mainContainer.getElementById("icon");
+            let icon = mainContainer.getElementById("icon");
             icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
-            var temp = mainContainer.getElementById("temp");
+            let temp = mainContainer.getElementById("temp");
             temp.textContent = parseTemp(forecasts[i].temp) + forecasts[i].tempUnits;
         }
 

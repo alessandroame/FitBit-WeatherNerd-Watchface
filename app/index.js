@@ -25,6 +25,8 @@ import * as ping from "./ping"
 import * as forecasts from "./forecasts"
 import * as sunDial from './sun_dial'
 import * as fitWidget from "./fit_widget"
+import * as weatherWidget from "./weather_widget"
+
 //setInterval( memStats, 3000);
 // setInterval( ping.ping, 60000);
 
@@ -53,6 +55,7 @@ function onMeteoDataAvailable(data) {
     meteo_alerts.update(data.alerts);
 
     forecasts.setData(data);
+    weatherWidget.update(data);
 
     let sr=new Date(data.sunrise);
     let ss=new Date(data.sunset);

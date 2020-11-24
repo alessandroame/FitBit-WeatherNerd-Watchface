@@ -15,7 +15,7 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="test.svg"
-   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\background_gradient.png"
+   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\hand_hours.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
@@ -159,6 +159,42 @@
        fy="44.450001"
        r="38.298206"
        gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1077"
+       id="radialGradient1083"
+       cx="44.450001"
+       cy="44.450001"
+       fx="44.450001"
+       fy="44.450001"
+       r="0.72875422"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0.011897,-88.909362)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1077">
+      <stop
+         style="stop-color:#000000;stop-opacity:1"
+         offset="0"
+         id="stop1073" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="1"
+         id="stop1075" />
+    </linearGradient>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1116"
+       x="-4.8e-06"
+       width="1.0000096"
+       y="-4.8e-06"
+       height="1.0000096">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.9150169e-06"
+         id="feGaussianBlur1118" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -167,18 +203,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.1439855"
-     inkscape:cx="85.840151"
-     inkscape:cy="123.94074"
+     inkscape:zoom="2.2400601"
+     inkscape:cx="81.325504"
+     inkscape:cy="123.58148"
      inkscape:document-units="px"
-     inkscape:current-layer="layer11"
+     inkscape:current-layer="layer3"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="2400"
-     inkscape:window-height="1284"
-     inkscape:window-x="-9"
-     inkscape:window-y="329"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="1192"
+     inkscape:window-y="261"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:lockguides="false"
@@ -226,7 +262,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="bg gradient"
-     style="display:inline">
+     style="display:none">
     <circle
        style="fill:url(#radialGradient1082);fill-opacity:1;stroke:none;stroke-width:0.588866;stroke-linecap:round;stroke-linejoin:round"
        id="path1290"
@@ -1749,13 +1785,13 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="HANDS"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <g
        inkscape:groupmode="layer"
        id="layer13"
        inkscape:label="hours"
-       style="display:none;opacity:1">
+       style="display:none;opacity:1"
+       sodipodi:insensitive="true">
       <circle
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path2076"
@@ -1820,7 +1856,7 @@
          inkscape:export-ydpi="96" />
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 43.696897,44.449999 0.314443,-2.089535 c -0.0026,-3.557765 -1.100563,-4.301621 -1.100563,-4.301621 L 44.261341,11.808786 44.45,11.707812 V 44.45"
+         d="m 43.696897,44.449999 0.314443,-2.089535 c -0.0026,-3.557765 -1.599218,-4.345252 -1.599218,-4.345252 L 44.261341,11.808786 44.45,11.707812 V 44.45"
          id="path2052"
          sodipodi:nodetypes="cccccc"
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\hand_minutes.png"
@@ -1852,7 +1888,7 @@
          inkscape:export-ydpi="96" />
       <path
          style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 44.449999,38.711848 43.523958,38.017317 44.449999,21.79517 v 16.900142"
+         d="M 44.449999,38.711848 43.247201,37.495615 44.45,17.388434 l -1e-6,21.306878"
          id="path2058"
          sodipodi:nodetypes="cccc"
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\hand_minutes.png"
@@ -1892,6 +1928,19 @@
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\hand_seconds.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer3"
+       inkscape:label="debugger"
+       style="display:inline;filter:url(#filter1116)">
+      <circle
+         style="display:inline;opacity:1;fill:url(#radialGradient1083);fill-opacity:1;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round"
+         id="path1071"
+         cx="44.450001"
+         cy="-44.450001"
+         r="0.72875422"
+         transform="scale(1,-1)" />
     </g>
   </g>
   <g
