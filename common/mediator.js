@@ -9,7 +9,6 @@ export const STATE_DISCONNECTED = 0;
 export const STATE_CONNECTED = 1;
 let connectionState = -99;
 
-
 export function addConnectionStateListener(callback) {
   listeners.push(callback);
 }
@@ -44,6 +43,7 @@ function trySend(data) {
   }
 }
 
+messaging.peerSocket.addEventListener("close", () => { setConnectionState(STATE_DISCONNECTED); });
 messaging.peerSocket.addEventListener("error", () => { setConnectionState(STATE_ERROR); });
 
 messaging.peerSocket.addEventListener("message", (evt) => {
