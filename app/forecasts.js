@@ -47,8 +47,9 @@ export function setData(data) {
 }
 
 function zeroPad(s) {
-    if (s.length < 2) s = "0" + s;
-    return s;
+    let res=s+"";
+    if (res.length < 2) res = "0" + res;
+    return res;
 }
 
 function redraw() {

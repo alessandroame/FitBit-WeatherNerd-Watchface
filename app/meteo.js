@@ -52,7 +52,7 @@ memStats(5555);
         if (index>59) index=index-60;
         alerts[index]={
             precipitation: {
-                probability: d.p.p,
+                probability: normalizeValue(d.p.p,0,100),
                 quantity: normalizeValue(d.p.q, 0, 10)
             },
             ice: {

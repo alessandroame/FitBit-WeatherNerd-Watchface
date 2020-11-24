@@ -28,12 +28,10 @@ export function update(pos) {
         ])
             .then((values) => {
                 var res = buildData(values[0], values[1], values[2], values[3]);
-                //console.warn("res",JSON.stringify(values[2]));
-                //console.warn("res",JSON.stringify(res));
-                for (let i=0;i<values[2].length;i++){
-                    let r=values[2][i];
-                    //console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
-                }
+                // for (let i=0;i<values[2].length;i++){
+                //     let r=values[2][i];
+                //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
+                // }
                 resolve(res);
             });
     });
@@ -300,6 +298,7 @@ function parseWeather(data, time) {
     let sr = new Date(data.sunrise.value);
     let ss = new Date(data.sunset.value);
     let isDay = (dt > sr) && (dt < ss);
+//    console.warn(dt+" "+data.precipitation_probability?.value+" ("+(data.precipitation_probability?.value?? (data.precipitation.value>0?1:0))+"%) "+data.precipitation.value);
     return {
         sr: sr,
         ss: ss,
@@ -312,7 +311,7 @@ function parseWeather(data, time) {
         },
         p: {//precipitation
             t: data.precipitation_type.value,
-            p: data.precipitation_probability?.value ?? data.precipitation.value>0?1:0,
+            p: data.precipitation.value==0?0:data.precipitation_probability?.value ?? (data.precipitation.value>0?100:0),
             q: data.precipitation.value
         },
         w: {//weather
