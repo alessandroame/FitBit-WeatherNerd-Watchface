@@ -107,6 +107,7 @@ function updateValue(v) {
         }
         oldValue=v;
         value.textContent = v??"--";
+        widget.getElementById("valueShadow").textContent = value.textContent;
         icon.href = `icons/${sensorIcons[sensorIndex]}_${toggle ? '1' : '0'}.png`;
 
         let goalPerc = null;

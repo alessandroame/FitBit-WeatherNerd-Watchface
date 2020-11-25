@@ -1,16 +1,22 @@
 <svg>
-    <defs>
-        <symbol id="fitWidget" fill="greenyellow">
-            <image id="icon" href="icons/hr_1.png" x="50%-12" y="75%-65" width="24" height="24" />
+	<defs>
+		<symbol id="fitWidget" fill="greenyellow">
+			<image href="widget_background.png" x="-55" y="-55" width="110" height="110" opacity="1" fill="white" />
+			
+			<image id="icon" href="icons/hr_1.png" x="-12" y="-46" width="24" height="24" />
+            
 
-            <text id="value" x="50%" y="75%-3" text-length="8" text-anchor="middle" font-size="48"
-                font-family="Tungsten">198</text>
+			<text id="valueShadow" x="2" y="18" text-length="8" text-anchor="middle" font-size="48" font-family="Tungsten" fill="black">-----</text>
+            <text id="value" x="0" y="16" text-length="8" text-anchor="middle" font-size="48" font-family="Tungsten">-----</text>
 
-            <text id="units" x="50%" y="75%+20" text-length="8" text-anchor="middle" font-size="24"
-                font-family="Tungsten">BPM</text>
+			<text id="units" x="0" y="45" text-length="8" text-anchor="middle" font-size="26" font-family="Tungsten" fill="white" opacity="0.7">
+				BPM
+			</text>
+			
+            <image href="widget_shadow.png" x="-55" y="-55" width="110" height="110" fill="black" opacity="0.7" />
 
-            <arc id="goalRail" x="14%" y="14%" width="72%" height="72%" arc-width="6" start-angle="120" sweep-angle="120" opacity="0.2"/>
-            <arc id="goal" x="15%" y="15%" width="70%" height="70%" arc-width="5" start-angle="240" sweep-angle="-40" />
-        </symbol>
-    </defs>
+            <arc id="goalRail" x="14%" y="14%" width="72%" height="72%" arc-width="6" start-angle="120" sweep-angle="120" opacity="0.2" />
+			<arc id="goal" x="15%" y="15%" width="70%" height="70%" arc-width="5" start-angle="240" sweep-angle="-40" />
+		</symbol>
+	</defs>
 </svg>
