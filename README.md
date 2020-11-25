@@ -8,6 +8,7 @@ To obtain a free APIkey [signup here](https://developer.climacell.co/sign-up)
 
 Installation from smartphone [download here](https://gallery.fitbit.com/details/4554c69d-fd33-402e-95d5-9dae5c673d86)
 
+![screeshot](https://github.com/alessandroame/FitBit.WeatherNerd/blob/master/screeshot.png?raw=true)
 
 ## Available data:
 
