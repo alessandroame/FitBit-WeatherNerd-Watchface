@@ -9,7 +9,7 @@ export function update(meteo){
     let icon = container.getElementById("icon");
     icon.href = "icons/meteo/" + currentWeather.icon + ".png";
     let temp = container.getElementById("temp");
-    temp.textContent = parseTemp(currentWeather.temp) + currentWeather.tempUnits;
+    temp.textContent = " " + parseTemp(currentWeather.temp) + currentWeather.tempUnits;
     container.getElementById("tempShadow").textContent =temp.textContent;
 }
 function parseTemp(v) {
