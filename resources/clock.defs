@@ -27,7 +27,7 @@
 
 			<use href="#fitWidget" id="fitWidget" />
 
-			<g transform="translate(50%,30%)">
+			<g transform="translate(35%,35%)">
 				<use href="#weatherWidget" id="currentWeather" opacity="0.6" />
 			</g>
 

@@ -22,6 +22,46 @@
      id="defs2">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient1153">
+      <stop
+         style="stop-color:#222222;stop-opacity:1"
+         offset="0"
+         id="stop1149" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.44590163"
+         offset="0"
+         id="stop1155" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.17049178"
+         offset="1"
+         id="stop1151" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1147">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.52786887"
+         offset="0"
+         id="stop1139" />
+      <stop
+         style="stop-color:#c1c1c1;stop-opacity:1;"
+         offset="0.1510478"
+         id="stop1141" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.32459018"
+         offset="0.31680852"
+         id="stop1159" />
+      <stop
+         style="stop-color:#676767;stop-opacity:1"
+         offset="0.79896832"
+         id="stop1143" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="1"
+         id="stop1145" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient1080">
       <stop
          style="stop-color:#ffffff;stop-opacity:1"
@@ -195,6 +235,39 @@
          stdDeviation="2.9150169e-06"
          id="feGaussianBlur1118" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1147"
+       id="linearGradient1092"
+       x1="25.148619"
+       y1="27.638767"
+       x2="41.822239"
+       y2="35.434319"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1153"
+       id="radialGradient1100"
+       cx="32.8358"
+       cy="30.827856"
+       fx="32.8358"
+       fy="30.827856"
+       r="11.1125"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.9025756,-0.10560532,0.11780183,1.0068153,-0.4325671,3.2575347)" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1626"
+       x="-0.13599176"
+       width="1.2719835"
+       y="-0.15411263"
+       height="1.3082253">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="4.403021"
+         id="feGaussianBlur1628" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -204,19 +277,19 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.2400601"
-     inkscape:cx="81.325504"
-     inkscape:cy="123.58148"
+     inkscape:cx="131.35365"
+     inkscape:cy="211.07913"
      inkscape:document-units="px"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer4"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1027"
-     inkscape:window-x="1192"
-     inkscape:window-y="261"
+     inkscape:window-width="1200"
+     inkscape:window-height="1547"
+     inkscape:window-x="3112"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     showguides="true"
+     showguides="false"
      inkscape:lockguides="false"
      inkscape:guide-bbox="true">
     <sodipodi:guide
@@ -277,7 +350,7 @@
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="dial"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
@@ -1785,7 +1858,8 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="HANDS"
-     style="display:inline">
+     style="display:none"
+     sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
        id="layer13"
@@ -2225,7 +2299,7 @@
      inkscape:groupmode="layer"
      id="layer19"
      inkscape:label="datum frame"
-     style="display:none"
+     style="display:inline"
      sodipodi:insensitive="true">
     <rect
        style="opacity:1;fill:url(#linearGradient2266);fill-opacity:1;stroke:url(#linearGradient2274);stroke-width:0.514564;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
@@ -2272,5 +2346,33 @@
        inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\datum_background.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="widget">
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path1084-9-0"
+       cx="32.363342"
+       cy="56.694908"
+       r="10.847917"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\widget_shadow.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:url(#radialGradient1100);fill-opacity:1;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke:url(#linearGradient1092);stroke-opacity:1"
+       id="path1084"
+       cx="32.8358"
+       cy="30.827856"
+       r="10.847917"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\widget_background.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="path1084-9"
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;opacity:1;filter:url(#filter1626)"
+       d="M 122.31836 173.2793 A 41.000001 41.000001 0 0 0 81.318359 214.2793 A 41.000001 41.000001 0 0 0 91.970703 241.84766 A 41.000001 41.000001 0 0 1 87.675781 223.57812 A 41.000001 41.000001 0 0 1 128.67578 182.57812 A 41.000001 41.000001 0 0 1 159.02344 196.01172 A 41.000001 41.000001 0 0 0 122.31836 173.2793 z "
+       transform="scale(0.26458333)" />
   </g>
 </svg>
