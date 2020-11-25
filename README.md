@@ -1,8 +1,6 @@
 # FitBit.WeatherNerd
 
-Fitbit watch face with hourly forcase alerts.
-
-Forecasts are provided by : [Climacell™](https://www.climacell.co/weather-api/)	
+Fitbit watch face with forcast alerts using forecast and nowcast service provided by : [Climacell™](https://www.climacell.co/weather-api/)	
 
 To obtain a free APIkey [signup here](https://developer.climacell.co/sign-up)
 
