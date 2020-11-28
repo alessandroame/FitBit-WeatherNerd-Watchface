@@ -26,7 +26,7 @@ function notifyConnectionEvent(state) {
       cb(state);
     } catch (e) {
       console.error("notifyConnectionEvent fails: " + e);
-      //console.trace();
+      console.trace();
     }
   });
 }

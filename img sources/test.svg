@@ -213,19 +213,6 @@
        x2="34.536831"
        y2="30.664114"
        gradientUnits="userSpaceOnUse" />
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
-       id="filter2112"
-       x="-0.13935899"
-       width="1.278718"
-       y="-0.14126161"
-       height="1.2825232">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="4.6054927"
-         id="feGaussianBlur2114" />
-    </filter>
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath2237">
@@ -259,6 +246,29 @@
        y2="30.664114"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(-1.0085863,26.816304)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2264"
+       id="linearGradient1148"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(24.728601,-4.9507386)"
+       x1="36.066055"
+       y1="42.12389"
+       x2="34.536831"
+       y2="30.664114" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1344"
+       x="-0.12306382"
+       width="1.2461276"
+       y="-0.13200954"
+       height="1.2640191">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.9931648"
+         id="feGaussianBlur1346" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -267,18 +277,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.5625"
-     inkscape:cx="168"
-     inkscape:cy="168"
+     inkscape:zoom="8"
+     inkscape:cx="153.1105"
+     inkscape:cy="13.883108"
      inkscape:document-units="px"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer15"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
-     inkscape:window-x="1072"
-     inkscape:window-y="193"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="3632"
+     inkscape:window-y="550"
      inkscape:window-maximized="1"
      showguides="false"
      inkscape:lockguides="false"
@@ -341,7 +351,7 @@
      inkscape:groupmode="layer"
      id="layer9"
      inkscape:label="dial"
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true">
     <g
        inkscape:groupmode="layer"
@@ -2024,8 +2034,7 @@
      inkscape:groupmode="layer"
      id="layer17"
      inkscape:label="sun_times"
-     style="display:none"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <g
        inkscape:groupmode="layer"
        id="layer1"
@@ -2281,7 +2290,7 @@
          d="m 44.754127,1.102604 c 0,0 -1.732715,0.2764142 -1.986037,2.0040022 -0.09119,0.9378335 0.445845,1.8657949 1.286872,2.2014405 0.729565,0.2566703 1.996171,0.069104 1.996171,0.069104 0,0 -1.823913,-0.5133429 -2.056969,-1.6979746 C 43.832038,2.5739005 44.754127,1.102604 44.754127,1.102604"
          id="path2222"
          sodipodi:nodetypes="cccccc"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunset.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
     </g>
@@ -2290,7 +2299,7 @@
      inkscape:groupmode="layer"
      id="layer19"
      inkscape:label="datum frame"
-     style="display:inline">
+     style="display:none">
     <rect
        style="opacity:1;fill:url(#linearGradient2266);fill-opacity:1;stroke:url(#linearGradient2274);stroke-width:0.514564;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
        id="rect2258"
@@ -2325,7 +2334,7 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <rect
-       style="opacity:1;fill:url(#linearGradient2266-2);fill-opacity:1;stroke:url(#linearGradient2274-6);stroke-width:0.51461459;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       style="opacity:1;fill:url(#linearGradient2266-2);fill-opacity:1;stroke:url(#linearGradient2274-6);stroke-width:0.514615;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
        id="rect2258-5"
        width="22.95418"
        height="10.583333"
@@ -2340,12 +2349,22 @@
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="widget">
+     inkscape:label="widget"
+     style="display:none">
     <circle
-       style="fill:url(#linearGradient1096-0);fill-opacity:1;stroke:#000000;stroke-width:0.26458333;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="path1084-3"
+       style="fill:url(#linearGradient1096-0);fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle1140"
        cx="31.827215"
        cy="57.644157"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\widget_shadow.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       r="10.980208" />
+    <circle
+       style="fill:url(#linearGradient1148);fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1084-3"
+       cx="57.564404"
+       cy="25.877115"
        inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\widget_shadow.png"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
@@ -2360,13 +2379,9 @@
        inkscape:export-ydpi="96"
        r="10.980208" />
     <path
-       id="circle1845"
-       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1.00000002;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter2112)"
-       d="M 119.60938 175.86719 A 41.499999 41.499999 0 0 0 78.291016 217.36719 A 41.499999 41.499999 0 0 0 100.50391 254.11328 A 41.499999 41.499999 0 0 1 96.818359 237.01758 A 41.499999 41.499999 0 0 1 138.31836 195.51758 A 41.499999 41.499999 0 0 1 157.60547 200.27148 A 41.499999 41.499999 0 0 0 119.79102 175.86719 A 41.499999 41.499999 0 0 0 119.60938 175.86719 z "
-       transform="scale(0.26458333)"
-       clip-path="url(#clipPath2237)"
-       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\widget_shadow.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
+       id="circle1114"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter1344)"
+       d="m 120.10938,176.36719 a 41.499999,41.499999 0 0 0 -41.318364,41.5 41.499999,41.499999 0 0 0 14.021484,31.09765 41.499999,41.499999 0 0 1 -5.126953,-19.98046 41.499999,41.499999 0 0 1 41.500003,-41.5 41.499999,41.499999 0 0 1 27.48047,10.40624 41.499999,41.499999 0 0 0 -36.375,-21.52343 41.499999,41.499999 0 0 0 -0.18164,0 z"
+       transform="scale(0.26458333)" />
   </g>
 </svg>

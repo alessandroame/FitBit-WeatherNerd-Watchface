@@ -6,10 +6,10 @@
 			<image id="icon" href="icons/hr_1.png" x="-12" y="-46" width="24" height="24" />
             
 
-			<text id="valueShadow" x="2" y="18" text-length="8" text-anchor="middle" font-size="48" font-family="Tungsten" fill="black">-----</text>
-            <text id="value" x="0" y="16" text-length="8" text-anchor="middle" font-size="48" font-family="Tungsten">-----</text>
+			<text id="valueShadow" x="2" y="18" text-length="8" text-anchor="middle" font-size="40" font-family="System-Bold" fill="black">-----</text>
+            <text id="value" x="0" y="16" text-length="8" text-anchor="middle" font-size="40" font-family="System-Bold">-----</text>
 
-			<text id="units" x="0" y="45" text-length="8" text-anchor="middle" font-size="26" font-family="Tungsten" fill="white" opacity="0.7">
+			<text id="units" x="0" y="42" text-length="8" text-anchor="middle" font-size="22" font-family="System-Bold" fill="white" opacity="0.7">
 				BPM
 			</text>
 			
@@ -17,6 +17,7 @@
 
             <arc id="goalRail" x="14%" y="14%" width="72%" height="72%" arc-width="6" start-angle="120" sweep-angle="120" opacity="0.2" />
 			<arc id="goal" x="15%" y="15%" width="70%" height="70%" arc-width="5" start-angle="240" sweep-angle="-40" />
+            
 		</symbol>
 	</defs>
 </svg>

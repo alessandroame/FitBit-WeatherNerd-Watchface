@@ -6,9 +6,9 @@
 				<rect id="frame_2" x="-14" y="-4" width="4" height="8" />
 				<rect id="frame_empty" x="-8" y="-4" width="16" height="8" fill="black" />
 			</g>
-			<text x="-6" y="8" text-length="5" font-family="Tungsten" font-size="24"
+			<text x="-6" y="8" text-length="5" font-family="System-Bold" font-size="24"
 				id="batteryLevel" text-anchor="end">...%</text>
-			<text x="-5" y="8" text-length="5" font-family="Tungsten" font-size="20" text-anchor="start">%</text>
+			<text x="-5" y="8" text-length="5" font-family="System-Bold" font-size="20" text-anchor="start">%</text>
 		</symbol>
 	</defs>
 </svg>

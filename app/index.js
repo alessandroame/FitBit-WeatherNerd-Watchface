@@ -44,7 +44,6 @@ touch_areas.init(()=>{
     logger.info("meteo requested");
     mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
-    meteo_alerts.test();
 }, log_viewer.showLogger,  showWeather,fitWidget.prev,fitWidget.next);
 
   

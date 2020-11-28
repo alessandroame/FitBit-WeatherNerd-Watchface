@@ -16,7 +16,7 @@ let goalRail = widget.getElementById("goalRail");
 
 let sensorIndex = -1;
 
-let sensorUnits = ["BPM", "Steps", "Floors", "Calories"];
+let sensorUnits = ["BPM", "Steps", "Floors", "Cal"];
 let sensorIcons = ["hr", "stp", "ele", "cal"];
 
 let hrm = new HeartRateSensor();

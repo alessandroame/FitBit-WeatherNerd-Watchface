@@ -12,16 +12,6 @@ export function update(alerts) {
         updateAlertItem(i,alerts[i].ice.probability, alerts[i].precipitation.probability, alerts[i].precipitation.quantity);
     }
 }
-export function test() {
-    console.log("meteo_alerts test");
-    for (let i = 0; i < 60; i++) {
-        //setTimeout(() => {
-            let k=(i + 1) / 60;
-            updateAlertItem(i,k,k,k)
-        //}, 30 * i);
-    }
-}
-
 function updateAlertItem(index, iceProb, precProb, precQuantity) {
     let precUI = document.getElementById("p_" + index);
     if (precProb > 0) {
