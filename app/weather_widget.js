@@ -1,4 +1,5 @@
 import document from "document";
+import * as settings from "./settings"
 
 export function update(meteo){
     let index=Math.floor(new Date().getHours());
@@ -16,3 +17,6 @@ function parseTemp(v) {
     if (v < 0 && v > -1) v = 0;
     return v.toFixed();
 }
+// settings.subscribe("datumDayColor", (color) => {
+//     document.getElementById("currentWeather").getElementById("temp").style.fill = color;
+//   }, "white");

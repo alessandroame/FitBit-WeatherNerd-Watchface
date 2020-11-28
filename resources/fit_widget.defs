@@ -3,15 +3,11 @@
 		<symbol id="fitWidget" fill="greenyellow">
 			<image href="widget_background.png" x="-55" y="-55" width="110" height="110" opacity="1" fill="white" />
 			
-			<image id="icon" href="icons/hr_1.png" x="-12" y="-40" width="24" height="24" />
-            
+			<image id="icon" href="icons/hr_1.png" x="-12" y="-40" width="24" height="24" fill="white" />
 
-			<text id="valueShadow" x="2" y="20" text-length="8" text-anchor="middle" font-size="40" font-family="System-Bold" fill="black" opacity="0.5">-----</text>
-            <text id="value" x="0" y="18" text-length="8" text-anchor="middle" font-size="40" font-family="System-Bold">-----</text>
-
-			<text id="units" x="0" y="40" text-length="8" text-anchor="middle" font-size="22" font-family="System-Bold" fill="white" opacity="0.7">
-				BPM
-			</text>
+			<text id="valueShadow" x="2" y="15" text-length="8" text-anchor="middle" font-size="36" font-family="System-Bold" fill="black" opacity="0.5">-----</text>
+            <text id="value" x="0" y="14" text-length="8" text-anchor="middle" font-size="36" font-family="System-Bold">-----</text>
+			<text id="units" x="0" y="38" text-length="8" text-anchor="middle" font-size="22" font-family="System-Bold" fill="white" opacity="0.7">BPM</text>
 			
             <image href="widget_shadow.png" x="-55" y="-55" width="110" height="110" fill="black" opacity="0.7" />
 

@@ -18,18 +18,18 @@ settings.subscribe("clockBackgroundColor", (color) => {
   document.getElementById("clockBackgroundGradient").style.fill = color;
 }, "#333333");
 
-settings.subscribe("clockDialHoursColor", (color) => {
-  document.getElementById("clockDialHours").style.fill = color;
-}, "#333333");
+// settings.subscribe("clockDialHoursColor", (color) => {
+//   document.getElementById("clockDialHours").style.fill = color;
+// }, "#333333");
 
 settings.subscribe("clockDialMinutesColor", (color) => {
   document.getElementById("clockDialMinutes").style.fill = color;
 }, "#333333");
 
-settings.subscribe("secondsHandColor", (value) => {
-  console.log("seconds hand color: " + value);
-  secHand.style.fill = value;
-}, "red");
+// settings.subscribe("secondsHandColor", (value) => {
+//   console.log("seconds hand color: " + value);
+//   secHand.style.fill = value;
+// }, "red");
 
 settings.subscribe("minutesHandColor", (value) => {
   console.log("minutes hand color: " + value);
@@ -71,8 +71,8 @@ function updateClock() {
    if (oldMins != mins) {
       var a = geom.minutesToAngle(mins);
       //console.log("minutes update " + a);
-    //  minHand.groupTransform.rotate.angle = a;
-      //minHandShadow.groupTransform.rotate.angle = a;
+      minHand.groupTransform.rotate.angle = a;
+      minHandShadow.groupTransform.rotate.angle = a;
       oldMins = mins;
     } 
   if (oldSecs != secs) {

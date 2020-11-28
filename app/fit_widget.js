@@ -6,6 +6,7 @@ import { today } from "user-activity";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
 import { display } from "display";
+import * as settings from "./settings"
 
 display.addEventListener("change", () => {
   if (display.on) {
@@ -41,10 +42,10 @@ display.addEventListener("change", () => {
     }
 });
 
-settings.subscribe("fitDataColor",(value)=>{
-    if (!value) value="gray";
-    widget.style.fill=value;
-});
+// settings.subscribe("fitDataColor",(value)=>{
+//     if (!value) value="gray";
+//     widget.style.fill=value;
+// });
 
 export function next() {
     setSensor(sensorIndex + 1);
