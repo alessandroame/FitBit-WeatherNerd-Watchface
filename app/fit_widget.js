@@ -5,6 +5,16 @@ import * as settings from "./settings";
 import { today } from "user-activity";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
+import { display } from "display";
+
+display.addEventListener("change", () => {
+  if (display.on) {
+      setSensor(sensorIndex);
+  } else {
+      stopHRM();
+      stopInterval();
+  }
+});
 
 
 let widget = document.getElementById("fitWidget");

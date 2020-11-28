@@ -31,3 +31,12 @@ function updateAlertItem(index, iceProb, precProb, precQuantity) {
         ice.style.display = "none";
     }
 }
+export function test() {
+    console.log("meteo_alerts test");
+    for (let i = 0; i < 60; i++) {
+        //setTimeout(() => {
+            let k=(i + 1) / 60;
+            updateAlertItem(i,k,k,k)
+        //}, 30 * i);
+    }
+}

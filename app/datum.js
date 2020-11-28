@@ -46,6 +46,7 @@ function update(){
         let dayNo="0"+ now.getDate();
         dayNumber.text =dayNo.substr(dayNo.length-2,2);
         dayOfWeek.text = dow[locale.language.substr(3, 2)][now.getDay()].toUpperCase();
+        document.getElementById("dayOfWeekShadow").text=dayOfWeek.text ;
         // dayNumber.text ='09';
         // dayOfWeek.text = 'DOM';
         oldDate = now.getDate();

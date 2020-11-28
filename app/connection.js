@@ -81,7 +81,7 @@ function onConnectionLost() {
 function onConnectionError(){
     logger.error("Connection error");
     color = COLOR_ERROR;
-    setConnectionLost();
+    //TODO setConnectionLost();
 }
 
 function showSnoozeDialog() {

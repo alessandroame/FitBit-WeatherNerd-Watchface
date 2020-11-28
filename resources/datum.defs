@@ -2,8 +2,9 @@
     <defs>
         <symbol id="datum">
                 <image id='datumBackground' href='datum_background.png' x='-55' y='-22' width='89' height='42' fill="red" opacity='1'/>
-                <text x="-27" y="11" id="dayOfWeek" font-family="System-Bold" fill="white" font-size="24" text-anchor="middle">LUN</text>
-                <text x="13" y="15" id="dayNumber" font-family="System-Bold" fill="white" font-size="36"   text-anchor="middle">30</text>
+                <text x="-27+2" y="9+2" id="dayOfWeekShadow" font-family="System-Bold" fill="white" font-size="22" text-anchor="middle" fill="black" opcity="0.5">LUN</text>
+                <text x="-27" y="9" id="dayOfWeek" font-family="System-Bold" fill="white" font-size="22" text-anchor="middle">LUN</text>
+                <text x="13" y="12" id="dayNumber" font-family="System-Bold" fill="white" font-size="34"   text-anchor="middle">30</text>
                 <image href='datum_shadow.png' x='-55' y='-22' width='89' height='42' fill="black" opacity='0.8'/>
         </symbol>
     </defs>
