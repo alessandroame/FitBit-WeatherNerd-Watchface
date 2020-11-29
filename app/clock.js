@@ -61,22 +61,23 @@ function updateClock() {
   let hours = now.getHours() % 12;
   let mins = now.getMinutes();
   let secs = now.getSeconds();
-  if (oldHours != hours) {
+  // if (oldHours != hours) {
+  //   oldHours = hours;
+  // }
+  if (oldMins != mins) {
     let a = geom.hoursToAngle(hours, mins);
     //console.log("hours update " + a);
     hourHand.groupTransform.rotate.angle = a;
     hourHandShadow.groupTransform.rotate.angle = a;
-    oldHours = hours;
-  }
-  if (oldMins != mins) {
-    var a = geom.minutesToAngle(mins);
+    
+    a = geom.minutesToAngle(mins);
     //console.log("minutes update " + a);
     minHand.groupTransform.rotate.angle = a;
     minHandShadow.groupTransform.rotate.angle = a;
     oldMins = mins;
   }
   if (oldSecs != secs) {
-    var a = geom.secondsToAngle(secs);
+    let a = geom.secondsToAngle(secs);
     //console.log("seconds update " + a);
     secHand.groupTransform.rotate.angle = a;
     secHandShadow.groupTransform.rotate.angle = a;

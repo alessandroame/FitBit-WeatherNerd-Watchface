@@ -1,12 +1,12 @@
 <svg>
     <defs>
         <symbol id="datum">
-                <image id='datumBackground' href='datum_background.png' x='-55' y='-22' width='89' height='42' fill="red" opacity='1'/>
-                <text x="-27+2" y="9+2" id="dayOfWeekShadow" font-family="System-Bold" font-size="22" text-anchor="middle" fill="black" opacity="0.5">LUN</text>
-                <text x="-27" y="9" id="dayOfWeek" font-family="System-Bold" fill="white" font-size="22" text-anchor="middle">LUN</text>
-                <text x="13+2" y="12+2" id="dayNumberShadow" font-family="System-Bold" font-size="34" text-anchor="middle" fill="black" opacity="0.5">30</text>
-                <text x="13" y="12" id="dayNumber" font-family="System-Bold" fill="white" font-size="34" text-anchor="middle">30</text>
-                <image href='datum_shadow.png' x='-55' y='-22' width='89' height='42' fill="black" opacity='0.8'/>
+                <image id='datumBackground' href='widget_background.png' x='-34' y='-34' width='68' height='68' fill="red" opacity='1'/>
+                <text x="2" y="26" id="dayOfWeekShadow" font-family="System-Bold" font-size="22" text-anchor="middle" fill="black" opacity="0.5">LUN</text>
+                <text x="0" y="24" id="dayOfWeek" font-family="System-Bold" fill="white" font-size="22" text-anchor="middle">LUN</text>
+                <text x="2" y="1" id="dayNumberShadow" font-family="System-Bold" font-size="34" text-anchor="middle" fill="black" opacity="0.5">30</text>
+                <text x="2" y="3" id="dayNumber" font-family="System-Bold" fill="white" font-size="34" text-anchor="middle">30</text>
+                <image href='widget_shadow.png' x='-34' y='-34' width='68' height='68' fill="black" opacity='0.8'/>
         </symbol>
     </defs>
 </svg>

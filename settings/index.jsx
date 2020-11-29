@@ -22,19 +22,19 @@ function SettingsPage(props) {
           settingsKey="_elementToUpdate"
           options={[
             { name: "Widgets data", value: "widgets" },
-            { name: "Seconds hand, hours marker, date number", value: "dm,hm,sh" },
-            { name: "clockBackgroundColor", value: "clockBackgroundColor" },
-            { name: "clockDialHoursColor", value: "clockDialHoursColor" },
-            { name: "clockDialMinutesColor", value: "clockDialMinutesColor" },
-            { name: "batteryColor", value: "batteryColor" },
-            { name: "fitDataColor", value: "fitDataColor" },
-            { name: "weatherWidgetColor", value: "weatherWidgetColor" },
-            { name: "datumBackgroundColor", value: "datumBackgroundColor" },
-            { name: "datumDOWColor", value: "datumDOWColor" },
-            { name: "datumDayColor", value: "datumDayColor" },
+            { name: "Seconds hand, hours marker, widgets", value: "dm,hm,w" },
+            { name: "Clock background", value: "clockBackgroundColor" },
+            { name: "Hours marker", value: "clockDialHoursColor" },
+            { name: "Minutes marker", value: "clockDialMinutesColor" },
+            { name: "Battery", value: "batteryColor" },
+            { name: "Fit data", value: "fitDataColor" },
+            { name: "Temperature", value: "weatherWidgetColor" },
+            { name: "Datum background", value: "datumBackgroundColor" },
+            { name: "Day of week", value: "datumDOWColor" },
+            { name: "Day number", value: "datumDayColor" },
             { name: "Seconds hand", value: "secondsHandColor" },
-            { name: "minutesHandColor", value: "minutesHandColor" },
-            { name: "hoursHandColor", value: "hoursHandColor" },
+            { name: "Minutes hand", value: "minutesHandColor" },
+            { name: "Hours hand", value: "hoursHandColor" },
           ]}
         />
 
@@ -51,8 +51,8 @@ function SettingsPage(props) {
                     , JSON.stringify(value) );
                 }
               }
-              else if (elementToUpdate=="dm,hm,sh"){
-                let elemetns=["datumDayColor","secondsHandColor","clockDialHoursColor" ];
+              else if (elementToUpdate=="dm,hm,w"){
+                let elemetns=["datumDayColor","secondsHandColor","clockDialHoursColor", "fitDataColor","weatherWidgetColor" ];
                 for(let i=0;i<elemetns.length;i++){
                   props.settingsStorage.setItem(
                     elemetns[i]
@@ -79,26 +79,43 @@ function SettingsPage(props) {
             { color: 'lightgrey' },
             { color: 'white' },
 
-            { color: 'purple' },
+
+            { color: 'midnightblue' },
             { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
             { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
+            { color: 'aqua' },
             { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
+            { color: 'lightcyan' },
+            
+            
+            { color: 'purple' },
+            { color: 'blueviolet' },
+            { color: 'deeppink' },
+            { color: 'fuchsia' },
             { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
+            { color: 'lavender' },
+            
+            { color: 'green' },
+            { color: 'limegreen' },
+            { color: 'lime' },
+            { color: 'lawngreen' },
+            { color: 'springgreen' },
+            { color: 'lightgoldenrodyellow' },
+
+            { color: 'darkred' },
+            { color: 'red' },
+            { color: 'orangered' },
+            { color: 'darkorange' },
+            { color: 'orange' },
+            { color: 'yellow' },
+            
+            { color: 'darksalmon' },
+            { color: 'lightsalmon' },
+            { color: 'darkgoldenrod' },
+            { color: 'gold' },
+            { color: 'dodgerblue' },
+            { color: 'chartreuse' },
+
           ]}
         />
       </Section>
