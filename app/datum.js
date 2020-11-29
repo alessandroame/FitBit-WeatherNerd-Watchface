@@ -11,9 +11,9 @@ settings.subscribe("datumBackgroundColor", (color) => {
   document.getElementById("datumBackground").style.fill = color;
 }, "#333333");
 
-// settings.subscribe("datumDayColor", (color) => {
-//   dayNumber.style.fill = color;
-// }, "white");
+settings.subscribe("datumDayColor", (color) => {
+  dayNumber.style.fill = color;
+}, "white");
 settings.subscribe("datumDOWColor", (color) => {
   dayOfWeek.style.fill = color;
 }, "red");

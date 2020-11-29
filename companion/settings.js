@@ -5,7 +5,6 @@ export function init() {
   console.log("settings init")
 
   settingsStorage.addEventListener("change", (evt) => {
-    console.trace();
     console.warn("<<<<<<<< " + evt.key + " >>>>>>>>");
     notify(evt);
   });
@@ -46,13 +45,18 @@ export function subscribe(key, callback) {
 
 function notify(evt) {
   console.log("notify " + evt.key);
-  const data = {
-    key: evt.key,
-    oldValue: JSON.parse(evt.oldValue),
-    value: JSON.parse(evt.newValue)
-  };
-  let topic = "setting_" + evt.key;
-  mediator.localPublish(topic, data);
-  if (!mediator.remotePublish("setting", data)) console.warn("cant publish on remote endopoint " + topic);
+  try{
+    const data = {
+      key: evt.key,
+      oldValue: JSON.parse(evt.oldValue),
+      value: JSON.parse(evt.newValue)
+    };
+    let topic = "setting_" + evt.key;
+    mediator.localPublish(topic, data);
+    if (!mediator.remotePublish("setting", data)) console.warn("cant publish on remote endopoint " + topic);
+  }catch(e){
+    console.error("key ["+evt.key+"] oldValue="+evt.oldValue+" newValue="+evt.newValue+" throws: "+e);    
+  }
+  //console.error("key ["+evt.key+"] oldValue="+evt.oldValue+" newValue="+evt.newValue);    
 }
 

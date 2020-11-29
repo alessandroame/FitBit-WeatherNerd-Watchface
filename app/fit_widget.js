@@ -42,10 +42,10 @@ display.addEventListener("change", () => {
     }
 });
 
-// settings.subscribe("fitDataColor",(value)=>{
-//     if (!value) value="gray";
-//     widget.style.fill=value;
-// });
+settings.subscribe("fitDataColor",(value)=>{
+    if (!value) value="gray";
+    widget.style.fill=value;
+});
 
 export function next() {
     setSensor(sensorIndex + 1);

@@ -50,13 +50,13 @@ touch_areas.init(()=>{
   
   showClock();
 
-settings.subscribe("datumDayColor", (color) => {
-    document.getElementById("fitWidget").getElementById("value").style.fill = color;
-    document.getElementById("currentWeather").getElementById("temp").style.fill = color;
-    document.getElementById("clockDialHours").style.fill = color;
-    document.getElementById("secs").style.fill = color;
-    document.getElementById("dayNumber").style.fill = color;
-}, "white");
+// settings.subscribe("datumDayColor", (color) => {
+//     document.getElementById("fitWidget").getElementById("value").style.fill = color;
+//     document.getElementById("currentWeather").getElementById("temp").style.fill = color;
+//     document.getElementById("clockDialHours").style.fill = color;
+//     document.getElementById("secs").style.fill = color;
+//     document.getElementById("dayNumber").style.fill = color;
+// }, "white");
 
 function onMeteoDataAvailable(data) {
     //logger.warning(memStats("onMeteoDataAvailable"));

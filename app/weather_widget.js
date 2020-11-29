@@ -17,6 +17,6 @@ function parseTemp(v) {
     if (v < 0 && v > -1) v = 0;
     return v.toFixed();
 }
-// settings.subscribe("datumDayColor", (color) => {
-//     document.getElementById("currentWeather").getElementById("temp").style.fill = color;
-//   }, "white");
+settings.subscribe("weatherWidgetColor", (color) => {
+    document.getElementById("currentWeather").getElementById("temp").style.fill = color;
+  }, "white");

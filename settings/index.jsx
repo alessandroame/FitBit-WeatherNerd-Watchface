@@ -1,6 +1,107 @@
+function propagateColor(key, color) {
+  props.settingsStorage.setItem(key, JSON.stringify(color));
+}
 function SettingsPage(props) {
   return (
     <Page>
+
+      <Section
+        title={<Text bold align="center">Colors</Text>}>
+        <Select
+          label={`Element`}
+          onSelection={(value) => {
+            try {
+              props.settingsStorage.setItem('elementToUpdate', value.values[0].value);
+              let v = props.settingsStorage.getItem(value.values[0].value);
+              if (v != "all") 
+                props.settingsStorage.setItem('elementColor', v);
+            } catch (e) {
+              //props.settingsStorage.setItem('error', e);
+            }
+          }}
+          settingsKey="_elementToUpdate"
+          options={[
+            { name: "Widgets data", value: "widgets" },
+            { name: "Seconds hand, hours marker, date number", value: "dm,hm,sh" },
+            { name: "clockBackgroundColor", value: "clockBackgroundColor" },
+            { name: "clockDialHoursColor", value: "clockDialHoursColor" },
+            { name: "clockDialMinutesColor", value: "clockDialMinutesColor" },
+            { name: "batteryColor", value: "batteryColor" },
+            { name: "fitDataColor", value: "fitDataColor" },
+            { name: "weatherWidgetColor", value: "weatherWidgetColor" },
+            { name: "datumBackgroundColor", value: "datumBackgroundColor" },
+            { name: "datumDOWColor", value: "datumDOWColor" },
+            { name: "datumDayColor", value: "datumDayColor" },
+            { name: "Seconds hand", value: "secondsHandColor" },
+            { name: "minutesHandColor", value: "minutesHandColor" },
+            { name: "hoursHandColor", value: "hoursHandColor" },
+          ]}
+        />
+
+        <ColorSelect
+          settingsKey="elementColor"
+          onSelection={(value) => {
+            try {
+              let elementToUpdate=props.settingsStorage.getItem("elementToUpdate");
+              if (elementToUpdate=="widgets"){
+                let elemetns=["datumDayColor","fitDataColor","weatherWidgetColor" ];
+                for(let i=0;i<elemetns.length;i++){
+                  props.settingsStorage.setItem(
+                    elemetns[i]
+                    , JSON.stringify(value) );
+                }
+              }
+              else if (elementToUpdate=="dm,hm,sh"){
+                let elemetns=["datumDayColor","secondsHandColor","clockDialHoursColor" ];
+                for(let i=0;i<elemetns.length;i++){
+                  props.settingsStorage.setItem(
+                    elemetns[i]
+                    , JSON.stringify(value) );
+                }
+              }
+              else
+              {
+                props.settingsStorage.setItem(
+                  elementToUpdate
+                  , JSON.stringify(value) );
+              }
+            } catch (e) {
+              props.settingsStorage.setItem('error', e);
+            }
+            //props.settingsStorage.setItem('elementToUpdate', JSON.stringify(value));
+            //props.settingsStorage.setItem('aaaaaa',  props.settingsStorage.getItem("elementToUpdate"));
+          }}
+          colors={[
+            { color: 'black' },
+            { color: 'dimgrey' },
+            { color: 'grey' },
+            { color: 'darkgrey' },
+            { color: 'lightgrey' },
+            { color: 'white' },
+
+            { color: 'purple' },
+            { color: '#006ED6' },
+            { color: 'green' },
+            { color: 'orange' },
+            { color: 'red' },
+            { color: 'yellow' },
+
+            { color: 'magenta' },
+            { color: 'deepskyblue' },
+            { color: 'lime' },
+            { color: 'orangered' },
+            { color: 'deeppink' },
+            { color: 'gold' },
+
+            { color: 'lavender' },
+            { color: 'cyan' },
+            { color: 'lawngreen' },
+            { color: 'lightsalmon' },
+            { color: 'lightpink' },
+            { color: 'lightgoldenrodyellow' }
+          ]}
+        />
+      </Section>
 
       <Section
         title={<Text bold align="center">Meteo</Text>}
@@ -110,378 +211,8 @@ function SettingsPage(props) {
           { name: "Fatal", value: "4" },
         ]}
       />
-      <Section
-        title={<Text bold align="center">Colors</Text>}>
-        <Text>Battery</Text>
-        <ColorSelect
-          settingsKey="batteryColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
 
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-        <Text>Fitness data</Text>
-        <ColorSelect
-          settingsKey="fitDataColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-        <Text>Clock background</Text>
-        <ColorSelect
-          settingsKey="clockBackgroundColor"
-          colors={[
-            { color: 'black' },
-            { color: '#333333' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-
-        <Text>Date background</Text>
-        <ColorSelect
-          settingsKey="datumBackgroundColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-
-<Text>Date color</Text>
-        <ColorSelect
-          settingsKey="datumDayColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />        
-        <Text>Day of week color</Text>
-        <ColorSelect
-          settingsKey="datumDOWColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-
-        <Text>Clock dial hours</Text>
-        <ColorSelect
-          settingsKey="clockDialHoursColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-
-        <Text>Clock dial minutes</Text>
-        <ColorSelect
-          settingsKey="clockDialMinutesColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-
-        <Text bold align="center">Seconds hand</Text>
-        <ColorSelect
-          settingsKey="secondsHandColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-        <Text bold align="center">Minutes hand</Text>
-        <ColorSelect
-          settingsKey="minutesHandColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-        <Text bold align="center">Hours hand</Text>
-        <ColorSelect
-          settingsKey="hoursHandColor"
-          colors={[
-            { color: 'black' },
-            { color: 'dimgrey' },
-            { color: 'grey' },
-            { color: 'darkgrey' },
-            { color: 'lightgrey' },
-            { color: 'white' },
-
-            { color: 'purple' },
-            { color: '#006ED6' },
-            { color: 'green' },
-            { color: 'orange' },
-            { color: 'red' },
-            { color: 'yellow' },
-
-            { color: 'magenta' },
-            { color: 'deepskyblue' },
-            { color: 'lime' },
-            { color: 'orangered' },
-            { color: 'deeppink' },
-            { color: 'gold' },
-
-            { color: 'lavender' },
-            { color: 'cyan' },
-            { color: 'lawngreen' },
-            { color: 'lightsalmon' },
-            { color: 'lightpink' },
-            { color: 'lightgoldenrodyellow' }
-          ]}
-        />
-      </Section>
-    </Page>
+    </Page >
   );
 }
 
