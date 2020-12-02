@@ -46,6 +46,10 @@ settings.subscribe("fitDataColor",(value)=>{
     if (!value) value="gray";
     widget.style.fill=value;
 });
+settings.subscribe("fitWidgetBackgroundColor",(value)=>{
+    if (!value) value="gray";
+    widget.getElementById("background").style.fill=value;
+});
 
 export function next() {
     setSensor(sensorIndex + 1);

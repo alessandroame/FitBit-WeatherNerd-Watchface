@@ -23,15 +23,19 @@ function SettingsPage(props) {
           options={[
             { name: "Widgets data", value: "widgets" },
             { name: "Seconds hand, hours marker, widgets", value: "dm,hm,w" },
+            { name: "All backgrounds", value: "allBackgroundColor" },
+            { name: "All widgets background", value: "widgetBackgroundColor" },
             { name: "Clock background", value: "clockBackgroundColor" },
+            { name: "Weather widget background", value: "weatherBackgroundColor" },
+            { name: "Fit widget background", value: "fitWidgetBackgroundColor" },            
+            { name: "Datum background", value: "datumBackgroundColor" },
+            { name: "Day of week", value: "datumDOWColor" },
+            { name: "Day number", value: "datumDayColor" },
             { name: "Hours marker", value: "clockDialHoursColor" },
             { name: "Minutes marker", value: "clockDialMinutesColor" },
             { name: "Battery", value: "batteryColor" },
             { name: "Fit data", value: "fitDataColor" },
             { name: "Temperature", value: "weatherWidgetColor" },
-            { name: "Datum background", value: "datumBackgroundColor" },
-            { name: "Day of week", value: "datumDOWColor" },
-            { name: "Day number", value: "datumDayColor" },
             { name: "Seconds hand", value: "secondsHandColor" },
             { name: "Minutes hand", value: "minutesHandColor" },
             { name: "Hours hand", value: "hoursHandColor" },
@@ -53,6 +57,22 @@ function SettingsPage(props) {
               }
               else if (elementToUpdate=="dm,hm,w"){
                 let elemetns=["datumDayColor","secondsHandColor","clockDialHoursColor", "fitDataColor","weatherWidgetColor" ];
+                for(let i=0;i<elemetns.length;i++){
+                  props.settingsStorage.setItem(
+                    elemetns[i]
+                    , JSON.stringify(value) );
+                }
+              }
+              else if (elementToUpdate=="allBackgroundColor"){
+                let elemetns=["clockBackgroundColor","datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor" ];
+                for(let i=0;i<elemetns.length;i++){
+                  props.settingsStorage.setItem(
+                    elemetns[i]
+                    , JSON.stringify(value) );
+                }
+              }
+              else if (elementToUpdate=="widgetBackgroundColor"){
+                let elemetns=["datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor" ];
                 for(let i=0;i<elemetns.length;i++){
                   props.settingsStorage.setItem(
                     elemetns[i]

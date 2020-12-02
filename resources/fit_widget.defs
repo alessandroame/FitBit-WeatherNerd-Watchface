@@ -1,6 +1,9 @@
 <svg>
 	<defs>
 		<symbol id="fitWidget" fill="greenyellow">
+			<circle id="background" cx="0" cy="0" r="55" fill="#222222" opacity="1"/>
+			<circle cx="0" cy="0" r="55" fill="#222222" opacity="0.8"/>
+
 			<image href="widget_background.png" x="-55" y="-55" width="110" height="110" opacity="1" fill="white" />
 			
 			<image id="icon" href="icons/hr_1.png" x="-12" y="-40" width="24" height="24" fill="white" />
