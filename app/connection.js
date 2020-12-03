@@ -45,7 +45,7 @@ function onConnectionStateChange(state){
 }
 
 function onConnectionOpen(){
-    logger.warning("Connected");
+    logger.info("Connected");
     if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
     color = COLOR_NORMAL;
     dismiss();
@@ -55,7 +55,7 @@ function onConnectionOpen(){
 }
 
 function onConnectionLost() {
-    logger.warning("Disconnected");
+    logger.info("Disconnected");
     color = COLOR_NORMAL;
     
     resetInterval(blinkingTimer);

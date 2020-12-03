@@ -40,7 +40,6 @@ forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
 touch_areas.init(()=>{
-    logger.warning(memStats("update request"));
     logger.info("meteo requested");
     mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");

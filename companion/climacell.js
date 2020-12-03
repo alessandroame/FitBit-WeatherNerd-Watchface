@@ -15,7 +15,7 @@ export function init(onDataAvailable) {
 }
 
 export function update(reason) {
-  logger.warning("updating: " + reason);
+  logger.Error("updating: " + reason);
   getForcasts();
 }
 
