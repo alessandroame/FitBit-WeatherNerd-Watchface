@@ -10,6 +10,9 @@
 				<use href="#weatherWidget" id="currentWeather" opacity="1" />
 			</g>
 			<use href="#datum" x="75%" y="50%" id="datum" />
+
+				<use href="#hourlyAlerts" />
+
 			<image id="clockDialHours" href="dial_hours.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
 			<image id="clockDialMinutes" href="dial_minutes.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
 			<!--

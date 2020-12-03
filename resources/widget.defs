@@ -7,10 +7,10 @@
 		<link rel="import" href="fit_widget.defs" />
 		<link rel="import" href="touch_areas.defs" />
 		<link rel="import" href="weather_widget.defs" />
+		<link rel="import" href="meteo_alerts.defs" />
 		<link rel="import" href="clock.defs" />
+		<link rel="import" href="forecasts.defs" />
 		<link rel="import" href="connection.defs" />
 		<link rel="import" href="battery.defs" />
-		<link rel="import" href="meteo_alerts.defs" />
-		<link rel="import" href="forecasts.defs" />
 	</defs>
 </svg>

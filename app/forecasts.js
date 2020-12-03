@@ -32,6 +32,24 @@ export function init(closeCallback) {
 }
 
 export function show() {
+    //console.error(new Date());
+    //console.error(meteo.lastUpdate);
+    var diff=new Date()-meteo.lastUpdate;
+    var h=Math.floor(diff/3600000);
+    var m=Math.floor(diff/60000);
+    var s=Math.floor(diff/1000);
+    let msg="";
+    if (h>1){
+        msg+=h+" hour"+(m==1?"":"s")+" "+m+" minute"+(m==1?"":"s")+" ago";
+    }if (m>0){
+        msg+=m+" minute"+(m==1?"":"s")+" ago";
+    }else{
+        msg+=s+" second"+(s==1?"":"s")+" ago";
+    }
+
+    document.getElementById("lastUpdate").textContent = msg;
+    //document.getElementById("lastUpdate").textContent = zeroPad(meteo.lastUpdate.getHours()) + ":" + zeroPad(meteo.lastUpdate.getMinutes());
+
     hourlyForecastsUI.style.display = "inline";
 }
 
@@ -52,12 +70,15 @@ function zeroPad(s) {
     return res;
 }
 
+function ellipsis(s,l){
+    if (s.length>l) s=s.substr(0,l-3)+"...";
+    return s;
+}
+
 function redraw() {
     try {
-        let location = meteo.city;
-        if (location.length > 11) location = `${location.substr(0, 10)}...`;
-        document.getElementById("location").textContent = location;
-        document.getElementById("lastUpdate").textContent = zeroPad(meteo.lastUpdate.getHours()) + ":" + zeroPad(meteo.lastUpdate.getMinutes());
+        document.getElementById("location_main").textContent = ellipsis(meteo.city.main,16);
+        document.getElementById("location_sub").textContent = ellipsis(meteo.city.sub,20);
 
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();

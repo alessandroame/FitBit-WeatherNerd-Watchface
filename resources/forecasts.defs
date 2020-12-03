@@ -12,7 +12,8 @@
             </g>
         </symbol>
         <symbol id="hourlyForecasts">
-            <gradientRect id="forecastBackground" x="0" y="0" width="100%" height="100%" gradient-type="radial" gradient-x1="50%" gradient-y1="50%" gradient-x2="50%+300" gradient-y2="50%+300" gradient-color1="red" gradient-color2="black" opacity="0.6" />
+            <gradientRect id="forecastBackground" x="0" y="0" width="100%" height="100%" gradient-type="radial" gradient-x1="50%" gradient-y1="50%" gradient-x2="50%+300" gradient-y2="50%+300"
+             gradient-color1="red" gradient-color2="black" opacity="0.8" />
                 <use id="forecast_0" href="#hourlyForecast" />
                 <use id="forecast_1" href="#hourlyForecast" />
                 <use id="forecast_2" href="#hourlyForecast" />
@@ -26,10 +27,14 @@
                 <use id="forecast_10" href="#hourlyForecast" />
                 <use id="forecast_11" href="#hourlyForecast" />
 
-                <text id="lastUpdate" fill="white" font-family="System-Bold" font-size="30"
-                    font-weight="bold" text-anchor="middle" x="50%" y="50%-16" text-length="100"> ...</text>
-                <text id="location" fill="white" font-family="System-Bold" font-size="30"
-                    font-weight="bold" text-anchor="middle" x="50%" y="50%+13" text-length="100"> ...</text>
+                <text id="lastUpdate" fill="white" font-family="System-Bold" font-size="16"
+                    font-weight="bold" text-anchor="middle" x="50%" y="50%-20" text-length="100"> ...</text>
+
+                <text id="location_main" fill="white" font-family="System-Bold" font-size="25" 
+                font-weight="bold" text-anchor="middle" x="50%" y="50%+8" text-length="100"> ...</text>
+
+                <text id="location_sub" fill="white" font-family="System-Bold" font-size="16" 
+                font-weight="bold" text-anchor="middle" x="50%" y="50%+30" text-length="100"> ...</text>
 
                 <rect id="touch" x="0" y="0" opacity="0" width="100%" height="100%" fill="yellow"
                     pointer-events="all" layer="999" />

@@ -87,9 +87,13 @@ function getCity(lat, lon) {
                 response.json()
                     .then(function (data) {
                         try {
-                    //console.log(JSON.stringify(data));
-                        var a = data.address;
-                        var res = a["village"] || a["town"] || a["city"] || a["suburb"] || a["county"] || a["state"] || a["country"];
+                            //console.error(JSON.stringify(data));
+                            var a = data.display_name.split(",").slice(0,2);
+                            //console.error(JSON.stringify(a));
+                        var res={ 
+                            main: a[1] ,
+                            sub: a[0]
+                        };
                         resolve(res);
                         //logger.warning("city response: " + res);
                     } catch (err) {
