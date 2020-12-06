@@ -1,7 +1,23 @@
-function propagateColor(key, color) {
-  props.settingsStorage.setItem(key, JSON.stringify(color));
-}
+
 function SettingsPage(props) {
+  let applySetting=function(keys, value) {
+    for(let i=0;i<keys.length;i++){
+      props.settingsStorage.setItem(keys[i], value );
+    }
+  };
+  let settingError=function (e){
+      let now = new Date();
+      let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
+  //    props.settingsStorage.setItem('settingLog', nowString+"->"+e);
+  }
+  let renderLines=function(lines){
+    let res="";
+    for (let i=0; i<lines;i++){
+      res+= (<Text>{lines[i]}</Text>);
+    }
+    return res;
+  }
+  //renderLines([111111,222222,333333333,444444444]);
   return (
     <Page>
 
@@ -13,10 +29,10 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('elementToUpdate', value.values[0].value);
               let v = props.settingsStorage.getItem(value.values[0].value);
-              if (v != "all") 
-                props.settingsStorage.setItem('elementColor', v);
+             // if (v != "all") 
+              props.settingsStorage.setItem('elementColor', v);
             } catch (e) {
-              //props.settingsStorage.setItem('error', e);
+              settingError(e);
             }
           }}
           settingsKey="_elementToUpdate"
@@ -47,49 +63,29 @@ function SettingsPage(props) {
           onSelection={(value) => {
             try {
               let elementToUpdate=props.settingsStorage.getItem("elementToUpdate");
+              props.settingsStorage.setItem("test",elementToUpdate);
+
               if (elementToUpdate=="widgets"){
-                let elemetns=["datumDayColor","fitDataColor","weatherWidgetColor" ];
-                for(let i=0;i<elemetns.length;i++){
-                  props.settingsStorage.setItem(
-                    elemetns[i]
-                    , JSON.stringify(value) );
-                }
+                applySetting(["datumDayColor","fitDataColor","weatherWidgetColor"],value);
               }
               else if (elementToUpdate=="dm,hm,w"){
-                let elemetns=["datumDayColor","secondsHandColor","clockDialHoursColor", "fitDataColor","weatherWidgetColor" ];
-                for(let i=0;i<elemetns.length;i++){
-                  props.settingsStorage.setItem(
-                    elemetns[i]
-                    , JSON.stringify(value) );
-                }
+                applySetting(["datumDayColor","secondsHandColor","clockDialHoursColor", "fitDataColor","weatherWidgetColor"],value);
               }
               else if (elementToUpdate=="allBackgroundColor"){
-                let elemetns=["clockBackgroundColor","datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor" ];
-                for(let i=0;i<elemetns.length;i++){
-                  props.settingsStorage.setItem(
-                    elemetns[i]
-                    , JSON.stringify(value) );
-                }
+                applySetting(["clockBackgroundColor","datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor"],value);
               }
               else if (elementToUpdate=="widgetBackgroundColor"){
-                let elemetns=["datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor" ];
-                for(let i=0;i<elemetns.length;i++){
-                  props.settingsStorage.setItem(
-                    elemetns[i]
-                    , JSON.stringify(value) );
-                }
+                applySetting(["datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor"],value);
               }
               else
               {
                 props.settingsStorage.setItem(
                   elementToUpdate
-                  , JSON.stringify(value) );
+                  , value );
               }
             } catch (e) {
-              props.settingsStorage.setItem('error', e);
+              settingError(e);
             }
-            //props.settingsStorage.setItem('elementToUpdate', JSON.stringify(value));
-            //props.settingsStorage.setItem('aaaaaa',  props.settingsStorage.getItem("elementToUpdate"));
           }}
           colors={[
             { color: 'black' },
@@ -150,7 +146,7 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('minMeteoUpdateInteval', value.values[0].value);
             } catch (e) {
-              console.error("settings store throw exception" + e);
+              settingError(e);
             }
           }}
           settingsKey="_minMeteoUpdateInteval"
@@ -169,7 +165,7 @@ function SettingsPage(props) {
 
         <Select
           onSelection={(value) => {
-            props.settingsStorage.setItem('unitSystem', JSON.stringify(value.values[0].value));
+            props.settingsStorage.setItem('unitSystem', value.values[0].value);
           }}
           label={`System of measurement`}
           settingsKey="_unitSystem"
@@ -186,9 +182,9 @@ function SettingsPage(props) {
           settingsKey="_APIKey"
           onChange={(value) => {
             try {
-              props.settingsStorage.setItem('APIKey', JSON.stringify(value.name));
+              props.settingsStorage.setItem('APIKey', value.name);
             } catch (e) {
-              console.error("settings store throw exception" + e);
+              settingError(e);
             }
           }}
         ></TextInput>
@@ -208,7 +204,7 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('snoozeDelayMinutes', value.values[0].value);
             } catch (e) {
-              console.error("settings store throw exception" + e);
+              settingError(e);
             }
           }}
           settingsKey="_snoozeDelayMinutes"
@@ -236,7 +232,7 @@ function SettingsPage(props) {
           try {
             props.settingsStorage.setItem("logLevel", value.values[0].value);
           } catch (e) {
-            console.error("settings store throw exception" + e);
+            settingError(e);
           }
         }}
         settingsKey="_logLevel"
@@ -248,8 +244,14 @@ function SettingsPage(props) {
           { name: "Fatal", value: "4" },
         ]}
       />
+      <Section
+        title={<Text bold align="center">Last setting log</Text>}
+      >
+        {renderLines([111111,222222,333333333,444444444])}
+        {renderLines(props.settingsStorage.getItem("settingLog").split("\n"))}
+          </Section>
+    </Page>
 
-    </Page >
   );
 }
 

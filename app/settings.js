@@ -43,7 +43,7 @@ export function get(key, defaultValue) {
 
 export function set(key, value) {
     _settings[key] = value;
-    console.warn("set " + key + " to " + JSON.stringify(value));
+    //console.warn("set " + key + " to " + JSON.stringify(value));
     mediator.localPublish("setting_"+key,value);
     try {
         fs.writeFileSync("settings.json", _settings, "cbor");

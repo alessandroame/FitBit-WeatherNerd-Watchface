@@ -38,11 +38,17 @@ function init() {
         updateMeteo("wakeinterval triggered");
     });
     me.monitorSignificantLocationChanges = true;
-    me.addEventListener("significantlocationchange", onPositionChanged);
+    //me.addEventListener("significantlocationchange", onPositionChanged);
     
     logger.warning("companion init");
 }
 
+function settingLog(msg){
+    let log=settings.get("settingLog");
+    log=msg+"\n"+log;
+    settings.set("settingLog",log);
+}
+settingLog(new Date());
 function startUpdateTimer(){
     if (updateMeteoTimerID){
         console.log("updateMeteoTimer reset");

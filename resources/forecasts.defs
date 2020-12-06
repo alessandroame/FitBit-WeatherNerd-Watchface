@@ -27,13 +27,13 @@
                 <use id="forecast_10" href="#hourlyForecast" />
                 <use id="forecast_11" href="#hourlyForecast" />
 
-                <text id="lastUpdate" fill="white" font-family="System-Bold" font-size="16"
+                <text id="lastUpdate" fill="white" font-family="System-Bold" font-size="20"
                     font-weight="bold" text-anchor="middle" x="50%" y="50%-20" text-length="100"> ...</text>
 
-                <text id="location_main" fill="white" font-family="System-Bold" font-size="25" 
+                <text id="location_main" fill="white" font-family="System-Bold" font-size="26" 
                 font-weight="bold" text-anchor="middle" x="50%" y="50%+8" text-length="100"> ...</text>
 
-                <text id="location_sub" fill="white" font-family="System-Bold" font-size="16" 
+                <text id="location_sub" fill="white" font-family="System-Bold" font-size="20" 
                 font-weight="bold" text-anchor="middle" x="50%" y="50%+30" text-length="100"> ...</text>
 
                 <rect id="touch" x="0" y="0" opacity="0" width="100%" height="100%" fill="yellow"

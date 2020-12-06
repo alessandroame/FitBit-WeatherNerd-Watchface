@@ -5,7 +5,7 @@ export function init() {
   console.log("settings init")
 
   settingsStorage.addEventListener("change", (evt) => {
-    console.warn("<<<<<<<< " + evt.key + " >>>>>>>>");
+//    console.warn("<<<<<<<< " + evt.key + " >>>>>>>>");
     notify(evt);
   });
 }
@@ -19,10 +19,11 @@ export function set(key, value) {
   });
 }
 export function get(key, defvalue) {
-  let json = "";
   try {
-    json = settingsStorage.getItem(key)??defvalue;
-    return JSON.parse(json);
+    let res= settingsStorage.getItem(key)??defvalue;
+//    console.error(key+"="+res);
+    return res;
+    //return JSON.parse(json);
   } catch (e) {
     console.error("get setting " + key + " throws:" + e + "\nJSON:" + json);
     return defvalue;
@@ -46,10 +47,11 @@ export function subscribe(key, callback) {
 function notify(evt) {
   console.log("notify " + evt.key);
   try{
+    if (evt.key[0]=="_") return;
     const data = {
       key: evt.key,
-      oldValue: JSON.parse(evt.oldValue),
-      value: JSON.parse(evt.newValue)
+      oldValue: evt.oldValue,
+      value: evt.newValue
     };
     let topic = "setting_" + evt.key;
     mediator.localPublish(topic, data);
