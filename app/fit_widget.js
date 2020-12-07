@@ -22,7 +22,6 @@ let icon = widget.getElementById("icon");
 let value = widget.getElementById("value");
 let units = widget.getElementById("units");
 let goal = widget.getElementById("goal");
-let goalRail = widget.getElementById("goalRail");
 
 let sensorIndex = -1;
 
@@ -48,7 +47,7 @@ settings.subscribe("fitDataColor",(value)=>{
 settings.subscribe("fitWidgetBackgroundColor",(value)=>{
     if (!value) value="gray";
     widget.getElementById("background").style.fill=value;
-    widget.getElementById("goalRail").style.fill=value;
+    widget.getElementById("goal").style.fill=value;
 });
 
 export function next() {
