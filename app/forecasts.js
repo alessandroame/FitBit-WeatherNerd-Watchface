@@ -1,3 +1,6 @@
+import { locale } from "user-settings";
+import * as settings from "./settings";
+
 import document from "document";
 import * as geom from './geom';
 import * as settings from "./settings"
@@ -5,6 +8,11 @@ import * as settings from "./settings"
 settings.subscribe("clockBackgroundColor", (color) => {
     document.getElementById("forecastBackground").gradient.colors.c1 = color;
 }, "#333333");
+let unitSystem="si";
+settings.subscribe("unitSystem", (value) => {
+    unitSystem = value;
+    redraw();
+}, locale.temperature == "C" ? "si" : "us");
 
 let hourlyForecastsUI = null;
 export function init(closeCallback) {
@@ -83,6 +91,7 @@ function redraw() {
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
         if (d > 11) d = d - 12;
+
         for (let i = 0; i < 12; i++) {
             let f = document.getElementById("forecast_" + i);
             let mainContainer = f.getElementById("mainContainer");
@@ -96,7 +105,14 @@ function redraw() {
             let icon = mainContainer.getElementById("icon");
             icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
             let temp = mainContainer.getElementById("temp");
-            temp.textContent = parseTemp(forecasts[i].temp) + forecasts[i].tempUnits;
+            let t=forecasts[i].temp;
+            let tu="°";
+            if (unitSystem!="si") 
+            { 
+                t=t * 9/5 + 32;
+                tu="F";
+            }
+            temp.textContent = parseTemp(t) + tu;
         }
 
         let sr = new Date(meteo.sunrise);

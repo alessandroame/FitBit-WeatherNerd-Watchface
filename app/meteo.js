@@ -35,7 +35,6 @@ export function init(onAlertsAvailableCallback) {
 
 function fetchMeteo() {
     console.log("meteo fetchMeteo");
-memStats(11111);
     let alerts = [];
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
@@ -44,8 +43,6 @@ memStats(11111);
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
     var offset=Math.floor(angle/360*60);
-memStats(5555);
-
     for (let i=0;i<meteoData.data.length;i++){
         let d=meteoData.data[i];
         let index=i+offset;

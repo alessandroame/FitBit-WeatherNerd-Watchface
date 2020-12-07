@@ -4,6 +4,7 @@
 			<circle id="background" cx="0" cy="0" r="55" fill="#222222" opacity="1"/>
 			<circle cx="0" cy="0" r="55" fill="#222222" opacity="0.8"/>
 
+			<arc id="goalRail" x="-53" y="-53" width="106" height="106" arc-width="3" start-angle="0" sweep-angle="360"  opacity="0.2" fill="grey"/>
 			<arc id="goal" x="-53" y="-53" width="106" height="106" arc-width="5" start-angle="0" sweep-angle="0"  opacity="1" />
 			
 			<image href="widget_background.png" x="-55" y="-55" width="110" height="110" opacity="1" fill="white" />

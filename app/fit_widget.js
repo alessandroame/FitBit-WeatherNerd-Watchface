@@ -48,6 +48,7 @@ settings.subscribe("fitWidgetBackgroundColor",(value)=>{
     if (!value) value="gray";
     widget.getElementById("background").style.fill=value;
     widget.getElementById("goal").style.fill=value;
+    document.getElementById("goalRail").style.fill=value;
 });
 
 export function next() {

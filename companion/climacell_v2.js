@@ -114,7 +114,7 @@ function getPresent(lat, lon) {
         try {
             var url = "https://api.climacell.co/v3/weather/realtime?" +
                 "apikey=" + apiKey +
-                "&unit_system=" + settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
+                "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
                 "&lon=" + lon +
                 "&fields=sunrise,sunset,weather_code,precipitation,precipitation_type,temp,feels_like,wind_speed,wind_gust,wind_direction";
@@ -150,7 +150,7 @@ function getNowcast(lat, lon) {
         try {
             var url = "https://api.climacell.co/v3/weather/nowcast?" +
                 "apikey=" + apiKey +
-                "&unit_system=" + settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
+                "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
                 "&lon=" + lon +
                 "&start_time=now" +
@@ -225,7 +225,7 @@ function getForecast(startTime, endTime, lat, lon) {
         try {
             var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
                 "apikey=" + apiKey +
-                "&unit_system=" + settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
+                "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
                 "&lon=" + lon +
                 "&start_time=" + startTime.toISOString() +

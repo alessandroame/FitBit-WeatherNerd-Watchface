@@ -1,5 +1,14 @@
+import { locale } from "user-settings";
 import document from "document";
 import * as settings from "./settings"
+
+let unitSystem="si";
+let t=0;
+let tu="°";
+settings.subscribe("unitSystem", (value) => {
+    unitSystem = value;
+    updateTemp();
+}, locale.temperature == "C" ? "si" : "us");
 
 export function update(meteo) {
     let index = Math.floor(new Date().getHours());
@@ -9,8 +18,15 @@ export function update(meteo) {
     let container = document.getElementById("currentWeather");
     let icon = container.getElementById("icon");
     icon.href = "icons/meteo/" + currentWeather.icon + ".png";
+    t=currentWeather.temp;
+    updateTemp();
+}
+function updateTemp(){
+    tu=unitSystem=="si"?"°":"F";
+    let v=unitSystem=="si"?t:t * 9/5 + 32;
+    let container = document.getElementById("currentWeather");
     let temp = container.getElementById("temp");
-    temp.textContent = " " + parseTemp(currentWeather.temp) + currentWeather.tempUnits;
+    temp.textContent = " " + parseTemp(v) + tu;
     container.getElementById("tempShadow").textContent = temp.textContent;
 }
 function parseTemp(v) {
