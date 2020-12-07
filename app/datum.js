@@ -1,15 +1,21 @@
 import { locale } from "user-settings";
 import document from "document";
 import * as settings from "./settings"
+import { battery } from "power";
 
 let oldDate = null;
 export let widget = document.getElementById("datum");
 let dayOfWeek = document.getElementById("dayOfWeek");
 let dayNumber = document.getElementById("dayNumber");
+const COLOR_WARNING = "yellow";
+const COLOR_ALERT = "red";
+const COLOR_NORMAL = "gray";
 
 settings.subscribe("datumBackgroundColor", (color) => {
   document.getElementById("datumBackground").style.fill = color;
+  COLOR_NORMAL=color;
 }, "#333333");
+
 
 settings.subscribe("datumDayColor", (color) => {
   dayNumber.style.fill = color;
@@ -19,11 +25,18 @@ settings.subscribe("datumDOWColor", (color) => {
 }, "red");
 
 
+
 export function init() {
   console.log("datum init");
   setInterval(() => {
     update();
   }, 30);
+
+  battery.onchange = (charger, evt) => {
+    //console.log("battery.onchange")
+    setBatteryLevel(battery.chargeLevel);
+  };
+  setBatteryLevel(battery.chargeLevel);
 }
 
 function update() {
@@ -52,4 +65,18 @@ function update() {
     // dayOfWeek.text = 'DOM';
     oldDate = now.getDate();
   }
+}
+
+function setBatteryLevel(batteryLevel) {
+  let color = COLOR_NORMAL;
+  if (batteryLevel < 15) {
+    color = COLOR_ALERT
+  }
+  else if (batteryLevel < 30) {
+    color = COLOR_WARNING;
+  }
+  document.getElementById("battery").style.fill = color;
+  document.getElementById("batterytRail").style.fill = color;
+  
+  document.getElementById("battery").sweepAngle= 360* batteryLevel/100;
 }

@@ -1,15 +1,26 @@
 <svg>
-    <defs>
-        <symbol id="datum">
-                <circle id='datumBackground' cx="0" cy="0" r="34" fill="#222222" opacity="1"/>
-                <circle cx="0" cy="0" r="34" fill="#222222" opacity="0.8"/>
-
-                <image href='widget_background.png' x='-34' y='-34' width='68' height='68' fill="white" opacity='1'/>
-                <text x="2" y="24" id="dayOfWeekShadow" font-family="System-Bold" font-size="21" text-anchor="middle" fill="black" opacity="0.5">LUN</text>
-                <text x="0" y="22" id="dayOfWeek" font-family="System-Bold" fill="white" font-size="21" text-anchor="middle">LUN</text>
-                <text x="2" y="-1" id="dayNumberShadow" font-family="System-Bold" font-size="34" text-anchor="middle" fill="black" opacity="0.5">30</text>
-                <text x="0" y="1" id="dayNumber" font-family="System-Bold" fill="white" font-size="34" text-anchor="middle">30</text>
-                <image href='widget_shadow.png' x='-34' y='-34' width='68' height='68' fill="black" opacity='0.8'/>
-        </symbol>
-    </defs>
+	<defs>
+		<symbol id="datum">
+			<circle id="datumBackground" cx="0" cy="0" r="34" fill="#222222" opacity="1" />
+			<circle cx="0" cy="0" r="36" fill="#222222" opacity="0.8" />
+			
+            <arc id="batterytRail" x="-34" y="-34" width="68" height="68" arc-width="4" start-angle="0" sweep-angle="360" opacity="0.2" fill="grey" />
+			<arc id="battery" x="-34" y="-34" width="69" height="68" arc-width="4" start-angle="0" sweep-angle="0" opacity="1" />
+			
+            <image href="widget_background.png" x="-36" y="-36" width="72" height="72" fill="white" opacity="1" />
+			<text x="2" y="24" id="dayOfWeekShadow" font-family="System-Bold" font-size="21" text-anchor="middle" fill="black" opacity="0.5">
+				LUN
+			</text>
+			<text x="0" y="22" id="dayOfWeek" font-family="System-Bold" fill="white" font-size="21" text-anchor="middle">
+				LUN
+			</text>
+			<text x="2" y="-1" id="dayNumberShadow" font-family="System-Bold" font-size="34" text-anchor="middle" fill="black" opacity="0.5">
+				30
+			</text>
+			<text x="0" y="1" id="dayNumber" font-family="System-Bold" fill="white" font-size="34" text-anchor="middle">
+				30
+			</text>
+			<image href="widget_shadow.png" x="-34" y="-34" width="68" height="68" fill="black" opacity="0.8" />
+		</symbol>
+	</defs>
 </svg>

@@ -14,7 +14,7 @@ memStats("start");
 import * as clock from "./clock"
 import * as connection from "./connection"
 import * as settings from "./settings"
-import * as battery from "./battery"
+//import * as battery from "./battery"
 import * as meteo from "./meteo"
 import * as meteo_alerts from "./meteo_alerts"
 import * as touch_areas from "./touch_areas"
@@ -36,7 +36,7 @@ memStats("after imports");
 clock.init();
 connection.init();
 settings.init();
-battery.init();
+//battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
@@ -97,7 +97,8 @@ function showClock() {
 function setAOD(enabled) {
     let elements = ["clockBackgroundGradient", "secs", "secsShadow", 
     "currentWeather", "fitWidget", "clockDialMinutes", "clockDialHours","datum",
-    "alerts","connectionWidget","batteryWidget",
+    "alerts","connectionWidget",
+    //"batteryWidget",
     "sunsetHand","sunriseHand","minsShadow","hoursShadow"];
     console.warn("AOD: " + enabled);
     let display = enabled ? "none" : "inline";
