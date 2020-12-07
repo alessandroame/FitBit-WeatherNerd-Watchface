@@ -5,7 +5,6 @@ import * as settings from "./settings";
 import { today } from "user-activity";
 import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
-import { display } from "display";
 import * as settings from "./settings"
 
 display.addEventListener("change", () => {
@@ -43,12 +42,13 @@ display.addEventListener("change", () => {
 });
 
 settings.subscribe("fitDataColor",(value)=>{
-    if (!value) value="gray";
     widget.style.fill=value;
+    //widget.getElementById("goal").style.fill=value;
 });
 settings.subscribe("fitWidgetBackgroundColor",(value)=>{
     if (!value) value="gray";
     widget.getElementById("background").style.fill=value;
+    widget.getElementById("goalRail").style.fill=value;
 });
 
 export function next() {
@@ -151,7 +151,9 @@ function updateValue(v) {
             stopInterval();
             return;
         }
-        goal.sweepAngle = -120 * (goalPerc > 1 ? 1 : goalPerc);
+        goalPerc=goalPerc > 1 ? 1 : goalPerc;
+        //console.error(goalPerc);
+        goal.sweepAngle = 360 * (goalPerc);
     } catch (e) {
         console.error(e);
         console.trace();
