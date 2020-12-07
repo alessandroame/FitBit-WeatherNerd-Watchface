@@ -44,11 +44,16 @@ settings.subscribe("fitDataColor",(value)=>{
     widget.style.fill=value;
     //widget.getElementById("goal").style.fill=value;
 });
+
+const COLOR_WARNING = "yellow";
+const COLOR_ALERT = "red";
+let COLOR_NORMAL = "gray";
 settings.subscribe("fitWidgetBackgroundColor",(value)=>{
     if (!value) value="gray";
     widget.getElementById("background").style.fill=value;
     widget.getElementById("goal").style.fill=value;
     document.getElementById("goalRail").style.fill=value;
+    COLOR_NORMAL=value;
 });
 
 export function next() {
@@ -154,6 +159,16 @@ function updateValue(v) {
         goalPerc=goalPerc > 1 ? 1 : goalPerc;
         //console.error(goalPerc);
         goal.sweepAngle = 360 * (goalPerc);
+
+        let color = COLOR_NORMAL;
+        if (goalPerc < 0.15) {
+          color = COLOR_ALERT
+        }
+        else if (goalPerc < 0.30) {
+          color = COLOR_WARNING;
+        }
+        document.getElementById("goal").style.fill = color;
+        document.getElementById("goalRail").style.fill = color;
     } catch (e) {
         console.error(e);
         console.trace();

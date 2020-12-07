@@ -9,7 +9,7 @@ let dayOfWeek = document.getElementById("dayOfWeek");
 let dayNumber = document.getElementById("dayNumber");
 const COLOR_WARNING = "yellow";
 const COLOR_ALERT = "red";
-const COLOR_NORMAL = "gray";
+let COLOR_NORMAL = "gray";
 
 settings.subscribe("datumBackgroundColor", (color) => {
   document.getElementById("datumBackground").style.fill = color;
