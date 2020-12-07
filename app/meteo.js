@@ -56,7 +56,7 @@ memStats(5555);
                 quantity: normalizeValue(d.p.q, 0, 10)
             },
             ice: {
-                probability: d.t.r < 0 ? 1 : 0,
+                probability: d.t.r < 0 ? d.t.r/(-2): 0,
                 quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
             }
         }
