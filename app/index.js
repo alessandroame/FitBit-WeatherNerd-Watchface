@@ -1,5 +1,6 @@
-import { memory } from "system";
 import document from "document";
+import { memory } from "system";
+import { display } from "display";
 import * as settings from "./settings";
 
 
@@ -39,15 +40,15 @@ battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();
 meteo.init(onMeteoDataAvailable);
-touch_areas.init(()=>{
+touch_areas.init(() => {
     logger.info("meteo requested");
     mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
     meteo_alerts.test();
-}, log_viewer.showLogger,  showWeather,fitWidget.prev,fitWidget.next);
+}, log_viewer.showLogger, showWeather, fitWidget.prev, fitWidget.next);
 
-  
-  showClock();
+
+showClock();
 
 // settings.subscribe("datumDayColor", (color) => {
 //     document.getElementById("fitWidget").getElementById("value").style.fill = color;
@@ -64,11 +65,11 @@ function onMeteoDataAvailable(data) {
     forecasts.setData(data);
     weatherWidget.update(data);
 
-    let sr=new Date(data.sunrise);
-    let ss=new Date(data.sunset);
+    let sr = new Date(data.sunrise);
+    let ss = new Date(data.sunset);
     // console.log(ss,sr);
-    sunDial.update(sr,ss);
-    
+    sunDial.update(sr, ss);
+
     //logger.warning(memStats("end Meteo"));
 
     //setTimeout(()=>{     logger.warning(memStats("after Meteo"));}, 5000);
@@ -79,6 +80,31 @@ function showClock() {
     forecasts.hide();
 }
 
+// if (display.aodAvailable /*&& appbit.permissions.granted("access_aod")*/) {
+//     // tell the system we support AOD
+//     display.aodAllowed = true;
+
+//     // respond to display change events
+//     display.addEventListener("change", () => {
+//         if (!display.aodActive && display.on) {
+//             setAOD(false);
+//         } else {
+//             setAOD(true);
+//         }
+//     });
+// }
+
+function setAOD(enabled) {
+    let elements = ["clockBackgroundGradient", "secs", "secsShadow", 
+    "currentWeather", "fitWidget", "clockDialMinutes", "clockDialHours","datum",
+    "alerts","connectionWidget","batteryWidget",
+    "sunsetHand","sunriseHand","minsShadow","hoursShadow"];
+    console.warn("AOD: " + enabled);
+    let display = enabled ? "none" : "inline";
+    for (let i = 0; i < elements.length; i++) {
+        document.getElementById(elements[i]).style.display = display;
+    }
+}
 
 function showMenu() {
     logger.info("meteo requested");
@@ -101,11 +127,11 @@ function showMenu() {
 }
 
 function showWeather() {
-/*    document.location.assign("forecasts.view").then(() => {
-        console.log("forecasts.view");
-        forecasts.init();
-    });*/
-    forecasts.show();    
+    /*    document.location.assign("forecasts.view").then(() => {
+            console.log("forecasts.view");
+            forecasts.init();
+        });*/
+    forecasts.show();
     clock.hide();
     startClockDispayTimeout();
 }
@@ -124,13 +150,13 @@ function showFitdata() {
 //connection.setState(0);
 
 
-let clockDisplayTimeout=null;
-function startClockDispayTimeout(){
-    if (clockDisplayTimeout){
+let clockDisplayTimeout = null;
+function startClockDispayTimeout() {
+    if (clockDisplayTimeout) {
         clearTimeout(clockDisplayTimeout);
-        clockDisplayTimeout=null;
+        clockDisplayTimeout = null;
     }
-    clockDisplayTimeout=setTimeout(() => {
+    clockDisplayTimeout = setTimeout(() => {
         showClock();
     }, 10000);
 }

@@ -1,7 +1,7 @@
 <svg viewport-fill="fb-black">
 	<use href="#clock" id="clock" />
 	<g transform="translate(40,40),rotate(45)">
-		<use href="#connection" />
+		<use href="#connection" id="connectionWidget"/>
 	</g>
 	<g transform="translate(100%-40,40),rotate(45)">
 		<use href="#battery" id="batteryWidget" />

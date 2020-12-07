@@ -4,6 +4,7 @@ import document from "document";
 import * as settings from "./settings"
 import * as geom from '../common/geom'
 
+
 let clockContainer = document.getElementById("clock");
 let hourHand = document.getElementById("hours");
 let minHand = document.getElementById("mins");
@@ -55,6 +56,7 @@ export function show() {
 export function hide() {
   clockContainer.style.display = "none";
 }
+
 let oldHours, oldMins, oldSecs;
 function updateClock() {
   let now = new Date();

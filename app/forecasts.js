@@ -42,9 +42,9 @@ export function show() {
     if (h>1){
         msg+=h+" hour"+(m==1?"":"s")+" "+m+" minute"+(m==1?"":"s")+" ago";
     }if (m>0){
-        msg+=m+" minute"+(m==1?"":"s")+" ago";
+        msg+=m+" min"+(m==1?"":"s")+" ago";
     }else{
-        msg+=s+" second"+(s==1?"":"s")+" ago";
+        msg+=s+" sec"+(s==1?"":"s")+" ago";
     }
 
     document.getElementById("lastUpdate").textContent = msg;
