@@ -68,7 +68,7 @@ function log(level, msg,fromCompanion) {
 
     let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
 //    var entry = `${nowString} ${msg}\n`;
-    var entry = `   ${levelDescriptions[level]} ${nowString} sender: ${fromCompanion?"companion":"app"}\n    ${msg}\n`;
+    var entry = `${fromCompanion?"C":"A"} ${levelDescriptions[level]} ${nowString} > ${msg}\n`;
     cache = entry + cache;
     if (cache.length > 1000) cache = cache.substr(0, 1000);
 }
