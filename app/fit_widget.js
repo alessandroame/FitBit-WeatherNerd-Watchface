@@ -161,10 +161,10 @@ function updateValue(v) {
         goal.sweepAngle = 360 * (goalPerc);
 
         let color = COLOR_NORMAL;
-        if (goalPerc < 0.15) {
+        if (goalPerc < 0.33) {
           color = COLOR_ALERT
         }
-        else if (goalPerc < 0.30) {
+        else if (goalPerc < 0.66) {
           color = COLOR_WARNING;
         }
         document.getElementById("goal").style.fill = color;
