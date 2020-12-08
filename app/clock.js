@@ -16,8 +16,12 @@ let secHandShadow = clockContainer.getElementById("secsShadow");
 
 settings.subscribe("clockBackgroundColor", (color) => {
   //  document.getElementById("clockBackground").gradient.colors.c1 = color;
-  document.getElementById("clockBackgroundGradient").style.fill = color;
+  document.getElementById("dialGraphic").style.fill = color;
 }, "#333333");
+settings.subscribe("dialGraphic", (value) => {
+  //  document.getElementById("clockBackground").gradient.colors.c1 = color;
+  document.getElementById("dialGraphic").href="background_"+value+".png";
+}, "gradient");
 
 settings.subscribe("clockDialHoursColor", (color) => {
   document.getElementById("clockDialHours").style.fill = color;

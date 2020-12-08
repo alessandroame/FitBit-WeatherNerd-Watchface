@@ -13,9 +13,12 @@ let COLOR_NORMAL = "gray";
 
 settings.subscribe("datumBackgroundColor", (color) => {
   document.getElementById("datumBackground").style.fill = color;
-  COLOR_NORMAL=color;
 }, "#333333");
 
+settings.subscribe("batteryColor", (color) => {
+  COLOR_NORMAL=color;
+  setBatteryLevel(battery.chargeLevel);
+}, "green");
 
 settings.subscribe("datumDayColor", (color) => {
   dayNumber.style.fill = color;

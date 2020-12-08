@@ -1,19 +1,19 @@
 
 function SettingsPage(props) {
-  let applySetting=function(keys, value) {
-    for(let i=0;i<keys.length;i++){
-      props.settingsStorage.setItem(keys[i], value );
+  let applySetting = function (keys, value) {
+    for (let i = 0; i < keys.length; i++) {
+      props.settingsStorage.setItem(keys[i], value);
     }
   };
-  let settingError=function (e){
-      let now = new Date();
-      let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
-  //    props.settingsStorage.setItem('settingLog', nowString+"->"+e);
+  let settingError = function (e) {
+    let now = new Date();
+    let nowString = now.getHours() + ':' + now.getMinutes() + '.' + now.getSeconds();
+    //    props.settingsStorage.setItem('settingLog', nowString+"->"+e);
   }
-  let renderLines=function(lines){
-    let res="";
-    for (let i=0; i<lines;i++){
-      res+= (<Text>{lines[i]}</Text>);
+  let renderLines = function (lines) {
+    let res = "";
+    for (let i = 0; i < lines; i++) {
+      res += (<Text>{lines[i]}</Text>);
     }
     return res;
   }
@@ -29,7 +29,7 @@ function SettingsPage(props) {
             try {
               props.settingsStorage.setItem('elementToUpdate', value.values[0].value);
               let v = props.settingsStorage.getItem(value.values[0].value);
-             // if (v != "all") 
+              // if (v != "all") 
               props.settingsStorage.setItem('elementColor', v);
             } catch (e) {
               settingError(e);
@@ -37,21 +37,23 @@ function SettingsPage(props) {
           }}
           settingsKey="_elementToUpdate"
           options={[
-            { name: "Widgets data", value: "widgets" },
-            { name: "Seconds hand, hours marker, widgets", value: "dm,hm,w" },
-            { name: "All backgrounds", value: "allBackgroundColor" },
-            { name: "All widgets background", value: "widgetBackgroundColor" },
+            { name: "Widgets data", value: "datumDayColor,fitDataColor,weatherWidgetColor" },
+            { name: "Seconds hand, hours marker, widgets", value: "datumDayColor,secondsHandColor,clockDialHoursColor,fitDataColor,weatherWidgetColor" },
+            { name: "All backgrounds", value: "clockBackgroundColor,datumBackgroundColor,fitWidgetBackgroundColor,weatherBackgroundColor" },
+            { name: "All widgets background", value: "datumBackgroundColor,fitWidgetBackgroundColor,weatherBackgroundColor" },
             { name: "Clock background", value: "clockBackgroundColor" },
             { name: "Weather widget background", value: "weatherBackgroundColor" },
-            { name: "Fit widget background", value: "fitWidgetBackgroundColor" },            
+            { name: "Temperature", value: "weatherWidgetColor" },
+            { name: "Fit widget background", value: "fitWidgetBackgroundColor" },
+            { name: "Fit data", value: "fitDataColor" },
+            { name: "All progress", value: "goalColor,batteryColor" },
+            { name: "Goal progress", value: "goalColor" },
+            { name: "Battery progress", value: "batteryColor" },
             { name: "Datum background", value: "datumBackgroundColor" },
             { name: "Day of week", value: "datumDOWColor" },
             { name: "Day number", value: "datumDayColor" },
             { name: "Hours marker", value: "clockDialHoursColor" },
             { name: "Minutes marker", value: "clockDialMinutesColor" },
-            { name: "Battery", value: "batteryColor" },
-            { name: "Fit data", value: "fitDataColor" },
-            { name: "Temperature", value: "weatherWidgetColor" },
             { name: "Seconds hand", value: "secondsHandColor" },
             { name: "Minutes hand", value: "minutesHandColor" },
             { name: "Hours hand", value: "hoursHandColor" },
@@ -62,27 +64,10 @@ function SettingsPage(props) {
           settingsKey="elementColor"
           onSelection={(value) => {
             try {
-              let elementToUpdate=props.settingsStorage.getItem("elementToUpdate");
-              props.settingsStorage.setItem("test",elementToUpdate);
-
-              if (elementToUpdate=="widgets"){
-                applySetting(["datumDayColor","fitDataColor","weatherWidgetColor"],value);
-              }
-              else if (elementToUpdate=="dm,hm,w"){
-                applySetting(["datumDayColor","secondsHandColor","clockDialHoursColor", "fitDataColor","weatherWidgetColor"],value);
-              }
-              else if (elementToUpdate=="allBackgroundColor"){
-                applySetting(["clockBackgroundColor","datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor"],value);
-              }
-              else if (elementToUpdate=="widgetBackgroundColor"){
-                applySetting(["datumBackgroundColor","fitWidgetBackgroundColor","weatherBackgroundColor"],value);
-              }
-              else
-              {
-                props.settingsStorage.setItem(
-                  elementToUpdate
-                  , value );
-              }
+              let elementToUpdate = props.settingsStorage.getItem("elementToUpdate");
+              //props.settingsStorage.setItem("test", elementToUpdate);
+              applySetting(elementToUpdate.split(","), value);
+              //props.settingsStorage.setItem(elementToUpdate, value);
             } catch (e) {
               settingError(e);
             }
@@ -102,15 +87,15 @@ function SettingsPage(props) {
             { color: 'aqua' },
             { color: 'cyan' },
             { color: 'lightcyan' },
-            
-            
+
+
             { color: 'purple' },
             { color: 'blueviolet' },
             { color: 'deeppink' },
             { color: 'fuchsia' },
             { color: 'lightpink' },
             { color: 'lavender' },
-            
+
             { color: 'green' },
             { color: 'limegreen' },
             { color: 'lime' },
@@ -124,7 +109,7 @@ function SettingsPage(props) {
             { color: 'darkorange' },
             { color: 'orange' },
             { color: 'yellow' },
-            
+
             { color: 'darksalmon' },
             { color: 'lightsalmon' },
             { color: 'darkgoldenrod' },
@@ -134,6 +119,24 @@ function SettingsPage(props) {
 
           ]}
         />
+
+        <Select
+          label={`Dial graphic`}
+          onSelection={(value) => {
+            try {
+              props.settingsStorage.setItem('dialGraphic', value.values[0].value);
+            } catch (e) {
+              settingError(e);
+            }
+          }}
+          settingsKey="_dialGraphic"
+          options={[
+            { name: "Gradient", value: "gradient" },
+            { name: "Small hexagon pattern", value: "small_hex" },
+            { name: "Big hexagon pattern", value: "big_hex" }
+          ]}
+        />
+
       </Section>
 
       <Section
@@ -247,9 +250,9 @@ function SettingsPage(props) {
       <Section
         title={<Text bold align="center">Last setting log</Text>}
       >
-        {renderLines([111111,222222,333333333,444444444])}
+        {renderLines([111111, 222222, 333333333, 444444444])}
         {renderLines(props.settingsStorage.getItem("settingLog").split("\n"))}
-          </Section>
+      </Section>
     </Page>
 
   );

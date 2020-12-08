@@ -51,10 +51,12 @@ let COLOR_NORMAL = "gray";
 settings.subscribe("fitWidgetBackgroundColor",(value)=>{
     if (!value) value="gray";
     widget.getElementById("background").style.fill=value;
+});
+settings.subscribe("goalColor",(value)=>{
     widget.getElementById("goal").style.fill=value;
     document.getElementById("goalRail").style.fill=value;
     COLOR_NORMAL=value;
-});
+},"green");
 
 export function next() {
     setSensor(sensorIndex + 1);

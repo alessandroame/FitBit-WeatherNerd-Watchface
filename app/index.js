@@ -95,7 +95,7 @@ function showClock() {
 // }
 
 function setAOD(enabled) {
-    let elements = ["clockBackgroundGradient", "secs", "secsShadow", 
+    let elements = ["dialGraphic", "secs", "secsShadow", 
     "currentWeather", "fitWidget", "clockDialMinutes", "clockDialHours","datum",
     "alerts","connectionWidget",
     //"batteryWidget",
