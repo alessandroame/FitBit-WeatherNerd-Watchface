@@ -67,7 +67,7 @@ function SettingsPage(props) {
               let elementToUpdate = props.settingsStorage.getItem("elementToUpdate");
               //props.settingsStorage.setItem("test", elementToUpdate);
               applySetting(elementToUpdate.split(","), value);
-              //props.settingsStorage.setItem(elementToUpdate, value);
+              props.settingsStorage.setItem(elementToUpdate, value);
             } catch (e) {
               settingError(e);
             }

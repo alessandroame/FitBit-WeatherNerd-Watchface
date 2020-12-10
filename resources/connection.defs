@@ -1,7 +1,8 @@
 <svg>
     <defs>
         <symbol id="connection">
-            <image id="bt" href="icons/bt.png" x="-16" y="-16" width="32" height="32" fill="gray" layer="9999" pointer-events="visible"/>
+            <image id="bt" href="icons/bt.png" x="-16" y="-16" width="32" height="32" fill="gray" layer="9999"/>
+			<circle id="btTouch" cx="0" cy="0" r="34" opacity="0" pointer-events="all" layer="999"/>
         </symbol>
     </defs>
 </svg>

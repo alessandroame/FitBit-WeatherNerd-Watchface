@@ -17,6 +17,8 @@
 			
             <image href="widget_shadow.png" x="-55" y="-55" width="110" height="110" fill="black" opacity="0.7" />
 
+			<circle id="fitWidgetTouch" cx="0" cy="0" r="55" opacity="0" pointer-events="all" layer="999"/>
+
 		</symbol>
 	</defs>
 </svg>

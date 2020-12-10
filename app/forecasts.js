@@ -8,7 +8,7 @@ import * as settings from "./settings"
 settings.subscribe("clockBackgroundColor", (color) => {
     document.getElementById("forecastBackground").gradient.colors.c1 = color;
 }, "#333333");
-let unitSystem="si";
+let unitSystem = "si";
 settings.subscribe("unitSystem", (value) => {
     unitSystem = value;
     redraw();
@@ -42,19 +42,22 @@ export function init(closeCallback) {
 export function show() {
     //console.error(new Date());
     //console.error(meteo.lastUpdate);
-    var diff=new Date()-meteo.lastUpdate;
-    var h=Math.floor(diff/3600000);
-    var m=Math.floor(diff/60000);
-    var s=Math.floor(diff/1000);
-    let msg="";
-    if (h>1){
-        msg+=h+" hour"+(m==1?"":"s")+" "+m+" minute"+(m==1?"":"s")+" ago";
-    }if (m>0){
-        msg+=m+" min"+(m==1?"":"s")+" ago";
+    if (meteo?.lastUpdate) {
+        var diff = new Date() - meteo.lastUpdate;
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor(diff / 60000);
+        var s = Math.floor(diff / 1000);
+        let msg = "";
+        if (h > 1) {
+            msg += h + " hour" + (m == 1 ? "" : "s") + " " + m + " minute" + (m == 1 ? "" : "s") + " ago";
+        } if (m > 0) {
+            msg += m + " min" + (m == 1 ? "" : "s") + " ago";
+        } else {
+            msg += s + " sec" + (s == 1 ? "" : "s") + " ago";
+        }
     }else{
-        msg+=s+" sec"+(s==1?"":"s")+" ago";
+        msg="You need a valid apikey.";
     }
-
     document.getElementById("lastUpdate").textContent = msg;
     //document.getElementById("lastUpdate").textContent = zeroPad(meteo.lastUpdate.getHours()) + ":" + zeroPad(meteo.lastUpdate.getMinutes());
 
@@ -73,20 +76,21 @@ export function setData(data) {
 }
 
 function zeroPad(s) {
-    let res=s+"";
+    let res = s + "";
     if (res.length < 2) res = "0" + res;
     return res;
 }
 
-function ellipsis(s,l){
-    if (s.length>l) s=s.substr(0,l-3)+"...";
+function ellipsis(s, l) {
+    if (s.length > l) s = s.substr(0, l - 3) + "...";
     return s;
 }
 
 function redraw() {
     try {
-        document.getElementById("location_main").textContent = ellipsis(meteo.city.main,16);
-        document.getElementById("location_sub").textContent = ellipsis(meteo.city.sub,20);
+        if (meteo==null) return;
+        document.getElementById("location_main").textContent = ellipsis(meteo?.city?.main ?? "--", 16);
+        document.getElementById("location_sub").textContent = ellipsis(meteo?.city?.sub ?? "--", 20);
 
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
@@ -105,12 +109,11 @@ function redraw() {
             let icon = mainContainer.getElementById("icon");
             icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
             let temp = mainContainer.getElementById("temp");
-            let t=forecasts[i].temp;
-            let tu="°";
-            if (unitSystem!="si") 
-            { 
-                t=t * 9/5 + 32;
-                tu="F";
+            let t = forecasts[i].temp;
+            let tu = "°";
+            if (unitSystem != "si") {
+                t = t * 9 / 5 + 32;
+                tu = "F";
             }
             temp.textContent = parseTemp(t) + tu;
         }

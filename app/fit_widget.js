@@ -29,7 +29,9 @@ let sensorUnits = ["BPM", "Steps", "Floors", "Cal"];
 let sensorIcons = ["hr", "stp", "ele", "cal"];
 
 let hrm = new HeartRateSensor();
-
+export function init(){
+    console.log("fitwidget init");
+}
 setSensor(0);
 display.addEventListener("change", () => {
     if (display.on) {
@@ -39,11 +41,14 @@ display.addEventListener("change", () => {
         stopInterval();
     }
 });
+document.getElementById("fitWidgetTouch").onclick=function(){
+    next();
+}
 
 settings.subscribe("fitDataColor",(value)=>{
     widget.style.fill=value;
     //widget.getElementById("goal").style.fill=value;
-});
+},"white");
 
 const COLOR_WARNING = "yellow";
 const COLOR_ALERT = "red";

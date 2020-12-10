@@ -21,10 +21,12 @@ export function warning(msg) {
 export function error(msg) {
     log(LOGLEVEL_ERROR, msg)
     console.error(msg);
+    console.trace();
 }
 export function fatal(msg) {
     log(LOGLEVEL_FATAL, msg)
     console.error(msg);
+    console.trace();
 }
 
 function log(level, msg) {

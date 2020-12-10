@@ -16,11 +16,11 @@ let widget = document.getElementById("bt");
 
 
 let state=mediator.STATE_CONNECTED;
-widget.onclick = function () {
-    //    setState(state!=STATE_CONNECTED?STATE_ERROR:STATE_DISCONNECTED);
-    state=state != mediator.STATE_CONNECTED ? mediator.STATE_CONNECTED : mediator.STATE_DISCONNECTED
-    onConnectionStateChange(state);
-}
+// widget.onclick = function () {
+//     //    setState(state!=STATE_CONNECTED?STATE_ERROR:STATE_DISCONNECTED);
+//     /*state=state != mediator.STATE_CONNECTED ? mediator.STATE_CONNECTED : mediator.STATE_DISCONNECTED
+//     onConnectionStateChange(state);*/
+// }
 mediator.addConnectionStateListener(onConnectionStateChange);
 
 export function init() {

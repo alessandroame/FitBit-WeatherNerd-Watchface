@@ -9,6 +9,10 @@ export function init() {
     notify(evt);
   });
 }
+// mediator.subscribe("setting_changed",(data)=>{
+//   settingsStorage.setItem(data.key, data.value);
+//   console.warn("applying default value for "+data.key+"="+data.value)
+// });
 
 export function set(key, value) {
   settingsStorage.setItem(key, value);

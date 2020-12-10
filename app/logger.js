@@ -7,17 +7,15 @@ const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let version="v0.0.100";
+let version="\nv0.0.200\n";
 let cache = "STARTED "+version;
 export let minLevel = LOGLEVEL_DEBUG;
-settings.subscribe("logLevel",(v)=>{minLevel=v;});
-
+settings.subscribe("logLevel",(v)=>{minLevel=v;},LOGLEVEL_WARNING);
 
 mediator.subscribe("logEntry",(entry)=>{
     //console.error(JSON.stringify(entry));
     log(entry.level,entry.msg,true);
 });
-
 
 export function debug(msg) {
     console.log(msg);

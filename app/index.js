@@ -17,7 +17,7 @@ import * as settings from "./settings"
 //import * as battery from "./battery"
 import * as meteo from "./meteo"
 import * as meteo_alerts from "./meteo_alerts"
-import * as touch_areas from "./touch_areas"
+//import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
 import * as logger from "./logger"
 import * as mediator from "../common/mediator"
@@ -39,15 +39,26 @@ settings.init();
 //battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();
+fitWidget.init();
 meteo.init(onMeteoDataAvailable);
-touch_areas.init(() => {
+/*touch_areas.init(() => {
     logger.info("meteo requested");
     mediator.publish("requestGetCurrentPosition", null);
     vibration.start("bump");
     meteo_alerts.test();
 }, log_viewer.showLogger, showWeather, fitWidget.prev, fitWidget.next);
+*/
 
+document.getElementById("btTouch").onclick=()=>{
+    log_viewer.showLogger();
+}
 
+document.getElementById("datumTouch").onclick=()=>{
+    logger.info("meteo requested");
+    mediator.publish("requestGetCurrentPosition", null);
+    vibration.start("bump");
+    meteo_alerts.test();
+}
 showClock();
 
 // settings.subscribe("datumDayColor", (color) => {
@@ -126,29 +137,17 @@ function showMenu() {
         });
     });*/
 }
-
-function showWeather() {
-    /*    document.location.assign("forecasts.view").then(() => {
-            console.log("forecasts.view");
-            forecasts.init();
-        });*/
+document.getElementById("weatherWidgetTouch").onclick=function(){
     forecasts.show();
     clock.hide();
     startClockDispayTimeout();
 }
+
 function showFitdata() {
     vibration.start("bump");
     mediator.publish("requestGetCurrentPosition");
     mediator.publish("requestMeteoUpdate", null);
-    //ping.ping();
-    //     mediator.publish("requestGetCurrentPosition");
-    // vibration.start("bump");
-    //connection.setState(1);
 }
-//ping.ping();
-//vibration.start("bump");
-//console.log(settings.get("APIKey","fottiti"));
-//connection.setState(0);
 
 
 let clockDisplayTimeout = null;

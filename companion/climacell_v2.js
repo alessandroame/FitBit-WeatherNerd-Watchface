@@ -1,16 +1,26 @@
 import * as settings from "./settings";
 import * as logger from "./logger";
 import { locale } from "user-settings";
-let apiKey = null;
-settings.subscribe("APIKey", (key) => { apiKey = key; });
+let apiKeys = null;
+let keyIndex=0;
+settings.subscribe("APIKey", (keys) => { 
+    apiKeys= keys.split(","); 
+});
 
+function getApiKey(){
+    if (keyIndex>=apiKeys.length) keyIndex=0;
+    let res= apiKeys[keyIndex];
+    //console.error(keyIndex,res);
+    keyIndex++;
+    return res;
+}
 export function update(pos) {
     return new Promise((resolve, reject) => {
         if (!pos || !pos.coords) {
             logger.error("climacell -> position not available");
             return;
         }
-        if (!apiKey) {
+        if (!apiKeys || apiKeys.length==0) {
             logger.error("apikey not available");
             return;
         }
@@ -113,7 +123,7 @@ function getPresent(lat, lon) {
     return new Promise((resolve, reject) => {
         try {
             var url = "https://api.climacell.co/v3/weather/realtime?" +
-                "apikey=" + apiKey +
+                "apikey=" + getApiKey() +
                 "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
                 "&lon=" + lon +
@@ -139,7 +149,7 @@ function getPresent(lat, lon) {
                     logger.error("getPresent ex: " + err);
                 });
         } catch (e) {
-            logger.error("getPresent exception: " + err);
+            logger.error("getPresent exception: " + e);
             reject(e);
         }
     });
@@ -149,7 +159,7 @@ function getNowcast(lat, lon) {
     return new Promise((resolve, reject) => {
         try {
             var url = "https://api.climacell.co/v3/weather/nowcast?" +
-                "apikey=" + apiKey +
+                "apikey=" + getApiKey() +
                 "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
                 "&lon=" + lon +
@@ -184,7 +194,7 @@ function getNowcast(lat, lon) {
                 });
             //console.error("getNowcast resolved");
         } catch (e) {
-            logger.error("getNowcast exception: " + err);
+            logger.error("getNowcast exception: " + e);
             reject(e);
         }
     });
@@ -224,7 +234,7 @@ function getForecast(startTime, endTime, lat, lon) {
     return new Promise((resolve, reject) => {
         try {
             var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
-                "apikey=" + apiKey +
+                "apikey=" + getApiKey() +
                 "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
                 "&lon=" + lon +
@@ -260,7 +270,7 @@ function getForecast(startTime, endTime, lat, lon) {
                 });
 //            console.error("Forecast resolved");
         } catch (e) {
-            logger.error("getForecast exception: " + err);
+            logger.error("getForecast exception: " + e);
             reject(e);
         }
     });

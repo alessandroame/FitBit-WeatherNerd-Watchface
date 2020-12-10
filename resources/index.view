@@ -7,5 +7,5 @@
 		<use href="#battery" id="batteryWidget" />
 	</g>
 	 <use href="#hourlyForecasts" id="hourlyForecasts" />
-	<use href="#touchAreas" layer="900" />
+	<!-- <use href="#touchAreas" layer="900" /> -->
 </svg>

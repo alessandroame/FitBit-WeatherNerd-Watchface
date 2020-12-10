@@ -21,6 +21,9 @@
 				30
 			</text>
 			<image href="widget_shadow.png" x="-34" y="-34" width="68" height="68" fill="black" opacity="0.8" />
+
+			<circle id="datumTouch" cx="0" cy="0" r="34" opacity="0" pointer-events="all" layer="999"/>
+
 		</symbol>
 	</defs>
 </svg>
