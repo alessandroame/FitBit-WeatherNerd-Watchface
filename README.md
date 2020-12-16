@@ -25,6 +25,3 @@ Installation from smartphone [download here](https://gallery.fitbit.com/details/
 Refs:
 - Weather icons: https://developer.climacell.co/v3/docs/weather-codes
 
-## TODOs:
-- https://developer.climacell.co/v3/docs/road
-- check why appeans double mediator.localpublish (is only on the simulator?)
