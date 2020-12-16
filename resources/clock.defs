@@ -52,17 +52,17 @@
 			</g>
 			<g id="minsShadow" transform="translate(50%+3,50%+4)" fill="black" opacity="0.5">
 				<circle cx="0" cy="0" r="8" />
-				<arc x="0" y="-24" width="32" height="32" arc-width="3" start-angle="250" sweep-angle="72" />
-				<arc x="-32" y="-24" width="32" height="32" arc-width="3" start-angle="42" sweep-angle="70" />
-				<line x1="0" y1="-37%" x2="-7" y2="-20" stroke-width="3" />
-				<line x1="0" y1="-37%" x2="+7" y2="-20" stroke-width="3" />
+				<arc x="0" y="-24" width="32" height="32" arc-width="2" start-angle="250" sweep-angle="63" />
+				<arc x="-32" y="-24" width="32" height="32" arc-width="2" start-angle="50" sweep-angle="70" />
+				<line x1="0" y1="-37%" x2="-5" y2="-18" stroke-width="2"/>
+				<line x1="0" y1="-37%" x2="+5" y2="-18" stroke-width="2"/>
 			</g>
 			<g id="mins" transform="translate(50%,50%)" fill="white">
 				<circle cx="0" cy="0" r="8" />
-				<arc x="0" y="-24" width="32" height="32" arc-width="2" start-angle="250" sweep-angle="72" />
-				<arc x="-32" y="-24" width="32" height="32" arc-width="2" start-angle="42" sweep-angle="70" />
-				<line x1="0" y1="-37%" x2="-7" y2="-20" stroke-width="2" />
-				<line x1="0" y1="-37%" x2="+7" y2="-20" stroke-width="2" />
+				<arc x="0" y="-24" width="32" height="32" arc-width="2" start-angle="250" sweep-angle="63" />
+				<arc x="-32" y="-24" width="32" height="32" arc-width="2" start-angle="50" sweep-angle="70" />
+				<line x1="0" y1="-37%" x2="-5" y2="-18" stroke-width="2"/>
+				<line x1="0" y1="-37%" x2="+5" y2="-18" stroke-width="2"/>
 			</g>
 			<g id="secsShadow" transform="translate(50%+4,50%+5)" fill="black" opacity="0.5">
 				<circle cx="0" cy="0" r="6" />
