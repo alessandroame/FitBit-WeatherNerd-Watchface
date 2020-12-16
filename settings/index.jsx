@@ -37,21 +37,26 @@ function SettingsPage(props) {
           }}
           settingsKey="_elementToUpdate"
           options={[
-            { name: "Widgets data", value: "datumDayColor,fitDataColor,weatherWidgetColor" },
-            { name: "Seconds hand, hours marker, widgets", value: "datumDayColor,secondsHandColor,clockDialHoursColor,fitDataColor,weatherWidgetColor" },
+            { name: "All Widgets data", value: "datumDayColor,fitDataColor,weatherWidgetColor" },
             { name: "All backgrounds", value: "clockBackgroundColor,datumBackgroundColor,fitWidgetBackgroundColor,weatherBackgroundColor" },
             { name: "All widgets background", value: "datumBackgroundColor,fitWidgetBackgroundColor,weatherBackgroundColor" },
+            { name: "All progress", value: "goalColor,batteryColor" },
+            { name: "Seconds hand, hours marker, widgets", value: "datumDayColor,secondsHandColor,clockDialHoursColor,fitDataColor,weatherWidgetColor" },
+
             { name: "Clock background", value: "clockBackgroundColor" },
             { name: "Weather widget background", value: "weatherBackgroundColor" },
-            { name: "Temperature", value: "weatherWidgetColor" },
             { name: "Fit widget background", value: "fitWidgetBackgroundColor" },
+
+            { name: "Temperature", value: "weatherWidgetColor" },
             { name: "Fit data", value: "fitDataColor" },
-            { name: "All progress", value: "goalColor,batteryColor" },
+
             { name: "Goal progress", value: "goalColor" },
             { name: "Battery progress", value: "batteryColor" },
             { name: "Datum background", value: "datumBackgroundColor" },
+
             { name: "Day of week", value: "datumDOWColor" },
             { name: "Day number", value: "datumDayColor" },
+
             { name: "Hours marker", value: "clockDialHoursColor" },
             { name: "Minutes marker", value: "clockDialMinutesColor" },
             { name: "Seconds hand", value: "secondsHandColor" },
