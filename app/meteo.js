@@ -42,7 +42,7 @@ function fetchMeteo() {
     //console.log(JSON.stringify(meteo));
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
-    var offset=Math.floor(angle/360*60);
+    let offset=Math.floor(angle/360*60);
     for (let i=0;i<meteoData.data.length;i++){
         let d=meteoData.data[i];
         let index=i+offset;

@@ -16,7 +16,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity) {
     let precUI = document.getElementById("p_" + index);
     if (precProb > 0) {
         precUI.style.fill = "red";
-        precUI.style.opacity = 0.3 + 0.7 * precProb;
+        precUI.style.opacity =  Math.min(1,0.3 + 0.7 * precProb);
        // console.log(precUI.style.opacity,precProb);  
         precUI.arcWidth = 2 + 18* precQuantity;
         precUI.style.display = "inline";
@@ -30,7 +30,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity) {
     let ice = document.getElementById("i_" + index);
     if (iceProb > 0) {
         ice.style.fill = "cyan";
-        ice.style.opacity = 0.3 + 0.7 *iceProb;
+        ice.style.opacity = Math.min(1,0.3 + 0.7 *iceProb);
         ice.style.display = "inline";
     } else {
         ice.style.fill = "darkgray";

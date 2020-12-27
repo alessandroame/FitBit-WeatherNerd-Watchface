@@ -3,10 +3,10 @@ import { outbox } from "file-transfer";
 import { encode } from 'cbor';
 import * as mediator from "../common/mediator";
 import * as settings from "./settings";
-import * as climacell from "./climacell";
+//import * as climacell from "./climacell";
 import * as climacell_v2 from "./climacell_v2";
 import * as geolocator from "./geolocator";
-import * as messaging from "messaging";
+//import * as messaging from "messaging";
 import * as logger from "./logger";
 
 let wakeInterval = 5 * 60 * 1000;
@@ -23,7 +23,7 @@ function init() {
 
     console.log("Companion code started");
     mediator.subscribe("requestMeteoUpdate", () => forceUpdate("requested from watch"));
-    mediator.subscribe("requestGetCurrentPosition", ()=>geolocator.getCurrentPosition(true));
+    mediator.subscribe("requestGetCurrentPosition", ()=> geolocator.getCurrentPosition(true));
 
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
@@ -99,7 +99,7 @@ function onMeteoAvailable(data) {
             console.log(`onMeteoAvailable Transfer of ${ft.name} successfully queued.`);
         })
         .catch((error) => {
-            logger.error(`onMeteoAvailable Failed to queue ${fn}: ${error}`);
+            logger.error(`onMeteoAvailable Failed write file: ${error}`);
         });
 }
 

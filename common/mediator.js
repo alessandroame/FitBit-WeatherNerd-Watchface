@@ -48,8 +48,8 @@ messaging.peerSocket.addEventListener("error", () => { setConnectionState(STATE_
 
 messaging.peerSocket.addEventListener("message", (evt) => {
   setConnectionState(STATE_CONNECTED);
-  //console.warn(mediatorID+" "+JSON.stringify(evt));
-  var packet = evt.data;
+  console.warn(mediatorID+" OnMessage",JSON.stringify(evt));
+  let packet = evt.data;
   if (packet.sender && packet.sender == mediatorID) {
     console.error("skipping message is from same mediator  why??");
     return;
@@ -64,12 +64,13 @@ messaging.peerSocket.addEventListener("message", (evt) => {
 });
 
 export function subscribe(topic, callback) {
+//  console.warn("mediator subscribe to " + topic);
   if (!subscriptions[topic]) subscriptions[topic] = [];
   subscriptions[topic].push(callback);
-  console.log("mediator subscribe to " + topic);
 }
 
 export function publish(topic, data) {
+//  console.warn("publish",topic,JSON.stringify(data));
   localPublish(mediatorID, topic, data);
   remotePublish(topic, data);
 }

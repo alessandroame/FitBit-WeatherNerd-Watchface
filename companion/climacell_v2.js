@@ -15,6 +15,7 @@ function getApiKey(){
     return res;
 }
 export function update(pos) {
+    console.log("Climacell -> update")
     return new Promise((resolve, reject) => {
         if (!pos || !pos.coords) {
             logger.error("climacell -> position not available");
@@ -37,7 +38,7 @@ export function update(pos) {
             getForecast(startTime, endTime, lat, lon)
         ])
             .then((values) => {
-                var res = buildData(values[0], values[1], values[2], values[3]);
+                let res = buildData(values[0], values[1], values[2], values[3]);
                 // for (let i=0;i<values[2].length;i++){
                 //     let r=values[2][i];
                 //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
@@ -91,16 +92,16 @@ function findFirst(data, d, precision) {
 
 function getCity(lat, lon) {
     return new Promise((resolve, reject) => {
-        var url = "https://nominatim.openstreetmap.org/reverse?&lat=" + lat + "&lon=" + lon + "&format=json";
+        let url = "https://nominatim.openstreetmap.org/reverse?&lat=" + lat + "&lon=" + lon + "&format=json";
         fetch(url)
             .then(function (response) {
                 response.json()
                     .then(function (data) {
                         try {
                             //console.error(JSON.stringify(data));
-                            var a = data.display_name.split(",").slice(0,2);
+                            let a = data.display_name.split(",").slice(0,2);
                             //console.error(JSON.stringify(a));
-                        var res={ 
+                        let res={ 
                             main: a[1] ,
                             sub: a[0]
                         };
@@ -122,7 +123,7 @@ function getCity(lat, lon) {
 function getPresent(lat, lon) {
     return new Promise((resolve, reject) => {
         try {
-            var url = "https://api.climacell.co/v3/weather/realtime?" +
+            let url = "https://api.climacell.co/v3/weather/realtime?" +
                 "apikey=" + getApiKey() +
                 "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
@@ -158,7 +159,7 @@ function getPresent(lat, lon) {
 function getNowcast(lat, lon) {
     return new Promise((resolve, reject) => {
         try {
-            var url = "https://api.climacell.co/v3/weather/nowcast?" +
+            let url = "https://api.climacell.co/v3/weather/nowcast?" +
                 "apikey=" + getApiKey() +
                 "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
@@ -180,8 +181,8 @@ function getNowcast(lat, lon) {
                             if (data.message) {
                                 logger.error(`getNowcast error: ${JSON.stringify(data)} `);
                             } else {
-                                var res = [];
-                                for (var i = 0; i < data.length; i++) {
+                                let res = [];
+                                for (let i = 0; i < data.length; i++) {
                                     res.push(parseWeather(data[i]));
                                 } 
                                 //res=buildTestNowcast();
@@ -202,7 +203,7 @@ function getNowcast(lat, lon) {
 
 function buildTestNowcast() {
     let res = [];
-    for (var i = 0; i < 30; i++) {
+    for (let i = 0; i < 30; i++) {
         let now = new Date();
         now.setMinutes(now.getMinutes() + 12 * i);
         res[i] = {
@@ -225,7 +226,7 @@ function buildTestNowcast() {
             }
         };
     }
-    //    for (var i=0;i<res.length;i++) console.warn(res[i].d);
+    //    for (let i=0;i<res.length;i++) console.warn(res[i].d);
     return res;
 }
 
@@ -233,7 +234,7 @@ function buildTestNowcast() {
 function getForecast(startTime, endTime, lat, lon) {
     return new Promise((resolve, reject) => {
         try {
-            var url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
+            let url = "https://api.climacell.co/v3/weather/forecast/hourly?" +
                 "apikey=" + getApiKey() +
                 "&unit_system=si"+//+ settings.get("unitSystem", locale.temperature == "C" ? "si" : "us") +
                 "&lat=" + lat +
@@ -255,8 +256,8 @@ function getForecast(startTime, endTime, lat, lon) {
                             if (data.message) {
                                 logger.error(`getForecast error: ${JSON.stringify(data)} `);
                             } else {
-                                var res = [];
-                                for (var i = 0; i < data.length; i++) {
+                                let res = [];
+                                for (let i = 0; i < data.length; i++) {
                                     res.push(parseWeather(data[i]));
                                 }
                                 resolve(res);
@@ -278,7 +279,7 @@ function getForecast(startTime, endTime, lat, lon) {
 
 function buildTestForecast() {
     let res = [];
-    for (var i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
         let now = new Date();
         now.setHours(now.getHours() + i);
         res[i] = {
@@ -303,7 +304,7 @@ function buildTestForecast() {
         console.error(res[i].d);
 
     }
-    //    for (var i=0;i<res.length;i++) console.warn(res[i].d);
+    //    for (let i=0;i<res.length;i++) console.warn(res[i].d);
     return res;
 }
 

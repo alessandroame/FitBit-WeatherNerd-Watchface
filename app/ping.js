@@ -28,7 +28,7 @@ function resetTimeout() {
 
 messaging.peerSocket.addEventListener("message", (evt) => {
   //console.trace(JSON.stringify(evt));
-  var packet = evt.data;
+  let packet = evt.data;
   if (packet.ping) {
     if (packet.pong) {
       resetTimeout();

@@ -18,16 +18,16 @@ let hourlyForecastsUI = null;
 export function init(closeCallback) {
     console.log("forecast init")
     hourlyForecastsUI = document.getElementById("hourlyForecasts");
-    var touch = document.getElementById("touch");
+    let touch = document.getElementById("touch");
     touch.layer = 999;
     touch.onclick = closeCallback;
-    for (var i = 0; i < 12; i++) {
+    for (let i = 0; i < 12; i++) {
         try {
-            var f = document.getElementById("forecast_" + i);
-            var mainContainer = f.getElementById("mainContainer");
-            var iconContainer = mainContainer.getElementById("iconContainer");
-            var tempContainer = mainContainer.getElementById("tempContainer");
-            var angle = i * 30;
+            let f = document.getElementById("forecast_" + i);
+            let mainContainer = f.getElementById("mainContainer");
+            let iconContainer = mainContainer.getElementById("iconContainer");
+            let tempContainer = mainContainer.getElementById("tempContainer");
+            let angle = i * 30;
             mainContainer.groupTransform.rotate.angle = angle;
             iconContainer.groupTransform.rotate.angle = -angle;
             tempContainer.groupTransform.rotate.angle = -angle;
@@ -43,14 +43,20 @@ export function show() {
     //console.error(new Date());
     //console.error(meteo.lastUpdate);
     if (meteo?.lastUpdate) {
-        var diff = new Date() - meteo.lastUpdate;
-        var h = Math.floor(diff / 3600000);
-        var m = Math.floor(diff / 60000);
-        var s = Math.floor(diff / 1000);
+        let now=new Date();
+        let diff = now - meteo.lastUpdate;
+        let h = Math.floor(diff / 3600000);
+        let m = Math.floor((diff-h*3600000) / 60000);
+        let s = Math.floor((diff-h*3600000-m*60000) / 1000);
+        //console.log(h,m,s);
         let msg = "";
-        if (h > 1) {
-            msg += h + " hour" + (m == 1 ? "" : "s") + " " + m + " minute" + (m == 1 ? "" : "s") + " ago";
-        } if (m > 0) {
+        if (h >= 1) {
+            msg += h + " hour" + (m == 1 ? "" : "s");
+            if (m>0){
+                 msg+= " " + m + " min" + (m == 1 ? "" : "s")
+            }
+            msg+=  " ago";
+        }else if (m > 0) {
             msg += m + " min" + (m == 1 ? "" : "s") + " ago";
         } else {
             msg += s + " sec" + (s == 1 ? "" : "s") + " ago";
@@ -105,7 +111,7 @@ function redraw() {
             let o = 0.2 + 0.8 / 12 * (12 - dist);
             mainContainer.style.opacity = o;
 
-            //var iconContainer = mainContainer.getElementById("iconContainer");
+            //let iconContainer = mainContainer.getElementById("iconContainer");
             let icon = mainContainer.getElementById("icon");
             icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
             let temp = mainContainer.getElementById("temp");
