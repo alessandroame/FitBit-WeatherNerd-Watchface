@@ -15,35 +15,38 @@ export function update(alerts) {
 function updateAlertItem(index, iceProb, precProb, precQuantity) {
     let precUI = document.getElementById("p_" + index);
     if (precProb > 0) {
-        precUI.style.fill = "red";
-        precUI.style.opacity =  Math.min(1,0.3 + 0.7 * precProb);
-       // console.log(precUI.style.opacity,precProb);  
+        let prob=(0.3 + 0.7 * precProb);
+        let hex=byteToHex(prob*255)
+        precUI.style.fill = "#"+ hex +"0000";
         precUI.arcWidth = 2 + 18* precQuantity;
         precUI.style.display = "inline";
     } else {
-        precUI.style.fill = "darkgray";
-        precUI.style.opacity = 0.2 ;
+        precUI.style.fill = "#222222";
         precUI.arcWidth = 10;
-        //precUI.style.display = "none";
     }
 
     let ice = document.getElementById("i_" + index);
     if (iceProb > 0) {
-        ice.style.fill = "cyan";
-        ice.style.opacity = Math.min(1,0.3 + 0.7 *iceProb);
+        let prob=Math.min(1,0.3 + 0.7 *iceProb);
+        let hex=byteToHex(prob*255);
+        ice.style.fill = "#00"+ hex+hex;
         ice.style.display = "inline";
     } else {
-        ice.style.fill = "darkgray";
-        ice.style.opacity = 0.2;
+        ice.style.fill = "#222222";
+        ice.style.opacity = 1;
         ice.style.display = "inline";
     }
 }
 export function test() {
     console.log("meteo_alerts test");
     for (let i = 0; i < 60; i++) {
-        //setTimeout(() => {
+        setTimeout(() => {
             let k=(i + 1) / 60;
             updateAlertItem(i,k,k,k)
-        //}, 30 * i);
+        }, 30 * i);
     }
+}
+var hexChar = ["0", "1", "2", "3", "4", "5", "6", "7","8", "9", "A", "B", "C", "D", "E", "F"];
+function byteToHex(b) {
+  return hexChar[(b >> 4) & 0x0f] + hexChar[b & 0x0f];
 }

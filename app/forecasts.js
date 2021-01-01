@@ -66,7 +66,6 @@ export function show() {
     }
     document.getElementById("lastUpdate").textContent = msg;
     //document.getElementById("lastUpdate").textContent = zeroPad(meteo.lastUpdate.getHours()) + ":" + zeroPad(meteo.lastUpdate.getMinutes());
-
     hourlyForecastsUI.style.display = "inline";
 }
 

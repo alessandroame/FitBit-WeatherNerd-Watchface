@@ -6,7 +6,7 @@ import * as settings from "./settings";
 
 function memStats(desc) {
     let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
-    console.log(msg);
+    logger.debug(msg);
     return msg;
 }
 
