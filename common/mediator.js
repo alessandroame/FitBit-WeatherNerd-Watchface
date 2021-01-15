@@ -48,7 +48,7 @@ messaging.peerSocket.addEventListener("error", () => { setConnectionState(STATE_
 
 messaging.peerSocket.addEventListener("message", (evt) => {
   setConnectionState(STATE_CONNECTED);
-  console.warn(mediatorID+" OnMessage",JSON.stringify(evt));
+//  console.warn(mediatorID+" OnMessage",JSON.stringify(evt));
   let packet = evt.data;
   if (packet.sender && packet.sender == mediatorID) {
     console.error("skipping message is from same mediator  why??");

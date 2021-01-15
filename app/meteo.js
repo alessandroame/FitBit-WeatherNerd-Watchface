@@ -45,26 +45,25 @@ function fetchMeteo() {
     let offset=Math.floor(angle/360*60);
     for (let i=0;i<meteoData.data.length;i++){
         let d=meteoData.data[i];
+        //console.warn(JSON.stringify(d));
         let index=i+offset;
         if (index>59) index=index-60;
         alerts[index]={
             precipitation: {
-                probability: normalizeValue(d.p.p,0,100),
-                quantity: normalizeValue(d.p.q, 0, 10)
+                probability: normalizeValue(d.pp,0,100),
+                quantity: normalizeValue(d.pi, 0, 10)
             },
             ice: {
-                probability: d.t.r < 0 ? d.t.r/(-2): 0,
-                quantity: d.t.r > 0 ? 0 : normalizeValue(d.t.r * -1, 0, 5)
+                probability: d.t < 0 ? d.t/(-2): 0,
+                quantity: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
             }
         }
         if (i%5==0){
             let forecastIndex=Math.floor(index/5);
             //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
             forecasts[forecastIndex] = {
-                icon: d.w.i,
-                temp: d.t.r,
-                tempPerc: d.t.p,
-                tempUnits: d.t.u
+                icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
+                temp: d.t,
             };
         }
         //console.log(d.d+" - "+d.p.q+" "+d.p.p);
@@ -81,6 +80,44 @@ memStats(9999);
         sunrise: meteoData.sr
     });
 }
+
+
+let weatherIcons={
+	_1000: "clear",
+	_1001: "cloudy",
+	_1100: "mostly_clear",
+	_1101: "partly_cloudy",
+	_1102: "mostly_cloudy",
+	_2000: "fog",
+	_2100: "fog_light",
+	_4000: "drizzle",
+	_4001: "rain",
+	_4200: "rain_light",
+	_4201: "rain_heavy",
+	_5000: "snow",
+	_5001: "flurries",
+	_5100: "snow_light",
+	_5101: "snow_heavy",
+	_6000: "freezing_drizzle",
+	_6001: "freezing_rain",
+	_6200: "freezing_rain_light",
+	_6201: "freezing_rain_heavy",
+	_7000: "ice_pellets",
+	_7101: "ice_pellets_heavy",
+	_7102: "ice_pellets_light",
+	_8000: "tstorm"
+}
+let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];
+    
+function iconName(code, dt,sr,ss) {
+    let isDay = (dt > sr) && (dt < ss);
+    let res = weatherIcons["_"+code];
+    let i = dayNightIcons.indexOf(res);
+    if (i != -1) res += (isDay ? "_day" : "_night");
+    //console.warn("-----------",code,dt,sr,ss,res,isDay);
+    return res;
+}
+
 
 function normalizeValue(value, min, max) {
     let v = value - min;

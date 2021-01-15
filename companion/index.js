@@ -3,8 +3,7 @@ import { outbox } from "file-transfer";
 import { encode } from 'cbor';
 import * as mediator from "../common/mediator";
 import * as settings from "./settings";
-//import * as climacell from "./climacell";
-import * as climacell_v2 from "./climacell_v2";
+import * as climacell from "./climacell_v4";
 import * as geolocator from "./geolocator";
 //import * as messaging from "messaging";
 import * as logger from "./logger";
@@ -18,7 +17,6 @@ init();
 function init() {
     settings.init();  
 
-    //climacell.init(onMeteoAvailable);
     geolocator.init(onPositionChanged);
 
     console.log("Companion code started");
@@ -87,8 +85,7 @@ function updateMeteo(reason) {
 
 function forceUpdate(reason){
     logger.warning("udpate: "+reason);
-    climacell_v2.update(currentPosition).then(onMeteoAvailable);
-    //climacell.update(reason);
+    climacell.update(currentPosition).then(onMeteoAvailable);
 }
 
 function onMeteoAvailable(data) {

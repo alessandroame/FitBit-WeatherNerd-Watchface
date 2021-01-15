@@ -24,6 +24,8 @@ function updateAlertItem(index, iceProb, precProb, precQuantity) {
         precUI.style.fill = "#222222";
         precUI.arcWidth = 10;
     }
+    /*document.getElementById("pa_" + index).to=precUI.style.fill;
+    precUI.animate("enable");*/
 
     let ice = document.getElementById("i_" + index);
     if (iceProb > 0) {
@@ -36,6 +38,8 @@ function updateAlertItem(index, iceProb, precProb, precQuantity) {
         ice.style.opacity = 1;
         ice.style.display = "inline";
     }
+/*    document.getElementById("ia_" + index).to=ice.style.fill;
+    ice.animate("enable");*/
 }
 export function test() {
     console.log("meteo_alerts test");
@@ -43,7 +47,7 @@ export function test() {
         setTimeout(() => {
             let k=(i + 1) / 60;
             updateAlertItem(i,k,k,k)
-        }, 30 * i);
+        }, 28 * i);
     }
 }
 var hexChar = ["0", "1", "2", "3", "4", "5", "6", "7","8", "9", "A", "B", "C", "D", "E", "F"];
