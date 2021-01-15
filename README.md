@@ -2,7 +2,7 @@
 
 Fitbit watch face with forcast alerts using forecast and nowcast service provided by : [Climacell™](https://www.climacell.co/weather-api/)	
 
-To obtain a free APIkey [signup here](https://developer.climacell.co/sign-up)
+To obtain a free APIkey [signup here]( https://www.climacell.co/pricing/)
 
 Installation from smartphone [download here](https://gallery.fitbit.com/details/f660df50-48c1-4960-8d74-063b0a657add)
 
