@@ -33,12 +33,11 @@ export function update(pos) {
         let lon = pos.coords.longitude;
         Promise.all([
             getCity(lat, lon),
-            getNowcast(lat, lon),
             getForecast(lat, lon),
             getSunTimes(lat,lon)
         ])
             .then((values) => {
-                let res = buildData(values[0], values[1], values[2],values[3]);
+                let res = buildData(values[0], values[1][0], values[1][1],values[2]);
                 // for (let i=0;i<values[2].length;i++){
                 //     let r=values[2][i];
                 //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
@@ -181,43 +180,6 @@ function getSunTimes(lat, lon) {
         }
     });
 }
-function getNowcast(lat, lon) {
-    return new Promise((resolve, reject) => {
-        try {
-            let url = getClimacellUrl(lat,lon,"weatherCode,precipitationIntensity,precipitationProbability,temperature","5m");
-            console.log("nowcast update " + url);
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/JSON"
-                }
-            })
-                .then(function (res) {
-                    //console.log(`res code: ${res.status} ${res.statusText}  `);
-                    res.json()
-                        .then(response => {
-                            if (response.message) {
-                                logger.error(`getNowcast error: ${JSON.stringify(response)} `);
-                            } else {
-                                let data=response.data.timelines[0].intervals;
-                                let res = [];
-                                for (let i = 0; i < data.length; i++) {
-                                    res.push(parseWeather(data[i]));
-                                } 
-                                resolve(res);
-                            }
-                        });
-                })
-                .catch(function (err) {
-                    logger.error("getNowcast ex: " + err);
-                });
-            //console.error("getNowcast resolved");
-        } catch (e) {
-            logger.error("getNowcast exception: " + e);
-            reject(e);
-        }
-    });
-}
 
 function getForecast(lat, lon) {
     return new Promise((resolve, reject) => {
@@ -225,7 +187,7 @@ function getForecast(lat, lon) {
             let startTime=new Date();
             let endTime=new Date();
             endTime.setHours(startTime.getHours()+12);
-            let url = getClimacellUrl(lat,lon,"weatherCode,precipitationIntensity,precipitationProbability,temperature","1h",startTime,endTime);
+            let url = getClimacellUrl(lat,lon,"weatherCode,precipitationIntensity,precipitationProbability,temperature","5m,1h",startTime,endTime);
             console.log("climacell update " + url);
             fetch(url, {
                 method: "GET",
@@ -240,10 +202,16 @@ function getForecast(lat, lon) {
                             if (response.message) {
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
                             } else {
+                                let res = [[],[]];
+                                //nowcast
                                 let data=response.data.timelines[0].intervals;
-                                let res = [];
                                 for (let i = 0; i < data.length; i++) {
-                                    res.push(parseWeather(data[i]));
+                                    res[0].push(parseWeather(data[i]));
+                                }
+                                //forecast
+                                data=response.data.timelines[1].intervals;
+                                for (let i = 0; i < data.length; i++) {
+                                    res[1].push(parseWeather(data[i]));
                                 }
                                 resolve(res);
                             }
