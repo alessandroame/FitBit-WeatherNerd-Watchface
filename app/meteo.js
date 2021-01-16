@@ -4,7 +4,33 @@ import { vibration } from "haptics"
 import * as logger from "./logger"
 import * as geom from '../common/geom'
 import { memory } from "system";
-
+import * as settings from "./settings"
+let weatherIcons={
+	_1000: "clear",
+	_1001: "cloudy",
+	_1100: "mostly_clear",
+	_1101: "partly_cloudy",
+	_1102: "mostly_cloudy",
+	_2000: "fog",
+	_2100: "fog_light",
+	_4000: "drizzle",
+	_4001: "rain",
+	_4200: "rain_light",
+	_4201: "rain_heavy",
+	_5000: "snow",
+	_5001: "flurries",
+	_5100: "snow_light",
+	_5101: "snow_heavy",
+	_6000: "freezing_drizzle",
+	_6001: "freezing_rain",
+	_6200: "freezing_rain_light",
+	_6201: "freezing_rain_heavy",
+	_7000: "ice_pellets",
+	_7101: "ice_pellets_heavy",
+	_7102: "ice_pellets_light",
+	_8000: "tstorm"
+}
+let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];
 
 function memStats(desc) {
     let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
@@ -13,6 +39,7 @@ function memStats(desc) {
 }
 let alertsAvailableCallback = null;
 const METEO_FN = "meteo_data.json";
+let initialized=false;
 export function init(onAlertsAvailableCallback) {
     try {
         alertsAvailableCallback = onAlertsAvailableCallback;
@@ -26,12 +53,16 @@ export function init(onAlertsAvailableCallback) {
                 }
             } while (fn);
         };
-        fetchMeteo();
+        //fetchMeteo();
     } catch (e) {
         logger.error("meteo init throws ex: " + e);
         vibration.start("nudge");
     }
+    initialized=true;
 }
+
+settings.subscribe("minWind",(v)=>{if (initialized) fetchMeteo();});
+settings.subscribe("maxWind",(v)=>{if (initialized) fetchMeteo();});
 
 function fetchMeteo() {
     console.log("meteo fetchMeteo");
@@ -45,10 +76,15 @@ function fetchMeteo() {
     let offset=Math.floor(angle/360*60);
     for (let i=0;i<meteoData.data.length;i++){
         let d=meteoData.data[i];
+        //console.warn(d.ws>settings.get("minWind",2)?d.ws:0,settings.get("maxWind",10));
         //console.warn(JSON.stringify(d));
         let index=i+offset;
         if (index>59) index=index-60;
         alerts[index]={
+            wind: {
+                speed:normalizeValue(d.ws>settings.get("minWind",2)?d.ws:0,0,settings.get("maxWind",10)),
+                temp:d.ws
+            },
             precipitation: {
                 probability: normalizeValue(d.pp,0,100),
                 quantity: normalizeValue(d.pi, 0, 10)
@@ -80,34 +116,6 @@ memStats(9999);
         sunrise: meteoData.sr
     });
 }
-
-
-let weatherIcons={
-	_1000: "clear",
-	_1001: "cloudy",
-	_1100: "mostly_clear",
-	_1101: "partly_cloudy",
-	_1102: "mostly_cloudy",
-	_2000: "fog",
-	_2100: "fog_light",
-	_4000: "drizzle",
-	_4001: "rain",
-	_4200: "rain_light",
-	_4201: "rain_heavy",
-	_5000: "snow",
-	_5001: "flurries",
-	_5100: "snow_light",
-	_5101: "snow_heavy",
-	_6000: "freezing_drizzle",
-	_6001: "freezing_rain",
-	_6200: "freezing_rain_light",
-	_6201: "freezing_rain_heavy",
-	_7000: "ice_pellets",
-	_7101: "ice_pellets_heavy",
-	_7102: "ice_pellets_light",
-	_8000: "tstorm"
-}
-let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];
     
 function iconName(code, dt,sr,ss) {
     let isDay = (dt > sr) && (dt < ss);
@@ -117,7 +125,6 @@ function iconName(code, dt,sr,ss) {
     //console.warn("-----------",code,dt,sr,ss,res,isDay);
     return res;
 }
-
 
 function normalizeValue(value, min, max) {
     let v = value - min;

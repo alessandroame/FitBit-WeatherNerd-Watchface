@@ -187,7 +187,7 @@ function getForecast(lat, lon) {
             let startTime=new Date();
             let endTime=new Date();
             endTime.setHours(startTime.getHours()+12);
-            let url = getClimacellUrl(lat,lon,"weatherCode,precipitationIntensity,precipitationProbability,temperature","5m,1h",startTime,endTime);
+            let url = getClimacellUrl(lat,lon,"windSpeed,windDirection,weatherCode,precipitationIntensity,precipitationProbability,temperature","5m,1h",startTime,endTime);
             console.log("climacell update " + url);
             fetch(url, {
                 method: "GET",
@@ -237,7 +237,8 @@ function parseWeather(data, time) {
         t: values.temperature,
         pp: values.precipitationIntensity==0?0:values.precipitationProbability,
         pi: values.precipitationIntensity,
-        wc: values.weatherCode
+        wc: values.weatherCode,
+        ws: values.windSpeed
     };
 }
  
