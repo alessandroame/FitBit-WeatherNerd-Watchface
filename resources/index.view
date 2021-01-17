@@ -7,5 +7,9 @@
 		<use href="#battery" id="batteryWidget" />
 	</g>
 	 <use href="#hourlyForecasts" id="hourlyForecasts" />
+
+	<circle cx="35" cy="295" r="5" fill="red" id="meteo_mode"/>
+	<circle cx="35" cy="295" r="40" fill="red" pointer-events="all" id="meteo_mode_button" opacity="0" layer="999"/>
+
 	<!-- <use href="#touchAreas" layer="900" /> -->
 </svg>

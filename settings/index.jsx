@@ -214,6 +214,7 @@ function SettingsPage(props) {
           }}
           settingsKey="_minWind"
           options={[
+            { name: "0-0.5 m/s	Calm air", value: "0.5" },
             { name: "0.5-1.5 m/s	Light air", value: "0.5" },
             { name: "2-3 m/s	Light breeze", value: "2" },
             { name: "3.5-5 m/s Gentle breeze", value: "3.5" },
@@ -221,7 +222,11 @@ function SettingsPage(props) {
             { name: "8.5-10.5 m/s Fresh breeze", value: "8.5" },
             { name: "11-13.5 m/s Strong breeze", value: "11" },
             { name: "14-16.5 m/s Moderate gale", value: "14" },
-            { name: "17-20 m/s Fresh gale", value: "17" }
+            { name: "17-20 m/s Fresh gale", value: "17" },
+            { name: "20.5-23.5 m/s Strong gale", value: "20.5" },
+            { name: "24-27.5 m/s Whole gale", value: "24" },
+            { name: "28-31.5 m/s Storm", value: "28" },
+            { name: "over 32 m/s Hurricane", value: "32" }
           ]}
         />
         <Select
@@ -236,6 +241,9 @@ function SettingsPage(props) {
           }}
           settingsKey="_maxWind"
           options={[
+            { name: "0.5-1.5 m/s	Light air", value: "0.5" },
+            { name: "2-3 m/s	Light breeze", value: "2" },
+            { name: "3.5-5 m/s Gentle breeze", value: "3.5" },
             { name: "5.5-8 m/s Moderate breeze", value: "5.5" },
             { name: "8.5-10.5 m/s Fresh breeze", value: "8.5" },
             { name: "11-13.5 m/s Strong breeze", value: "11" },

@@ -75,9 +75,9 @@ export function hide() {
 
 
 let meteo = null;
-export function setData(data) {
+export function setData(data,mode) {
     meteo = data;
-    redraw();
+    redraw(mode);
 }
 
 function zeroPad(s) {
@@ -90,8 +90,7 @@ function ellipsis(s, l) {
     if (s.length > l) s = s.substr(0, l - 3) + "...";
     return s;
 }
-
-function redraw() {
+function redraw(mode) {
     try {
         if (meteo==null) return;
         document.getElementById("location_main").textContent = ellipsis(meteo?.city?.main ?? "--", 16);
@@ -105,22 +104,30 @@ function redraw() {
             let f = document.getElementById("forecast_" + i);
             let mainContainer = f.getElementById("mainContainer");
 
-
             let dist = i >= d ? i - d : i + 12 - d;
             let o = 0.2 + 0.8 / 12 * (12 - dist);
             mainContainer.style.opacity = o;
 
-            //let iconContainer = mainContainer.getElementById("iconContainer");
+            let iconContainer = mainContainer.getElementById("iconContainer");
             let icon = mainContainer.getElementById("icon");
-            icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
             let temp = mainContainer.getElementById("temp");
-            let t = forecasts[i].temp;
-            let tu = "°";
-            if (unitSystem != "si") {
-                t = t * 9 / 5 + 32;
-                tu = "F";
+            if (mode==0){
+                iconContainer.groupTransform.rotate.angle = -i*30;
+                icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
+                let t = forecasts[i].temp;
+                let tu = "°";
+                if (unitSystem != "si") {
+                    t = t * 9 / 5 + 32;
+                    tu = "F";
+                }
+                temp.textContent = toInt(t) + tu;
+            }else{
+//                console.warn(forecasts[i].windDirection);
+                iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection;
+                icon.style.fill="#4444FF";
+                icon.href = "icons/windDirection.png";
+                temp.textContent = toInt(forecasts[i].windSpeed);
             }
-            temp.textContent = parseTemp(t) + tu;
         }
 
         let sr = new Date(meteo.sunrise);
@@ -131,7 +138,7 @@ function redraw() {
         console.error(e);
     }
 }
-function parseTemp(v) {
+function toInt(v) {
     if (v < 0 && v > -1) v = 0;
     return v.toFixed();
 }

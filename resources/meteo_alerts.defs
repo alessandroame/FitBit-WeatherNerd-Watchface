@@ -1,8 +1,6 @@
 <svg>
     <defs>
         <symbol id="alerts">
-            <circle cx="35" cy="295" r="5" fill="red" id="alert_mode"/>
-            <circle cx="35" cy="295" r="40" fill="red" pointer-events="all" id="alert_mode_button" opacity="0" layer="999"/>
             <g id="precipitation_alerts">
                 <arc id='p_0' x='4' y='4' width='100%-8' height='100%-8' fill='red' arc-width='2' start-angle='1' sweep-angle='5'/>
                 <arc id='p_1' x='4' y='4' width='100%-8' height='100%-8' fill='red' arc-width='2' start-angle='7' sweep-angle='5'/>

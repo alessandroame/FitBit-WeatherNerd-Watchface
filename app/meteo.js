@@ -53,7 +53,7 @@ export function init(onAlertsAvailableCallback) {
                 }
             } while (fn);
         };
-        //fetchMeteo();
+        fetchMeteo();
     } catch (e) {
         logger.error("meteo init throws ex: " + e);
         vibration.start("nudge");
@@ -64,7 +64,8 @@ export function init(onAlertsAvailableCallback) {
 settings.subscribe("minWind",(v)=>{if (initialized) fetchMeteo();});
 settings.subscribe("maxWind",(v)=>{if (initialized) fetchMeteo();});
 
-function fetchMeteo() {
+export function fetchMeteo() {
+    let mode=settings.get("meteoMode",0);
     console.log("meteo fetchMeteo");
     let alerts = [];
     let forecasts = [];
@@ -82,8 +83,7 @@ function fetchMeteo() {
         if (index>59) index=index-60;
         alerts[index]={
             wind: {
-                speed:normalizeValue(d.ws>settings.get("minWind",2)?d.ws:0,0,settings.get("maxWind",10)),
-                temp:d.ws
+                speed:normalizeValue(d.ws>settings.get("minWind",2)?d.ws:0,0,settings.get("maxWind",10))
             },
             precipitation: {
                 probability: normalizeValue(d.pp,0,100),
@@ -100,6 +100,8 @@ function fetchMeteo() {
             forecasts[forecastIndex] = {
                 icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
                 temp: d.t,
+                windSpeed: d.ws,
+                windDirection:d.wd
             };
         }
         //console.log(d.d+" - "+d.p.q+" "+d.p.p);
@@ -114,7 +116,7 @@ memStats(9999);
         forecasts: forecasts,
         sunset: meteoData.ss,
         sunrise: meteoData.sr
-    });
+    },mode);
 }
     
 function iconName(code, dt,sr,ss) {

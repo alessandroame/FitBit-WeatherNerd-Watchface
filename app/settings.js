@@ -25,14 +25,13 @@ mediator.subscribe("setting", (data) => {
     }
 });
 
-
 export function init() {
     console.log("settings init")
 }
 
 export function subscribe(key, callback, defValue) {
     mediator.subscribe("setting_" + key, (value) => {
-        value = value || defValue;
+        if (value==="undefined") value = defValue;
         callback(value);
     });
     callback(get(key, defValue));
@@ -56,7 +55,6 @@ export function get(key, defaultValue) {
 
 export function set(key, value,dontPropagate) {
     _settings[key] = value;
-    //console.warn("set " + key + " to " + JSON.stringify(value));
     if (!dontPropagate) mediator.localPublish("setting_" + key, value);
     try {
         fs.writeFileSync("settings.json", _settings, "cbor");

@@ -1,43 +1,31 @@
 import document from "document";
-import { showLogger } from "./log_viewer";
+import * as logger from "./logger";
 
+let lastAlerts=null;
 export function init() {
     console.log("meteo_alerts init");
 }
-let mode=0; 
-export function setPrecipitationMode(){
-    mode=0;//precipitation
-}
-export function setWindMode(){
-    mode=1;//wind
-}
 
-let lastAlerts=null;
-export function update(alerts) {
+export function update(alerts,mode) {
     lastAlerts=alerts;
-    console.log("meteo_alerts update");
+    console.log("meteo_alerts update mode: "+mode);
 //    console.log(JSON.stringify(alerts));
-    document.getElementById("alert_mode").style.fill=mode==0?"#ff0000":"#0000BB";
     for (let i = 0; i < 60; i++) {
         let a=alerts[i];
-        updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,a.wind.speed,a.wind.temp);
+        updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,a.wind.speed,mode);
+        //logger.warning("ws: "+a.wind.speed+" "+a.wind.temp);
     }
 }
 
-document.getElementById("alert_mode_button").onclick=()=>{
-    if (mode==0) mode=1;
-    else mode=0;
-    update(lastAlerts);
-};
-
-function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,wt) {
+function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) {
     let alertUI = document.getElementById("p_" + index);
     if (mode==1){
         if (windSpeed>0){
             alertUI.style.fill = "#0000BB";
             let level=(20 * (windSpeed));
             alertUI.arcWidth = level;
-//            console.log(wt+"-"+windSpeed+"-"+level);
+//            logger.warning(wt+"-"+windSpeed+"-"+level);
+//           console.log(wt+"-"+windSpeed+"-"+level);
         }else{
             alertUI.style.fill = "#222222";
             alertUI.arcWidth = 10;

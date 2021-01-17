@@ -211,6 +211,7 @@ function getForecast(lat, lon) {
                                 //forecast
                                 data=response.data.timelines[1].intervals;
                                 for (let i = 0; i < data.length; i++) {
+                                    //console.error(data[i].values.windDirection);
                                     res[1].push(parseWeather(data[i]));
                                 }
                                 resolve(res);
@@ -238,7 +239,8 @@ function parseWeather(data, time) {
         pp: values.precipitationIntensity==0?0:values.precipitationProbability,
         pi: values.precipitationIntensity,
         wc: values.weatherCode,
-        ws: values.windSpeed
+        ws: values.windSpeed,
+        wd: 360-values.windDirection+180
     };
 }
  
