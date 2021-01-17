@@ -122,8 +122,8 @@ function redraw(mode) {
                 }
                 temp.textContent = toInt(t) + tu;
             }else{
-//                console.warn(forecasts[i].windDirection);
-                iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection;
+                console.warn(forecasts[i].windDirection);
+                iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection-i*30;
                 icon.style.fill="#4444FF";
                 icon.href = "icons/windDirection.png";
                 temp.textContent = toInt(forecasts[i].windSpeed);
