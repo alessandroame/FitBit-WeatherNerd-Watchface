@@ -120,7 +120,7 @@ memStats(9999);
 }
     
 function iconName(code, dt,sr,ss) {
-    let isDay = (dt > sr) && (dt < ss);
+    let isDay =(dt < ss) && (ss<sr || dt>sr);
     let res = weatherIcons["_"+code];
     let i = dayNightIcons.indexOf(res);
     if (i != -1) res += (isDay ? "_day" : "_night");
