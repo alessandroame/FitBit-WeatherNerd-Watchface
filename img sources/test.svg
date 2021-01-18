@@ -358,19 +358,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8652702"
-     inkscape:cx="54.204594"
-     inkscape:cy="153.39629"
+     inkscape:zoom="7.2851303"
+     inkscape:cx="177.60808"
+     inkscape:cy="106.62351"
      inkscape:document-units="px"
      inkscape:current-layer="layer22"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
-     inkscape:window-x="1072"
-     inkscape:window-y="201"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1689"
+     inkscape:window-height="1264"
+     inkscape:window-x="1676"
+     inkscape:window-y="232"
+     inkscape:window-maximized="0"
      showguides="false"
      inkscape:lockguides="false"
      inkscape:guide-bbox="true">
@@ -2506,29 +2506,33 @@
      inkscape:label="wind"
      style="display:inline;mix-blend-mode:normal">
     <circle
-       style="fill:#000000;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round"
+       style="fill:none;stroke:none;stroke-width:0.68791667;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        id="path1683"
-       cx="50.342674"
-       cy="33.450317"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windDirection.png"
+       inkscape:export-xdpi="48"
+       inkscape:export-ydpi="48"
        r="12.7"
-       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windDirection.png"
-       inkscape:export-xdpi="48"
-       inkscape:export-ydpi="48" />
-    <path
-       style="display:inline;mix-blend-mode:normal;fill:#808080;stroke:none;stroke-width:1.00013;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       d="m 50.342675,25.575753 4.953582,15.584244 -4.953583,-2.894906 c 0.07743,-4.229605 0.02501,-8.459501 10e-7,-12.689338 z"
-       id="path1685-5"
-       sodipodi:nodetypes="cccc"
-       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windDirection.png"
-       inkscape:export-xdpi="48"
-       inkscape:export-ydpi="48" />
-    <path
-       style="fill:#ffffff;stroke:none;stroke-width:1.00013;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-       d="m 50.342672,25.575752 -4.953581,15.584245 4.953583,-2.894906 c 0.05316,-4.229606 0.07293,-8.459502 -2e-6,-12.689339 z"
-       id="path1685"
-       sodipodi:nodetypes="cccc"
-       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windDirection.png"
-       inkscape:export-xdpi="48"
-       inkscape:export-ydpi="48" />
+       cy="33.450317"
+       cx="50.342674" />
+    <g
+       id="g1785"
+       transform="matrix(1.4547593,0,0,1.1550236,-22.893797,-5.1728085)">
+      <path
+         style="display:inline;mix-blend-mode:normal;fill:#808080;stroke:none;stroke-width:1.00013;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         d="m 50.342675,25.575753 4.953582,15.584244 -4.953583,-2.894906 c 0.07743,-4.229605 0.02501,-8.459501 10e-7,-12.689338 z"
+         id="path1685-5"
+         sodipodi:nodetypes="cccc"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windDirection.png"
+         inkscape:export-xdpi="48"
+         inkscape:export-ydpi="48" />
+      <path
+         style="fill:#ffffff;stroke:none;stroke-width:1.00013;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         d="m 50.342672,25.575752 -4.953581,15.584245 4.953583,-2.894906 c 0.05316,-4.229606 0.07293,-8.459502 -2e-6,-12.689339 z"
+         id="path1685"
+         sodipodi:nodetypes="cccc"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windDirection.png"
+         inkscape:export-xdpi="48"
+         inkscape:export-ydpi="48" />
+    </g>
   </g>
 </svg>
