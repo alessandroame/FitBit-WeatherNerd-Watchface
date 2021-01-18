@@ -169,7 +169,7 @@ function startClockDispayTimeout() {
     }
     clockDisplayTimeout = setTimeout(() => {
         showClock();
-    }, 10000);
+    }, 20000);
 }
 
 

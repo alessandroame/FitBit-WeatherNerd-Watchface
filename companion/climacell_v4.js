@@ -25,9 +25,9 @@ export function update(pos) {
             logger.error("apikey not available");
             return;
         }
-        let startTime = new Date();
+        /*let startTime = new Date();
         let endTime = new Date();
-        endTime.setHours(startTime.getHours() + 12);
+        endTime.setHours(startTime.getHours() + 12);*/
 
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
@@ -57,6 +57,7 @@ function buildData(city, nowcast, forecast,suntimes) {
     for (let i = 0; i < 60; i++) {
         let current = null;
         current = findFirst(nowcast, now, 12) ?? findFirst(forecast, now, 60);
+        //console.error(i,now,JSON.stringify(current))
         data.push(current);
         now.setMinutes(now.getMinutes() + 12);
     }
@@ -123,6 +124,9 @@ function getCity(lat, lon) {
 
 function getClimacellUrl(lat, lon,fields,timesteps,from, to){
     let now=from??new Date();
+    now.setMinutes(0);
+    now.setSeconds(0);
+    now.setMilliseconds(0);
     let startTime=now.toISOString();
     let url = "https://data.climacell.co/v4/timelines?" +
     "apikey=" + getApiKey() +
@@ -233,6 +237,7 @@ function getForecast(lat, lon) {
 function parseWeather(data, time) {
     let dt = new Date(time ?? data.startTime);
     let values=data.values;
+    //console.error(dt.getHours(),values.weatherCode,values.windDirection,180-values.windDirection);
     return {
         d: dt,
         t: values.temperature,
@@ -240,7 +245,7 @@ function parseWeather(data, time) {
         pi: values.precipitationIntensity,
         wc: values.weatherCode,
         ws: values.windSpeed,
-        wd: 360-values.windDirection+180
+        wd: values.windDirection-180
     };
 }
  
