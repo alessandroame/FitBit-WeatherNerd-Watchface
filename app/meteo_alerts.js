@@ -6,6 +6,7 @@ export function init() {
     console.log("meteo_alerts init");
 }
 
+let currentMode=0;
 export function update(alerts,mode) {
     lastAlerts=alerts;
     console.log("meteo_alerts update mode: "+mode);
@@ -15,35 +16,52 @@ export function update(alerts,mode) {
         updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,a.wind.speed,mode);
         //logger.warning("ws: "+a.wind.speed+" "+a.wind.temp);
     }
+    currentMode=mode;
 }
 
 function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) {
-    let alertUI = document.getElementById("p_" + index);
-    if (mode==1){
-        if (windSpeed>0){
-            alertUI.style.fill = "#0000BB";
-            let level=(20 * (windSpeed));
-            alertUI.arcWidth = level;
-//            logger.warning(wt+"-"+windSpeed+"-"+level);
-//           console.log(wt+"-"+windSpeed+"-"+level);
-        }else{
-            alertUI.style.fill = "#222222";
-            alertUI.arcWidth = 10;
-//            console.log(wt+"-"+windSpeed);
-        } 
-    }else{
-        if (precProb > 0) {
-            let prob=(0.3 + 0.7 * precProb);
-            let hex=byteToHex(prob*255);
-            alertUI.style.fill = "#"+ hex +"0000";
-            alertUI.arcWidth = 2 + 18* precQuantity;
-        } else {
-            alertUI.style.fill = "#222222";
-            alertUI.arcWidth = 10;
-        }
+    let mainAlert = document.getElementById("m_" + index);
+    let secondaryUI = document.getElementById("s_" + index);
+
+
+    if (precProb > 0) {
+        precProb=(0.3 + 0.7 * precProb);
     }
-    /*document.getElementById("pa_" + index).to=precUI.style.fill;
-    precUI.animate("enable");*/
+    
+    let precColor="#"+ byteToHex(precProb*255)+"0000";
+    
+    if (mode==0){
+        //prec
+        if (precProb>0){
+            mainAlert.style.fill = precColor;
+            mainAlert.arcWidth = 4 + 16* precQuantity;
+        }else{
+            mainAlert.style.fill = "#222222";
+            mainAlert.arcWidth = 10;
+        }
+        //wind
+        if (windSpeed>0){
+            secondaryUI.style.fill="#006ED6";
+        } else{
+            secondaryUI.style.fill = "#222222";
+        }
+    }else{
+        //wind
+        if (windSpeed>0){
+            mainAlert.style.fill = "#006ED6";
+            mainAlert.arcWidth = (20 * (windSpeed));
+        }else{
+            mainAlert.style.fill = "#222222";
+            mainAlert.arcWidth = 10;
+        }
+        //prec
+        if (precProb>0){
+            secondaryUI.style.fill=precColor;
+        } else{
+            secondaryUI.style.fill = "#222222";
+        }
+
+    }
 
     let ice = document.getElementById("i_" + index);
     if (iceProb > 0) {
@@ -62,7 +80,7 @@ export function test() {
     for (let i = 0; i < 60; i++) {
         setTimeout(() => {
             let k=(i + 1) / 60;
-            updateAlertItem(i,k,k,k,k)
+            updateAlertItem(i,k,k,k,k,currentMode);
         }, 28 * i);
     }
 }

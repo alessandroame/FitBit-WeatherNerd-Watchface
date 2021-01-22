@@ -4,11 +4,13 @@
 			<circle id="background" cx="0" cy="0" r="42" fill="#222222" opacity="1" />
 			<circle cx="0" cy="0" r="42" fill="#222222" opacity="0.8" />
 			<image href="widget_background.png" x="-42" y="-42" width="84" height="84" opacity="1" fill="white" />
-			<image id="icon" href="icons/meteo/clear_day.png" x="-24" y="-37" width="48" height="48" />
+			<g id="iconContainer"  transform="translate(0,-11)">
+				<image id="icon" href="icons/meteo/clear_day.png" x="-24" y="-24" width="48" height="48" />
+			</g>
 			<text id="tempShadow" x="-2" y="36" font-size="32" text-anchor="middle" fill="black" font-family="System-Bold" text-length="10" opacity="0.5">
 				--°
 			</text>
-			<text id="temp" x="0" y="34" font-size="32" text-anchor="middle" fill="white" font-family="System-Bold" text-length="10">
+			<text id="value" x="0" y="34" font-size="32" text-anchor="middle" fill="white" font-family="System-Bold" text-length="10">
 				--°
 			</text>
 			<image href="widget_shadow.png" x="-42" y="-42" width="84" height="84" fill="black" opacity="1" />

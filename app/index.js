@@ -60,7 +60,8 @@ document.getElementById("datumTouch").onclick=()=>{
     meteo_alerts.test();
 }
 settings.subscribe("meteoMode",(mode)=>{
-    document.getElementById("meteo_mode").style.fill=mode==0?"#ff0000":"#0000BB";
+    document.getElementById("meteo_mode").style.fill="#BBBBBB";
+    document.getElementById("meteo_mode").href="icons/"+(mode==0?"precip":"wind")+"ModeBtn.png";
     meteo.fetchMeteo();
 },0);
 document.getElementById("meteo_mode_button").onclick=()=>{
