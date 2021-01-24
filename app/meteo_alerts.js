@@ -78,10 +78,10 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
 export function test() {
     console.log("meteo_alerts test");
     for (let i = 0; i < 60; i++) {
-        setTimeout(() => {
+        //setTimeout(() => {
             let k=(i + 1) / 60;
             updateAlertItem(i,k,k,k,k,currentMode);
-        }, 28 * i);
+        //}, 28 * i);
     }
 }
 var hexChar = ["0", "1", "2", "3", "4", "5", "6", "7","8", "9", "A", "B", "C", "D", "E", "F"];
