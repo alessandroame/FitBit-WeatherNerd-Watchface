@@ -6,7 +6,7 @@
 	<g transform="translate(100%-40,40),rotate(45)">
 		<use href="#battery" id="batteryWidget" />
 	</g>
-	 <use href="#hourlyForecasts" id="hourlyForecasts" />
+	 <use href="#hourlyForecasts" id="hourlyForecasts"/>
 
 	
 	<image id="icon" x="0" y="238" width="95" height="95" href="icons/precipModeBtn.png" fill="#BB0000" id="meteo_mode"/>

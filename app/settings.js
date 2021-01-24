@@ -18,7 +18,8 @@ mediator.subscribe("setting", (data) => {
     console.log("notify settings [" + data.key + "] changed from: " + data.oldValue + " to: " + data.value);
 
     set(data.key, data.value);
-    if (data.key.toLowerCase().indexOf('color') != -1) {
+    var loweredKey=data.key.toLowerCase();
+    if (loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1) {
         display.poke();
         vibration.start("bump");
         console.warn("poke");

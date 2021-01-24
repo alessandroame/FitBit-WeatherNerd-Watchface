@@ -75,15 +75,17 @@ export function fetchMeteo() {
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
     let offset=Math.floor(angle/360*60);
+    let minWind=settings.get("minWind",2);
+    let maxWind=settings.get("maxWind",10);
     for (let i=0;i<meteoData.data.length;i++){
         let d=meteoData.data[i];
-        //console.warn(d.ws>settings.get("minWind",2)?d.ws:0,settings.get("maxWind",10));
+        //console.warn("------",d.ws,minWind,maxWind,normalizeValue(d.ws>minWind?d.ws:0,minWind,maxWind));
         //console.warn(JSON.stringify(d));
         let index=i+offset;
         if (index>59) index=index-60;
         alerts[index]={
             wind: {
-                speed:normalizeValue(d.ws>settings.get("minWind",2)?d.ws:0,0,settings.get("maxWind",10))
+                speed:normalizeValue(d.ws,minWind,maxWind,true)
             },
             precipitation: {
                 probability: normalizeValue(d.pp,0,100),
@@ -110,7 +112,6 @@ export function fetchMeteo() {
 //    console.log(JSON.stringify(alerts));
 memStats(9999);
     if (alertsAvailableCallback) alertsAvailableCallback({
-        city: meteoData.c,
         lastUpdate: new Date(meteoData.lu),
         alerts: alerts,
         forecasts: forecasts,
@@ -128,11 +129,11 @@ function iconName(code, dt,sr,ss) {
     return res;
 }
 
-function normalizeValue(value, min, max) {
+function normalizeValue(value, min, max,showLog) {
     let v = value - min;
     let vMax = max - min;
-    let res = value / vMax;
-//    console.log(`normalizeValue value: v: ${v} min: ${min} max:{max} ${value} vMax: ${vMax} res: ${res}  `);
+    let res = v / vMax;
+    //if (showLog) console.log(`normalize value: ${value} vo: ${v} min: ${min} max:${max}  vMax: ${vMax} res: ${res}  `);
     if (res < 0) res = 0;
     if (res > 1) res = 1;
     return res;

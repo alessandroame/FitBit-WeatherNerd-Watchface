@@ -37,7 +37,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
             mainAlert.arcWidth = 4 + 16* precQuantity;
         }else{
             mainAlert.style.fill = "#222222";
-            mainAlert.arcWidth = 10;
+            mainAlert.arcWidth = 8;
         }
         //wind
         if (windSpeed>0){
@@ -49,10 +49,10 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
         //wind
         if (windSpeed>0){
             mainAlert.style.fill = "#006ED6";
-            mainAlert.arcWidth = (20 * (windSpeed));
+            mainAlert.arcWidth = 4+(16 * (windSpeed));
         }else{
             mainAlert.style.fill = "#222222";
-            mainAlert.arcWidth = 10;
+            mainAlert.arcWidth = 8;
         }
         //prec
         if (precProb>0){

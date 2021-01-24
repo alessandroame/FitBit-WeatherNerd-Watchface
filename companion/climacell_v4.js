@@ -32,12 +32,11 @@ export function update(pos) {
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
         Promise.all([
-            getCity(lat, lon),
             getForecast(lat, lon),
             getSunTimes(lat,lon)
         ])
             .then((values) => {
-                let res = buildData(values[0], values[1][0], values[1][1],values[2]);
+                let res = buildData(values[0][0], values[0][1],values[1]);
                 // for (let i=0;i<values[2].length;i++){
                 //     let r=values[2][i];
                 //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
@@ -47,7 +46,7 @@ export function update(pos) {
     });
 }
 
-function buildData(city, nowcast, forecast,suntimes) {
+function buildData(nowcast, forecast,suntimes) {
     let data = [];
     let now = new Date();
     /*console.log("present "+JSON.stringify(present));
@@ -62,7 +61,6 @@ function buildData(city, nowcast, forecast,suntimes) {
         now.setMinutes(now.getMinutes() + 12);
     }
     let res = {
-        c: city,
         lu: new Date(),
         sr: suntimes.sr,
         ss: suntimes.ss,
@@ -80,46 +78,6 @@ function findFirst(data, d, precision) {
         }
     }
     return null;
-}
-
-function getCity(lat, lon) {
-    return new Promise((resolve, reject) => {
-        let url = "https://nominatim.openstreetmap.org/reverse?&lat=" + lat + "&lon=" + lon + "&format=json";
-        fetch(url)
-            .then(function (response) {4
-                response.json()
-                    .then(function (data) {
-                        let res={ 
-                            main: null ,
-                            sub: null
-                        };
-                        try {
-//                            console.error(JSON.stringify(data));
-                            if (data.error){
-                                res.main="Error"                                ;
-                                res.sub=data.error;
-                            }else{
-                            let a = data.display_name.split(",").slice(0,2);
-//                            console.error(JSON.stringify(a));
-                            res.main=a[0];
-                            res.sub=a[1];
-                        }
-                        //logger.warning("city response: " + res);
-                    } catch (err) {
-                        logger.error("getForecast exception: " + err);
-                        resolve({ 
-                            main: "Error" ,
-                            sub: err
-                        });
-                    }
-                    resolve(res);
-                });
-            })
-            .catch(function (err) {
-                logger.error("Error fetching city for lat: " + lat + " lon:" + lon + " -> " + err);
-                resolve("unknown location");
-            });
-    });
 }
 
 function getClimacellUrl(lat, lon,fields,timesteps,from, to){
@@ -244,7 +202,7 @@ function parseWeather(data, time) {
         pp: values.precipitationIntensity==0?0:values.precipitationProbability,
         pi: values.precipitationIntensity,
         wc: values.weatherCode,
-        ws: values.windSpeed,
+        ws: values.windSpeed*3.6,
         wd: values.windDirection-180
     };
 }
