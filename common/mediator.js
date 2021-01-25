@@ -76,7 +76,7 @@ export function publish(topic, data) {
 }
 export function localPublish(topic, data) {
   //  console.trace();
-  //  console.log(mediatorID+" mediator local publishing topic: " + topic);
+  //console.log(mediatorID+" mediator local publishing topic: " + topic+" data: "+JSON.stringify(data));
   let callbacks = subscriptions[topic];
   if (callbacks != null && callbacks.length > 0) {
     //console.log("mediator found " + callbacks.length + " callbacks for topic: " + topic);

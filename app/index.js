@@ -59,6 +59,18 @@ document.getElementById("datumTouch").onclick=()=>{
     vibration.start("bump");
     meteo_alerts.test();
 }
+settings.subscribe("meteoMode",(mode)=>{
+    document.getElementById("meteo_mode").style.fill="#BBBBBB";
+    document.getElementById("meteo_mode").href="icons/"+(mode==0?"precip":"wind")+"ModeBtn.png";
+    meteo.fetchMeteo();
+},0);
+document.getElementById("meteo_mode_button").onclick=()=>{
+    let mode=settings.get("meteoMode",0);
+    if (mode==0) mode=1;
+    else mode=0;
+    settings.set("meteoMode",mode);
+};
+
 showClock();
 
 // settings.subscribe("datumDayColor", (color) => {
@@ -69,12 +81,12 @@ showClock();
 //     document.getElementById("dayNumber").style.fill = color;
 // }, "white");
 
-function onMeteoDataAvailable(data) {
+function onMeteoDataAvailable(data,mode) {
     //logger.warning(memStats("onMeteoDataAvailable"));
-    meteo_alerts.update(data.alerts);
+    meteo_alerts.update(data.alerts,mode);
 
-    forecasts.setData(data);
-    weatherWidget.update(data);
+    forecasts.setData(data,mode);
+    weatherWidget.update(data,mode);
 
     let sr = new Date(data.sunrise);
     let ss = new Date(data.sunset);
@@ -158,7 +170,7 @@ function startClockDispayTimeout() {
     }
     clockDisplayTimeout = setTimeout(() => {
         showClock();
-    }, 10000);
+    }, 20000);
 }
 
 

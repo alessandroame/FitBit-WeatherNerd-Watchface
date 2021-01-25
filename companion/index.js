@@ -100,8 +100,8 @@ function onMeteoAvailable(data) {
         });
 }
 
-let throttleTimers = {};
+let throttleTimer = null;
 function throttle(func, delay,msg) {
-    if (throttleTimers[func]) { console.log("throttled "+msg); return; }
-    throttleTimers[func] = setTimeout(() => { throttleTimers[func] = null; func(); }, delay);
+    if (throttleTimer) { console.log("throttled "+msg); return; }
+    throttleTimer = setTimeout(() => { throttleTimer = null; func(); }, delay);
 }

@@ -4,84 +4,7 @@ import { vibration } from "haptics"
 import * as logger from "./logger"
 import * as geom from '../common/geom'
 import { memory } from "system";
-
-
-function memStats(desc) {
-    let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
-    console.log(msg);
-    return msg;
-}
-let alertsAvailableCallback = null;
-const METEO_FN = "meteo_data.json";
-export function init(onAlertsAvailableCallback) {
-    try {
-        alertsAvailableCallback = onAlertsAvailableCallback;
-        inbox.onnewfile = () => { //this.log("onnewfile");
-            let fn;
-            do {
-                fn = inbox.nextFile(); //if (fn) this.log("newfile:"+fn);
-                if (fn == METEO_FN) {
-                    logger.debug("meteo available");
-                    fetchMeteo();
-                }
-            } while (fn);
-        };
-        fetchMeteo();
-    } catch (e) {
-        logger.error("meteo init throws ex: " + e);
-        vibration.start("nudge");
-    }
-}
-
-function fetchMeteo() {
-    console.log("meteo fetchMeteo");
-    let alerts = [];
-    let forecasts = [];
-    let meteoData = readDataFromFile(METEO_FN);
-    if (!meteoData) return;
-    //console.log(JSON.stringify(meteo));
-    let dt=new Date(meteoData.data[0].d);
-    let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
-    let offset=Math.floor(angle/360*60);
-    for (let i=0;i<meteoData.data.length;i++){
-        let d=meteoData.data[i];
-        //console.warn(JSON.stringify(d));
-        let index=i+offset;
-        if (index>59) index=index-60;
-        alerts[index]={
-            precipitation: {
-                probability: normalizeValue(d.pp,0,100),
-                quantity: normalizeValue(d.pi, 0, 10)
-            },
-            ice: {
-                probability: d.t < 0 ? d.t/(-2): 0,
-                quantity: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
-            }
-        }
-        if (i%5==0){
-            let forecastIndex=Math.floor(index/5);
-            //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
-            forecasts[forecastIndex] = {
-                icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
-                temp: d.t,
-            };
-        }
-        //console.log(d.d+" - "+d.p.q+" "+d.p.p);
-        //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
-    }
-//    console.log(JSON.stringify(alerts));
-memStats(9999);
-    if (alertsAvailableCallback) alertsAvailableCallback({
-        city: meteoData.c,
-        lastUpdate: new Date(meteoData.lu),
-        alerts: alerts,
-        forecasts: forecasts,
-        sunset: meteoData.ss,
-        sunrise: meteoData.sr
-    });
-}
-
-
+import * as settings from "./settings"
 let weatherIcons={
 	_1000: "clear",
 	_1001: "cloudy",
@@ -108,6 +31,94 @@ let weatherIcons={
 	_8000: "tstorm"
 }
 let dayNightIcons = ["clear", "mostly_clear", "partly_cloudy"];
+
+function memStats(desc) {
+    let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
+    console.log(msg);
+    return msg;
+}
+let alertsAvailableCallback = null;
+const METEO_FN = "meteo_data.json";
+let initialized=false;
+export function init(onAlertsAvailableCallback) {
+    try {
+        alertsAvailableCallback = onAlertsAvailableCallback;
+        inbox.onnewfile = () => { //this.log("onnewfile");
+            let fn;
+            do {
+                fn = inbox.nextFile(); //if (fn) this.log("newfile:"+fn);
+                if (fn == METEO_FN) {
+                    logger.debug("meteo available");
+                    fetchMeteo();
+                }
+            } while (fn);
+        };
+        fetchMeteo();
+    } catch (e) {
+        logger.error("meteo init throws ex: " + e);
+        vibration.start("nudge");
+    }
+    initialized=true;
+}
+
+settings.subscribe("minWind",(v)=>{if (initialized) fetchMeteo();});
+settings.subscribe("maxWind",(v)=>{if (initialized) fetchMeteo();});
+
+export function fetchMeteo() {
+    let mode=settings.get("meteoMode",0);
+    console.log("meteo fetchMeteo");
+    let alerts = [];
+    let forecasts = [];
+    let meteoData = readDataFromFile(METEO_FN);
+    if (!meteoData) return;
+    //console.log(JSON.stringify(meteo));
+    let dt=new Date(meteoData.data[0].d);
+    let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
+    let offset=Math.floor(angle/360*60);
+    let minWind=settings.get("minWind",2);
+    let maxWind=settings.get("maxWind",10);
+    for (let i=0;i<meteoData.data.length;i++){
+        let d=meteoData.data[i];
+        //console.warn("------",d.ws,minWind,maxWind,normalizeValue(d.ws>minWind?d.ws:0,minWind,maxWind));
+        //console.warn(JSON.stringify(d));
+        let index=i+offset;
+        if (index>59) index=index-60;
+        alerts[index]={
+            wind: {
+                speed:normalizeValue(d.ws,minWind,maxWind,true)
+            },
+            precipitation: {
+                probability: normalizeValue(d.pp,0,100),
+                quantity: normalizeValue(d.pi, 0, 10)
+            },
+            ice: {
+                probability: d.t < 0 ? d.t/(-2): 0,
+                quantity: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
+            }
+        }
+        if (i%5==0){
+            let forecastIndex=Math.floor(index/5);
+            //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
+            forecasts[forecastIndex] = {
+                icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
+                temp: d.t,
+                windSpeed: d.ws,
+                windDirection:d.wd
+            };
+        }
+        //console.log(d.d+" - "+d.p.q+" "+d.p.p);
+        //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
+    }
+//    console.log(JSON.stringify(alerts));
+memStats(9999);
+    if (alertsAvailableCallback) alertsAvailableCallback({
+        lastUpdate: new Date(meteoData.lu),
+        alerts: alerts,
+        forecasts: forecasts,
+        sunset: meteoData.ss,
+        sunrise: meteoData.sr
+    },mode);
+}
     
 function iconName(code, dt,sr,ss) {
     let isDay =(dt < ss) && (ss<sr || dt>sr);
@@ -118,12 +129,11 @@ function iconName(code, dt,sr,ss) {
     return res;
 }
 
-
-function normalizeValue(value, min, max) {
+function normalizeValue(value, min, max,showLog) {
     let v = value - min;
     let vMax = max - min;
-    let res = value / vMax;
-//    console.log(`normalizeValue value: v: ${v} min: ${min} max:{max} ${value} vMax: ${vMax} res: ${res}  `);
+    let res = v / vMax;
+    //if (showLog) console.log(`normalize value: ${value} vo: ${v} min: ${min} max:${max}  vMax: ${vMax} res: ${res}  `);
     if (res < 0) res = 0;
     if (res > 1) res = 1;
     return res;

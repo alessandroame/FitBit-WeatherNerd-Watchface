@@ -49,20 +49,31 @@ export function subscribe(key, callback) {
 }
 
 function notify(evt) {
-  console.log("notify " + evt.key);
-  try{
-    if (evt.key[0]=="_") return;
-    const data = {
-      key: evt.key,
-      oldValue: evt.oldValue,
-      value: evt.newValue
-    };
-    let topic = "setting_" + evt.key;
-    mediator.localPublish(topic, data);
-    if (!mediator.remotePublish("setting", data)) console.warn("cant publish on remote endopoint " + topic);
-  }catch(e){
-    console.error("key ["+evt.key+"] oldValue="+evt.oldValue+" newValue="+evt.newValue+" throws: "+e);    
-  }
-  //console.error("key ["+evt.key+"] oldValue="+evt.oldValue+" newValue="+evt.newValue);    
+  if (evt.key[0]=="_") return;
+  throttle(evt.key,()=>{
+    console.log("notify " + evt.key);
+    try{
+      const data = {
+        key: evt.key,
+        oldValue: evt.oldValue,
+        value: evt.newValue
+      };
+      let topic = "setting_" + evt.key;
+      mediator.localPublish(topic, data);
+      if (!mediator.remotePublish("setting", data)) console.warn("cant publish on remote endopoint " + topic);
+    }catch(e){
+      console.error("key ["+evt.key+"] oldValue="+evt.oldValue+" newValue="+evt.newValue+" throws: "+e);    
+    }
+    //console.error("key ["+evt.key+"] oldValue="+evt.oldValue+" newValue="+evt.newValue);    
+  },300,"notify settings "+evt.key+" "+evt.newValue);
+}
+
+let throttleTimers = {};
+function throttle(key,func, delay,msg) {
+    if (throttleTimers[key]) { 
+      clearTimeout(throttleTimers[key]);
+      console.log("throttled "+msg); 
+    }
+    throttleTimers[key] = setTimeout(() => { throttleTimers[key] = null; func(); }, delay);
 }
 

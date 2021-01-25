@@ -5,16 +5,19 @@ import document from "document";
 import * as geom from './geom';
 import * as settings from "./settings"
 
+let unitSystem = "si";
+let hourlyForecastsUI = null;
+let meteo = null;
+let lastMode=0;
+
 settings.subscribe("clockBackgroundColor", (color) => {
     document.getElementById("forecastBackground").gradient.colors.c1 = color;
 }, "#333333");
-let unitSystem = "si";
 settings.subscribe("unitSystem", (value) => {
     unitSystem = value;
-    redraw();
+    redraw(lastMode);
 }, locale.temperature == "C" ? "si" : "us");
 
-let hourlyForecastsUI = null;
 export function init(closeCallback) {
     console.log("forecast init")
     hourlyForecastsUI = document.getElementById("hourlyForecasts");
@@ -74,10 +77,9 @@ export function hide() {
 }
 
 
-let meteo = null;
-export function setData(data) {
+export function setData(data,mode) {
     meteo = data;
-    redraw();
+    redraw(mode);
 }
 
 function zeroPad(s) {
@@ -90,48 +92,59 @@ function ellipsis(s, l) {
     if (s.length > l) s = s.substr(0, l - 3) + "...";
     return s;
 }
-
-function redraw() {
+function redraw(mode) {
     try {
+        lastMode=mode;
         if (meteo==null) return;
-        document.getElementById("location_main").textContent = ellipsis(meteo?.city?.main ?? "--", 16);
-        document.getElementById("location_sub").textContent = ellipsis(meteo?.city?.sub ?? "--", 20);
-
+        let title=mode==0?"TEMP":"WIND";
+        let units=mode==0?(unitSystem == "si"?"°":"F"):(unitSystem == "si"?"m/s":"kn");
+        document.getElementById("title").textContent = title+"("+units+")";
+        //document.getElementById("title").style.fill = mode==0?"red":"#006ED6";
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
         if (d > 11) d = d - 12;
-
+        let min=9999;
+        let max=-9999;
         for (let i = 0; i < 12; i++) {
+            let value=null;
             let f = document.getElementById("forecast_" + i);
             let mainContainer = f.getElementById("mainContainer");
-
 
             let dist = i >= d ? i - d : i + 12 - d;
             let o = 0.2 + 0.8 / 12 * (12 - dist);
             mainContainer.style.opacity = o;
 
-            //let iconContainer = mainContainer.getElementById("iconContainer");
+            let iconContainer = mainContainer.getElementById("iconContainer");
             let icon = mainContainer.getElementById("icon");
-            icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
             let temp = mainContainer.getElementById("temp");
-            let t = forecasts[i].temp;
-            let tu = "°";
-            if (unitSystem != "si") {
-                t = t * 9 / 5 + 32;
-                tu = "F";
+            if (mode==0){
+                iconContainer.groupTransform.rotate.angle = -i*30;
+                icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
+                value = forecasts[i].temp;
+                if (unitSystem != "si") {
+                    value = value * 9 / 5 + 32;
+                }
+            }else{
+//                console.warn(forecasts[i].windDirection);
+                iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection-i*30;
+                icon.style.fill="#006ED6";
+                icon.href = "icons/windDirection.png";
+                value = forecasts[i].windSpeed;
+                if (unitSystem != "si") {
+                    value = value * 2;
+                }
             }
-            temp.textContent = parseTemp(t) + tu;
+            temp.textContent = toInt(value);
+            min=Math.min(min,value);
+            max=Math.max(max,value);
         }
-
-        let sr = new Date(meteo.sunrise);
-        let ss = new Date(meteo.sunset);
-        // document.getElementById("sunriseHand").groupTransform.rotate.angle = geom.hoursToAngle(sr.getHours(),sr.getMinutes());
-        // document.getElementById("sunsetHand").groupTransform.rotate.angle = geom.hoursToAngle(ss.getHours(), ss.getMinutes());
+        hourlyForecastsUI.getElementById("minValue").textContent=toInt(min);
+        hourlyForecastsUI.getElementById("maxValue").textContent=toInt(max);
     } catch (e) {
         console.error(e);
     }
 }
-function parseTemp(v) {
+function toInt(v) {
     if (v < 0 && v > -1) v = 0;
     return v.toFixed();
 }

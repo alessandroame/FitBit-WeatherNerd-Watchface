@@ -18,13 +18,13 @@ mediator.subscribe("setting", (data) => {
     console.log("notify settings [" + data.key + "] changed from: " + data.oldValue + " to: " + data.value);
 
     set(data.key, data.value);
-    if (data.key.toLowerCase().indexOf('color') != -1) {
+    var loweredKey=data.key.toLowerCase();
+    if (loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1) {
         display.poke();
         vibration.start("bump");
         console.warn("poke");
     }
 });
-
 
 export function init() {
     console.log("settings init")
@@ -32,7 +32,7 @@ export function init() {
 
 export function subscribe(key, callback, defValue) {
     mediator.subscribe("setting_" + key, (value) => {
-        value = value || defValue;
+        if (value==="undefined") value = defValue;
         callback(value);
     });
     callback(get(key, defValue));
@@ -56,7 +56,6 @@ export function get(key, defaultValue) {
 
 export function set(key, value,dontPropagate) {
     _settings[key] = value;
-    //console.warn("set " + key + " to " + JSON.stringify(value));
     if (!dontPropagate) mediator.localPublish("setting_" + key, value);
     try {
         fs.writeFileSync("settings.json", _settings, "cbor");

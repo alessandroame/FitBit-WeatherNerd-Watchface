@@ -25,20 +25,18 @@ export function update(pos) {
             logger.error("apikey not available");
             return;
         }
-        let startTime = new Date();
+        /*let startTime = new Date();
         let endTime = new Date();
-        endTime.setHours(startTime.getHours() + 12);
+        endTime.setHours(startTime.getHours() + 12);*/
 
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
         Promise.all([
-            getCity(lat, lon),
-            getNowcast(lat, lon),
             getForecast(lat, lon),
             getSunTimes(lat,lon)
         ])
             .then((values) => {
-                let res = buildData(values[0], values[1], values[2],values[3]);
+                let res = buildData(values[0][0], values[0][1],values[1]);
                 // for (let i=0;i<values[2].length;i++){
                 //     let r=values[2][i];
                 //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
@@ -48,7 +46,7 @@ export function update(pos) {
     });
 }
 
-function buildData(city, nowcast, forecast,suntimes) {
+function buildData(nowcast, forecast,suntimes) {
     let data = [];
     let now = new Date();
     /*console.log("present "+JSON.stringify(present));
@@ -58,11 +56,11 @@ function buildData(city, nowcast, forecast,suntimes) {
     for (let i = 0; i < 60; i++) {
         let current = null;
         current = findFirst(nowcast, now, 12) ?? findFirst(forecast, now, 60);
+        //console.error(i,now,JSON.stringify(current))
         data.push(current);
         now.setMinutes(now.getMinutes() + 12);
     }
     let res = {
-        c: city,
         lu: new Date(),
         sr: suntimes.sr,
         ss: suntimes.ss,
@@ -82,48 +80,11 @@ function findFirst(data, d, precision) {
     return null;
 }
 
-function getCity(lat, lon) {
-    return new Promise((resolve, reject) => {
-        let url = "https://nominatim.openstreetmap.org/reverse?&lat=" + lat + "&lon=" + lon + "&format=json";
-        fetch(url)
-            .then(function (response) {4
-                response.json()
-                    .then(function (data) {
-                        let res={ 
-                            main: null ,
-                            sub: null
-                        };
-                        try {
-//                            console.error(JSON.stringify(data));
-                            if (data.error){
-                                res.main="Error"                                ;
-                                res.sub=data.error;
-                            }else{
-                            let a = data.display_name.split(",").slice(0,2);
-//                            console.error(JSON.stringify(a));
-                            res.main=a[0];
-                            res.sub=a[1];
-                        }
-                        //logger.warning("city response: " + res);
-                    } catch (err) {
-                        logger.error("getForecast exception: " + err);
-                        resolve({ 
-                            main: "Error" ,
-                            sub: err
-                        });
-                    }
-                    resolve(res);
-                });
-            })
-            .catch(function (err) {
-                logger.error("Error fetching city for lat: " + lat + " lon:" + lon + " -> " + err);
-                resolve("unknown location");
-            });
-    });
-}
-
 function getClimacellUrl(lat, lon,fields,timesteps,from, to){
     let now=from??new Date();
+    now.setMinutes(0);
+    now.setSeconds(0);
+    now.setMilliseconds(0);
     let startTime=now.toISOString();
     let url = "https://data.climacell.co/v4/timelines?" +
     "apikey=" + getApiKey() +
@@ -181,43 +142,6 @@ function getSunTimes(lat, lon) {
         }
     });
 }
-function getNowcast(lat, lon) {
-    return new Promise((resolve, reject) => {
-        try {
-            let url = getClimacellUrl(lat,lon,"weatherCode,precipitationIntensity,precipitationProbability,temperature","5m");
-            console.log("nowcast update " + url);
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/JSON"
-                }
-            })
-                .then(function (res) {
-                    //console.log(`res code: ${res.status} ${res.statusText}  `);
-                    res.json()
-                        .then(response => {
-                            if (response.message) {
-                                logger.error(`getNowcast error: ${JSON.stringify(response)} `);
-                            } else {
-                                let data=response.data.timelines[0].intervals;
-                                let res = [];
-                                for (let i = 0; i < data.length; i++) {
-                                    res.push(parseWeather(data[i]));
-                                } 
-                                resolve(res);
-                            }
-                        });
-                })
-                .catch(function (err) {
-                    logger.error("getNowcast ex: " + err);
-                });
-            //console.error("getNowcast resolved");
-        } catch (e) {
-            logger.error("getNowcast exception: " + e);
-            reject(e);
-        }
-    });
-}
 
 function getForecast(lat, lon) {
     return new Promise((resolve, reject) => {
@@ -225,7 +149,7 @@ function getForecast(lat, lon) {
             let startTime=new Date();
             let endTime=new Date();
             endTime.setHours(startTime.getHours()+12);
-            let url = getClimacellUrl(lat,lon,"weatherCode,precipitationIntensity,precipitationProbability,temperature","1h",startTime,endTime);
+            let url = getClimacellUrl(lat,lon,"windSpeed,windDirection,weatherCode,precipitationIntensity,precipitationProbability,temperature","5m,1h",startTime,endTime);
             console.log("climacell update " + url);
             fetch(url, {
                 method: "GET",
@@ -240,10 +164,17 @@ function getForecast(lat, lon) {
                             if (response.message) {
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
                             } else {
+                                let res = [[],[]];
+                                //nowcast
                                 let data=response.data.timelines[0].intervals;
-                                let res = [];
                                 for (let i = 0; i < data.length; i++) {
-                                    res.push(parseWeather(data[i]));
+                                    res[0].push(parseWeather(data[i]));
+                                }
+                                //forecast
+                                data=response.data.timelines[1].intervals;
+                                for (let i = 0; i < data.length; i++) {
+                                    //console.error(data[i].values.windDirection);
+                                    res[1].push(parseWeather(data[i]));
                                 }
                                 resolve(res);
                             }
@@ -264,12 +195,15 @@ function getForecast(lat, lon) {
 function parseWeather(data, time) {
     let dt = new Date(time ?? data.startTime);
     let values=data.values;
+    //console.error(dt.getHours(),values.weatherCode,values.windDirection,180-values.windDirection);
     return {
         d: dt,
         t: values.temperature,
         pp: values.precipitationIntensity==0?0:values.precipitationProbability,
         pi: values.precipitationIntensity,
-        wc: values.weatherCode
+        wc: values.weatherCode,
+        ws: values.windSpeed*3.6,
+        wd: values.windDirection-180
     };
 }
  

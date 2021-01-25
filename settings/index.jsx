@@ -196,8 +196,84 @@ function SettingsPage(props) {
             }
           }}
         ></TextInput>
+        
       </Section>
 
+      <Section
+        title={<Text bold align="center">Wind alerts</Text>}
+        >
+      <Text>Min wind speed: {Math.floor(props.settingsStorage.getItem('minWind')*(props.settingsStorage.getItem('unitSystem')=="si"?1:0.621371))} {props.settingsStorage.getItem('unitSystem')=="si"?"km/h":"mph"}</Text>
+      <Slider
+        settingsKey="_minWind"
+        min="0"
+        max={Math.max(10,props.settingsStorage.getItem('maxWind')*1-10)}
+        onChange={v=>{
+            props.settingsStorage.setItem('minWind', v);
+          }}
+      />
+      <Text>Max wind speed: {Math.floor(props.settingsStorage.getItem('maxWind')*(props.settingsStorage.getItem('unitSystem')=="si"?1:0.621371))} {props.settingsStorage.getItem('unitSystem')=="si"?"km/h":"mph"}</Text>
+      <Slider
+        settingsKey="_maxWind"
+        min={Math.min(50,props.settingsStorage.getItem('minWind')*1+10)}
+        max="50"
+        onChange={v=>{
+          props.settingsStorage.setItem('maxWind', v);
+        }}
+      />
+        {/* <Select
+          title={`Min wind speed`}
+          label={`Min wind speed`}
+          onSelection={(value) => {
+            try {
+              props.settingsStorage.setItem('minWind', value.values[0].value);
+            } catch (e) {
+              settingError(e);
+            }
+          }}
+          settingsKey="_minWind"
+          options={[
+            { name: "0-18 km/h	Calm air", value: "0" },
+            { name: "1.8-5.4 km/s	Light air", value: "1.8" },
+            { name: "2-3 km/s	Light breeze", value: "2" },
+            { name: "3.5-5 km/s Gentle breeze", value: "3.5" },
+            { name: "5.5-8 km/s Moderate breeze", value: "5.5" },
+            { name: "8.5-10.5 km/s Fresh breeze", value: "8.5" },
+            { name: "11-13.5 km/s Strong breeze", value: "11" },
+            { name: "14-16.5 km/s Moderate gale", value: "14" },
+            { name: "17-20 km/s Fresh gale", value: "17" },
+            { name: "20.5-23.5 km/s Strong gale", value: "20.5" },
+            { name: "24-27.5 km/s Whole gale", value: "24" },
+            { name: "28-31.5 km/s Storm", value: "28" },
+            { name: "over 32 km/s Hurricane", value: "32" }
+          ]}
+        /> 
+        <Select
+          title={`Max wind speed`}
+          label={`Max wind speed`}
+          onSelection={(value) => {
+            try {
+              props.settingsStorage.setItem('maxWind', value.values[0].value);
+            } catch (e) {
+              settingError(e);
+            }
+          }}
+          settingsKey="_maxWind"
+          options={[
+            { name: "0.5-1.5 km/s	Light air", value: "0.5" },
+            { name: "2-3 km/s	Light breeze", value: "2" },
+            { name: "3.5-5 km/s Gentle breeze", value: "3.5" },
+            { name: "5.5-8 km/s Moderate breeze", value: "5.5" },
+            { name: "8.5-10.5 km/s Fresh breeze", value: "8.5" },
+            { name: "11-13.5 km/s Strong breeze", value: "11" },
+            { name: "14-16.5 km/s Moderate gale", value: "14" },
+            { name: "17-20 km/s Fresh gale", value: "17" },
+            { name: "20.5-23.5 km/s Strong gale", value: "20.5" },
+            { name: "24-27.5 km/s Whole gale", value: "24" },
+            { name: "28-31.5 km/s Storm", value: "28" },
+            { name: "over 32 km/s Hurricane", value: "32" }
+          ]}
+        />*/}
+      </Section>
       <Section
         title={<Text bold align="center">Connection LOST handling</Text>}
         description={<Text>How to alert you when connection between phone and watch is lost.</Text>}>
@@ -252,12 +328,12 @@ function SettingsPage(props) {
           { name: "Fatal", value: "4" },
         ]}
       />
-      <Section
+      {/* <Section
         title={<Text bold align="center">Last setting log</Text>}
       >
         {renderLines([111111, 222222, 333333333, 444444444])}
         {renderLines(props.settingsStorage.getItem("settingLog").split("\n"))}
-      </Section>
+      </Section> */}
     </Page>
 
   );

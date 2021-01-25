@@ -79,7 +79,7 @@
 			</g>
 			<g id="sunsetHand" transform="translate(50%,50%)">
 				<g transform="translate(-50%,-50%)">
-					<image href="sunset.png" x="50%-13" y="0" width="26" height="41" fill="#006ED6" />
+					<image href="sunset.png" x="50%-13" y="0" width="26" height="41" fill="#BBBBBB" />
 				</g>
 			</g>
 			<g id="sunriseHand" transform="translate(50%,50%)">
