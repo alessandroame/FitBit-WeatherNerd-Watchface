@@ -7,7 +7,7 @@ const LOGLEVEL_WARNING = 2;
 const LOGLEVEL_ERROR = 3;
 const LOGLEVEL_FATAL = 4;
 let levelDescriptions = ["D", "I", "W", "E", "F"];
-let version="\nv0.0.5\n";
+let version="\nv0.0.6\n";
 let cache = "STARTED "+version;
 export let minLevel = LOGLEVEL_DEBUG;
 settings.subscribe("logLevel",(v)=>{minLevel=v;},LOGLEVEL_WARNING);

@@ -146,7 +146,7 @@ function SettingsPage(props) {
 
       <Section
         title={<Text bold align="center">Meteo</Text>}
-        description={<Text> Forecast api powerd by <Link source="http://climacell.co">Climacell™</Link>. To obtian a free APIkey go <Link source="https://developer.climacell.co/sign-up">https://developer.climacell.co/sign-up</Link></Text>}>
+        description={<Text> Forecast api powerd by <Link source="http://climacell.co">Climacell™</Link>. To obtian a free APIkey go <Link source="https://www.climacell.co/pricing/">https://www.climacell.co/pricing/</Link></Text>}>
 
         <Select
           label={`Update interval`}

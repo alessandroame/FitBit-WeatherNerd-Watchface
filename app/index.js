@@ -73,14 +73,6 @@ document.getElementById("meteo_mode_button").onclick=()=>{
 
 showClock();
 
-// settings.subscribe("datumDayColor", (color) => {
-//     document.getElementById("fitWidget").getElementById("value").style.fill = color;
-//     document.getElementById("currentWeather").getElementById("temp").style.fill = color;
-//     document.getElementById("clockDialHours").style.fill = color;
-//     document.getElementById("secs").style.fill = color;
-//     document.getElementById("dayNumber").style.fill = color;
-// }, "white");
-
 function onMeteoDataAvailable(data,mode) {
     //logger.warning(memStats("onMeteoDataAvailable"));
     meteo_alerts.update(data.alerts,mode);
