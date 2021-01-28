@@ -48,11 +48,11 @@ document.getElementById("fitWidgetTouch").onclick=function(){
 settings.subscribe("fitDataColor",(value)=>{
     widget.style.fill=value;
     //widget.getElementById("goal").style.fill=value;
-},"white");
+});
 
 const COLOR_WARNING = "yellow";
 const COLOR_ALERT = "red";
-let COLOR_NORMAL = "gray";
+let COLOR_NORMAL = "dodgerblue";
 settings.subscribe("fitWidgetBackgroundColor",(value)=>{
     if (!value) value="gray";
     widget.getElementById("background").style.fill=value;
@@ -61,7 +61,7 @@ settings.subscribe("goalColor",(value)=>{
     widget.getElementById("goal").style.fill=value;
     document.getElementById("goalRail").style.fill=value;
     COLOR_NORMAL=value;
-},"green");
+});
 
 export function next() {
     setSensor(sensorIndex + 1);
@@ -167,7 +167,7 @@ function updateValue(v) {
         //console.error(goalPerc);
         goal.sweepAngle = 360 * (goalPerc);
 
-        let color = COLOR_NORMAL;
+        let color = COLOR_NORMAL||0;
         if (goalPerc < 0.33) {
           color = COLOR_ALERT
         }

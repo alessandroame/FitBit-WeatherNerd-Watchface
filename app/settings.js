@@ -2,6 +2,7 @@ import { vibration } from "haptics";
 import * as mediator from "../common/mediator";
 import * as fs from "fs";
 import { display } from "display";
+import * as defaultSettings from "../common/defaultSettings.js";
 
 let _settings = {};
 
@@ -30,15 +31,15 @@ export function init() {
     console.log("settings init")
 }
 
-export function subscribe(key, callback, defValue) {
+export function subscribe(key, callback) {
     mediator.subscribe("setting_" + key, (value) => {
-        if (value==="undefined") value = defValue;
+        if (value==="undefined") value = defaultSettings.get(key);
         callback(value);
     });
-    callback(get(key, defValue));
+    callback(get(key, defaultSettings.get(key)));
 }
 
-export function get(key, defaultValue) {
+export function get(key) {
     // if (_settings[key] == null) {
     //     set(key,defaultValue,true);
     //     const data = {
@@ -51,7 +52,7 @@ export function get(key, defaultValue) {
     //         mediator.remotePublish(topic, data);
     //     },10000);
     // }
-    return _settings[key]??defaultValue;
+    return _settings[key]??defaultSettings.get(key);
 }
 
 export function set(key, value,dontPropagate) {

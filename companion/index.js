@@ -22,7 +22,9 @@ function init() {
     console.log("Companion code started");
     mediator.subscribe("requestMeteoUpdate", () => forceUpdate("requested from watch"));
     mediator.subscribe("requestGetCurrentPosition", ()=> geolocator.getCurrentPosition(true));
-
+    settings.subscribe("APIKey", (keys) => { 
+        geolocator.getCurrentPosition(true); 
+    });
     settings.subscribe("minMeteoUpdateInteval",(value)=>{
         updateMeteoInterval=Math.max(1, value*1);
         geolocator.getCurrentPosition();
