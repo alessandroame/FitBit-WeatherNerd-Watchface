@@ -12,5 +12,6 @@ export function minutesToAngle(minutes) {
 }
 
 export function secondsToAngle(seconds) {
+    //return (360 / 5) * seconds;
     return (360 / 60) * seconds;
 }

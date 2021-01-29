@@ -71,7 +71,7 @@ export function fetchMeteo() {
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
     if (!meteoData) {
-        //handle default value
+        //TODO handle default value
         return;
     }
     //console.log(JSON.stringify(meteo));
