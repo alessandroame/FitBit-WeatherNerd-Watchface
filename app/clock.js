@@ -55,9 +55,12 @@ let restActive=false;
 export function setRest(){
   restActive=true;
   let a=135;
-  updateHand(secHand,secHandShadow,a);
-  updateHand(minHand,minHandShadow,a);
-  updateHand(hourHand, hourHandShadow,a);
+  secHandShadow.style.opacity=0;
+  minHandShadow.style.opacity=0;
+  hourHandShadow.style.opacity=0;
+  updateHand(secHand,secHandShadow,a,true);
+  updateHand(minHand,minHandShadow,a,true);
+  updateHand(hourHand, hourHandShadow,a,true);
 }
 export function resetRest(){
   restActive=false;
@@ -65,6 +68,11 @@ export function resetRest(){
   oldMins=0;
   oldSecs=0;
   updateClock();
+  setTimeout(() => {
+    secHandShadow.style.opacity=0.5;
+    minHandShadow.style.opacity=0.5;
+    hourHandShadow.style.opacity=0.5;
+  }, 1000);
 }
 
 export function init() {
@@ -100,17 +108,10 @@ function updateClock() {
 }
 
 function updateHand(hand,handShadow,a){
-  try{
-    animate(hand,a);
-  }catch(e){
-    hand.groupTransform.rotate.angle = a;
-  }
-  try{
-    animate(handShadow,a);
-  }catch(e){
-    handShadow.groupTransform.rotate.angle = a;
-  }
-
+  animate(hand,a);
+  //hand.groupTransform.rotate.angle = a;
+  animate(handShadow,a);
+  //handShadow.groupTransform.rotate.angle = a;
 }
 
 function animate(element,a){

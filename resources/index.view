@@ -12,7 +12,7 @@
 	<image x="0" y="238" width="95" height="95" href="icons/precipModeBtn.png" fill="gray" id="meteo_mode"/>
 	<circle cx="35" cy="295" r="60" fill="red" pointer-events="all" id="meteo_mode_button" opacity="0" layer="999"/>
 
-	<g transform="translate(100%-40,100%-40),rotate(135)">
+	<g transform="translate(100%-38,100%-38),rotate(135)">
 		<image x="-16" y="-8" width="35" height="16" href="icons/handsRest.png" fill="gray" id="meteo_mode"/>
 	</g>
 	<circle cx="100%-35" cy="295" r="60" fill="red" pointer-events="all" id="display_mode_button" opacity="0" layer="999"/>
