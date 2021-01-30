@@ -27,8 +27,8 @@ let defaultSettings={
     "unitSystem":"si",
     "meteoMode":0,
     "vibrateOnConnectionLost":true,
+    "snoozeDialogEnabled":true,
    /* "":"",
-    "":"",
     "":"",
     "":"",*/
 }

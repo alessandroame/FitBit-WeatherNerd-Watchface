@@ -52,31 +52,37 @@ clock.granularity = "seconds";
 clock.addEventListener("tick", updateClock);
 
 let restActive=false;
+let restTimer=null;
+let canRest=false;
 export function setRest(){
+  if (restTimer) clearTimeout(restTimer);
+  canRest=false;
   restActive=true;
-  let a=135;
-  secHandShadow.style.opacity=0;
-  minHandShadow.style.opacity=0;
-  hourHandShadow.style.opacity=0;
-  updateHand(secHand,secHandShadow,a,true);
-  updateHand(minHand,minHandShadow,a,true);
-  updateHand(hourHand, hourHandShadow,a,true);
+  let angle=135;
+  let duration=0.5;
+  updateHand(secHand,secHandShadow,angle,duration);
+  updateHand(minHand,minHandShadow,angle,duration);
+  updateHand(hourHand, hourHandShadow,angle,duration);
+  restTimer=setTimeout(()=>{
+    restTimer=null;
+    if (canRest) resetRest();
+    canRest=true;
+  },1500);
 }
 export function resetRest(){
+  //console.log(canRest+" "+(restTimer));
+  canRest=true;
+  if (restTimer) return;
+
+  oldHours=null;
+  oldMins=null;
+  oldSecs=null;
   restActive=false;
-  oldHours=0;
-  oldMins=0;
-  oldSecs=0;
   updateClock();
-  setTimeout(() => {
-    secHandShadow.style.opacity=0.5;
-    minHandShadow.style.opacity=0.5;
-    hourHandShadow.style.opacity=0.5;
-  }, 1000);
 }
 
 export function init() {
-  console.log("clock init");
+  //console.log("clock init");
   datum.init();
 }
 
@@ -97,28 +103,50 @@ function updateClock() {
   //   oldHours = hours;
   // }
   if (oldMins != mins) {
-    updateHand(hourHand,hourHandShadow,geom.hoursToAngle(hours, mins));
-    updateHand(minHand,minHandShadow,geom.minutesToAngle(mins));
+    updateHand(hourHand,hourHandShadow,geom.hoursToAngle(hours, mins),1);
+    updateHand(minHand,minHandShadow,geom.minutesToAngle(mins),1);
     oldMins = mins;
   }
-  if (oldSecs != secs) {
-    updateHand(secHand,secHandShadow,geom.secondsToAngle(secs));
+  if (oldSecs != secs) { 
+    //console.log("sec: "+secs+ " a: "+geom.secondsToAngle(secs));
+    updateHand(secHand,secHandShadow,geom.secondsToAngle(secs),0.5,true);
     oldSecs = secs;
   }
 }
 
-function updateHand(hand,handShadow,a){
-  animate(hand,a);
-  //hand.groupTransform.rotate.angle = a;
-  animate(handShadow,a);
-  //handShadow.groupTransform.rotate.angle = a;
+function updateHand(hand,handShadow,angle,duration,logEnabled){
+  animate(hand,angle,duration,logEnabled);
+  if (restActive){
+    handShadow.style.opacity=0;
+    setTimeout(()=>{
+      handShadow.groupTransform.rotate.angle = angle;
+      handShadow.style.opacity=0.5;}
+     ,duration*1000);
+  } else{
+    handShadow.style.opacity=0.5;
+    animate(handShadow,angle,duration);
+  }
 }
 
-function animate(element,a){
-  var animation=element.getElementById("animation");
-  var from =element.groupTransform.rotate.angle-(element.groupTransform.rotate.angle>a?360:0);
+function animate(element,toAngle,duration,logEnabled){
+  let animation=element.getElementById("animation");
+  animation.animate("disable");
+  let fromAngle =element.groupTransform.rotate.angle;
+  if (fromAngle<0) fromAngle=360-fromAngle;
+  if (fromAngle>360) fromAngle=fromAngle-360;
+  let cwDist=Math.abs(toAngle-fromAngle);
+  let ccwDist=360-cwDist;
+  //if (logEnabled)console.log("from: "+fromAngle+" to:"+toAngle+" dx: "+cwDist+" sx: "+ccwDist);
+  if (cwDist<ccwDist) {//clockwise
+    //if (logEnabled)console.log("cw");
+  }else{ //counter clockwise
+    toAngle=fromAngle+ccwDist;
+    //if (logEnabled) console.log("ccw "+toAngle);
+  }
+  //console.log(fromAngle+" > "+toAngle);
   //console.log(from+","+a); 
-  animation.from=from;
-  animation.to=a;
+  animation.dur=duration;
+  animation.from=fromAngle;
+  animation.to=toAngle;
   element.animate("enable");
 }

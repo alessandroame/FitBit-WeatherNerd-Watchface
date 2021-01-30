@@ -40,7 +40,7 @@
                  <text id="minValue" fill="#006ED6" font-family="System-Bold" font-size="50" font-weight="bold" text-anchor="middle" x="40%" y="53%" text-length="100">--</text>
                  <text id="maxValue" fill="red" font-family="System-Bold" font-size="50" font-weight="bold" text-anchor="middle" x="60%" y="53%" text-length="100">--</text>
 
-                <text id="lastUpdate" fill="white" font-family="System-Bold" font-size="20" font-weight="bold" text-anchor="middle" x="50%" y="68%" text-length="100"> ...</text>
+                <text id="lastUpdate" fill="white" font-family="System-Bold" font-size="20" font-weight="bold" text-anchor="middle" x="50%" y="66%" text-length="100"> ...</text>
 
 
 <!-- 
