@@ -100,6 +100,7 @@ function onMeteoDataAvailable(data,mode) {
 function showClock() {
     clock.show();
     forecasts.hide();
+    document.getElementById("rest_mode").style.display="inline";
 }
 
 // if (display.aodAvailable /*&& appbit.permissions.granted("access_aod")*/) {
@@ -151,6 +152,7 @@ function showMenu() {
 document.getElementById("weatherWidgetTouch").onclick=function(){
     forecasts.show();
     clock.hide();
+    document.getElementById("rest_mode").style.display="none";
     startClockDispayTimeout();
 }
 

@@ -116,16 +116,16 @@ function updateClock() {
 
 function updateHand(hand,handShadow,angle,duration,logEnabled){
   animate(hand,angle,duration,logEnabled);
-  if (restActive){
+/*  if (restActive){
     handShadow.style.opacity=0;
+    handShadow.groupTransform.rotate.angle = angle;
     setTimeout(()=>{
-      handShadow.groupTransform.rotate.angle = angle;
       handShadow.style.opacity=0.5;}
      ,duration*1000);
-  } else{
+  } else{*/
     handShadow.style.opacity=0.5;
     animate(handShadow,angle,duration);
-  }
+  //}
 }
 
 function animate(element,toAngle,duration,logEnabled){
