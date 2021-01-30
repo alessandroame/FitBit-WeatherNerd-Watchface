@@ -1,10 +1,10 @@
 export function get(key){
-    if (defaultSettings[key]!=null) return defaultSettings[key];
+    if (defaultValues[key]!=null) return defaultValues[key];
     console.error("Default value not found: "+key);
     return null;
 }
 
-let defaultSettings={
+export let defaultValues={
     "batteryColor":"dodgerblue",
     "clockBackgroundColor":"darkgrey",
     "clockDialHoursColor":"white",
@@ -19,16 +19,33 @@ let defaultSettings={
     "weatherBackgroundColor":"black",
     "weatherWidgetColor":"white",
     "datumDOWColor":"dodgerblue",
-    "dialGraphic":"small_hex",
     "clockDialMinutesColor":"grey",
-    "logLevel":"2",
-    "minWind":"5",
-    "maxWind":"20",
+ 
+    "_dialGraphic":JSON.stringify({"selected":[1],"values":[{ name: "Small hexagon pattern", value: "small_hex" }]}),
+    "dialGraphic": "small_hex",
+ 
+    "_logLevel":JSON.stringify({"selected":[2],"values":[{ name: "Warning", value: "2" }]}),
+    "logLevel": "2",
+
+    "minWind":5,
+    "maxWind":20,
+
+    "_unitSystem":JSON.stringify({"selected":[0],"values":[{ name: "Metric", value: "si" }]}),
     "unitSystem":"si",
+
     "meteoMode":0,
     "vibrateOnConnectionLost":true,
     "snoozeDialogEnabled":true,
-   /* "":"",
-    "":"",
-    "":"",*/
-}
+
+    "_snoozeDelayMinutes":JSON.stringify({"selected":[1],"values":[{ name: "2 minutes", value: "2" }]}),
+    "snoozeDelayMinutes":2,
+
+    "_minMeteoUpdateInteval":JSON.stringify({"selected":[4],"values":[{ name: "10 minutes", value: "10" }]}),
+    "minMeteoUpdateInteval":10,
+
+    "_elementToUpdate":JSON.stringify({"selected":[5],"values":[{ name: "Clock background", value: "clockBackgroundColor" }]}),
+    "elementToUpdate":"clockBackgroundColor",
+ 
+    "_elementColor":JSON.stringify({"selected":[2],"values":[{ color: 'grey' }]}),
+   "elementColor":"darkgrey"
+} 

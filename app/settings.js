@@ -3,6 +3,7 @@ import * as mediator from "../common/mediator";
 import * as fs from "fs";
 import { display } from "display";
 import * as defaultSettings from "../common/defaultSettings.js";
+import { settings } from "cluster";
 
 let _settings = {};
 

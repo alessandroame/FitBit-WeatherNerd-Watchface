@@ -2,8 +2,6 @@ import { locale } from "user-settings";
 import * as settings from "./settings";
 
 import document from "document";
-import * as geom from './geom';
-import * as settings from "./settings"
 
 let unitSystem = "si";
 let hourlyForecastsUI = null;
