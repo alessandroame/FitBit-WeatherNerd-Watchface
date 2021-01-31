@@ -93,6 +93,16 @@ export function hide() {
   clockContainer.style.display = "none";
 }
 
+/*let pattern=[58,59,0,1,2,1,0,59];
+let  patternIndex=0;
+var now=new Date();
+setInterval(()=>{
+  patternIndex++;
+  if (patternIndex>=pattern.length) patternIndex=0;
+  now.setSeconds(pattern[patternIndex]);
+  //console.log(now);
+  updateClock();
+},1000);*/
 function updateClock() {
   if (restActive) return;
   let now = new Date();
@@ -104,6 +114,7 @@ function updateClock() {
   // }
   if (oldMins != mins) {
     updateHand(hourHand,hourHandShadow,geom.hoursToAngle(hours, mins),1);
+    //console.log("min: "+mins+ " a: "+geom.minutesToAngle(mins));
     updateHand(minHand,minHandShadow,geom.minutesToAngle(mins),1);
     oldMins = mins;
   }
@@ -128,23 +139,22 @@ function updateHand(hand,handShadow,angle,duration,logEnabled){
   //}
 }
 
+function calculateTo(from,to){
+  let d=to%360-from%360;
+  if (d>179)
+    d-=360;
+  else if(d<-179)
+    d+=360;
+
+  return from+d;
+}
+
 function animate(element,toAngle,duration,logEnabled){
   let animation=element.getElementById("animation");
   animation.animate("disable");
-  let fromAngle =element.groupTransform.rotate.angle;
-  if (fromAngle<0) fromAngle=360-fromAngle;
-  if (fromAngle>360) fromAngle=fromAngle-360;
-  let cwDist=Math.abs(toAngle-fromAngle);
-  let ccwDist=360-cwDist;
-  //if (logEnabled)console.log("from: "+fromAngle+" to:"+toAngle+" dx: "+cwDist+" sx: "+ccwDist);
-  if (cwDist<ccwDist) {//clockwise
-    //if (logEnabled)console.log("cw");
-  }else{ //counter clockwise
-    toAngle=fromAngle+ccwDist;
-    //if (logEnabled) console.log("ccw "+toAngle);
-  }
-  //console.log(fromAngle+" > "+toAngle);
-  //console.log(from+","+a); 
+  let fromAngle=element.groupTransform.rotate.angle%360;
+  toAngle=toAngle%360;
+  toAngle=calculateTo(fromAngle,toAngle);
   animation.dur=duration;
   animation.from=fromAngle;
   animation.to=toAngle;
