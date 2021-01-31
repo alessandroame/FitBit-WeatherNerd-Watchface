@@ -70,6 +70,13 @@ document.getElementById("meteo_mode_button").onclick=()=>{
     else mode=0;
     settings.set("meteoMode",mode);
 };
+document.getElementById("display_mode_button").addEventListener("mousedown", (evt) => {
+    clock.setRest();
+});
+
+document.getElementById("display_mode_button").addEventListener("mouseup", (evt) => {
+    clock.resetRest();
+});
 
 showClock();
 

@@ -1,12 +1,21 @@
 import { settingsStorage } from "settings";
+import * as defaultSettings from "../common/defaultSettings";
 import * as mediator from "../common/mediator";
-
+let initialized=false;
 export function init() {
-  console.log("settings init")
+  for (let key in defaultSettings.defaultValues){
+    if (!settingsStorage.getItem(key)){
+      let value=defaultSettings.defaultValues[key];
+      console.log("applying default value "+key+"="+value)
+      settingsStorage.setItem(key,value);
+    }
+    initialized=true;
+}
+console.log("settings init");
 
   settingsStorage.addEventListener("change", (evt) => {
 //    console.warn("<<<<<<<< " + evt.key + " >>>>>>>>");
-    notify(evt);
+    if (initialized) notify(evt);
   });
 }
 // mediator.subscribe("setting_changed",(data)=>{

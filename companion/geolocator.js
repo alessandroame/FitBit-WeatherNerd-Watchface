@@ -9,7 +9,6 @@ export function init(onPositionChangedCallback) {
 }
 export function getCurrentPosition(forceUpdate) {
   geolocation.getCurrentPosition(function(position) {
-    
     onLocationSuccess({
         coords:{
             latitude:position.coords.latitude ,

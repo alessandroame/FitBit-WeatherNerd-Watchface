@@ -22,7 +22,7 @@ export function update(pos) {
             return;
         }
         if (!apiKeys || apiKeys.length==0) {
-            logger.error("apikey not available");
+            logger.error("climacell -> apikey not available");
             return;
         }
         /*let startTime = new Date();
@@ -36,6 +36,7 @@ export function update(pos) {
             getSunTimes(lat,lon)
         ])
             .then((values) => {
+                logger.debug("climacell -> data availables");
                 let res = buildData(values[0][0], values[0][1],values[1]);
                 // for (let i=0;i<values[2].length;i++){
                 //     let r=values[2][i];

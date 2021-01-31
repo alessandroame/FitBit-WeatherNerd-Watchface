@@ -70,7 +70,10 @@ export function fetchMeteo() {
     let alerts = [];
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
-    if (!meteoData) return;
+    if (!meteoData) {
+        //TODO handle default value
+        return;
+    }
     //console.log(JSON.stringify(meteo));
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());

@@ -9,8 +9,9 @@
 	 <use href="#hourlyForecasts" id="hourlyForecasts"/>
 
 	
-	<image id="icon" x="0" y="238" width="95" height="95" href="icons/precipModeBtn.png" fill="#BB0000" id="meteo_mode"/>
+	<image x="0" y="238" width="95" height="95" href="icons/precipModeBtn.png" fill="gray" id="meteo_mode"/>
 	<circle cx="35" cy="295" r="60" fill="red" pointer-events="all" id="meteo_mode_button" opacity="0" layer="999"/>
+
 
 	<!-- <use href="#touchAreas" layer="900" /> -->
 </svg>
