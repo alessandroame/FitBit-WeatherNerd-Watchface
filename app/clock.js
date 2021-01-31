@@ -16,6 +16,15 @@ let hourHandShadow = clockContainer.getElementById("hoursShadow");
 let minHandShadow = clockContainer.getElementById("minsShadow");
 let secHandShadow = clockContainer.getElementById("secsShadow");
 
+let restActive=false;
+let restTimer=null;
+let canRest=false;
+
+
+export function init() {
+  //console.log("clock init");
+  datum.init();
+}
 settings.subscribe("clockBackgroundColor", (color) => {
   //  document.getElementById("clockBackground").gradient.colors.c1 = color;
   document.getElementById("dialGraphic").style.fill = color;
@@ -51,10 +60,20 @@ settings.subscribe("hoursHandColor", (value) => {
 clock.granularity = "seconds";
 clock.addEventListener("tick", updateClock);
 
-let restActive=false;
-let restTimer=null;
-let canRest=false;
+
+/*let pattern=[58,59,0,1,2,1,0,59];
+let  patternIndex=0;
+var now=new Date();
+setInterval(()=>{
+  patternIndex++;
+  if (patternIndex>=pattern.length) patternIndex=0;
+  now.setSeconds(pattern[patternIndex]);
+  //console.log(now);
+  updateClock();
+},1000);*/
+
 export function setRest(){
+  document.getElementById("rest_mode").style.fill="dodgerblue";
   if (restTimer) clearTimeout(restTimer);
   canRest=false;
   restActive=true;
@@ -79,11 +98,7 @@ export function resetRest(){
   oldSecs=null;
   restActive=false;
   updateClock();
-}
-
-export function init() {
-  //console.log("clock init");
-  datum.init();
+  document.getElementById("rest_mode").style.fill="gray";
 }
 
 export function show() {
@@ -93,16 +108,6 @@ export function hide() {
   clockContainer.style.display = "none";
 }
 
-/*let pattern=[58,59,0,1,2,1,0,59];
-let  patternIndex=0;
-var now=new Date();
-setInterval(()=>{
-  patternIndex++;
-  if (patternIndex>=pattern.length) patternIndex=0;
-  now.setSeconds(pattern[patternIndex]);
-  //console.log(now);
-  updateClock();
-},1000);*/
 function updateClock() {
   if (restActive) return;
   let now = new Date();
@@ -127,25 +132,15 @@ function updateClock() {
 
 function updateHand(hand,handShadow,angle,duration,logEnabled){
   animate(hand,angle,duration,logEnabled);
-/*  if (restActive){
-    handShadow.style.opacity=0;
-    handShadow.groupTransform.rotate.angle = angle;
-    setTimeout(()=>{
-      handShadow.style.opacity=0.5;}
-     ,duration*1000);
-  } else{*/
-    handShadow.style.opacity=0.5;
-    animate(handShadow,angle,duration);
-  //}
+  animate(handShadow,angle,duration);
 }
 
-function calculateTo(from,to){
+function calculateShortestToAngle(from,to){
   let d=to%360-from%360;
   if (d>179)
     d-=360;
   else if(d<-179)
     d+=360;
-
   return from+d;
 }
 
@@ -154,7 +149,7 @@ function animate(element,toAngle,duration,logEnabled){
   animation.animate("disable");
   let fromAngle=element.groupTransform.rotate.angle%360;
   toAngle=toAngle%360;
-  toAngle=calculateTo(fromAngle,toAngle);
+  toAngle=calculateShortestToAngle(fromAngle,toAngle);
   animation.dur=duration;
   animation.from=fromAngle;
   animation.to=toAngle;

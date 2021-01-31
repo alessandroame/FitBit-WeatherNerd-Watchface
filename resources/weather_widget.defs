@@ -6,9 +6,6 @@
 			<image href="widget_background.png" x="-42" y="-42" width="84" height="84" opacity="1" fill="white" />
 
 			<g id="windContainer">
-   				<g id="direction">
-    				<image href="icons/windDirectionWidget.png" x="-40" y="-40" width="80" height="80" fill="#208EF6" />
-				</g>
 				<text id="windSpeedShadow" x="2" y="13" font-size="36" text-anchor="middle" fill="black" font-family="System-Bold" text-length="10" opacity="0.5">
 					--
 				</text>
@@ -18,8 +15,13 @@
 				<text id="windUnits" x="0" y="24" font-size="14" text-anchor="middle" fill="white" font-family="System-Bold" text-length="10">
 					--
 				</text>
-				<image href="icons/windMarkers.png" x="-40" y="-40" width="80" height="80" fill="white" />
+				<image href="icons/windMarkers.png" x="-40" y="-40" width="80" height="80" fill="white"/>
+				<image href="widget_shadow.png" x="-42" y="-42" width="84" height="84" fill="black" opacity="0.8" />
+   				<g id="direction">
+    				<image href="icons/windDirectionWidget.png" x="-40" y="-40" width="80" height="80" fill="#208EF6"/>
+				</g>
 			</g>
+
 			<g id="weatherContainer">
 				<image id="icon" href="icons/meteo/clear_day.png" x="-24" y="-37" width="48" height="48" />
 				<text id="tempShadow" x="2" y="36" font-size="30" text-anchor="middle" fill="black" font-family="System-Bold" text-length="10" opacity="0.5">
@@ -28,9 +30,10 @@
 				<text id="temp" x="0" y="34" font-size="30" text-anchor="middle" fill="white" font-family="System-Bold" text-length="10">
 					--°
 				</text>
+				<image href="widget_shadow.png" x="-42" y="-42" width="84" height="84" fill="black" opacity="0.8" />
 			</g>
-			<image href="widget_shadow.png" x="-42" y="-42" width="84" height="84" fill="black" opacity="0.8" />
+
 			<circle id="weatherWidgetTouch" cx="0" cy="0" r="42" opacity="0" pointer-events="all" layer="999" />
-		</symbol>sdffgsdfgsdfgsd 
+		</symbol>
 	</defs>
 </svg>

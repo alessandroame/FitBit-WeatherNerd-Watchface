@@ -91,11 +91,11 @@ function forceUpdate(reason){
 }
 
 function onMeteoAvailable(data) {
-    logger.debug("meteo available");
+    logger.debug("onMeteoAvailable begin");
     let json = JSON.stringify(data);
     outbox
         .enqueue("meteo_data.json", encode(json)).then((ft) => {
-            console.log(`onMeteoAvailable Transfer of ${ft.name} successfully queued.`);
+            logger.debug(`onMeteoAvailable ${ft.name} successfully queued.`);
         })
         .catch((error) => {
             logger.error(`onMeteoAvailable Failed write file: ${error}`);
