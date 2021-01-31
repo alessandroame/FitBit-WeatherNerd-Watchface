@@ -74,7 +74,7 @@
 			</g>
 
 			<g transform="translate(100%-38,100%-38),rotate(135)" id="rest_mode" fill="gray">
-				<image x="-16" y="-8" width="35" height="16" href="icons/handsRest.png"/>
+				<image x="-20" y="-11" width="41" height="23" href="icons/handsRest.png"/>
 			</g>
 			<circle cx="100%-35" cy="295" r="60" fill="red" pointer-events="all" id="display_mode_button" opacity="0" layer="999"/>
 
