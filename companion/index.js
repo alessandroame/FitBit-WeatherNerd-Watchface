@@ -86,7 +86,7 @@ function updateMeteo(reason) {
 }
 
 function forceUpdate(reason){
-    logger.warning("udpate: "+reason);
+    logger.warning("update: "+reason);
     climacell.update(currentPosition).then(onMeteoAvailable);
 }
 
