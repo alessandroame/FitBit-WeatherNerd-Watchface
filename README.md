@@ -18,7 +18,7 @@ Installation from smartphone [download here](https://gallery.fitbit.com/details/
 ## Functions:
 
 - Follow mode to obtain forecast of the current position
-- Hourly precipitation/ice alert on clock
+- Hourly precipitation/wind /ice alert on clock
 - Connection with lost alert with snooze function
 
 
