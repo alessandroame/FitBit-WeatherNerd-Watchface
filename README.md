@@ -25,3 +25,5 @@ Installation from smartphone [download here](https://gallery.fitbit.com/details/
 Refs:
 - Weather icons: https://developer.climacell.co/v3/docs/weather-codes
 
+If you like it: https://paypal.me/alessandroame
+
