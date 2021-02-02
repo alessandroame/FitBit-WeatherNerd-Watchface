@@ -87,7 +87,19 @@ function updateMeteo(reason) {
 
 function forceUpdate(reason){
     logger.warning("update: "+reason);
-    climacell.update(currentPosition).then(onMeteoAvailable);
+    climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
+}
+
+function onMeteoError(error){
+    logger.error("onMeteoError");
+    let json = JSON.stringify(error);
+    outbox
+    .enqueue("meteo_data.json", encode(json)).then((ft) => {
+        logger.debug(`onMeteoAvailable ${ft.name} successfully queued.`);
+    })
+    .catch((error) => {
+        logger.error(`onMeteoAvailable Failed write file: ${error}`);
+    });
 }
 
 function onMeteoAvailable(data) {

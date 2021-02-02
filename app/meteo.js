@@ -5,6 +5,8 @@ import * as logger from "./logger"
 import * as geom from '../common/geom'
 import { memory } from "system";
 import * as settings from "./settings"
+import document from "document";
+
 let weatherIcons={
 	_1000: "clear",
 	_1001: "cloudy",
@@ -70,11 +72,24 @@ export function fetchMeteo() {
     let alerts = [];
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
-    if (!meteoData) {
+    console.log("!!!!!"+JSON.stringify(meteoData));
+    if ((!meteoData) || (meteoData.type)) {
+        if (meteoData.type=="Invalid Key"){
+            console.warn(JSON.stringify(settings.get("APIKey")));
+            if (settings.get("APIKey")&&settings.get("APIKey").length>0){
+                document.getElementById("error").href="errors/location_permission_missing.png";
+            }else{
+                document.getElementById("error").href="errors/api_key_missing.png";
+            }
+            document.getElementById("alerts").style.display="none";
+            document.getElementById("error").style.display="inline";
+        }
         //TODO handle default value
         return;
     }
-    //console.log(JSON.stringify(meteo));
+    document.getElementById("error").style.display="none";
+    document.getElementById("alerts").style.display="inline";
+//console.log(JSON.stringify(meteo));
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
     let offset=Math.floor(angle/360*60);

@@ -1,7 +1,8 @@
 <svg>
 	<defs>
 		<symbol id="clock">
-			 <use href="#alerts" id="alerts" /> 
+   		 	<use href="#alerts" id="alerts" /> 
+			<image href="" id="error" fill="white" /> 
 
 			<image id="dialGraphic" href="background_small_hex.png" x="0" y="0" width="100%" height="100%" fill="white" opacity="1" />
 			<g transform="translate(40%,67%)">

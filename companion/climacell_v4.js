@@ -43,7 +43,7 @@ export function update(pos) {
                 //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
                 // }
                 resolve(res);
-            });
+            }).catch(reject);
     });
 }
 
@@ -119,6 +119,7 @@ function getSunTimes(lat, lon) {
                         .then(response => {
                             if (response.message) {
                                 logger.error(`getSunTimes error: ${JSON.stringify(response)} `);
+                                reject(response);
                             } else {
                                 let data=response.data.timelines[0].intervals;
                                 let res = { sr:null,ss:null};
@@ -164,6 +165,7 @@ function getForecast(lat, lon) {
                         .then(response => {
                             if (response.message) {
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
+                                reject(response);
                             } else {
                                 let res = [[],[]];
                                 //nowcast
