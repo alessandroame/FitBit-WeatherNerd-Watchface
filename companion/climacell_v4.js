@@ -8,6 +8,9 @@ settings.subscribe("APIKey", (keys) => {
 });
 
 function getApiKey(){
+    if (!apiKeys || apiKeys.length==0) {
+        settings.set("error","api_key_missing");
+    }
     if (keyIndex>=apiKeys.length) keyIndex=0;
     let res= apiKeys[keyIndex];
     //console.error(keyIndex,res);
@@ -164,6 +167,7 @@ function getForecast(lat, lon) {
                     res.json()
                         .then(response => {
                             if (response.message) {
+                                if (meteoData.type=="Invalid Key") settings.set("error","wrong_api_key");
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
                                 reject(response);
                             } else {

@@ -16,7 +16,7 @@
    viewBox="0 0 336 336"
    sodipodi:docname="errors.svg"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\errors\location_permission_missing.png"
+   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\errors\wrong_api_key.png"
    inkscape:export-xdpi="95"
    inkscape:export-ydpi="95">
   <metadata
@@ -67,12 +67,12 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="1.9380637"
-     inkscape:cx="90.678031"
+     inkscape:cx="116.08397"
      inkscape:cy="199.6567"
-     inkscape:window-x="11"
-     inkscape:window-y="180"
+     inkscape:window-x="-2"
+     inkscape:window-y="14"
      inkscape:window-maximized="0"
-     inkscape:current-layer="g2051"
+     inkscape:current-layer="svg833"
      inkscape:document-rotation="0">
     <sodipodi:guide
        position="154.73979,168.46519"
@@ -134,9 +134,31 @@
   </g>
   <g
      inkscape:groupmode="layer"
+     id="g997"
+     inkscape:label="API key is wrong"
+     style="display:inline;mix-blend-mode:normal">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:start;direction:ltr;text-anchor:start;fill:#f3f3f3;fill-opacity:1;stroke:none"
+       id="text995"
+       inkscape:transform-center-x="70.388735"
+       inkscape:transform-center-y="-86.244983"
+       x="-37.206394"
+       y="0"
+       transform="rotate(-41.785363,167.89537,167.53687)"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\errors\api_key_missing.png"
+       inkscape:export-xdpi="95"
+       inkscape:export-ydpi="95"><textPath
+         xlink:href="#path1421"
+         startOffset="50%"
+         id="textPath993"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:start;direction:ltr;text-anchor:start;fill:#f3f3f3;fill-opacity:1">WRONG API KEY</textPath></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
      id="g1448"
      inkscape:label="Location Permission missing"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:start;direction:ltr;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none"
@@ -169,5 +191,27 @@
          startOffset="50%"
          id="textPath2047"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:start;direction:ltr;text-anchor:start;fill:#ffffff">CURRENT POSITION NOT AVAILABLE</textPath></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g859"
+     inkscape:label="waiting for smartphone"
+     style="display:none;opacity:0.999;mix-blend-mode:normal">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:start;direction:ltr;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
+       id="text857"
+       inkscape:transform-center-x="70.388735"
+       inkscape:transform-center-y="-86.244983"
+       x="-37.206394"
+       y="0"
+       transform="rotate(-41.785363,167.89537,167.53687)"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\errors\text857.png"
+       inkscape:export-xdpi="95"
+       inkscape:export-ydpi="95"><textPath
+         xlink:href="#path1421"
+         startOffset="50%"
+         id="textPath855"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:start;direction:ltr;text-anchor:start;fill:#ffffff;stroke:none;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none">WAITING FOR SMARTPHONE CONNECTION</textPath></text>
   </g>
 </svg>

@@ -63,32 +63,47 @@ export function init(onAlertsAvailableCallback) {
     initialized=true;
 }
 
+settings.subscribe("error",(v)=>{setError(v);});
+
 settings.subscribe("minWind",(v)=>{if (initialized) fetchMeteo();});
 settings.subscribe("maxWind",(v)=>{if (initialized) fetchMeteo();});
 
+function setError(error){
+    console.error("!!!!!!!!!meteo error:"+error);
+    if (!error || error.length==0) 
+        resetError();
+    else{
+        document.getElementById("error").href="errors/"+error+".png";
+        document.getElementById("alerts").style.display="none";
+        document.getElementById("error").style.display="inline";
+    }
+}
+function resetError(){
+    document.getElementById("error").style.display="none";
+    document.getElementById("alerts").style.display="inline";
+}
 export function fetchMeteo() {
     let mode=settings.get("meteoMode",0);
     console.log("meteo fetchMeteo");
     let alerts = [];
     let forecasts = [];
     let meteoData = readDataFromFile(METEO_FN);
-    console.log("!!!!!"+JSON.stringify(meteoData));
-    if ((!meteoData) || (meteoData.type)) {
-        if (meteoData.type=="Invalid Key"){
-            console.warn(JSON.stringify(settings.get("APIKey")));
-            if (settings.get("APIKey")&&settings.get("APIKey").length>0){
-                document.getElementById("error").href="errors/location_permission_missing.png";
-            }else{
-                document.getElementById("error").href="errors/api_key_missing.png";
-            }
-            document.getElementById("alerts").style.display="none";
-            document.getElementById("error").style.display="inline";
-        }
-        //TODO handle default value
+    if (meteoData==null) {
+        settings.set("error","waiting_for_smartphone");
         return;
     }
-    document.getElementById("error").style.display="none";
-    document.getElementById("alerts").style.display="inline";
+    if (meteoData.type){
+/*        if (meteoData.type=="Invalid Key"){
+            if (settings.get("APIKey")&&settings.get("APIKey").length>0){
+                settings.set("error","wrong_api_key");
+            }else{
+                settings.set("error","api_key_missing");
+            }
+        }
+  */      //TODO handle default value
+        return;
+    }
+    settings.set("error","");
 //console.log(JSON.stringify(meteo));
     let dt=new Date(meteoData.data[0].d);
     let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
