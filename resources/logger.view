@@ -1,7 +1,7 @@
 <svg viewport-fill="black">
     <rect x="0" y="0" width="100%" height="44" fill="gray"/>
-    <text  x="50%" y="37" fill="black" font-family="System-Bold" font-size="48" text-anchor="middle">
-        Log viewer
+    <text x="50%" y="37" fill="black" font-family="System-Bold" font-size="40" text-anchor="middle">
+        v0.0.8
     </text>
 
     <textarea id="text" text-length="1000" x="0" y="44" width="100%" height="100%-80" font-family="System-Light"
