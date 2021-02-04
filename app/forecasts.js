@@ -8,9 +8,9 @@ let hourlyForecastsUI = null;
 let meteo = null;
 let lastMode=0;
 
-settings.subscribe("clockBackgroundColor", (color) => {
+/*settings.subscribe("clockBackgroundColor", (color) => {
     document.getElementById("forecastBackground").gradient.colors.c1 = color;
-}, "#333333");
+}, "#333333");*/
 settings.subscribe("unitSystem", (value) => {
     unitSystem = value;
     redraw(lastMode);

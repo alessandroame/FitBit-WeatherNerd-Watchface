@@ -379,11 +379,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.954236"
-     inkscape:cx="252.03152"
-     inkscape:cy="307.78284"
+     inkscape:zoom="1.7810258"
+     inkscape:cx="87.960151"
+     inkscape:cy="248.4785"
      inkscape:document-units="px"
-     inkscape:current-layer="layer29"
+     inkscape:current-layer="layer23"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -2579,7 +2579,7 @@
      inkscape:groupmode="layer"
      id="layer23"
      inkscape:label="precipButton"
-     style="display:none">
+     style="display:inline">
     <ellipse
        style="fill:#000000;stroke:none;stroke-width:0.687917;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
        id="path1146"
@@ -2607,7 +2607,7 @@
          xlink:href="#path1146"
          id="textPath1185"><tspan
            id="tspan1148"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;stroke-width:0.264583">PRECIP.</tspan></textPath></text>
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;stroke-width:0.264583">PRECIP</tspan></textPath></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -2672,7 +2672,7 @@
          id="tspan1166"
          x="36.121086"
          y="121.11188"
-         style="stroke-width:0.264583"></tspan></text>
+         style="stroke-width:0.264583" /></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -2829,9 +2829,9 @@
      inkscape:groupmode="layer"
      id="layer29"
      inkscape:label="HandsRest"
-     style="display:inline">
+     style="display:none">
     <rect
-       style="fill:#000000;stroke:none;stroke-width:0.529;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke markers fill"
        id="rect1170"
        width="10.933711"
        height="6.0644474"

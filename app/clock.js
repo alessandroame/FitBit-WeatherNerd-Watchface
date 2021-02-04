@@ -3,7 +3,7 @@ import * as datum from "./datum"
 import document from "document";
 import * as settings from "./settings"
 import * as geom from '../common/geom'
-import { update } from "./meteo_alerts";
+//import { display } from "display";
 
 let oldHours, oldMins, oldSecs;
 
@@ -20,6 +20,13 @@ let restActive=false;
 let restTimer=null;
 let canRest=false;
 
+// display.addEventListener("change", () => {
+//   if (display.on) {
+//       oldHours=null;
+//       oldMins=null;
+//       oldSecs=null;
+//   }
+// });
 
 export function init() {
   //console.log("clock init");
@@ -145,13 +152,18 @@ function calculateShortestToAngle(from,to){
 }
 
 function animate(element,toAngle,duration,logEnabled){
-  let animation=element.getElementById("animation");
-  animation.animate("disable");
-  let fromAngle=element.groupTransform.rotate.angle%360;
-  toAngle=toAngle%360;
-  toAngle=calculateShortestToAngle(fromAngle,toAngle);
-  animation.dur=duration;
-  animation.from=fromAngle;
-  animation.to=toAngle;
-  element.animate("enable");
+ /* if (oldSecs==null){
+    element.getElementById("animation").animate("disable");
+    element.groupTransform.rotate.angle=toAngle;
+  }else*/{
+    let animation=element.getElementById("animation");
+    animation.animate("disable");
+    let fromAngle=element.groupTransform.rotate.angle%360;
+    toAngle=toAngle%360;
+    toAngle=calculateShortestToAngle(fromAngle,toAngle);
+    animation.dur=duration;
+    animation.from=fromAngle;
+    animation.to=toAngle;
+    element.animate("enable");
+  }
 }

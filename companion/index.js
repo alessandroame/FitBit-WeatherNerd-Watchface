@@ -40,6 +40,10 @@ function init() {
     me.monitorSignificantLocationChanges = true;
     //me.addEventListener("significantlocationchange", onPositionChanged);
     
+    if (!me.permissions.granted("access_location")) {
+      settings.set("messageToShow","location_permission_missing");
+    }
+
     logger.warning("companion init");
 }
 
@@ -87,7 +91,11 @@ function updateMeteo(reason) {
 
 function forceUpdate(reason){
     logger.warning("update: "+reason);
-    climacell.update(currentPosition).then(onMeteoAvailable);
+    climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
+}
+
+function onMeteoError(error){
+    logger.error("onMeteoError: "+JSON.stringify(error));
 }
 
 function onMeteoAvailable(data) {

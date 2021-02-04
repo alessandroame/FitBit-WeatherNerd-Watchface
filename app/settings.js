@@ -24,7 +24,7 @@ mediator.subscribe("setting", (data) => {
     if (loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1) {
         display.poke();
         vibration.start("bump");
-        console.warn("poke");
+        //console.warn("poke");
     }
 });
 

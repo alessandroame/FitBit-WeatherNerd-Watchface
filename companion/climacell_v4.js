@@ -8,6 +8,10 @@ settings.subscribe("APIKey", (keys) => {
 });
 
 function getApiKey(){
+    if (!apiKeys || apiKeys.length==0 || apiKeys[0].length==0) {
+        settings.set("messageToShow","missing_api_key");
+        throw  new Error('missing api key') 
+    }
     if (keyIndex>=apiKeys.length) keyIndex=0;
     let res= apiKeys[keyIndex];
     //console.error(keyIndex,res);
@@ -18,11 +22,8 @@ export function update(pos) {
     console.log("Climacell -> update")
     return new Promise((resolve, reject) => {
         if (!pos || !pos.coords) {
+            settings.set("messageToShow","position_not_available");
             logger.error("climacell -> position not available");
-            return;
-        }
-        if (!apiKeys || apiKeys.length==0) {
-            logger.error("climacell -> apikey not available");
             return;
         }
         /*let startTime = new Date();
@@ -43,7 +44,7 @@ export function update(pos) {
                 //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
                 // }
                 resolve(res);
-            });
+            }).catch(reject);
     });
 }
 
@@ -119,6 +120,7 @@ function getSunTimes(lat, lon) {
                         .then(response => {
                             if (response.message) {
                                 logger.error(`getSunTimes error: ${JSON.stringify(response)} `);
+                                reject(response);
                             } else {
                                 let data=response.data.timelines[0].intervals;
                                 let res = { sr:null,ss:null};
@@ -163,7 +165,9 @@ function getForecast(lat, lon) {
                     res.json()
                         .then(response => {
                             if (response.message) {
+                                if (response.type=="Invalid Key") settings.set("messageToShow","wrong_api_key");
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
+                                reject(response);
                             } else {
                                 let res = [[],[]];
                                 //nowcast

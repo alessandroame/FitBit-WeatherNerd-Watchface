@@ -70,10 +70,16 @@ function onConnectionLost() {
 
     if (settings.get("vibrateOnConnectionLost",true)){
         vibration.start("nudge-max");
-        setTimeout(()=>{vibration.start("nudge-max");},400);
+        setTimeout(()=>{vibration.start("nudge-max");},500);
+        setTimeout(()=>{vibration.start("nudge-max");},1000);
+        setTimeout(()=>{vibration.start("nudge-max");},1500);
     } 
     if (!snoozeTimer) {
-        if (settings.get("vibrateOnConnectionLost",true)) setTimeout(()=>{vibration.start("nudge-max");},400);
+        if (settings.get("vibrateOnConnectionLost",true)) {
+            vibration.start("nudge-max");
+            setTimeout(()=>{vibration.start("nudge-max");},300);
+            setTimeout(()=>{vibration.start("nudge-max");},6000);
+        }    
         if (settings.get("snoozeDialogEnabled",true)) showSnoozeDialog();
     }        
 }
