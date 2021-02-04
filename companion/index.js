@@ -40,6 +40,10 @@ function init() {
     me.monitorSignificantLocationChanges = true;
     //me.addEventListener("significantlocationchange", onPositionChanged);
     
+    if (!me.permissions.granted("access_location")) {
+      settings.set("messageToShow","location_permission_missing");
+    }
+
     logger.warning("companion init");
 }
 
@@ -91,15 +95,7 @@ function forceUpdate(reason){
 }
 
 function onMeteoError(error){
-    logger.error("onMeteoError");
-    let json = JSON.stringify(error);
-    outbox
-    .enqueue("meteo_data.json", encode(json)).then((ft) => {
-        logger.debug(`onMeteoAvailable ${ft.name} successfully queued.`);
-    })
-    .catch((error) => {
-        logger.error(`onMeteoAvailable Failed write file: ${error}`);
-    });
+    logger.error("onMeteoError: "+JSON.stringify(error));
 }
 
 function onMeteoAvailable(data) {

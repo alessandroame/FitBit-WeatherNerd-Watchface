@@ -8,8 +8,9 @@ settings.subscribe("APIKey", (keys) => {
 });
 
 function getApiKey(){
-    if (!apiKeys || apiKeys.length==0) {
-        settings.set("error","api_key_missing");
+    if (!apiKeys || apiKeys.length==0 || apiKeys[0].length==0) {
+        settings.set("messageToShow","missing_api_key");
+        throw  new Error('missing api key') 
     }
     if (keyIndex>=apiKeys.length) keyIndex=0;
     let res= apiKeys[keyIndex];
@@ -21,11 +22,8 @@ export function update(pos) {
     console.log("Climacell -> update")
     return new Promise((resolve, reject) => {
         if (!pos || !pos.coords) {
+            settings.set("messageToShow","position_not_available");
             logger.error("climacell -> position not available");
-            return;
-        }
-        if (!apiKeys || apiKeys.length==0) {
-            logger.error("climacell -> apikey not available");
             return;
         }
         /*let startTime = new Date();
@@ -167,7 +165,7 @@ function getForecast(lat, lon) {
                     res.json()
                         .then(response => {
                             if (response.message) {
-                                if (meteoData.type=="Invalid Key") settings.set("error","wrong_api_key");
+                                if (response.type=="Invalid Key") settings.set("messageToShow","wrong_api_key");
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
                                 reject(response);
                             } else {
