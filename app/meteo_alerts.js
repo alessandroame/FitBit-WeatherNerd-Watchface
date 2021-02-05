@@ -24,24 +24,24 @@ export function update(alerts,nextHourProbabilities,mode) {
 
 function updateBackground(iceProb,precProb,windProb){
     try {   
-        console.warn(iceProb,precProb,windProb);
+        //console.warn(iceProb,precProb,windProb);
         if (settings.get("automaticBackgroundColor")=="true"){
             let color="grey";
             if (precProb>0){
-                console.warn("precProb: "+precProb);
+                //console.warn("precProb: "+precProb);
                 let offset=70;
                 color="#"+byteToHex(precProb*(155-offset)+offset)+"0000";
             }else if (iceProb>0){
                 let offset=100;
                 let hex=byteToHex(iceProb*(255-offset)+offset);
                 color="#00"+hex+hex;
-                console.warn("iceProb: "+iceProb,hex,color);
+                //console.warn("iceProb: "+iceProb,hex,color);
             }else if (windProb>0){
-                console.warn("windProb: "+windProb);
+                //console.warn("windProb: "+windProb);
                 let offset=80;
                 color="#00"+byteToHex(windProb*(110-offset)+offset)+byteToHex(windProb*(214-offset)+offset);
             }
-            console.warn("clockBackgroundColor: "+color);
+            //console.warn("clockBackgroundColor: "+color);
             settings.set("clockBackgroundColor",color);
         }
     }catch(e){
