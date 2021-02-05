@@ -64,6 +64,9 @@ settings.subscribe("meteoMode",(mode)=>{
     document.getElementById("meteo_mode").href="icons/"+(mode==0?"precip":"wind")+"ModeBtn.png";
     meteo.fetchMeteo();
 },0);
+settings.subscribe("automaticBackgroundColor",(mode)=>{
+    meteo.fetchMeteo();
+},0);
 document.getElementById("meteo_mode_button").onclick=()=>{
     let mode=settings.get("meteoMode",0);
     if (mode==0) mode=1;
@@ -82,7 +85,7 @@ showClock();
 
 function onMeteoDataAvailable(data,mode) {
     //logger.warning(memStats("onMeteoDataAvailable"));
-    meteo_alerts.update(data.alerts,mode);
+    meteo_alerts.update(data.alerts,data.nextHourProbabilities,mode);
 
     forecasts.setData(data,mode);
     weatherWidget.update(data,mode);

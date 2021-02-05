@@ -142,6 +142,16 @@ function SettingsPage(props) {
           ]}
         />
 
+        <Toggle
+          settingsKey="automaticBackgroundColor"
+          label="Automatic clock backgroud color"
+        />
+        <Text>If in next hour there are precipitations color is red</Text>
+        <Text>else if in next hour there is ice risk color is cyan</Text>
+        <Text>else if in next hour there wind color is blue</Text>
+        <Text>else color is gray</Text>
+
+
       </Section>
 
       <Section

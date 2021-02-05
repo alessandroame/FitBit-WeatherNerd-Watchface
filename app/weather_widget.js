@@ -38,7 +38,7 @@ function updateValue(){
     let container = document.getElementById("currentWeather");
     if (currentMode==0){
         let valueUI = container.getElementById("temp");
-        console.log(toInt(unitSystem=="si"?value:value * 9/5 + 32));
+        //console.log(toInt(unitSystem=="si"?value:value * 9/5 + 32));
         valueUI.textContent = toInt(unitSystem=="si"?value:value * 9/5 + 32)+(unitSystem=="si"?"°":"F");
         container.getElementById("tempShadow").textContent = valueUI.textContent;
     }else{

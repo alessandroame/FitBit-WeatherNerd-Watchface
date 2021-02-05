@@ -34,7 +34,11 @@ export function init() {
 }
 settings.subscribe("clockBackgroundColor", (color) => {
   //  document.getElementById("clockBackground").gradient.colors.c1 = color;
-  document.getElementById("dialGraphic").style.fill = color;
+  try{
+      document.getElementById("dialGraphic").style.fill = color;
+  }catch(e){
+
+  }
 });
 settings.subscribe("dialGraphic", (value) => {
   //  document.getElementById("clockBackground").gradient.colors.c1 = color;

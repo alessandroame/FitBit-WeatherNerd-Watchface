@@ -5,6 +5,8 @@ export function get(key){
 }
 
 export let defaultValues={
+    "automaticBackgroundColor":true,
+    "messageToShow":"",
     "batteryColor":"dodgerblue",
     "clockBackgroundColor":"darkgrey",
     "clockDialHoursColor":"white",
