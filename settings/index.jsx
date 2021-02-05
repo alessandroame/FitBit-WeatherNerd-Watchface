@@ -344,6 +344,27 @@ function SettingsPage(props) {
         {renderLines([111111, 222222, 333333333, 444444444])}
         {renderLines(props.settingsStorage.getItem("settingLog").split("\n"))}
       </Section> */}
+
+        <Section
+          title={<Text bold align="center">Demo</Text>}
+          description={<Text>Use as tutorial to understand how alerts work</Text>}>
+          <Toggle
+            settingsKey="windDemo"
+            label="Wind demo"
+                />
+          <Toggle
+            settingsKey="precipitationDemo"
+            label="Precipitation demo"
+                />
+          <Toggle
+            settingsKey="iceDemo"
+            label="Ice demo"
+                />
+          <Toggle
+            settingsKey="allDemo"
+            label="All togher demo"
+                />
+        </Section>
     </Page>
 
   );

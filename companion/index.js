@@ -12,6 +12,7 @@ let wakeInterval = 5 * 60 * 1000;
 let updateMeteoInterval=5;
 let updateMeteoTimerID=null;
 let currentPosition = null;
+let initialized=false;
 init();
 
 function init() {
@@ -43,7 +44,20 @@ function init() {
     if (!me.permissions.granted("access_location")) {
       settings.set("messageToShow","location_permission_missing");
     }
-
+    settings.subscribe("windDemo",v=>{
+        if (initialized) onMeteoAvailable(buildDemoData(5,20,0,0,0,0,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,1100));
+    });
+    settings.subscribe("precipitationDemo",v=>{
+        if (initialized) onMeteoAvailable(buildDemoData(5,20,0,100,0,20,0,0,0,0,4001));
+    });
+    settings.subscribe("iceDemo",v=>{
+        if (initialized) onMeteoAvailable(buildDemoData(4,-8,0,0,0,0,0.0,0,180,1100));
+    });
+    settings.subscribe("allDemo",v=>{
+        if (initialized) onMeteoAvailable(buildDemoData(4,-8,0,100,0,20,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,4001));
+    });
+    
+    initialized=true;
     logger.warning("companion init");
 }
 
@@ -98,9 +112,46 @@ function onMeteoError(error){
     logger.error("onMeteoError: "+JSON.stringify(error));
 }
 
+function buildDemoData(tMin,tMax,ppMin,ppMax,piMin,piMax,wsMin,wsMax,wdMin,wdMax,wc){
+    let res=null;
+    let now=new Date();
+    let sr=new Date().setHours(now.getHours()-2)
+    let ss=new Date().setHours(now.getHours()+2);
+    try{ 
+        res={ 
+            lu: now,
+            sr: sr,
+            ss: ss,
+            data:[]
+        };
+        let k=1/30;
+        for (let i=0;i<60;i++){
+            let n=i<30?i:59-i;
+            let d=new Date();
+            d.setMinutes(now.getMinutes()+12*i);
+            
+//            console.log("???????????",ppMin,ppMax,ppMin+(ppMax-ppMin)*k*n);
+
+            res.data.push({
+                d: d,
+                t: tMin+(tMax-tMin)*k*n,
+                pp: ppMin+(ppMax-ppMin)*k*n,
+                pi: piMin+(piMax-piMin)*k*n,
+                wc: wc,
+                ws: Math.floor(wsMin+(wsMax-wsMin)*k*n),
+                wd: wdMin+(wdMax-wdMin)*k*n
+            });
+        }
+    }catch(e){
+        logger.error("BuildDemoData throws: "+e);
+    }
+    return res;
+}
+
 function onMeteoAvailable(data) {
     logger.debug("onMeteoAvailable begin");
-    let json = JSON.stringify(data);
+    let json = JSON.stringify(data);    
+//    console.warn(json);
     outbox
         .enqueue("meteo_data.json", encode(json)).then((ft) => {
             logger.debug(`onMeteoAvailable ${ft.name} successfully queued.`);

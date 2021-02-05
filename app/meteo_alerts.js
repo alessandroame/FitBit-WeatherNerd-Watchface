@@ -61,6 +61,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
     let precColor="#"+ byteToHex(precProb*255)+"0000";
     
     if (mode==0){
+        //console.warn(precProb)
         //prec
         if (precProb>0){
             mainAlert.style.fill = precColor;

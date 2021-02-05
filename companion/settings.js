@@ -81,7 +81,7 @@ let throttleTimers = {};
 function throttle(key,func, delay,msg) {
     if (throttleTimers[key]) { 
       clearTimeout(throttleTimers[key]);
-      console.log("throttled "+msg); 
+//      console.log("throttled "+msg); 
     }
     throttleTimers[key] = setTimeout(() => { throttleTimers[key] = null; func(); }, delay);
 }

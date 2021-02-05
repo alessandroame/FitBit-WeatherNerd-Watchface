@@ -103,9 +103,9 @@ export function fetchMeteo() {
             //settings.set("messageToShow","unknown_error");
             return;
         }
-
+        
         settings.set("messageToShow","");
-        //console.log(JSON.stringify(meteo));
+
         let dt=new Date(meteoData.data[0].d);
         let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
         let offset=Math.floor(angle/360*60);
@@ -113,8 +113,6 @@ export function fetchMeteo() {
         let maxWind=settings.get("maxWind");
         for (let i=0;i<meteoData.data.length;i++){
             let d=meteoData.data[i];
-            //console.warn("------",d.ws,minWind,maxWind,normalizeValue(d.ws>minWind?d.ws:0,minWind,maxWind));
-            //console.warn(JSON.stringify(d));
             let index=i+offset;
             if (index>59) index=index-60;
             alerts[index]={
@@ -160,7 +158,7 @@ export function fetchMeteo() {
             sunrise: meteoData.sr
         },mode);
     }catch(e){
-        if(settings) settings.set("messageToShow","unknown_error");
+        settings.set("messageToShow","unknown_error");
         logger.error("fetchMeteo throws: "+e);
     }
 }
