@@ -347,7 +347,7 @@ function SettingsPage(props) {
 
         <Section
           title={<Text bold align="center">Demo</Text>}
-          description={<Text>Use as tutorial to understand how alerts work</Text>}>
+          description={<Text>Use as tutorial to understand how alerts work.</Text>}>
           <Toggle
             settingsKey="windDemo"
             label="Wind demo"

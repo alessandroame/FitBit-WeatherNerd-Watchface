@@ -45,16 +45,36 @@ function init() {
       settings.set("messageToShow","location_permission_missing");
     }
     settings.subscribe("windDemo",v=>{
-        if (initialized) onMeteoAvailable(buildDemoData(5,20,0,0,0,0,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,1100));
+        if (initialized && v=="true") {
+            settings.set("precipitationDemo",false);
+            settings.set("iceDemo",false);
+            settings.set("allDemo",false);
+            onMeteoAvailable(buildDemoData(5,20,0,0,0,0,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,1100));
+        }
     });
     settings.subscribe("precipitationDemo",v=>{
-        if (initialized) onMeteoAvailable(buildDemoData(5,20,0,100,0,20,0,0,0,0,4001));
+        if (initialized && v=="true") {
+            settings.set("windDemo",false);
+            settings.set("iceDemo",false);
+            settings.set("allDemo",false);
+            onMeteoAvailable(buildDemoData(5,20,0,100,0,20,0,0,0,0,4001));
+        }
     });
     settings.subscribe("iceDemo",v=>{
-        if (initialized) onMeteoAvailable(buildDemoData(4,-8,0,0,0,0,0.0,0,180,1100));
+        if (initialized && v=="true") {
+            settings.set("windDemo",false);
+            settings.set("precipitationDemo",false);
+            settings.set("allDemo",false);
+            onMeteoAvailable(buildDemoData(1,-8,0,0,0,0,0.0,0,180,1100));
+        }
     });
     settings.subscribe("allDemo",v=>{
-        if (initialized) onMeteoAvailable(buildDemoData(4,-8,0,100,0,20,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,4001));
+        if (initialized && v=="true") {
+            settings.set("windDemo",false);
+            settings.set("precipitationDemo",false);
+            settings.set("iceDemo",false);
+            onMeteoAvailable(buildDemoData(1,-8,0,100,0,20,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,4001));
+        }
     });
     
     initialized=true;
@@ -105,7 +125,11 @@ function updateMeteo(reason) {
 
 function forceUpdate(reason){
     logger.warning("update: "+reason);
-    climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
+    settings.set("windDemo",false);
+    settings.set("precipitationDemo",false);
+    settings.set("iceDemo",false);
+    settings.set("allDemo",false);
+climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
 }
 
 function onMeteoError(error){

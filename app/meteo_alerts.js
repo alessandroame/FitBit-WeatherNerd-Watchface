@@ -26,7 +26,7 @@ function updateBackground(iceProb,precProb,windProb){
     try {   
         //console.warn(iceProb,precProb,windProb);
         if (settings.get("automaticBackgroundColor")=="true"){
-            let color="grey";
+            let color="dimgrey";
             if (precProb>0){
                 //console.warn("precProb: "+precProb);
                 let offset=70;
@@ -37,7 +37,7 @@ function updateBackground(iceProb,precProb,windProb){
                 color="#00"+hex+hex;
                 //console.warn("iceProb: "+iceProb,hex,color);
             }else if (windProb>0){
-                //console.warn("windProb: "+windProb);
+                //onsole.warn("windProb: "+windProb);
                 let offset=80;
                 color="#00"+byteToHex(windProb*(110-offset)+offset)+byteToHex(windProb*(214-offset)+offset);
             }

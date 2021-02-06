@@ -128,7 +128,7 @@ export function fetchMeteo() {
                     quantity: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
                 }
             }
-            if (i==0 && i<5){
+            if (i>0 && i<=5){
                 nextHourProbabilities.ice=Math.max(nextHourProbabilities.ice,alerts[index].ice.quantity);
                 nextHourProbabilities.prec=Math.max(nextHourProbabilities.prec,alerts[index].precipitation.probability);
                 nextHourProbabilities.wind=Math.max(nextHourProbabilities.wind,alerts[index].wind.speed);
