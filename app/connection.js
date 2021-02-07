@@ -43,10 +43,9 @@ function onConnectionStateChange(state){
             break;
     }
 }
-
 function onConnectionOpen(){
     logger.info("Connected");
-    if (settings.get("vibrateOnConnectionLost"),true) vibration.start("nudge-max");
+    if (settings.get("vibrateOnConnectionLost")=="true") vibration.start("nudge-max");
     color = COLOR_NORMAL;
     dismiss();
     resetInterval(blinkingTimer);

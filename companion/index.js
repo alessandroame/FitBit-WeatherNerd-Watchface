@@ -13,6 +13,8 @@ let updateMeteoInterval=5;
 let updateMeteoTimerID=null;
 let currentPosition = null;
 let initialized=false;
+let demoKeys=["windDemo","precipitationDemo","iceDemo","allDemo"];
+
 init();
 
 function init() {
@@ -44,49 +46,33 @@ function init() {
     if (!me.permissions.granted("access_location")) {
       settings.set("messageToShow","location_permission_missing");
     }
-    settings.subscribe("windDemo",v=>{
-        if (initialized && v=="true") {
-            settings.set("precipitationDemo",false);
-            settings.set("iceDemo",false);
-            settings.set("allDemo",false);
-            onMeteoAvailable(buildDemoData(5,20,0,0,0,0,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,1100));
-        }
+    demoKeys.forEach(k=>{
+        settings.subscribe(k,v=>{
+            console.log("demo "+k+": "+JSON.stringify(v));
+            if (initialized && v=="true") {
+                demoKeys.forEach(kk=>{
+                    if (kk!=k)  settings.set(kk,false);
+                });
+                let demoValues=[
+                    buildDemoData(5,20,0,0,0,0,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,1100),
+                    buildDemoData(5,20,0,100,0,20,0,0,0,0,4001),
+                    buildDemoData(1,-8,0,0,0,0,0.0,0,180,1100),
+                    buildDemoData(1,-8,0,100,0,20,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,4001)    
+                ];
+                onMeteoAvailable(demoValues[demoKeys.indexOf(k)]);
+            }
+        });
     });
-    settings.subscribe("precipitationDemo",v=>{
-        if (initialized && v=="true") {
-            settings.set("windDemo",false);
-            settings.set("iceDemo",false);
-            settings.set("allDemo",false);
-            onMeteoAvailable(buildDemoData(5,20,0,100,0,20,0,0,0,0,4001));
-        }
-    });
-    settings.subscribe("iceDemo",v=>{
-        if (initialized && v=="true") {
-            settings.set("windDemo",false);
-            settings.set("precipitationDemo",false);
-            settings.set("allDemo",false);
-            onMeteoAvailable(buildDemoData(1,-8,0,0,0,0,0.0,0,180,1100));
-        }
-    });
-    settings.subscribe("allDemo",v=>{
-        if (initialized && v=="true") {
-            settings.set("windDemo",false);
-            settings.set("precipitationDemo",false);
-            settings.set("iceDemo",false);
-            onMeteoAvailable(buildDemoData(1,-8,0,100,0,20,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,4001));
-        }
-    });
-    
     initialized=true;
     logger.warning("companion init");
 }
 
-function settingLog(msg){
+/*function settingLog(msg){
     let log=settings.get("settingLog");
     log=msg+"\n"+log;
     settings.set("settingLog",log);
 }
-settingLog(new Date());
+settingLog(new Date());*/
 function startUpdateTimer(){
     if (updateMeteoTimerID){
         console.log("updateMeteoTimer reset");
@@ -96,7 +82,7 @@ function startUpdateTimer(){
         forceUpdate("Timer init");
     }
     
-    console.log("updateMeteoTimer start ("+updateMeteoInterval+"min)");
+    logger.info("updateMeteoTimer start ("+updateMeteoInterval+"min)");
     updateMeteoTimerID=setInterval(() => {
         updateMeteo("Timer");
         geolocator.getCurrentPosition();
@@ -120,22 +106,23 @@ function onPositionChanged(position) {
 function updateMeteo(reason) {
     throttle(() => {
         forceUpdate(reason);
-    }, updateMeteoInterval * 60000,"update "+reason);
+    }, updateMeteoInterval * 60000-10000,"update "+reason);
 }
 
 function forceUpdate(reason){
-    logger.warning("update: "+reason);
-    settings.set("windDemo",false);
-    settings.set("precipitationDemo",false);
-    settings.set("iceDemo",false);
-    settings.set("allDemo",false);
-climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
+    logger.info("update: "+reason);
+    resetDemo();
+    climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
 }
 
 function onMeteoError(error){
     logger.error("onMeteoError: "+JSON.stringify(error));
 }
-
+function resetDemo(){
+    demoKeys.forEach(k=>{
+        if (settings.get(k)) settings.set(k,false);
+    }) ;
+}
 function buildDemoData(tMin,tMax,ppMin,ppMax,piMin,piMax,wsMin,wsMax,wdMin,wdMax,wc){
     let res=null;
     let now=new Date();
