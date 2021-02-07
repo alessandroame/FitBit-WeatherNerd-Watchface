@@ -22,13 +22,14 @@ mediator.subscribe("setting", (data) => {
 
     set(data.key, data.value);
     var loweredKey=data.key.toLowerCase();
-    if (loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1 
-    || loweredKey.indexOf('demo') != -1 || loweredKey.indexOf('dialGraphic') != -1 ) {
+    if ((loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1 )
+    && loweredKey.indexOf('demo') == -1 
+    && loweredKey.indexOf('dialGraphic') == -1 ) {
         let now=new Date().getTime();
         if (!lastPoke || now-lastPoke>1500){
             display.poke();
             vibration.start("bump");
-            //console.warn("poke");
+            console.warn("poke");
             lastPoke=now;
         }
     }
