@@ -5,6 +5,8 @@ export function get(key){
 }
 
 export let defaultValues={
+    "automaticBackgroundColor":"true",
+    "messageToShow":"",
     "batteryColor":"dodgerblue",
     "clockBackgroundColor":"darkgrey",
     "clockDialHoursColor":"white",
@@ -34,8 +36,8 @@ export let defaultValues={
     "unitSystem":"si",
 
     "meteoMode":0,
-    "vibrateOnConnectionLost":true,
-    "snoozeDialogEnabled":true,
+    "vibrateOnConnectionLost":"true",
+    "snoozeDialogEnabled":"true",
 
     "_snoozeDelayMinutes":JSON.stringify({"selected":[1],"values":[{ name: "2 minutes", value: "2" }]}),
     "snoozeDelayMinutes":2,

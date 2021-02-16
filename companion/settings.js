@@ -14,7 +14,7 @@ export function init() {
 console.log("settings init");
 
   settingsStorage.addEventListener("change", (evt) => {
-//    console.warn("<<<<<<<< " + evt.key + " >>>>>>>>");
+//    console.warn("<<<<<<<< " + JSON.stringify(evt) + " >>>>>>>>");
     if (initialized) notify(evt);
   });
 }
@@ -60,13 +60,14 @@ export function subscribe(key, callback) {
 function notify(evt) {
   if (evt.key[0]=="_") return;
   throttle(evt.key,()=>{
-    console.log("notify " + evt.key);
+    //console.log("notify "+JSON.stringify(evt));
     try{
       const data = {
         key: evt.key,
         oldValue: evt.oldValue,
-        value: evt.newValue
+        value:  evt.newValue
       };
+//      console.error("notify "+JSON.stringify(data));
       let topic = "setting_" + evt.key;
       mediator.localPublish(topic, data);
       if (!mediator.remotePublish("setting", data)) console.warn("cant publish on remote endopoint " + topic);
@@ -81,7 +82,7 @@ let throttleTimers = {};
 function throttle(key,func, delay,msg) {
     if (throttleTimers[key]) { 
       clearTimeout(throttleTimers[key]);
-      console.log("throttled "+msg); 
+//      console.log("throttled "+msg); 
     }
     throttleTimers[key] = setTimeout(() => { throttleTimers[key] = null; func(); }, delay);
 }

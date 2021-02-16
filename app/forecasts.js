@@ -1,6 +1,6 @@
 import { locale } from "user-settings";
 import * as settings from "./settings";
-
+import * as logger from "./logger"
 import document from "document";
 
 let unitSystem = "si";
@@ -104,42 +104,45 @@ function redraw(mode) {
         let min=9999;
         let max=-9999;
         for (let i = 0; i < 12; i++) {
-            let value=null;
-            let f = document.getElementById("forecast_" + i);
-            let mainContainer = f.getElementById("mainContainer");
+            try{
+                let value=null;
+                let f = document.getElementById("forecast_" + i);
+                let mainContainer = f.getElementById("mainContainer");
 
-            let dist = i >= d ? i - d : i + 12 - d;
-            let o = 0.2 + 0.8 / 12 * (12 - dist);
-            mainContainer.style.opacity = o;
-
-            let iconContainer = mainContainer.getElementById("iconContainer");
-            let icon = mainContainer.getElementById("icon");
-            let temp = mainContainer.getElementById("temp");
-            if (mode==0){
-                iconContainer.groupTransform.rotate.angle = -i*30;
-                icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
-                value = forecasts[i].temp;
-                if (unitSystem != "si") {
-                    value = value * 9 / 5 + 32;
+                let dist = i >= d ? i - d : i + 12 - d;
+                let o = 0.2 + 0.8 / 12 * (12 - dist);
+                mainContainer.style.opacity = o;
+                let iconContainer = mainContainer.getElementById("iconContainer");
+                let icon = mainContainer.getElementById("icon");
+                let temp = mainContainer.getElementById("temp");
+                if (mode==0){
+                    iconContainer.groupTransform.rotate.angle = -i*30;
+                    icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
+                    value = forecasts[i].temp;
+                    if (unitSystem != "si") {
+                        value = value * 9 / 5 + 32;
+                    }
+                }else{
+    //                console.warn(forecasts[i].windDirection);
+                    iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection-i*30;
+                    icon.style.fill="#006ED6";
+                    icon.href = "icons/windDirection.png";
+                    value = forecasts[i].windSpeed;
+                    if (unitSystem != "si") {
+                        value = value * 2;
+                    }
                 }
-            }else{
-//                console.warn(forecasts[i].windDirection);
-                iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection-i*30;
-                icon.style.fill="#006ED6";
-                icon.href = "icons/windDirection.png";
-                value = forecasts[i].windSpeed;
-                if (unitSystem != "si") {
-                    value = value * 2;
-                }
+                temp.textContent = toInt(value);
+                min=Math.min(min,value);
+                max=Math.max(max,value);
+            } catch (e) {
+                logger.error("Redraw ["+i+"] throws: "+e);
             }
-            temp.textContent = toInt(value);
-            min=Math.min(min,value);
-            max=Math.max(max,value);
         }
         hourlyForecastsUI.getElementById("minValue").textContent=toInt(min);
         hourlyForecastsUI.getElementById("maxValue").textContent=toInt(max);
     } catch (e) {
-        console.error(e);
+        logger.error("Redraw throws: "+e);
     }
 }
 function toInt(v) {

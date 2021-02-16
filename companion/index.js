@@ -12,6 +12,9 @@ let wakeInterval = 5 * 60 * 1000;
 let updateMeteoInterval=5;
 let updateMeteoTimerID=null;
 let currentPosition = null;
+let initialized=false;
+let demoKeys=["windDemo","precipitationDemo","iceDemo","allDemo"];
+
 init();
 
 function init() {
@@ -43,16 +46,33 @@ function init() {
     if (!me.permissions.granted("access_location")) {
       settings.set("messageToShow","location_permission_missing");
     }
-
+    demoKeys.forEach(k=>{
+        settings.subscribe(k,v=>{
+            console.log("demo "+k+": "+JSON.stringify(v));
+            if (initialized && v=="true") {
+                demoKeys.forEach(kk=>{
+                    if (kk!=k)  settings.set(kk,false);
+                });
+                let demoValues=[
+                    buildDemoData(5,20,0,0,0,0,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,1100),
+                    buildDemoData(5,20,0,100,0,20,0,0,0,0,4001),
+                    buildDemoData(1,-8,0,0,0,0,0.0,0,180,1100),
+                    buildDemoData(1,-8,0,100,0,20,settings.get("minWind")*1,settings.get("maxWind")*1,0,180,4001)    
+                ];
+                onMeteoAvailable(demoValues[demoKeys.indexOf(k)]);
+            }
+        });
+    });
+    initialized=true;
     logger.warning("companion init");
 }
 
-function settingLog(msg){
+/*function settingLog(msg){
     let log=settings.get("settingLog");
     log=msg+"\n"+log;
     settings.set("settingLog",log);
 }
-settingLog(new Date());
+settingLog(new Date());*/
 function startUpdateTimer(){
     if (updateMeteoTimerID){
         console.log("updateMeteoTimer reset");
@@ -62,7 +82,7 @@ function startUpdateTimer(){
         forceUpdate("Timer init");
     }
     
-    console.log("updateMeteoTimer start ("+updateMeteoInterval+"min)");
+    logger.info("updateMeteoTimer start ("+updateMeteoInterval+"min)");
     updateMeteoTimerID=setInterval(() => {
         updateMeteo("Timer");
         geolocator.getCurrentPosition();
@@ -86,21 +106,63 @@ function onPositionChanged(position) {
 function updateMeteo(reason) {
     throttle(() => {
         forceUpdate(reason);
-    }, updateMeteoInterval * 60000,"update "+reason);
+    }, updateMeteoInterval * 60000-10000,"update "+reason);
 }
 
 function forceUpdate(reason){
-    logger.warning("update: "+reason);
+    logger.info("update: "+reason);
+    resetDemo();
     climacell.update(currentPosition).then(onMeteoAvailable).catch(onMeteoError);
 }
 
 function onMeteoError(error){
     logger.error("onMeteoError: "+JSON.stringify(error));
 }
+function resetDemo(){
+    demoKeys.forEach(k=>{
+        if (settings.get(k)) settings.set(k,false);
+    }) ;
+}
+function buildDemoData(tMin,tMax,ppMin,ppMax,piMin,piMax,wsMin,wsMax,wdMin,wdMax,wc){
+    let res=null;
+    let now=new Date();
+    let sr=new Date().setHours(now.getHours()-2)
+    let ss=new Date().setHours(now.getHours()+2);
+    try{ 
+        res={ 
+            lu: now,
+            sr: sr,
+            ss: ss,
+            data:[]
+        };
+        let k=1/30;
+        for (let i=0;i<60;i++){
+            let n=i<30?i:59-i;
+            let d=new Date();
+            d.setMinutes(now.getMinutes()+12*i);
+            
+//            console.log("???????????",ppMin,ppMax,ppMin+(ppMax-ppMin)*k*n);
+
+            res.data.push({
+                d: d,
+                t: tMin+(tMax-tMin)*k*n,
+                pp: ppMin+(ppMax-ppMin)*k*n,
+                pi: piMin+(piMax-piMin)*k*n,
+                wc: wc,
+                ws: Math.floor(wsMin+(wsMax-wsMin)*k*n),
+                wd: wdMin+(wdMax-wdMin)*k*n
+            });
+        }
+    }catch(e){
+        logger.error("BuildDemoData throws: "+e);
+    }
+    return res;
+}
 
 function onMeteoAvailable(data) {
     logger.debug("onMeteoAvailable begin");
-    let json = JSON.stringify(data);
+    let json = JSON.stringify(data);    
+//    console.warn(json);
     outbox
         .enqueue("meteo_data.json", encode(json)).then((ft) => {
             logger.debug(`onMeteoAvailable ${ft.name} successfully queued.`);

@@ -1,4 +1,5 @@
 import document from "document";
+import * as settings from "./settings"
 import * as logger from "./logger";
 
 let lastAlerts=null;
@@ -7,16 +8,45 @@ export function init() {
 }
 
 let currentMode=0;
-export function update(alerts,mode) {
+export function update(alerts,nextHourProbabilities,mode) {
     lastAlerts=alerts;
     console.log("meteo_alerts update mode: "+mode);
+
 //    console.log(JSON.stringify(alerts));
     for (let i = 0; i < 60; i++) {
         let a=alerts[i];
         updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,a.wind.speed,mode);
         //logger.warning("ws: "+a.wind.speed+" "+a.wind.temp);
     }
+    updateBackground(nextHourProbabilities.ice,nextHourProbabilities.prec,nextHourProbabilities.wind);
     currentMode=mode;
+}
+
+function updateBackground(iceProb,precProb,windProb){
+    try {   
+        //console.warn(iceProb,precProb,windProb);
+        if (settings.get("automaticBackgroundColor")=="true"){
+            let color="dimgrey";
+            if (precProb>0){
+                //console.warn("precProb: "+precProb);
+                let offset=70;
+                color="#"+byteToHex(precProb*(155-offset)+offset)+"0000";
+            }else if (iceProb>0){
+                let offset=100;
+                let hex=byteToHex(iceProb*(255-offset)+offset);
+                color="#00"+hex+hex;
+                //console.warn("iceProb: "+iceProb,hex,color);
+            }else if (windProb>0){
+                //onsole.warn("windProb: "+windProb);
+                let offset=80;
+                color="#00"+byteToHex(windProb*(110-offset)+offset)+byteToHex(windProb*(214-offset)+offset);
+            }
+            //console.warn("clockBackgroundColor: "+color);
+            settings.set("clockBackgroundColor",color);
+        }
+    }catch(e){
+        logger.error("updateBackground throws"+e);
+    }
 }
 
 function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) {
@@ -31,6 +61,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
     let precColor="#"+ byteToHex(precProb*255)+"0000";
     
     if (mode==0){
+        //console.warn(precProb)
         //prec
         if (precProb>0){
             mainAlert.style.fill = precColor;

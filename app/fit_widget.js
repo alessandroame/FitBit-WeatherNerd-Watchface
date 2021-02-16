@@ -130,12 +130,14 @@ let oldValue=null;
 function updateValue(v) {
     try {
         if(sensorIndex==0 || oldValue && oldValue!=v){
+            icon.getElementById("animation").animate("enable");
             toggle = !toggle;
         }
         oldValue=v;
         value.textContent = v??"--";
         widget.getElementById("valueShadow").textContent = value.textContent;
-        icon.href = `icons/${sensorIcons[sensorIndex]}_${toggle ? '1' : '0'}.png`;
+        icon.href = `icons/${sensorIcons[sensorIndex]}_0.png`;
+//        icon.href = `icons/${sensorIcons[sensorIndex]}_${toggle ? '1' : '0'}.png`;
 
         let goalPerc = null;
         switch (sensorIndex) {

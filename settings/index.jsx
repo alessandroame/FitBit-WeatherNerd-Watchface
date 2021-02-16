@@ -142,6 +142,16 @@ function SettingsPage(props) {
           ]}
         />
 
+        <Toggle
+          settingsKey="automaticBackgroundColor"
+          label="Automatic clock backgroud color"
+        />
+        <Text>If in next hour there are precipitations color is red</Text>
+        <Text>else if in next hour there is ice risk color is cyan</Text>
+        <Text>else if in next hour there wind color is blue</Text>
+        <Text>else color is gray</Text>
+
+
       </Section>
 
       <Section
@@ -334,6 +344,27 @@ function SettingsPage(props) {
         {renderLines([111111, 222222, 333333333, 444444444])}
         {renderLines(props.settingsStorage.getItem("settingLog").split("\n"))}
       </Section> */}
+
+        <Section
+          title={<Text bold align="center">Demo</Text>}
+          description={<Text>Use as tutorial to understand how alerts work.</Text>}>
+          <Toggle
+            settingsKey="windDemo"
+            label="Wind demo"
+                />
+          <Toggle
+            settingsKey="precipitationDemo"
+            label="Precipitation demo"
+                />
+          <Toggle
+            settingsKey="iceDemo"
+            label="Ice demo"
+                />
+          <Toggle
+            settingsKey="allDemo"
+            label="All togher demo"
+                />
+        </Section>
     </Page>
 
   );

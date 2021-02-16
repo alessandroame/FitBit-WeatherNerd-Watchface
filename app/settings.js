@@ -16,15 +16,22 @@ try {
     console.error("settings fetch throw exception" + e);
 }
 
+let lastPoke=null;
 mediator.subscribe("setting", (data) => {
-    console.log("notify settings [" + data.key + "] changed from: " + data.oldValue + " to: " + data.value);
+    console.log("notify settings [" + data.key + "] changed from: " + data.oldValue + " to: " + JSON.stringify(data.value));
 
     set(data.key, data.value);
     var loweredKey=data.key.toLowerCase();
-    if (loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1) {
-        display.poke();
-        vibration.start("bump");
-        //console.warn("poke");
+    if ((loweredKey.indexOf('color') != -1 || loweredKey.indexOf('wind') != -1 )
+    && loweredKey.indexOf('demo') == -1 
+    && loweredKey.indexOf('dialGraphic') == -1 ) {
+        let now=new Date().getTime();
+        if (!lastPoke || now-lastPoke>1500){
+            display.poke();
+            vibration.start("bump");
+            console.warn("poke");
+            lastPoke=now;
+        }
     }
 });
 

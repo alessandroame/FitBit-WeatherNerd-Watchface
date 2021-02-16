@@ -89,10 +89,11 @@ function resetError(){
 }
 export function fetchMeteo() {
     try {
-        let mode=settings.get("meteoMode",0);
+        let mode=settings.get("meteoMode");
         console.log("meteo fetchMeteo");
         let alerts = [];
         let forecasts = [];
+        let nextHourProbabilities={ ice:0,prec:0,wind:0};
         let meteoData = readDataFromFile(METEO_FN);
         if (meteoData==null) {
             settings.set("messageToShow","waiting_for_smartphone");
@@ -102,18 +103,16 @@ export function fetchMeteo() {
             //settings.set("messageToShow","unknown_error");
             return;
         }
-
+        
         settings.set("messageToShow","");
-        //console.log(JSON.stringify(meteo));
+
         let dt=new Date(meteoData.data[0].d);
         let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
         let offset=Math.floor(angle/360*60);
-        let minWind=settings.get("minWind",2);
-        let maxWind=settings.get("maxWind",10);
+        let minWind=settings.get("minWind");
+        let maxWind=settings.get("maxWind");
         for (let i=0;i<meteoData.data.length;i++){
             let d=meteoData.data[i];
-            //console.warn("------",d.ws,minWind,maxWind,normalizeValue(d.ws>minWind?d.ws:0,minWind,maxWind));
-            //console.warn(JSON.stringify(d));
             let index=i+offset;
             if (index>59) index=index-60;
             alerts[index]={
@@ -129,6 +128,12 @@ export function fetchMeteo() {
                     quantity: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
                 }
             }
+            if (i>=0 && i<=5){
+                nextHourProbabilities.ice=Math.max(nextHourProbabilities.ice,alerts[index].ice.quantity);
+                nextHourProbabilities.prec=Math.max(nextHourProbabilities.prec,alerts[index].precipitation.probability);
+                nextHourProbabilities.wind=Math.max(nextHourProbabilities.wind,alerts[index].wind.speed);
+            }
+
             if (i%5==0){
                 let forecastIndex=Math.floor(index/5);
                 //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
@@ -147,13 +152,14 @@ export function fetchMeteo() {
         if (alertsAvailableCallback) alertsAvailableCallback({
             lastUpdate: new Date(meteoData.lu),
             alerts: alerts,
+            nextHourProbabilities: nextHourProbabilities, 
             forecasts: forecasts,
             sunset: meteoData.ss,
             sunrise: meteoData.sr
         },mode);
     }catch(e){
         settings.set("messageToShow","unknown_error");
-        logger.error(e);
+        logger.error("fetchMeteo throws: "+e);
     }
 }
     

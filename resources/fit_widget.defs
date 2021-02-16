@@ -9,7 +9,9 @@
 			
 			<image href="widget_background.png" x="-55" y="-55" width="110" height="110" opacity="1" fill="white" />
 			
-			<image id="icon" href="icons/hr_1.png" x="-12" y="-40" width="24" height="24" fill="white" />
+			<image id="icon" href="icons/hr_1.png" x="-12" y="-40" width="24" height="24" fill="white" >
+				<animate id="animation" attributeName="opacity" begin="enable" from="1" to="0.5" dur="0.5" final="keep" easing="ease-out" /> 
+			</image>
 
 			<text id="valueShadow" x="2" y="15" text-length="8" text-anchor="middle" font-size="36" font-family="System-Bold" fill="black" opacity="0.5">-----</text>
             <text id="value" x="0" y="14" text-length="8" text-anchor="middle" font-size="36" font-family="System-Bold">-----</text>
