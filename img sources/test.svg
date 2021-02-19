@@ -379,18 +379,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.7810258"
-     inkscape:cx="87.960151"
-     inkscape:cy="248.4785"
+     inkscape:zoom="3.0020892"
+     inkscape:cx="82.963631"
+     inkscape:cy="101.9139"
      inkscape:document-units="px"
-     inkscape:current-layer="layer23"
+     inkscape:current-layer="layer30"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
      inkscape:window-width="2560"
      inkscape:window-height="1387"
      inkscape:window-x="1072"
-     inkscape:window-y="200"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:lockguides="false"
@@ -2619,6 +2619,85 @@
          x="2.033823"
          y="101.83643"
          style="stroke-width:0.264583" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer30"
+     inkscape:label="chargeHand">
+    <g
+       id="g2442"
+       transform="matrix(0,0.03689649,-0.03689649,0,50.10064,1.1236952)"
+       style="fill:#ffffff;fill-opacity:1"
+       inkscape:transform-center-x="-0.17385563"
+       inkscape:transform-center-y="0.17385463"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
+       inkscape:export-xdpi="95"
+       inkscape:export-ydpi="95">
+      <path
+         style="fill:#ffffff;fill-opacity:1"
+         d="m 288.885,113.385 h -8.958 V 91.733 c 0,-6.739 -5.466,-12.205 -12.211,-12.205 H 12.205 C 5.461,79.527 0,84.994 0,91.733 v 117.625 c 0,6.739 5.461,12.205 12.205,12.205 h 255.516 c 6.744,0 12.211,-5.466 12.211,-12.205 v -21.653 h 8.953 c 6.744,0 12.205,-5.466 12.205,-12.205 v -49.903 c 0,-6.74 -5.466,-12.212 -12.205,-12.212 z M 24.411,103.938 h 64.116 l 93.215,93.215 H 24.411 Z m 231.1,93.214 h -39.248 l -93.215,-93.215 h 132.463 v 21.653 49.903 z"
+         id="path2440" />
+    </g>
+    <g
+       id="g2444"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2446"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2448"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2450"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2452"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2454"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2456"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2458"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2460"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2462"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2464"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2466"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2468"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2470"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2472"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
   </g>
   <g
      inkscape:groupmode="layer"

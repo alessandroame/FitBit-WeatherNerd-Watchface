@@ -2,6 +2,8 @@ import { locale } from "user-settings";
 import document from "document";
 import * as settings from "./settings"
 import { battery } from "power";
+import { charger } from "power";
+import * as logger from "./logger";
 
 let oldDate = null;
 export let widget = document.getElementById("datum");
@@ -27,7 +29,8 @@ settings.subscribe("datumDOWColor", (color) => {
   dayOfWeek.style.fill = color;
 }, "red");
 
-
+let hiBatteryReadTime=null;
+let hiBatteryLevel=null;
 
 export function init() {
   console.log("datum init");
@@ -35,13 +38,41 @@ export function init() {
     update();
   }, 30);
 
-  battery.onchange = (charger, evt) => {
-    //console.log("battery.onchange")
+  settings.subscribe("_hiBatteryReadTime",v=>{
+    hiBatteryReadTime=new Date(v);
+    console.log("hiBatteryReadTime: "+hiBatteryReadTime);
+  });
+  settings.subscribe("_hiBatteryLevel",v=>{
+    hiBatteryLevel=v*1;
+      console.log("hiBatteryLevel: "+hiBatteryLevel);
+  });
+
+  battery.onchange = (c, evt) => {
+    console.log("battery.onchange level: "+battery.chargeLevel+" charging: "+charger.connected)
     setBatteryLevel(battery.chargeLevel);
   };
   setBatteryLevel(battery.chargeLevel);
 }
 
+let lastBatteryLevel=0;
+function processBatteryStats(level){
+  let now=new Date();
+  let deadTime=null;
+  if (hiBatteryReadTime==null || lastBatteryLevel<level){
+    settings.set("_hiBatteryReadTime",now.toISOString());
+    settings.set("_hiBatteryLevel",level);
+    console.log("reset battery stats");
+  }else{
+      let startSecs=hiBatteryReadTime.getTime()/1000;
+      let currentSecs=now.getTime()/1000;
+      let dischardRate=(hiBatteryLevel-level)/(currentSecs-startSecs);
+      let secsLeft=level/dischardRate;
+      deadTime=new Date(now.getTime()+secsLeft*1000);
+    }
+    logger.info("estimate battery deadTime: "+deadTime);
+    settings.set("deadTime",deadTime);
+    lastBatteryLevel=level;
+}
 function update() {
   let now = new Date();
   if (!oldDate || oldDate != now.getDate()) {
@@ -70,16 +101,17 @@ function update() {
   }
 }
 
-function setBatteryLevel(batteryLevel) {
+function setBatteryLevel(level) {
   let color = COLOR_NORMAL;
-  if (batteryLevel < 15) {
+  if (level < 15) {
     color = COLOR_ALERT
   }
-  else if (batteryLevel < 30) {
+  else if (level < 30) {
     color = COLOR_WARNING;
   }
   document.getElementById("battery").style.fill = color;
   document.getElementById("batterytRail").style.fill = color;
   
-  document.getElementById("battery").sweepAngle= 360* batteryLevel/100;
+  document.getElementById("battery").sweepAngle= 360* level/100;
+  processBatteryStats(level);
 }

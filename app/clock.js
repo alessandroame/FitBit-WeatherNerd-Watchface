@@ -71,6 +71,18 @@ settings.subscribe("hoursHandColor", (value) => {
 clock.granularity = "seconds";
 clock.addEventListener("tick", updateClock);
 
+settings.subscribe("deadTime",(v)=>{
+  if (v!=null){
+    console.error("deadTime "+v.getTime());
+    let hours=v.getHours();
+    let mins=v.getMinutes();
+    document.getElementById("chargeHand").groupTransform.rotate.angle=geom.hoursToAngle(hours, mins);
+    document.getElementById("chargeHand").style.display="inline";
+  }else{
+    document.getElementById("chargeHand").style.display="none";
+  }
+});
+
 
 /*let pattern=[58,59,0,1,2,1,0,59];
 let  patternIndex=0;

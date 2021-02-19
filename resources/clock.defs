@@ -78,6 +78,12 @@
 				</g>
 			</g>
 
+			<g id="chargeHand" transform="translate(50%,50%),rotate(180)">
+				<g transform="translate(-50%,-50%)">
+					<image href="icons/chargeHand.png" x="50%-10" y="0" width="20" height="41" fill="red" />
+				</g>
+			</g>
+
 			<g transform="translate(100%-38,100%-38),rotate(135)" id="rest_mode" fill="gray">
 				<image x="-20" y="-11" width="41" height="23" href="icons/handsRest.png"/>
 			</g>
