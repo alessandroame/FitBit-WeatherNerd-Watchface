@@ -379,11 +379,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.0020892"
-     inkscape:cx="82.963631"
-     inkscape:cy="101.9139"
+     inkscape:zoom="16"
+     inkscape:cx="143.89488"
+     inkscape:cy="29.756542"
      inkscape:document-units="px"
-     inkscape:current-layer="layer30"
+     inkscape:current-layer="layer18"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -2175,8 +2175,7 @@
      inkscape:groupmode="layer"
      id="layer17"
      inkscape:label="sun_times"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <g
        inkscape:groupmode="layer"
        id="layer1"
@@ -2200,14 +2199,13 @@
        inkscape:groupmode="layer"
        id="layer18"
        inkscape:label="arrow"
-       style="display:none"
-       sodipodi:insensitive="true">
+       style="display:inline">
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 44.449999,7.3421874 -1.653645,-0.033073 1.653645,2.9898096 V 7.507552"
          id="path2244"
          sodipodi:nodetypes="cccc"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
       <use
@@ -2218,7 +2216,7 @@
          transform="matrix(-1,0,0,1,88.899998,0)"
          width="100%"
          height="100%"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
     </g>
@@ -2579,7 +2577,7 @@
      inkscape:groupmode="layer"
      id="layer23"
      inkscape:label="precipButton"
-     style="display:inline">
+     style="display:none">
     <ellipse
        style="fill:#000000;stroke:none;stroke-width:0.687917;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
        id="path1146"
@@ -2623,21 +2621,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer30"
-     inkscape:label="chargeHand">
-    <g
-       id="g2442"
-       transform="matrix(0,0.03689649,-0.03689649,0,50.10064,1.1236952)"
-       style="fill:#ffffff;fill-opacity:1"
-       inkscape:transform-center-x="-0.17385563"
-       inkscape:transform-center-y="0.17385463"
-       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
-       inkscape:export-xdpi="95"
-       inkscape:export-ydpi="95">
-      <path
-         style="fill:#ffffff;fill-opacity:1"
-         d="m 288.885,113.385 h -8.958 V 91.733 c 0,-6.739 -5.466,-12.205 -12.211,-12.205 H 12.205 C 5.461,79.527 0,84.994 0,91.733 v 117.625 c 0,6.739 5.461,12.205 12.205,12.205 h 255.516 c 6.744,0 12.211,-5.466 12.211,-12.205 v -21.653 h 8.953 c 6.744,0 12.205,-5.466 12.205,-12.205 v -49.903 c 0,-6.74 -5.466,-12.212 -12.205,-12.212 z M 24.411,103.938 h 64.116 l 93.215,93.215 H 24.411 Z m 231.1,93.214 h -39.248 l -93.215,-93.215 h 132.463 v 21.653 49.903 z"
-         id="path2440" />
-    </g>
+     inkscape:label="chargeHand"
+     style="display:inline">
     <g
        id="g2444"
        transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
@@ -2698,6 +2683,14 @@
        id="g2472"
        transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
        style="fill:#ffffff;fill-opacity:1" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.215371;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 46.037516,0.19471657 -3.241175,3.51804633 1.620587,-1.7e-6 -1.708186,3.0006871 3.613471,-3.9733241 -1.576787,0.020698 z"
+       id="path1756"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
   <g
      inkscape:groupmode="layer"

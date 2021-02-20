@@ -61,12 +61,13 @@ function processBatteryStats(level){
   if (hiBatteryReadTime==null || lastBatteryLevel<level){
     settings.set("_hiBatteryReadTime",now.toISOString());
     settings.set("_hiBatteryLevel",level);
-    console.log("reset battery stats");
+    logger.debug("reset battery stats");
   }else{
       let startSecs=hiBatteryReadTime.getTime()/1000;
       let currentSecs=now.getTime()/1000;
       let dischardRate=(hiBatteryLevel-level)/(currentSecs-startSecs);
       let secsLeft=level/dischardRate;
+      logger.debug("estimate minutes left: "+Math.floor(secsLeft/60));
       deadTime=new Date(now.getTime()+secsLeft*1000);
     }
     logger.info("estimate battery deadTime: "+deadTime);
