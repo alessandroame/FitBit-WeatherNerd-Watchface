@@ -26,9 +26,6 @@ export function update(pos) {
             logger.error("climacell -> position not available");
             return;
         }
-        /*let startTime = new Date();
-        let endTime = new Date();
-        endTime.setHours(startTime.getHours() + 12);*/
 
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
@@ -39,10 +36,6 @@ export function update(pos) {
             .then((values) => {
                 logger.debug("climacell -> data availables");
                 let res = buildData(values[0][0], values[0][1],values[1]);
-                // for (let i=0;i<values[2].length;i++){
-                //     let r=values[2][i];
-                //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
-                // }
                 resolve(res);
             }).catch(reject);
     });
