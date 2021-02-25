@@ -146,6 +146,6 @@ function redraw(mode) {
     }
 }
 function toInt(v) {
-    if (v < 0 && v > -1) v = 0;
-    return v.toFixed();
+    if (v===undefined) v = 0;
+    return Math.floor(v);
 }

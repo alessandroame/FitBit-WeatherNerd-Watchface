@@ -69,18 +69,18 @@
 			</g>
 			<g id="sunsetHand" transform="translate(50%,50%),rotate(180)">
 				<g transform="translate(-50%,-50%)">
-					<image href="sunset.png" x="50%-13" y="0" width="26" height="41" fill="#BBBBBB" />
+					<image href="sunset.png" x="50%-7" y="40" width="14" height="18" fill="#BBBBBB" />
 				</g>
 			</g>
 			<g id="sunriseHand" transform="translate(50%,50%),rotate(180)">
 				<g transform="translate(-50%,-50%)">
-					<image href="sunrise.png" x="50%-13" y="0" width="26" height="41" fill="yellow" />
+					<image href="sunrise.png" x="50%-12" y="40" width="23" height="23" fill="yellow" />
 				</g>
 			</g>
 
 			<g id="chargeHand" transform="translate(50%,50%),rotate(180)">
 				<g transform="translate(-50%,-50%)">
-					<image href="icons/chargeHand.png" x="50%-7" y="0" width="14" height="39" fill="red" />
+					<image href="icons/chargeHand.png" x="50%-7" y="40" width="14" height="25" fill="red" />
 				</g>
 			</g>
 
