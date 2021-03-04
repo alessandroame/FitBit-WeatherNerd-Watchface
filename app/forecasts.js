@@ -119,6 +119,7 @@ function redraw(mode) {
                     iconContainer.groupTransform.rotate.angle = -i*30;
                     icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
                     value = forecasts[i].temp;
+
                     if (unitSystem != "si") {
                         value = value * 9 / 5 + 32;
                     }

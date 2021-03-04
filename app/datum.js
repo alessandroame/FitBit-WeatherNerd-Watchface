@@ -65,14 +65,18 @@ function processBatteryStats(level){
   }else{
       let startSecs=hiBatteryReadTime.getTime()/1000;
       let currentSecs=now.getTime()/1000;
-      let dischardRate=(hiBatteryLevel-level)/(currentSecs-startSecs);
-      let secsLeft=level/dischardRate;
-      if (secsLeft !== Infinity){
-        logger.debug("estimate minutes left: "+Math.floor(secsLeft/60));
-        deadTime=new Date(now.getTime()+secsLeft*1000);
+      if (currentSecs-startSecs>30000){
+        let dischardRate=(hiBatteryLevel-level)/(currentSecs-startSecs);
+        let secsLeft=level/dischardRate;
+        if (secsLeft !== Infinity){
+          logger.debug("estimate battery deadTime: "+deadTime);
+          deadTime=new Date(now.getTime()+secsLeft*1000);
+        }
+      }else {
+        logger.debug("deadTime waiting for more precision");
       }
     }
-    logger.info("estimate battery deadTime: "+deadTime);
+    if (!deadTime) logger.debug("deadTime waiting for more readings");
     settings.set("deadTime",deadTime);
     lastBatteryLevel=level;
 }

@@ -15,7 +15,7 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="test.svg"
-   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\background_small_hex.png"
+   inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\dial_hours.png"
    inkscape:export-xdpi="95.428574"
    inkscape:export-ydpi="95.428574">
   <defs
@@ -379,11 +379,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16"
-     inkscape:cx="143.89488"
-     inkscape:cy="29.756542"
+     inkscape:zoom="22.627417"
+     inkscape:cx="160.02751"
+     inkscape:cy="20.678146"
      inkscape:document-units="px"
-     inkscape:current-layer="layer18"
+     inkscape:current-layer="layer31"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
@@ -512,16 +512,17 @@
          height="100%" />
       <path
          style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
-         d="m 44.447266,6.0664062 c -0.292354,10e-4 -0.528498,0.2388966 -0.527344,0.53125 l 0.0332,3.0093748 0.533203,0.527344 0.525391,-0.533203 -0.0332,-3.0093751 c -0.0021,-0.2915897 -0.239655,-0.526547 -0.53125,-0.5253907 z"
+         d="m 44.45,6.0664062 c -0.292354,10e-4 -0.528498,0.2388966 -0.527344,0.53125 l 0.0332,3.0093748 0.533203,0.527344 0.525391,-0.533203 -0.0332,-3.0093751 C 44.97915,6.3002072 44.741595,6.0652499 44.45,6.0664062 Z"
          id="path2951"
          sodipodi:nodetypes="ccccccc"
-         inkscape:transform-center-y="-35.172671"
+         inkscape:transform-center-y="2.0348803"
          inkscape:tile-cx="44.465816"
          inkscape:tile-cy="44.463682"
          inkscape:tile-w="1.0917982"
          inkscape:tile-h="6.4492229"
          inkscape:tile-x0="43.919917"
-         inkscape:tile-y0="6.0664018" />
+         inkscape:tile-y0="6.0664018"
+         inkscape:transform-center-x="-0.018993488" />
       <use
          x="0"
          y="0"
@@ -649,16 +650,17 @@
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
          id="use2977"
-         inkscape:transform-center-x="-32.700904"
+         inkscape:transform-center-x="-204.25208"
          inkscape:transform-center-y="-2.4733359"
          width="100%"
-         height="100%" />
+         height="100%"
+         transform="matrix(6.2460684,0,0,1,-61.736619,0)" />
       <use
          x="0"
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(30,44.465816,44.463682)"
+         transform="rotate(30,44.467183,44.45858)"
          id="use2979"
          inkscape:transform-center-x="-50.322279"
          inkscape:transform-center-y="2.2043595"
@@ -669,7 +671,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(60,44.465816,44.463682)"
+         transform="rotate(60,44.467183,44.461314)"
          id="use2981"
          inkscape:transform-center-x="-63.197831"
          inkscape:transform-center-y="15.076499"
@@ -680,7 +682,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(90,44.465816,44.463682)"
+         transform="rotate(90,44.467183,44.462315)"
          id="use2983"
          inkscape:transform-center-x="-67.873573"
          inkscape:transform-center-y="32.699334"
@@ -691,7 +693,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(120,44.465816,44.463682)"
+         transform="rotate(120,44.467183,44.462893)"
          id="use2985"
          inkscape:transform-center-x="-63.195877"
          inkscape:transform-center-y="50.32071"
@@ -702,7 +704,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(150,44.465816,44.463682)"
+         transform="rotate(150,44.467183,44.463316)"
          id="use2987"
          inkscape:transform-center-x="-50.323737"
          inkscape:transform-center-y="63.196262"
@@ -713,7 +715,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(180,44.465816,44.463682)"
+         transform="rotate(180,44.467183,44.463682)"
          id="use2989"
          inkscape:transform-center-x="-32.700902"
          inkscape:transform-center-y="67.872003"
@@ -724,7 +726,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(-150,44.465816,44.463682)"
+         transform="rotate(-150,44.467183,44.464048)"
          id="use2991"
          inkscape:transform-center-x="-15.079527"
          inkscape:transform-center-y="63.194308"
@@ -735,7 +737,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(-120,44.465816,44.463682)"
+         transform="rotate(-120,44.467183,44.464471)"
          id="use2993"
          inkscape:transform-center-x="-2.203975"
          inkscape:transform-center-y="50.322168"
@@ -746,7 +748,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(-90,44.465816,44.463682)"
+         transform="rotate(-90,44.467183,44.465049)"
          id="use2995"
          inkscape:transform-center-x="2.4717664"
          inkscape:transform-center-y="32.699333"
@@ -757,7 +759,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(-60,44.465816,44.463682)"
+         transform="rotate(-60,44.467183,44.46605)"
          id="use2997"
          inkscape:transform-center-x="-2.205929"
          inkscape:transform-center-y="15.077958"
@@ -768,12 +770,25 @@
          y="0"
          inkscape:tiled-clone-of="#path2951"
          xlink:href="#path2951"
-         transform="rotate(-30,44.465816,44.463682)"
+         transform="rotate(-30,44.467183,44.468784)"
          id="use2999"
          inkscape:transform-center-x="-15.078069"
          inkscape:transform-center-y="2.2024054"
          width="100%"
          height="100%" />
+      <path
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.71838;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+         d="m 44.45,6.0664062 c -0.441808,0.00174 -0.79867,0.4167536 -0.796927,0.9267622 l 0.05018,5.2498376 0.805782,0.919947 0.793975,-0.930169 -0.05018,-5.2498369 C 45.24973,6.4742705 44.890661,6.0643889 44.45,6.0664062 Z"
+         id="path2951-3"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:transform-center-y="3.5498361"
+         inkscape:tile-cx="44.465816"
+         inkscape:tile-cy="44.463682"
+         inkscape:tile-w="1.0917982"
+         inkscape:tile-h="6.4492229"
+         inkscape:tile-x0="43.919917"
+         inkscape:tile-y0="6.0664018"
+         inkscape:transform-center-x="-0.028706385" />
     </g>
     <g
        inkscape:groupmode="layer"
@@ -919,8 +934,7 @@
        inkscape:groupmode="layer"
        id="layer8"
        inkscape:label="minutes"
-       style="display:inline"
-       sodipodi:insensitive="true">
+       style="display:inline">
       <g
          id="g1118"
          transform="translate(0.38325735,-0.0335872)">
@@ -1314,7 +1328,8 @@
        inkscape:groupmode="layer"
        id="layer21"
        inkscape:label="alerts frame"
-       style="display:none">
+       style="display:none"
+       sodipodi:insensitive="true">
       <path
          id="path4104"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -1994,7 +2009,8 @@
        inkscape:groupmode="layer"
        id="g4096"
        inkscape:label="alerts mask"
-       style="display:none" />
+       style="display:none"
+       sodipodi:insensitive="true" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -2199,10 +2215,10 @@
        inkscape:groupmode="layer"
        id="layer18"
        inkscape:label="arrow"
-       style="display:inline">
+       style="display:none">
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 44.449999,7.3421874 -1.653645,-0.033073 1.653645,2.9898096 V 7.507552"
+         d="m 53.944749,7.9268395 -1.653645,-0.033073 1.653645,2.9898095 V 8.0922041"
          id="path2244"
          sodipodi:nodetypes="cccc"
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
@@ -2213,38 +2229,38 @@
          y="0"
          xlink:href="#path2244"
          id="use2246"
-         transform="matrix(-1,0,0,1,88.899998,0)"
+         transform="matrix(-1,0,0,1,107.8895,0)"
          width="100%"
          height="100%"
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
+      <rect
+         style="opacity:0.63871;fill:#ffffff;stroke:none;stroke-width:0.288747;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:markers stroke fill"
+         id="rect1235"
+         width="6.3652902"
+         height="6.3652902"
+         x="-32.525185"
+         y="-39.510559"
+         transform="matrix(-0.67686449,0.73610764,-0.67686449,-0.73610764,0,0)" />
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer15"
        inkscape:label="sunrise"
-       style="display:none"
-       sodipodi:insensitive="true">
+       style="display:none">
       <circle
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          id="path2095"
          cx="44.450001"
-         cy="3.0427084"
+         cy="5.1593752"
          r="1.6536458"
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
       <path
-         style="fill:#ffffff;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="M 44.449999,-5.0000008e-7 V 1.0583333"
-         id="path2097"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
-         inkscape:export-xdpi="96"
-         inkscape:export-ydpi="96" />
-      <path
          style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="M 44.449999,0.20670573 V 1.0583333"
+         d="M 44.449999,2.3233725 V 3.1750001"
          id="path2145"
          inkscape:transform-center-y="-2.4308594"
          inkscape:tile-cx="44.449998"
@@ -2274,7 +2290,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(30,44.449998,3.0633788)"
+         transform="rotate(30,44.449998,5.1800452)"
          id="use2199"
          inkscape:transform-center-x="-33.904701"
          inkscape:transform-center-y="0.14767444"
@@ -2288,7 +2304,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(60,44.449998,3.0633788)"
+         transform="rotate(60,44.449998,5.1800452)"
          id="use2201"
          inkscape:transform-center-x="-34.794457"
          inkscape:transform-center-y="1.0374311"
@@ -2302,7 +2318,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(90,44.449998,3.0633788)"
+         transform="rotate(90,44.449998,5.1800452)"
          id="use2203"
          inkscape:transform-center-x="-35.12013"
          inkscape:transform-center-y="2.2528609"
@@ -2316,7 +2332,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(120,44.449998,3.0633788)"
+         transform="rotate(120,44.449998,5.1800452)"
          id="use2205"
          inkscape:transform-center-x="-34.794456"
          inkscape:transform-center-y="3.4682904"
@@ -2330,7 +2346,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(150,44.449998,3.0633788)"
+         transform="rotate(150,44.449998,5.1800452)"
          id="use2207"
          inkscape:transform-center-x="-33.904699"
          inkscape:transform-center-y="4.3580463"
@@ -2344,7 +2360,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(180,44.449998,3.0633788)"
+         transform="rotate(180,44.449998,5.1800452)"
          id="use2209"
          inkscape:transform-center-x="-32.689269"
          inkscape:transform-center-y="4.6837192"
@@ -2358,7 +2374,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(-150,44.449998,3.0633788)"
+         transform="rotate(-150,44.449998,5.1800452)"
          id="use2211"
          inkscape:transform-center-x="-31.47384"
          inkscape:transform-center-y="4.3580453"
@@ -2372,7 +2388,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(-120,44.449998,3.0633788)"
+         transform="rotate(-120,44.449998,5.1800452)"
          id="use2213"
          inkscape:transform-center-x="-30.584084"
          inkscape:transform-center-y="3.4682887"
@@ -2386,7 +2402,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(-90,44.449998,3.0633788)"
+         transform="rotate(-90,44.449998,5.1800452)"
          id="use2215"
          inkscape:transform-center-x="-30.258411"
          inkscape:transform-center-y="2.2528589"
@@ -2400,7 +2416,7 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(-60,44.449998,3.0633788)"
+         transform="rotate(-60,44.449998,5.1800452)"
          id="use2217"
          inkscape:transform-center-x="-30.584085"
          inkscape:transform-center-y="1.0374294"
@@ -2414,12 +2430,110 @@
          y="0"
          inkscape:tiled-clone-of="#path2145"
          xlink:href="#path2145"
-         transform="rotate(-30,44.449998,3.0633788)"
+         transform="rotate(-30,44.449998,5.1800452)"
          id="use2219"
          inkscape:transform-center-x="-31.473841"
          inkscape:transform-center-y="0.14767344"
          width="100%"
          height="100%"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer31"
+       inkscape:label="sunset 1">
+      <path
+         style="fill:none;stroke:#999999;stroke-width:0.4045;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         d="M 41.330384,4.689824 44.449999,0.90860965 47.569615,4.689824"
+         id="path1334" />
+      <path
+         id="path2095-1"
+         style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         d="m 46.103647,4.700367 h -3.307292 c 0,-0.9132834 0.740363,-1.6536459 1.653646,-1.6536458 0.913283,-10e-8 1.653646,0.7403624 1.653646,1.6536458 z"
+         sodipodi:nodetypes="ccsc" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 44.449999,1.8643641 V 2.7159916"
+         id="path2145-9"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-cx="44.449998"
+         inkscape:tile-cy="3.0633788"
+         inkscape:tile-w="0.26458298"
+         inkscape:tile-h="1.1162105"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 44.449999,1.8643641 V 2.7159916"
+         id="use2197-1"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 45.878334,2.247086 45.452521,2.984617"
+         id="use2199-1"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 46.923948,3.2927005 46.186417,3.7185142"
+         id="use2201-5"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 47.306671,4.7210365 H 46.455044"
+         id="use2203-9"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 41.593327,4.7210364 h 0.851627"
+         id="use2215-4"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 41.976047,3.2926995 0.737532,0.4258138"
+         id="use2217-3"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 43.021663,2.2470851 0.425813,0.7375311"
+         id="use2219-9"
+         inkscape:transform-center-y="-2.4308594"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
@@ -2435,10 +2549,85 @@
          d="m 44.754127,1.102604 c 0,0 -1.732715,0.2764142 -1.986037,2.0040022 -0.09119,0.9378335 0.445845,1.8657949 1.286872,2.2014405 0.729565,0.2566703 1.996171,0.069104 1.996171,0.069104 0,0 -1.823913,-0.5133429 -2.056969,-1.6979746 C 43.832038,2.5739005 44.754127,1.102604 44.754127,1.102604"
          id="path2222"
          sodipodi:nodetypes="cccccc"
-         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunrise.png"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunset.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer30"
+     inkscape:label="chargeHand"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <g
+       id="g2444"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2446"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2448"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2450"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2452"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2454"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2456"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2458"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2460"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2462"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2464"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2466"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2468"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2470"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <g
+       id="g2472"
+       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
+       style="fill:#ffffff;fill-opacity:1" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.215371;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 46.037516,0.19471657 -3.241175,3.51804633 1.620587,-1.7e-6 -1.708186,3.0006871 3.613471,-3.9733241 -1.576787,0.020698 z"
+       id="path1756"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -2617,80 +2806,6 @@
          x="2.033823"
          y="101.83643"
          style="stroke-width:0.264583" /></text>
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer30"
-     inkscape:label="chargeHand"
-     style="display:inline">
-    <g
-       id="g2444"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2446"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2448"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2450"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2452"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2454"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2456"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2458"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2460"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2462"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2464"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2466"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2468"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2470"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <g
-       id="g2472"
-       transform="matrix(0.26458333,0,0,0.26458333,-16.558907,-12.86711)"
-       style="fill:#ffffff;fill-opacity:1" />
-    <path
-       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.215371;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 46.037516,0.19471657 -3.241175,3.51804633 1.620587,-1.7e-6 -1.708186,3.0006871 3.613471,-3.9733241 -1.576787,0.020698 z"
-       id="path1756"
-       sodipodi:nodetypes="ccccccc"
-       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\chargeHand.png"
-       inkscape:export-xdpi="96"
-       inkscape:export-ydpi="96" />
   </g>
   <g
      inkscape:groupmode="layer"

@@ -70,10 +70,11 @@ settings.subscribe("minWind",(v)=>{if (initialized) fetchMeteo();});
 settings.subscribe("maxWind",(v)=>{if (initialized) fetchMeteo();});
 
 function setError(error){
-    console.log("setError: "+error);
-    if (!error || error.length==0) 
+    if (!error || error.length==0) {
+        console.log("resetError");
         resetError();
-    else{
+    }else{
+        console.log("setError: "+error);
         document.getElementById("error").href="errors/"+error+".png";
         document.getElementById("alerts").style.display="none";
         document.getElementById("error").style.display="inline";
@@ -143,11 +144,13 @@ export function fetchMeteo() {
                     windSpeed: d.ws,
                     windDirection:d.wd
                 };
+                console.warn(JSON.stringify(d));
             }
             //console.log(d.d+" - "+d.p.q+" "+d.p.p);
             //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
         }
-        //    console.log(JSON.stringify(alerts));
+        //console.log(JSON.stringify(alerts));
+        
         memStats(9999);
         if (alertsAvailableCallback) alertsAvailableCallback({
             lastUpdate: new Date(meteoData.lu),

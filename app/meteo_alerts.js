@@ -67,14 +67,14 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
             mainAlert.style.fill = precColor;
             mainAlert.arcWidth = 4 + 16* precQuantity;
         }else{
-            mainAlert.style.fill = "#222222";
+            mainAlert.style.fill = "#111111";
             mainAlert.arcWidth = 8;
         }
         //wind
         if (windSpeed>0){
             secondaryUI.style.fill="#006ED6";
         } else{
-            secondaryUI.style.fill = "#222222";
+            secondaryUI.style.fill = "#111111";
         }
     }else{
         //wind
@@ -82,14 +82,14 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
             mainAlert.style.fill = "#006ED6";
             mainAlert.arcWidth = 4+(16 * (windSpeed));
         }else{
-            mainAlert.style.fill = "#222222";
+            mainAlert.style.fill = "#111111";
             mainAlert.arcWidth = 8;
         }
         //prec
         if (precProb>0){
             secondaryUI.style.fill=precColor;
         } else{
-            secondaryUI.style.fill = "#222222";
+            secondaryUI.style.fill = "#111111";
         }
 
     }
@@ -100,7 +100,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
         let hex=byteToHex(prob*255);
         ice.style.fill = "#00"+ hex+hex;
     } else {
-        ice.style.fill = "#222222";
+        ice.style.fill = "#111111";
         ice.style.opacity = 1;
     }
 /*    document.getElementById("ia_" + index).to=ice.style.fill;
