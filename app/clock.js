@@ -75,7 +75,7 @@ settings.subscribe("deadTime",(v)=>{
   if (v!=null){
     let deltaH=(v.getTime()-new Date().getTime())/1000/3600;
     
-    if (deltaH<12){
+    if (deltaH<11){
       let hours=v.getHours();
       let mins=v.getMinutes();
       document.getElementById("chargeHand").groupTransform.rotate.angle=geom.hoursToAngle(hours, mins);
