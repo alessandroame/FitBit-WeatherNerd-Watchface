@@ -144,7 +144,7 @@ export function fetchMeteo() {
                     windSpeed: d.ws,
                     windDirection:d.wd
                 };
-                console.warn(JSON.stringify(d));
+                //console.warn(JSON.stringify(d));
             }
             //console.log(d.d+" - "+d.p.q+" "+d.p.p);
             //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
