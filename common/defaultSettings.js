@@ -1,10 +1,12 @@
 export function get(key){
     if (defaultValues[key]!=null) return defaultValues[key];
-    console.error("Default value not found: "+key);
+    //console.error("Default value not found: "+key);
     return null;
 }
 
 export let defaultValues={
+    "_hiBatteryReadTime":0,
+    "_hiBatteryLevel":0,
     "automaticBackgroundColor":"true",
     "messageToShow":"",
     "batteryColor":"dodgerblue",

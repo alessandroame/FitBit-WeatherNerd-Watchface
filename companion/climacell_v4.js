@@ -26,9 +26,6 @@ export function update(pos) {
             logger.error("climacell -> position not available");
             return;
         }
-        /*let startTime = new Date();
-        let endTime = new Date();
-        endTime.setHours(startTime.getHours() + 12);*/
 
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
@@ -39,10 +36,6 @@ export function update(pos) {
             .then((values) => {
                 logger.debug("climacell -> data availables");
                 let res = buildData(values[0][0], values[0][1],values[1]);
-                // for (let i=0;i<values[2].length;i++){
-                //     let r=values[2][i];
-                //     console.warn(r.d+" "+r.t.r+"  "+r.p.p+" "+r.p.q);
-                // }
                 resolve(res);
             }).catch(reject);
     });
@@ -66,10 +59,38 @@ function buildData(nowcast, forecast,suntimes) {
         lu: new Date(),
         sr: suntimes.sr,
         ss: suntimes.ss,
-        data: data
+        data: debugData(data)
     }
     //console.error(JSON.stringify(res));
     return res;
+}
+
+function debugData(data){
+    //console.warn(JSON.stringify(data));
+        let fields=["wc","ws","wd","t"];
+        for (let i=0;i<data.length;i++){
+            fields.forEach(field => {
+                //console.log( data[i][field])
+                if (data[i][field]===undefined
+                    || data[i][field]==null){
+                    logger.debug(i+" "+field+" not set "+JSON.stringify(data[i]));
+                    data[i][field]=getFirstValue(data,field,i);
+                    console.warn("setting "+field+": "+data[i][field]);
+                }
+            });
+        }
+    return data;
+}
+
+function getFirstValue(data,field,index){
+    for (let i=index;i<data.length;i++)
+    {
+        if (data[i][field]!==undefined && data[i][field]!=null) return data[i][field];
+    }
+    for (let i=index;i<0;i--)
+    {
+        if (data[i][field]!==undefined && data[i][field]!=null) return data[i][field];
+    }
 }
 
 function findFirst(data, d, precision) {
@@ -120,6 +141,7 @@ function getSunTimes(lat, lon) {
                         .then(response => {
                             if (response.message) {
                                 logger.error(`getSunTimes error: ${JSON.stringify(response)} `);
+                                settings.set("messageToShow","unknown_error");
                                 reject(response);
                             } else {
                                 let data=response.data.timelines[0].intervals;
@@ -167,18 +189,21 @@ function getForecast(lat, lon) {
                             if (response.message) {
                                 if (response.type=="Invalid Key") settings.set("messageToShow","wrong_api_key");
                                 logger.error(`getForecast error: ${JSON.stringify(response)} `);
+                                settings.set("messageToShow","unknown_error");
                                 reject(response);
                             } else {
                                 let res = [[],[]];
+                                //console.log(JSON.stringify(response.data));
                                 //nowcast
                                 let data=response.data.timelines[0].intervals;
                                 for (let i = 0; i < data.length; i++) {
-                                    res[0].push(parseWeather(data[i]));
+                                    //console.log(JSON.stringify(data[i]));
+                                    res[0].push(parseWeather(data[i]));//,i==0||i==2||i==10||i==15));
                                 }
                                 //forecast
                                 data=response.data.timelines[1].intervals;
                                 for (let i = 0; i < data.length; i++) {
-                                    //console.error(data[i].values.windDirection);
+                                    //console.log(JSON.stringify(data[i]));
                                     res[1].push(parseWeather(data[i]));
                                 }
                                 resolve(res);
@@ -197,10 +222,19 @@ function getForecast(lat, lon) {
     });
 }
 
-function parseWeather(data, time) {
-    let dt = new Date(time ?? data.startTime);
+function parseWeather(data, generateError) {
+    //console.error(generateError);
+    let dt = new Date(data.startTime);
     let values=data.values;
     //console.error(dt.getHours(),values.weatherCode,values.windDirection,180-values.windDirection);
+    if (generateError){
+        return {
+            d: dt,
+            pp: values.precipitationIntensity==0?0:values.precipitationProbability,
+            pi: values.precipitationIntensity,
+            wc: values.weatherCode,
+        };
+    }else
     return {
         d: dt,
         t: values.temperature,

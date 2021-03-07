@@ -176,7 +176,7 @@ function SettingsPage(props) {
             { name: "10 minutes", value: "10" },
             { name: "15 minutes", value: "15" },
             { name: "20 minutes", value: "20" },
-            { name: "15 minutes", value: "30" },
+            { name: "30 minutes", value: "30" },
             { name: "1 hour", value: "60" },
           ]}
         />

@@ -33,9 +33,9 @@ import * as weatherWidget from "./weather_widget"
 
 memStats("after imports");
 
+settings.init();
 clock.init();
 connection.init();
-settings.init();
 //battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();

@@ -68,13 +68,21 @@
 				<line x1="-1" y1="0" x2="0" y2="-43%" stroke-width="1" />
 			</g>
 			<g id="sunsetHand" transform="translate(50%,50%),rotate(180)">
-				<g transform="translate(-50%,-50%)">
-					<image href="sunset.png" x="50%-13" y="0" width="26" height="41" fill="#BBBBBB" />
+				<g transform="translate(0%,-50%+27)">
+					<g transform="rotate(180)">
+						<image href="sunHand.png" x="-16" y="-9" width="32" height="18" fill="orange" />
+					</g>
 				</g>
 			</g>
 			<g id="sunriseHand" transform="translate(50%,50%),rotate(180)">
+				<g transform="translate(0,-50%+11)">
+					<image href="sunHand.png" x="-16" y="-9" width="32" height="18" fill="yellow" />
+				</g>
+			</g>
+
+			<g id="chargeHand" transform="translate(50%,50%),rotate(180)">
 				<g transform="translate(-50%,-50%)">
-					<image href="sunrise.png" x="50%-13" y="0" width="26" height="41" fill="yellow" />
+					<image href="icons/chargeHand.png" x="50%-12" y="10" width="24" height="40" fill="red" />
 				</g>
 			</g>
 
