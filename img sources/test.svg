@@ -379,18 +379,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="13.619399"
-     inkscape:cx="169.98785"
-     inkscape:cy="16.288397"
+     inkscape:zoom="27.624681"
+     inkscape:cx="160.59045"
+     inkscape:cy="11.632315"
      inkscape:document-units="px"
-     inkscape:current-layer="g1217"
+     inkscape:current-layer="g1228"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1027"
-     inkscape:window-x="3632"
-     inkscape:window-y="175"
+     inkscape:window-width="2560"
+     inkscape:window-height="1387"
+     inkscape:window-x="1072"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:lockguides="false"
@@ -2550,7 +2550,7 @@
        inkscape:groupmode="layer"
        id="g1217"
        inkscape:label="arrow copy"
-       style="display:inline">
+       style="display:none">
       <path
          style="fill:#ffffff;stroke:#ffffff;stroke-width:0.528427;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
          d="M 47.187229,2.7926788 44.45,0.32116304 41.712772,2.7926788 c 2.737228,-2.47151576 2.737228,-2.47151576 5.474457,0 z"
@@ -2651,6 +2651,112 @@
          inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
          inkscape:export-xdpi="96"
          inkscape:export-ydpi="96" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g1228"
+       inkscape:label="arrow copy copy"
+       style="display:inline">
+      <path
+         id="path1210"
+         style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         d="m 46.816678,4.295047 h -4.733352 c 0,-1.3070792 1.059597,-2.3666764 2.366676,-2.3666762 1.30708,-2e-7 2.366676,1.059597 2.366676,2.3666762 z"
+         sodipodi:nodetypes="ccsc"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 44.45,0.2361969 v 1.218838"
+         id="path1212"
+         inkscape:transform-center-y="-3.479014"
+         inkscape:tile-cx="44.449998"
+         inkscape:tile-cy="3.0633788"
+         inkscape:tile-w="0.26458298"
+         inkscape:tile-h="1.1162105"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 44.45,0.2361969 v 1.218838"
+         id="path1214"
+         inkscape:transform-center-y="-3.479014"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 46.494213,0.78394363 45.884796,1.8394881"
+         id="path1216"
+         inkscape:transform-center-y="-3.4790138"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 47.990683,2.2804133 46.935137,2.8898322"
+         id="path1218"
+         inkscape:transform-center-y="-3.4790138"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 48.53843,4.3246288 H 47.319592"
+         id="path1220"
+         inkscape:transform-center-y="-3.4790139"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 40.361568,4.3246288 h 1.218838"
+         id="path1222"
+         inkscape:transform-center-y="-3.4790137"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 40.909312,2.2804118 1.055546,0.609419"
+         id="path1224"
+         inkscape:transform-center-y="-3.479014"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:0.378667;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 42.405784,0.78394223 43.015201,1.8394871"
+         id="path1226"
+         inkscape:transform-center-y="-3.4790138"
+         inkscape:tile-x0="44.317706"
+         inkscape:tile-y0="0.074414232"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.365834;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         d="M 46.070382,3.9292145 44.45,2.2993267 42.829619,3.9292145 Z"
+         id="path1208"
+         inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\sunHand.png"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         sodipodi:nodetypes="cccc" />
     </g>
     <g
        inkscape:groupmode="layer"

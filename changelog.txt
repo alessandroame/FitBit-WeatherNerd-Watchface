@@ -1,0 +1,9 @@
+change log:
+- debug missing data from climacell api
+- watch battery dead hand (red lightning)
+- demo / tutorial mode
+- automatic background color
+- on clock message for errors like api key missing / wrong etc
+- hand rest command to better reading widgets data
+- wind forecasts and alerts
+- minutly and hourly precipitation and ice alerts

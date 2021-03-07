@@ -31,6 +31,7 @@ settings.subscribe("datumDOWColor", (color) => {
 
 let hiBatteryReadTime=null;
 let hiBatteryLevel=null;
+let lastBatteryLevel=-1;
 
 export function init() {
   console.log("datum init");
@@ -40,40 +41,36 @@ export function init() {
 
   settings.subscribe("_hiBatteryReadTime",v=>{
     hiBatteryReadTime=new Date(v);
-    console.log("hiBatteryReadTime: "+hiBatteryReadTime);
+    //logger.error("hiBatteryReadTime: "+hiBatteryReadTime);
   });
   settings.subscribe("_hiBatteryLevel",v=>{
     hiBatteryLevel=v*1;
-      console.log("hiBatteryLevel: "+hiBatteryLevel);
+    //logger.error("hiBatteryLevel: "+hiBatteryLevel);
   });
 
   battery.onchange = (c, evt) => {
-    console.log("battery.onchange level: "+battery.chargeLevel+" charging: "+charger.connected)
+    //console.log("battery.onchange level: "+battery.chargeLevel+" charging: "+charger.connected)
     setBatteryLevel(battery.chargeLevel);
   };
-  setBatteryLevel(battery.chargeLevel);
+  //setBatteryLevel(battery.chargeLevel);
 }
 
-let lastBatteryLevel=0;
 function processBatteryStats(level){
   let now=new Date();
   let deadTime=null;
-  if (hiBatteryReadTime==null || lastBatteryLevel<level){
+  if (hiBatteryReadTime==null || (lastBatteryLevel!=-1 && lastBatteryLevel<level)){
     settings.set("_hiBatteryReadTime",now.toISOString());
     settings.set("_hiBatteryLevel",level);
     logger.debug("reset battery stats");
   }else{
       let startSecs=hiBatteryReadTime.getTime()/1000;
       let currentSecs=now.getTime()/1000;
-      //if (currentSecs-startSecs>30000)
+      logger.debug("battery dead dt:"+Math.floor((currentSecs-startSecs)/6000)+" dc:"+(hiBatteryLevel-level));
       let dischardRate=(hiBatteryLevel-level)/(currentSecs-startSecs);
       let secsLeft=level/dischardRate;
       if (secsLeft !== Infinity){
         deadTime=new Date(now.getTime()+secsLeft*1000);
         logger.debug("estimate battery deadTime: "+deadTime);
-      }else{
-        logger.debug("deadTime waiting for more precision");
-      
       }
     }
     if (!deadTime) logger.debug("deadTime waiting for more readings");

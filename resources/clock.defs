@@ -68,15 +68,15 @@
 				<line x1="-1" y1="0" x2="0" y2="-43%" stroke-width="1" />
 			</g>
 			<g id="sunsetHand" transform="translate(50%,50%),rotate(180)">
-				<g transform="translate(0%,-50%+28)">
+				<g transform="translate(0%,-50%+27)">
 					<g transform="rotate(180)">
-						<image href="sunHand.png" x="-12" y="-11" width="24" height="20" fill="orange" />
+						<image href="sunHand.png" x="-16" y="-9" width="32" height="18" fill="orange" />
 					</g>
 				</g>
 			</g>
 			<g id="sunriseHand" transform="translate(50%,50%),rotate(180)">
 				<g transform="translate(0,-50%+11)">
-					<image href="sunHand.png" x="-12" y="-11" width="24" height="20" fill="yellow" />
+					<image href="sunHand.png" x="-16" y="-9" width="32" height="18" fill="yellow" />
 				</g>
 			</g>
 
