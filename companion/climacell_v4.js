@@ -127,7 +127,7 @@ function getSunTimes(lat, lon) {
             let startTime=new Date();
             let endTime=new Date();
             endTime.setHours(startTime.getHours()+24);
-            let url = getClimacellUrl(lat,lon,"sunriseTime,sunsetTime","1d",startTime,endTime);
+            let url = getClimacellUrl(lat,lon,"sunriseTime,sunsetTime,temperature","1d",startTime,endTime);
             console.log("suntimes update " + url);
             fetch(url, {
                 method: "GET",
