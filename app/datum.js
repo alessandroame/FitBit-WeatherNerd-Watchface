@@ -67,7 +67,7 @@ function processBatteryStats(level){
       let currentSecs=now.getTime()/1000;
       logger.debug("battery dead dt:"+Math.floor((currentSecs-startSecs)/6000)+" dc:"+(hiBatteryLevel-level));
       let dischardRate=(hiBatteryLevel-level)/(currentSecs-startSecs);
-      let secsLeft=level/dischardRate;
+      let secsLeft=(level-7)/dischardRate;
       if (secsLeft !== Infinity){
         deadTime=new Date(now.getTime()+secsLeft*1000);
         logger.debug("estimate battery deadTime: "+deadTime);
