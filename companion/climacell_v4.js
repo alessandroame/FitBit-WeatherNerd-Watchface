@@ -126,7 +126,7 @@ function getSunTimes(lat, lon) {
         try {
             let startTime=new Date();
             let endTime=new Date();
-            endTime.setHours(startTime.getHours()+24);
+            endTime.setHours(endTime.getHours()+25);//clicell return an error when you are the day before to put the hour one hour forward
             let url = getClimacellUrl(lat,lon,"sunriseTime,sunsetTime,temperature","1d",startTime,endTime);
             console.log("suntimes update " + url);
             fetch(url, {
@@ -173,7 +173,7 @@ function getForecast(lat, lon) {
         try {
             let startTime=new Date();
             let endTime=new Date();
-            endTime.setHours(startTime.getHours()+12);
+            endTime.setHours(endTime.getHours()+12);
             let url = getClimacellUrl(lat,lon,"windSpeed,windDirection,weatherCode,precipitationIntensity,precipitationProbability,temperature","5m,1h",startTime,endTime);
             console.log("climacell update " + url);
             fetch(url, {
