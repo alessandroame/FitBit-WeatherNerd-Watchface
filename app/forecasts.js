@@ -93,6 +93,7 @@ function ellipsis(s, l) {
 function redraw(mode) {
     try {
         lastMode=mode;
+        let windMode=settings.get("windMode",0);
         if (meteo==null) return;
         let title=mode==0?"TEMP":"WIND";
         let units=mode==0?(unitSystem == "si"?"°":"F"):(unitSystem == "si"?"m/s":"kn");
@@ -128,7 +129,7 @@ function redraw(mode) {
                     iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection-i*30;
                     icon.style.fill="#006ED6";
                     icon.href = "icons/windDirection.png";
-                    value = forecasts[i].windSpeed;
+                    value = windMode==0?forecasts[i].windSpeed:forecasts[i].windGust;
                     if (unitSystem != "si") {
                         value = value * 2;
                     }

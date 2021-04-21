@@ -118,7 +118,8 @@ export function fetchMeteo() {
             if (index>59) index=index-60;
             alerts[index]={
                 wind: {
-                    speed:normalizeValue(d.ws,minWind,maxWind,true)
+                    speed:normalizeValue(d.ws,minWind,maxWind,true),
+                    gust:normalizeValue(d.wg,minWind,maxWind,true)
                 },
                 precipitation: {
                     probability: normalizeValue(d.pp,0,100),
@@ -142,6 +143,7 @@ export function fetchMeteo() {
                     icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
                     temp: d.t,
                     windSpeed: d.ws,
+                    windGust: d.wg,
                     windDirection:d.wd
                 };
                 //console.warn(JSON.stringify(d));

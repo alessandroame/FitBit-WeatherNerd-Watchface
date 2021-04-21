@@ -59,12 +59,13 @@ document.getElementById("datumTouch").onclick=()=>{
     vibration.start("bump");
     meteo_alerts.test();
 }
-settings.subscribe("meteoMode",(mode)=>{
-    document.getElementById("meteo_mode").style.fill="#BBBBBB";
-    document.getElementById("meteo_mode").href="icons/"+(mode==0?"precip":"wind")+"ModeBtn.png";
+settings.subscribe("automaticBackgroundColor",()=>{
     meteo.fetchMeteo();
 },0);
-settings.subscribe("automaticBackgroundColor",(mode)=>{
+settings.subscribe("meteoMode",(mode)=>{
+    //document.getElementById("wind_mode").style.display=mode==0?"none":"inline";
+    document.getElementById("meteo_mode").style.fill="#BBBBBB";
+    document.getElementById("meteo_mode").href="icons/"+(mode==0?"precip":"wind")+"ModeBtn.png";
     meteo.fetchMeteo();
 },0);
 document.getElementById("meteo_mode_button").onclick=()=>{
@@ -73,6 +74,20 @@ document.getElementById("meteo_mode_button").onclick=()=>{
     else mode=0;
     settings.set("meteoMode",mode);
 };
+
+settings.subscribe("windMode",(mode)=>{
+    document.getElementById("wind_mode").style.fill="#BBBBBB";
+    document.getElementById("wind_mode").href="icons/wind"+(mode==0?"Speed":"Gust")+"Btn.png";
+    meteo.fetchMeteo();
+},0);
+document.getElementById("wind_mode_button").onclick=()=>{
+    if (settings.get("meteoMode",0)==0) return;
+    let mode=settings.get("windMode",0);
+    if (mode==0) mode=1;
+    else mode=0;
+    settings.set("windMode",mode);
+};
+
 document.getElementById("display_mode_button").addEventListener("mousedown", (evt) => {
     clock.setRest();
 });
