@@ -81,7 +81,7 @@ settings.subscribe("windMode",(mode)=>{
     meteo.fetchMeteo();
 },0);
 document.getElementById("wind_mode_button").onclick=()=>{
-    if (settings.get("meteoMode",0)==0) return;
+//    if (settings.get("meteoMode",0)==0) return;
     let mode=settings.get("windMode",0);
     if (mode==0) mode=1;
     else mode=0;
