@@ -379,18 +379,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="27.624681"
-     inkscape:cx="160.59045"
-     inkscape:cy="11.632315"
+     inkscape:zoom="1.1632445"
+     inkscape:cx="62.961273"
+     inkscape:cy="112.63623"
      inkscape:document-units="px"
-     inkscape:current-layer="g1228"
+     inkscape:current-layer="g1680"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
-     inkscape:window-x="1072"
-     inkscape:window-y="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="1192"
+     inkscape:window-y="261"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:lockguides="false"
@@ -429,7 +429,7 @@
      inkscape:groupmode="layer"
      id="g1091"
      inkscape:label="bg"
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true">
     <rect
        style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
@@ -3076,6 +3076,114 @@
        id="text1168"><tspan
          sodipodi:role="line"
          id="tspan1166"
+         x="36.121086"
+         y="121.11188"
+         style="stroke-width:0.264583" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g1662"
+     inkscape:label="windSpeedButton "
+     style="display:none">
+    <ellipse
+       style="fill:#000000;stroke:none;stroke-width:0.687917;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
+       id="ellipse1646"
+       cx="44.759094"
+       cy="44.427948"
+       rx="44.582031"
+       ry="44.47205" />
+    <rect
+       style="fill:#000000;stroke:none;stroke-width:0.330747;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
+       id="rect1648"
+       width="25.135416"
+       height="25.135416"
+       x="63.76458"
+       y="0"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windSpeedBtn.png"
+       inkscape:export-xdpi="95"
+       inkscape:export-ydpi="95" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       id="text1652"
+       inkscape:transform-center-x="-34.861782"
+       inkscape:transform-center-y="-29.943566"
+       transform="matrix(0.6821393,-0.85563198,0.87991999,0.67154475,-28.179448,54.246461)"><textPath
+         xlink:href="#path1146"
+         id="textPath1650">SPEED</textPath></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="2.033823"
+       y="101.83643"
+       id="text1656"><tspan
+         sodipodi:role="line"
+         id="tspan1654"
+         x="2.033823"
+         y="101.83643"
+         style="stroke-width:0.264583" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="36.121086"
+       y="121.11188"
+       id="text1660"><tspan
+         sodipodi:role="line"
+         id="tspan1658"
+         x="36.121086"
+         y="121.11188"
+         style="stroke-width:0.264583" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="g1680"
+     inkscape:label="windGustButton "
+     style="display:inline">
+    <ellipse
+       style="fill:#000000;stroke:none;stroke-width:0.687917;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
+       id="ellipse1664"
+       cx="44.759094"
+       cy="44.427948"
+       rx="44.582031"
+       ry="44.47205" />
+    <rect
+       style="fill:#000000;stroke:none;stroke-width:0.330747;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
+       id="rect1666"
+       width="25.135416"
+       height="25.135416"
+       x="63.76458"
+       y="0"
+       inkscape:export-filename="C:\github\FitBit.WeatherNerd\resources\icons\windGustBtn.png"
+       inkscape:export-xdpi="95"
+       inkscape:export-ydpi="95" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       id="text1670"
+       inkscape:transform-center-x="-34.861782"
+       inkscape:transform-center-y="-29.943566"
+       transform="matrix(0.6821393,-0.85563198,0.87991999,0.67154475,-28.179448,54.246461)"><textPath
+         xlink:href="#path1146"
+         id="textPath1668">GUST</textPath></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="2.033823"
+       y="101.83643"
+       id="text1674"><tspan
+         sodipodi:role="line"
+         id="tspan1672"
+         x="2.033823"
+         y="101.83643"
+         style="stroke-width:0.264583" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="36.121086"
+       y="121.11188"
+       id="text1678"><tspan
+         sodipodi:role="line"
+         id="tspan1676"
          x="36.121086"
          y="121.11188"
          style="stroke-width:0.264583" /></text>
