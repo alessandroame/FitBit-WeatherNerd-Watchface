@@ -66,6 +66,7 @@ settings.subscribe("meteoMode",(mode)=>{
     //document.getElementById("wind_mode").style.display=mode==0?"none":"inline";
     document.getElementById("meteo_mode").style.fill="#BBBBBB";
     document.getElementById("meteo_mode").href="icons/"+(mode==0?"precip":"wind")+"ModeBtn.png";
+    document.getElementById("wind_mode").style.fill=mode==1?"#BBBBBB":"#555555";
     meteo.fetchMeteo();
 },0);
 document.getElementById("meteo_mode_button").onclick=()=>{
@@ -76,7 +77,6 @@ document.getElementById("meteo_mode_button").onclick=()=>{
 };
 
 settings.subscribe("windMode",(mode)=>{
-    document.getElementById("wind_mode").style.fill="#BBBBBB";
     document.getElementById("wind_mode").href="icons/wind"+(mode==0?"Speed":"Gust")+"Btn.png";
     meteo.fetchMeteo();
 },0);

@@ -379,18 +379,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1632445"
-     inkscape:cx="62.961273"
-     inkscape:cy="112.63623"
+     inkscape:zoom="1.6450761"
+     inkscape:cx="260.27391"
+     inkscape:cy="146.10469"
      inkscape:document-units="px"
-     inkscape:current-layer="g1680"
+     inkscape:current-layer="g1662"
      inkscape:document-rotation="0"
      showgrid="false"
      units="px"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="1192"
-     inkscape:window-y="261"
+     inkscape:window-x="3632"
+     inkscape:window-y="175"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:lockguides="false"
@@ -3084,7 +3084,7 @@
      inkscape:groupmode="layer"
      id="g1662"
      inkscape:label="windSpeedButton "
-     style="display:none">
+     style="display:inline">
     <ellipse
        style="fill:#000000;stroke:none;stroke-width:0.687917;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
        id="ellipse1646"
@@ -3104,13 +3104,14 @@
        inkscape:export-ydpi="95" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.20578px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        id="text1652"
-       inkscape:transform-center-x="-34.861782"
-       inkscape:transform-center-y="-29.943566"
-       transform="matrix(0.6821393,-0.85563198,0.87991999,0.67154475,-28.179448,54.246461)"><textPath
+       inkscape:transform-center-x="-32.41474"
+       inkscape:transform-center-y="-32.997774"
+       transform="matrix(0.61383985,-0.9058812,0.92927596,0.60139649,-27.205245,59.837755)"><textPath
          xlink:href="#path1146"
-         id="textPath1650">SPEED</textPath></text>
+         id="textPath1650"
+         style="font-size:3.20578px">SUS-WIND</textPath></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
@@ -3138,7 +3139,7 @@
      inkscape:groupmode="layer"
      id="g1680"
      inkscape:label="windGustButton "
-     style="display:inline">
+     style="display:none">
     <ellipse
        style="fill:#000000;stroke:none;stroke-width:0.687917;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
        id="ellipse1664"
@@ -3158,13 +3159,14 @@
        inkscape:export-ydpi="95" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.20578px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
        id="text1670"
-       inkscape:transform-center-x="-34.861782"
-       inkscape:transform-center-y="-29.943566"
-       transform="matrix(0.6821393,-0.85563198,0.87991999,0.67154475,-28.179448,54.246461)"><textPath
+       inkscape:transform-center-x="-32.541681"
+       inkscape:transform-center-y="-32.235959"
+       transform="matrix(0.58237763,-0.92642129,0.94937506,0.56913842,-26.645913,62.302073)"><textPath
          xlink:href="#path1146"
-         id="textPath1668">GUST</textPath></text>
+         id="textPath1668"
+         style="font-size:3.20578px">WIND-GUSTS</textPath></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
