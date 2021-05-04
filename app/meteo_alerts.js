@@ -11,11 +11,11 @@ let currentMode=0;
 export function update(alerts,nextHourProbabilities,mode) {
     lastAlerts=alerts;
     console.log("meteo_alerts update mode: "+mode);
-
+    let windMode=settings.get("windMode",0);
 //    console.log(JSON.stringify(alerts));
     for (let i = 0; i < 60; i++) {
         let a=alerts[i];
-        updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,a.wind.speed,mode);
+        updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,windMode==0?a.wind.speed:a.wind.gust,mode);
         //logger.warning("ws: "+a.wind.speed+" "+a.wind.temp);
     }
     updateBackground(nextHourProbabilities.ice,nextHourProbabilities.prec,nextHourProbabilities.wind);

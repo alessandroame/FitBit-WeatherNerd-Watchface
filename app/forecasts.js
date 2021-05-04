@@ -14,7 +14,10 @@ let lastMode=0;
 settings.subscribe("unitSystem", (value) => {
     unitSystem = value;
     redraw(lastMode);
-}, locale.temperature == "C" ? "si" : "us");
+});
+settings.subscribe("windMode", (value) => {
+    redraw(lastMode);
+});
 
 export function init(closeCallback) {
     console.log("forecast init")
@@ -93,9 +96,13 @@ function ellipsis(s, l) {
 function redraw(mode) {
     try {
         lastMode=mode;
+        let windMode=settings.get("windMode",0);
         if (meteo==null) return;
-        let title=mode==0?"TEMP":"WIND";
+        let title=mode==0?"TEMP":(windMode==0?"WIND":"GUSTS");
         let units=mode==0?(unitSystem == "si"?"°":"F"):(unitSystem == "si"?"m/s":"kn");
+        
+        console.log("Redraw title: "+title+" units: "+units);
+        
         document.getElementById("title").textContent = title+"("+units+")";
         //document.getElementById("title").style.fill = mode==0?"red":"#006ED6";
         let forecasts = meteo.forecasts;
@@ -128,7 +135,7 @@ function redraw(mode) {
                     iconContainer.groupTransform.rotate.angle = forecasts[i].windDirection-i*30;
                     icon.style.fill="#006ED6";
                     icon.href = "icons/windDirection.png";
-                    value = forecasts[i].windSpeed;
+                    value = windMode==0?forecasts[i].windSpeed:forecasts[i].windGust;
                     if (unitSystem != "si") {
                         value = value * 2;
                     }
