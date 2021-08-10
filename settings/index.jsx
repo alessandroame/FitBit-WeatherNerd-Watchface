@@ -181,15 +181,27 @@ function SettingsPage(props) {
           ]}
         />
 
+<Select
+          onSelection={(value) => {
+            props.settingsStorage.setItem('tempUOM', value.values[0].value);
+          }}
+          label={`Temperature unit`}
+          settingsKey="_tempUOM"
+          options={[
+            { name: "Celsius", value: "C" },
+            { name: "Fahrenheit", value: "F" },
+          ]}
+        />
+        
         <Select
           onSelection={(value) => {
-            props.settingsStorage.setItem('unitSystem', value.values[0].value);
+            props.settingsStorage.setItem('speedUOM', value.values[0].value);
           }}
-          label={`System of measurement`}
-          settingsKey="_unitSystem"
+          label={`Wind speed unit`}
+          settingsKey="_speedUOM"
           options={[
-            { name: "Metric", value: "si" },
-            { name: "Imperial", value: "us" },
+            { name: "km/h", value: "km/h" },
+            { name: "knots", value: "knots" },
           ]}
         />
 
@@ -212,7 +224,7 @@ function SettingsPage(props) {
       <Section
         title={<Text bold align="center">Wind alerts</Text>}
         >
-      <Text>Min wind speed: {Math.floor(props.settingsStorage.getItem('minWind')*(props.settingsStorage.getItem('unitSystem')=="si"?1:0.621371))} {props.settingsStorage.getItem('unitSystem')=="si"?"km/h":"mph"}</Text>
+      <Text>Min wind speed: {Math.floor(props.settingsStorage.getItem('minWind')*(props.settingsStorage.getItem('speedUOM')=="km/h"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="km/h"?"km/h":"knots"}</Text>
       <Slider
         settingsKey="_minWind"
         min="0"
@@ -221,7 +233,7 @@ function SettingsPage(props) {
             props.settingsStorage.setItem('minWind', v);
           }}
       />
-      <Text>Max wind speed: {Math.floor(props.settingsStorage.getItem('maxWind')*(props.settingsStorage.getItem('unitSystem')=="si"?1:0.621371))} {props.settingsStorage.getItem('unitSystem')=="si"?"km/h":"mph"}</Text>
+      <Text>Max wind speed: {Math.floor(props.settingsStorage.getItem('maxWind')*(props.settingsStorage.getItem('speedUOM')=="km/h"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="km/h"?"km/h":"knots"}</Text>
       <Slider
         settingsKey="_maxWind"
         min={Math.min(50,props.settingsStorage.getItem('minWind')*1+10)}
@@ -230,59 +242,7 @@ function SettingsPage(props) {
           props.settingsStorage.setItem('maxWind', v);
         }}
       />
-        {/* <Select
-          title={`Min wind speed`}
-          label={`Min wind speed`}
-          onSelection={(value) => {
-            try {
-              props.settingsStorage.setItem('minWind', value.values[0].value);
-            } catch (e) {
-              settingError(e);
-            }
-          }}
-          settingsKey="_minWind"
-          options={[
-            { name: "0-18 km/h	Calm air", value: "0" },
-            { name: "1.8-5.4 km/s	Light air", value: "1.8" },
-            { name: "2-3 km/s	Light breeze", value: "2" },
-            { name: "3.5-5 km/s Gentle breeze", value: "3.5" },
-            { name: "5.5-8 km/s Moderate breeze", value: "5.5" },
-            { name: "8.5-10.5 km/s Fresh breeze", value: "8.5" },
-            { name: "11-13.5 km/s Strong breeze", value: "11" },
-            { name: "14-16.5 km/s Moderate gale", value: "14" },
-            { name: "17-20 km/s Fresh gale", value: "17" },
-            { name: "20.5-23.5 km/s Strong gale", value: "20.5" },
-            { name: "24-27.5 km/s Whole gale", value: "24" },
-            { name: "28-31.5 km/s Storm", value: "28" },
-            { name: "over 32 km/s Hurricane", value: "32" }
-          ]}
-        /> 
-        <Select
-          title={`Max wind speed`}
-          label={`Max wind speed`}
-          onSelection={(value) => {
-            try {
-              props.settingsStorage.setItem('maxWind', value.values[0].value);
-            } catch (e) {
-              settingError(e);
-            }
-          }}
-          settingsKey="_maxWind"
-          options={[
-            { name: "0.5-1.5 km/s	Light air", value: "0.5" },
-            { name: "2-3 km/s	Light breeze", value: "2" },
-            { name: "3.5-5 km/s Gentle breeze", value: "3.5" },
-            { name: "5.5-8 km/s Moderate breeze", value: "5.5" },
-            { name: "8.5-10.5 km/s Fresh breeze", value: "8.5" },
-            { name: "11-13.5 km/s Strong breeze", value: "11" },
-            { name: "14-16.5 km/s Moderate gale", value: "14" },
-            { name: "17-20 km/s Fresh gale", value: "17" },
-            { name: "20.5-23.5 km/s Strong gale", value: "20.5" },
-            { name: "24-27.5 km/s Whole gale", value: "24" },
-            { name: "28-31.5 km/s Storm", value: "28" },
-            { name: "over 32 km/s Hurricane", value: "32" }
-          ]}
-        />*/}
+        
       </Section>
       <Section
         title={<Text bold align="center">Connection LOST handling</Text>}

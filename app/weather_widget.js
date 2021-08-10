@@ -2,15 +2,20 @@ import { locale } from "user-settings";
 import document from "document";
 import * as settings from "./settings"
 
-let unitSystem="si";
+let tempUOM="C";
+let speedUOM="km/h";
 let value=0;
-settings.subscribe("unitSystem", (value) => {
-    unitSystem = value;
+settings.subscribe("tempUOM", (value) => {
+    tempUOM = value;
     updateValue();
-}, locale.temperature == "C" ? "si" : "us");
+});
+settings.subscribe("speedUOM", (value) => {
+    speedUOM = value;
+    updateValue();
+});
 
 let currentMode=null;
-export function update(meteo,mode) {
+export function update(meteo,mode,windMode) {
     currentMode=mode;
     let index = Math.floor(new Date().getHours());
     if (index > 11) index -= 12;
@@ -30,7 +35,7 @@ export function update(meteo,mode) {
         value=currentWeather.temp;
     }else{
         windContainer.getElementById("direction").groupTransform.rotate.angle = currentWeather.windDirection;
-        value=currentWeather.windSpeed;
+        value=windMode=="0"?currentWeather.windSpeed:currentWeather.windGust;
     }
     updateValue();
 }
@@ -38,13 +43,12 @@ function updateValue(){
     let container = document.getElementById("currentWeather");
     if (currentMode==0){
         let valueUI = container.getElementById("temp");
-        //console.log(toInt(unitSystem=="si"?value:value * 9/5 + 32));
-        valueUI.textContent = toInt(unitSystem=="si"?value:value * 9/5 + 32)+(unitSystem=="si"?"°":"F");
+        valueUI.textContent = toInt(tempUOM=="C"?value:value * 9/5 + 32)+(tempUOM=="C"?"°":"F");
         container.getElementById("tempShadow").textContent = valueUI.textContent;
     }else{
         let valueUI = container.getElementById("windSpeed");
-        container.getElementById("windUnits").textContent = unitSystem=="si"?"km/h":"mph";
-        valueUI.textContent = toInt(value);
+        container.getElementById("windUnits").textContent = speedUOM=="km/h"?"km/h":"kt";
+        valueUI.textContent = toInt(speedUOM=="km/h"?value:value * 0.621371);
         container.getElementById("windSpeedShadow").textContent = valueUI.textContent;
     }
 }

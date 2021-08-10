@@ -1,6 +1,6 @@
 export function get(key){
     if (defaultValues[key]!=null) return defaultValues[key];
-    //console.error("Default value not found: "+key);
+    console.error("Default value not found: "+key);
     return null;
 }
 
@@ -34,10 +34,14 @@ export let defaultValues={
     "minWind":5,
     "maxWind":20,
 
-    "_unitSystem":JSON.stringify({"selected":[0],"values":[{ name: "Metric", value: "si" }]}),
-    "unitSystem":"si",
+    "_tempUOM":JSON.stringify({"selected":[0],"values":[{ name: "Celius", value: "C" }]}),
+    "tempUOM":"C",
+
+    "_speedUOM":JSON.stringify({"selected":[0],"values":[{ name: "km/h", value: "km/h" }]}),
+    "speedUOM":"km/h",
 
     "meteoMode":0,
+    "windMode":0,
     "vibrateOnConnectionLost":"true",
     "snoozeDialogEnabled":"true",
 
