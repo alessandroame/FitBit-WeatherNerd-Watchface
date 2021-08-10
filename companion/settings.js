@@ -24,8 +24,8 @@ function migrateUnitSystem(){
         settingsStorage.setItem("_tempUOM","C");
         settingsStorage.setItem("tempUOM","C");
   
-        settingsStorage.setItem("_speedUOM","km/h");
-        settingsStorage.setItem("speedUOM","km/h");
+        settingsStorage.setItem("_speedUOM","m/s");
+        settingsStorage.setItem("speedUOM","m/s");
       }else{
         settingsStorage.setItem("_tempUOM","F");
         settingsStorage.setItem("tempUOM","F");

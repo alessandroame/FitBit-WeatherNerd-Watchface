@@ -37,8 +37,8 @@ export let defaultValues={
     "_tempUOM":JSON.stringify({"selected":[0],"values":[{ name: "Celius", value: "C" }]}),
     "tempUOM":"C",
 
-    "_speedUOM":JSON.stringify({"selected":[0],"values":[{ name: "km/h", value: "km/h" }]}),
-    "speedUOM":"km/h",
+    "_speedUOM":JSON.stringify({"selected":[0],"values":[{ name: "m/s", value: "m/s" }]}),
+    "speedUOM":"m/s",
 
     "meteoMode":0,
     "windMode":0,

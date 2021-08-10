@@ -4,7 +4,7 @@ import * as logger from "./logger"
 import document from "document";
 
 let tempUOM = "C";
-let speedUOM = "km/h";
+let speedUOM = "m/s";
 let hourlyForecastsUI = null;
 let meteo = null;
 let lastMode=0;
@@ -100,7 +100,7 @@ function redraw(mode,windMode) {
         lastMode=mode;
         if (meteo==null) return;
         let title=mode==0?"TEMP":(windMode==0?"WIND":"GUSTS");
-        let uom=mode==0?(tempUOM == "C"?"°":"F"):(speedUOM == "km/h"?"km/h":"kt");
+        let uom=mode==0?(tempUOM == "C"?"°":"F"):(speedUOM == "m/s"?"m/s":"kt");
         
         console.log("Redraw title: "+title+" units: "+uom);
         
@@ -137,7 +137,7 @@ function redraw(mode,windMode) {
                     icon.style.fill="#006ED6";
                     icon.href = "icons/windDirection.png";
                     value = windMode==0?forecasts[i].windSpeed:forecasts[i].windGust;
-                    if (uom != "km/h") {
+                    if (uom != "m/s") {
                         value = value * 0.621371;
                     }
                 }

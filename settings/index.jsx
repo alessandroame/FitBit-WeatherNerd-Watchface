@@ -200,7 +200,7 @@ function SettingsPage(props) {
           label={`Wind speed unit`}
           settingsKey="_speedUOM"
           options={[
-            { name: "km/h", value: "km/h" },
+            { name: "m/s", value: "m/s" },
             { name: "knots", value: "knots" },
           ]}
         />
@@ -224,7 +224,7 @@ function SettingsPage(props) {
       <Section
         title={<Text bold align="center">Wind alerts</Text>}
         >
-      <Text>Min wind speed: {Math.floor(props.settingsStorage.getItem('minWind')*(props.settingsStorage.getItem('speedUOM')=="km/h"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="km/h"?"km/h":"knots"}</Text>
+      <Text>Min wind speed: {Math.floor(props.settingsStorage.getItem('minWind')*(props.settingsStorage.getItem('speedUOM')=="m/s"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="m/s"?"m/s":"knots"}</Text>
       <Slider
         settingsKey="_minWind"
         min="0"
@@ -233,7 +233,7 @@ function SettingsPage(props) {
             props.settingsStorage.setItem('minWind', v);
           }}
       />
-      <Text>Max wind speed: {Math.floor(props.settingsStorage.getItem('maxWind')*(props.settingsStorage.getItem('speedUOM')=="km/h"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="km/h"?"km/h":"knots"}</Text>
+      <Text>Max wind speed: {Math.floor(props.settingsStorage.getItem('maxWind')*(props.settingsStorage.getItem('speedUOM')=="m/s"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="m/s"?"m/s":"knots"}</Text>
       <Slider
         settingsKey="_maxWind"
         min={Math.min(50,props.settingsStorage.getItem('minWind')*1+10)}

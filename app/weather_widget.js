@@ -3,7 +3,7 @@ import document from "document";
 import * as settings from "./settings"
 
 let tempUOM="C";
-let speedUOM="km/h";
+let speedUOM="m/s";
 let value=0;
 settings.subscribe("tempUOM", (value) => {
     tempUOM = value;
@@ -47,8 +47,8 @@ function updateValue(){
         container.getElementById("tempShadow").textContent = valueUI.textContent;
     }else{
         let valueUI = container.getElementById("windSpeed");
-        container.getElementById("windUnits").textContent = speedUOM=="km/h"?"km/h":"kt";
-        valueUI.textContent = toInt(speedUOM=="km/h"?value:value * 0.621371);
+        container.getElementById("windUnits").textContent = speedUOM=="m/s"?"m/s":"kt";
+        valueUI.textContent = toInt(speedUOM=="m/s"?value:value * 0.621371);
         container.getElementById("windSpeedShadow").textContent = valueUI.textContent;
     }
 }
