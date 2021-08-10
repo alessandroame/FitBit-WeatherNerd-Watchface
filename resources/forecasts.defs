@@ -30,7 +30,7 @@
             <text id="location_sub" fill="white" font-family="System-Bold" font-size="20" 
             font-weight="bold" text-anchor="middle" x="50%" y="50%+30" text-length="100"> ...</text> -->
 
-                <text id="title" fill="white" font-family="System-Bold" font-size="26" font-weight="bold" text-anchor="middle" x="50%" y="38%" text-length="100">WIND</text>
+                <text id="title" fill="white" font-family="System-Bold" font-size="22" font-weight="bold" text-anchor="middle" x="50%" y="39%" text-length="100">WIND</text>
 
                 <text fill="#006ED6" font-family="System-Bold" font-size="18" font-weight="bold" text-anchor="middle" x="40%" y="58%" text-length="100">MIN</text>
                 <text fill="red" font-family="System-Bold" font-size="18" font-weight="bold" text-anchor="middle" x="60%" y="58%" text-length="100">MAX</text>
