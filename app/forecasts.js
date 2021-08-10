@@ -128,7 +128,7 @@ function redraw(mode,windMode) {
                     icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
                     value = forecasts[i].temp;
 
-                    if (uom != "C") {
+                    if (tempUOM != "C") {
                         value = value * 9 / 5 + 32;
                     }
                 }else{
