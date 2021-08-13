@@ -3,6 +3,9 @@ import * as defaultSettings from "../common/defaultSettings";
 import * as mediator from "../common/mediator";
 let initialized=false;
 export function init() {
+    //handling unitSystem change to remove in next releases
+    migrateUnitSystem();
+
   for (let key in defaultSettings.defaultValues){
     if (!settingsStorage.getItem(key)){
       let value=defaultSettings.defaultValues[key];
@@ -11,6 +14,30 @@ export function init() {
     }
     initialized=true;
 }
+
+function migrateUnitSystem(){
+    //handling unitSystem change to remove in next releases
+    var unitSystem=settingsStorage.getItem("unitSystem")
+    if (unitSystem!=null && unitSystem!="null"){
+      console.warn("found unitSystem: "+unitSystem+" -> start settings conversion");
+      if (unitSystem=="si"){
+        settingsStorage.setItem("_tempUOM","C");
+        settingsStorage.setItem("tempUOM","C");
+  
+        settingsStorage.setItem("_speedUOM","m/s");
+        settingsStorage.setItem("speedUOM","m/s");
+      }else{
+        settingsStorage.setItem("_tempUOM","F");
+        settingsStorage.setItem("tempUOM","F");
+  
+        settingsStorage.setItem("_speedUOM","knots");
+        settingsStorage.setItem("speedUOM","knots");
+      }
+      settingsStorage.setItem("unitSystem",null);
+      console.warn("unitSystem settings conversion done");
+    }
+}
+
 console.log("settings init");
 
   settingsStorage.addEventListener("change", (evt) => {

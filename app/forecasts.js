@@ -3,16 +3,18 @@ import * as settings from "./settings";
 import * as logger from "./logger"
 import document from "document";
 
-let unitSystem = "si";
+let tempUOM = "C";
+let speedUOM = "m/s";
 let hourlyForecastsUI = null;
 let meteo = null;
 let lastMode=0;
 
-/*settings.subscribe("clockBackgroundColor", (color) => {
-    document.getElementById("forecastBackground").gradient.colors.c1 = color;
-}, "#333333");*/
-settings.subscribe("unitSystem", (value) => {
-    unitSystem = value;
+settings.subscribe("tempUOM", (value) => {
+    tempUOM = value;
+    redraw(lastMode);
+});
+settings.subscribe("speedUOM", (value) => {
+    speedUOM = value;
     redraw(lastMode);
 });
 settings.subscribe("windMode", (value) => {
@@ -78,9 +80,9 @@ export function hide() {
 }
 
 
-export function setData(data,mode) {
+export function setData(data,mode,windMode) {
     meteo = data;
-    redraw(mode);
+    redraw(mode,windMode);
 }
 
 function zeroPad(s) {
@@ -93,17 +95,16 @@ function ellipsis(s, l) {
     if (s.length > l) s = s.substr(0, l - 3) + "...";
     return s;
 }
-function redraw(mode) {
+function redraw(mode,windMode) {
     try {
         lastMode=mode;
-        let windMode=settings.get("windMode",0);
         if (meteo==null) return;
         let title=mode==0?"TEMP":(windMode==0?"WIND":"GUSTS");
-        let units=mode==0?(unitSystem == "si"?"°":"F"):(unitSystem == "si"?"m/s":"kn");
+        let uom=mode==0?(tempUOM == "C"?"°":"F"):(speedUOM == "m/s"?"m/s":"kt");
         
-        console.log("Redraw title: "+title+" units: "+units);
+        console.log("Redraw title: "+title+" units: "+uom);
         
-        document.getElementById("title").textContent = title+"("+units+")";
+        document.getElementById("title").textContent = title+"("+uom+")";
         //document.getElementById("title").style.fill = mode==0?"red":"#006ED6";
         let forecasts = meteo.forecasts;
         let d = new Date().getHours();
@@ -127,7 +128,7 @@ function redraw(mode) {
                     icon.href = "icons/meteo/" + forecasts[i].icon + ".png";
                     value = forecasts[i].temp;
 
-                    if (unitSystem != "si") {
+                    if (tempUOM != "C") {
                         value = value * 9 / 5 + 32;
                     }
                 }else{
@@ -136,8 +137,8 @@ function redraw(mode) {
                     icon.style.fill="#006ED6";
                     icon.href = "icons/windDirection.png";
                     value = windMode==0?forecasts[i].windSpeed:forecasts[i].windGust;
-                    if (unitSystem != "si") {
-                        value = value * 2;
+                    if (uom != "m/s") {
+                        value = value * 0.621371;
                     }
                 }
                 temp.textContent = toInt(value);
