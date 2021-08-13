@@ -236,8 +236,8 @@ function SettingsPage(props) {
       <Text>Max wind speed: {Math.floor(props.settingsStorage.getItem('maxWind')*(props.settingsStorage.getItem('speedUOM')=="m/s"?1:0.621371))} {props.settingsStorage.getItem('speedUOM')=="m/s"?"m/s":"knots"}</Text>
       <Slider
         settingsKey="_maxWind"
-        min={Math.min(50,props.settingsStorage.getItem('minWind')*1+10)}
-        max="50"
+        min={Math.min(100,props.settingsStorage.getItem('minWind')*1+10)}
+        max="100"
         onChange={v=>{
           props.settingsStorage.setItem('maxWind', v);
         }}
