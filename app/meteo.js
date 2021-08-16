@@ -91,6 +91,7 @@ function resetError(){
 export function fetchMeteo() {
     try {
         let mode=settings.get("meteoMode");
+        let windMode=settings.get("windMode");
         console.log("meteo fetchMeteo");
         let alerts = [];
         let forecasts = [];
@@ -161,7 +162,7 @@ export function fetchMeteo() {
             forecasts: forecasts,
             sunset: meteoData.ss,
             sunrise: meteoData.sr
-        },mode);
+        },mode,windMode);
     }catch(e){
         settings.set("messageToShow","unknown_error");
         logger.error("fetchMeteo throws: "+e);

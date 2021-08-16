@@ -40,7 +40,7 @@ function init() {
     me.addEventListener("wakeinterval", () => {
         updateMeteo("wakeinterval triggered");
     });
-    me.monitorSignificantLocationChanges = true;
+    //me.monitorSignificantLocationChanges = true;
     //me.addEventListener("significantlocationchange", onPositionChanged);
     
     if (!me.permissions.granted("access_location")) {

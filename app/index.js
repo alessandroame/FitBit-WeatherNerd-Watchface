@@ -98,12 +98,12 @@ document.getElementById("display_mode_button").addEventListener("mouseup", (evt)
 
 showClock();
 
-function onMeteoDataAvailable(data,mode) {
+function onMeteoDataAvailable(data,mode,windMode) {
     //logger.warning(memStats("onMeteoDataAvailable"));
     meteo_alerts.update(data.alerts,data.nextHourProbabilities,mode);
 
-    forecasts.setData(data,mode);
-    weatherWidget.update(data,mode);
+    forecasts.setData(data,mode,windMode);
+    weatherWidget.update(data,mode,windMode);
 
     let sr = new Date(data.sunrise);
     let ss = new Date(data.sunset);
