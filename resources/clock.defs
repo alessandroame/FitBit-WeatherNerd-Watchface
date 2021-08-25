@@ -3,8 +3,8 @@
 		<symbol id="clock">
    		 	<use href="#alerts" id="alerts" /> 
 			<image href="" id="error" fill="dodgerblue" > 
-				<animate attributeName="opacity" begin="enable" from="1" to="0" dur="2" repeatDur="4" repeatCount="indefinite" easing="ease-out" />
-				<animate attributeName="opacity" begin="enable+1" from="0" to="1" dur="2" repeatDur="4" repeatCount="indefinite" easing="ease-in" /> 
+				<!-- <animate attributeName="opacity" begin="enable" from="1" to="0" dur="2" repeatDur="4" repeatCount="indefinite" easing="ease-out" />
+				<animate attributeName="opacity" begin="enable+1" from="0" to="1" dur="2" repeatDur="4" repeatCount="indefinite" easing="ease-in" />  -->
 			</image>
 			<!-- <animate attributeName="opacity" begin="activate+1" from="0" to="1" dur="3"  /> -->
 

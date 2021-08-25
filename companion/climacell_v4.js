@@ -18,12 +18,16 @@ function getApiKey(){
     keyIndex++;
     return res;
 }
+var positionMissingIntervalID=null;
 export function update(pos) {
     console.log("Climacell -> update")
+    if (positionMissingIntervalID!=null) clearInterval(positionMissingIntervalID);
     return new Promise((resolve, reject) => {
         if (!pos || !pos.coords) {
-            settings.set("messageToShow","position_not_available");
-            logger.error("climacell -> position not available");
+            positionMissingIntervalID=setInterval(()=>{
+                settings.set("messageToShow","position_not_available");
+                logger.error("climacell -> position not available");
+                },5000);                
             return;
         }
 
