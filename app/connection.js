@@ -54,7 +54,7 @@ function onConnectionOpen(){
 }
 
 function onConnectionLost() {
-    logger.info("Disconnected");
+    logger.warning("Disconnected");
     color = COLOR_NORMAL;
     
     resetInterval(blinkingTimer);
@@ -63,9 +63,9 @@ function onConnectionLost() {
         widget.style.fill = COLOR_DIMMED;
         setTimeout(() => { widget.style.fill = color; }, 600);
     }, 1000);
-    pingTimer=setInterval(()=>{
+    /*pingTimer=setInterval(()=>{
         ping.ping();
-    },5000);
+    },5000);*/
 
     if (!snoozeTimer) {
         if (settings.get("vibrateOnConnectionLost")=="true") {
