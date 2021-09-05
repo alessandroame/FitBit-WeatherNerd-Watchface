@@ -22,11 +22,10 @@ export function update(pos) {
     console.log("Climacell -> update")
     return new Promise((resolve, reject) => {
         if (!pos || !pos.coords) {
-            settings.set("messageToShow","position_not_available");
             logger.error("climacell -> position not available");
+            //settings.set("messageToShow","position_not_available");
             return;
         }
-
         let lat = pos.coords.latitude;
         let lon = pos.coords.longitude;
         Promise.all([
@@ -42,26 +41,25 @@ export function update(pos) {
 }
 
 function buildData(nowcast, forecast,suntimes) {
-    let data = [];
-    let now = new Date();
-    /*console.log("present "+JSON.stringify(present));
-    console.log("nowcast "+JSON.stringify(nowcast));
-    console.log("forecast "+JSON.stringify(forecast));*/
-    //return;
-    for (let i = 0; i < 60; i++) {
-        let current = null;
-        current = findFirst(nowcast, now, 12) ?? findFirst(forecast, now, 60);
-        //console.error(i,now,JSON.stringify(current))
-        data.push(current);
-        now.setMinutes(now.getMinutes() + 12);
-    }
+    let data = buildForecastData(nowcast,forecast);
     let res = {
         lu: new Date(),
         sr: suntimes.sr,
         ss: suntimes.ss,
         data: debugData(data)
     }
-    //console.error(JSON.stringify(res));
+    return res;
+}
+function buildForecastData(nowcast, forecast) {
+    let res = [];
+    let now = new Date();
+    for (let i = 0; i < 60; i++) {
+        let current = null;
+        current = findFirst(nowcast, now, 12) ?? findFirst(forecast, now, 60);
+        res.push(current);
+        now.setMinutes(now.getMinutes() + 12);
+    }
+    res= debugData(res);
     return res;
 }
 
@@ -125,16 +123,24 @@ function getSunTimes(lat, lon) {
     return new Promise((resolve, reject) => {
         try {
             let startTime=new Date();
-            let endTime=new Date();
-            endTime.setHours(endTime.getHours()+25);//clicell return an error when you are the day before to put the hour one hour forward
-            let url = getClimacellUrl(lat,lon,"sunriseTime,sunsetTime,temperature","1d",startTime,endTime);
-            console.log("suntimes update " + url);
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/JSON"
-                }
-            })
+            var lastUpdate=settings.get("_suntimeLastUpdate");
+            var lastSuntime=settings.get("_suntimes");
+            if (lastUpdate==startTime.getDate() && lastSuntime>""){
+                console.warn("SUNTIMES returning pre fetched");
+                var res=JSON.parse(lastSuntime);
+                resolve(res);
+            }else{
+                console.warn("SUNTIMES fetching");
+                let endTime=new Date();
+                endTime.setHours(endTime.getHours()+25);//clicell return an error when you are the day before to put the hour one hour forward
+                let url = getClimacellUrl(lat,lon,"sunriseTime,sunsetTime,temperature","1d",startTime,endTime);
+                console.log("SUNTIMES update " + url);
+                fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/JSON"
+                    }
+                })
                 .then(function (res) {
                     //console.log(`res code: ${res.status} ${res.statusText}  `);
                     res.json()
@@ -153,6 +159,9 @@ function getSunTimes(lat, lon) {
                                     if (sr>now && !res.sr) res.sr=sr;
                                     if (ss>now && !res.ss) res.ss=ss;
                                 } 
+                                console.warn("SUNTIMES save");
+                                settings.set("_suntimeLastUpdate",startTime.getDate());
+                                settings.set("_suntimes",JSON.stringify(res));
                                 resolve(res);
                             }
                         });
@@ -160,6 +169,7 @@ function getSunTimes(lat, lon) {
                 .catch(function (err) {
                     logger.error("getSunTimes ex: " + err);
                 });
+            }
             //console.error("getSunTimes resolved");
         } catch (e) {
             logger.error("getSunTimes exception: " + e);
