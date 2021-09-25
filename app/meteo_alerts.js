@@ -2,14 +2,17 @@ import document from "document";
 import * as settings from "./settings"
 import * as logger from "./logger";
 
-let lastAlerts=null;
 export function init() {
     console.log("meteo_alerts init");
 }
 
+var aodActive=false;
+settings.subscribe("_aodMode",(value)=>{
+    aodActive=value;
+});
+
 let currentMode=0;
 export function update(alerts,nextHourProbabilities,mode) {
-    lastAlerts=alerts;
     console.log("meteo_alerts update mode: "+mode);
     let windMode=settings.get("windMode",0);
 //    console.log(JSON.stringify(alerts));
@@ -53,9 +56,9 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
     let mainAlert = document.getElementById("m_" + index);
     let secondaryUI = document.getElementById("s_" + index);
 
-    let iceOffColor="#222222";
-    let secondaryOffColor="#161616";
-    let primaryOffColor="#111111";
+    let iceOffColor= aodActive ? "#000000" : "#222222";
+    let secondaryOffColor= aodActive ? "#000000" : "#161616";
+    let primaryOffColor= aodActive ? "#000000" : "#111111";
 
     if (precProb > 0) {
         precProb=(0.3 + 0.7 * precProb);
@@ -68,10 +71,10 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
         //prec
         if (precProb>0){
             mainAlert.style.fill = precColor;
-            mainAlert.arcWidth = 4 + 16* precQuantity;
+            mainAlert.arcWidth = aodActive? 4 : 4 + 16* precQuantity;
         }else{
             mainAlert.style.fill = primaryOffColor;
-            mainAlert.arcWidth = 8;
+            mainAlert.arcWidth = aodActive? 4 : 8;
         }
         //wind
         if (windSpeed>0){
@@ -83,10 +86,10 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
         //wind
         if (windSpeed>0){
             mainAlert.style.fill = "#006ED6";
-            mainAlert.arcWidth = 4+(16 * (windSpeed));
+            mainAlert.arcWidth = aodActive? 4 : 4 + 16 * (windSpeed);
         }else{
             mainAlert.style.fill = primaryOffColor;
-            mainAlert.arcWidth = 8;
+            mainAlert.arcWidth = aodActive? 4 : 8;
         }
         //prec
         if (precProb>0){

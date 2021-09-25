@@ -1,3 +1,4 @@
+import { me as appbit } from "appbit";
 import document from "document";
 import { memory } from "system";
 import { display } from "display";
@@ -27,7 +28,7 @@ import * as forecasts from "./forecasts"
 import * as sunDial from './sun_dial'
 import * as fitWidget from "./fit_widget"
 import * as weatherWidget from "./weather_widget"
-
+import { display } from "display";
 //setInterval( memStats, 3000);
 // setInterval( ping.ping, 60000);
 
@@ -120,33 +121,30 @@ function showClock() {
     forecasts.hide();
 }
 
-// if (display.aodAvailable /*&& appbit.permissions.granted("access_aod")*/) {
-//     // tell the system we support AOD
-//     display.aodAllowed = true;
-
-//     // respond to display change events
-//     display.addEventListener("change", () => {
-//         if (!display.aodActive && display.on) {
-//             setAOD(false);
-//         } else {
-//             setAOD(true);
-//         }
-//     });
-// }
-
-function setAOD(enabled) {
-    let elements = ["dialGraphic", "secs", "secsShadow", 
-    "currentWeather", "fitWidget", "clockDialMinutes", "clockDialHours","datum",
-    "alerts","connectionWidget",
-    //"batteryWidget",
-    "sunsetHand","sunriseHand","minsShadow","hoursShadow"];
-    console.warn("AOD: " + enabled);
-    let display = enabled ? "none" : "inline";
-    for (let i = 0; i < elements.length; i++) {
-        document.getElementById(elements[i]).style.display = display;
-    }
+settings.set("_aodMode",false);
+if (display.aodAvailable && appbit.permissions.granted("access_aod")) {
+    display.aodAllowed = true;
+    logger.warning("aod permissions granted");
+    display.addEventListener("change", () => {
+        if (!display.aodActive && display.on) {
+            logger.warning("Display on mode");
+            settings.set("_aodMode",false);
+        } else {
+            settings.set("_aodMode",true);
+            logger.warning("Display AOD mode");
+        }
+    });
+}else{
+    logger.error("aod permissions NOT granted");
 }
 
+settings.subscribe("_aodMode",(value)=>{
+    let display=value?"none":"inline";
+    document.getElementById("buttons").style.display=display;
+    meteo.fetchMeteo();
+
+});
+  
 function showMenu() {
     logger.info("meteo requested");
     mediator.publish("requestGetCurrentPosition", null);

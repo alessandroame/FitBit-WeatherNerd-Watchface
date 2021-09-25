@@ -89,6 +89,7 @@ function resetError(){
     document.getElementById("alerts").style.display="inline";
 }
 export function fetchMeteo() {
+    console.error("fetchMeteo");
     try {
         let mode=settings.get("meteoMode");
         let windMode=settings.get("windMode");
