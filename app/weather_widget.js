@@ -14,6 +14,11 @@ settings.subscribe("speedUOM", (value) => {
     updateValue();
 });
 
+settings.subscribe("_aodMode",(value)=>{
+    let display=value?"none":"inline";
+    document.getElementById("currentWeather").getElementById("graphics").style.display=display;
+});
+
 let currentMode=null;
 export function update(meteo,mode,windMode) {
     currentMode=mode;

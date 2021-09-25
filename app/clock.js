@@ -32,6 +32,17 @@ export function init() {
   //console.log("clock init");
   datum.init();
 }
+
+settings.subscribe("_aodMode",(value)=>{
+  clock.granularity = value?"minutes":"seconds";
+  let display=value?"none":"inline";
+  //document.getElementById("clockDialHours").style.display=display;
+  document.getElementById("clockDialMinutes").style.display=display;
+  document.getElementById("dialGraphic").style.display=display;
+  //document.getElementById("error").style.display=display;
+  secHand.style.display=display;
+  secHandShadow.style.display=display;
+});
 settings.subscribe("clockBackgroundColor", (color) => {
   //  document.getElementById("clockBackground").gradient.colors.c1 = color;
   try{
@@ -191,3 +202,4 @@ function animate(element,toAngle,duration,logEnabled){
     element.animate("enable");
   }
 }
+

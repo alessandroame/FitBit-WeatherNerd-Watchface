@@ -1,10 +1,11 @@
 <svg>
 	<defs>
 		<symbol id="weatherWidget">
-			<circle id="background" cx="0" cy="0" r="42" fill="#222222" opacity="1" />
-			<circle cx="0" cy="0" r="42" fill="#222222" opacity="0.8" />
-			<image href="widget_background.png" x="-42" y="-42" width="84" height="84" opacity="1" fill="white" />
-
+			<g id="graphics">
+				<circle id="background" cx="0" cy="0" r="42" fill="#222222" opacity="1" />
+				<circle cx="0" cy="0" r="42" fill="#222222" opacity="0.8" />
+				<image href="widget_background.png" x="-42" y="-42" width="84" height="84" opacity="1" fill="white" />
+			</g>
 
 			<g id="windContainer">
 				<g id="direction">

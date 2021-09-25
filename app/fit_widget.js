@@ -7,16 +7,6 @@ import { HeartRateSensor } from "heart-rate";
 import { display } from "display";
 import * as settings from "./settings"
 
-display.addEventListener("change", () => {
-  if (display.on) {
-      setSensor(sensorIndex);
-  } else {
-      stopHRM();
-      stopInterval();
-  }
-});
-
-
 let widget = document.getElementById("fitWidget");
 let icon = widget.getElementById("icon");
 let value = widget.getElementById("value");
@@ -41,6 +31,18 @@ display.addEventListener("change", () => {
         stopInterval();
     }
 });
+
+settings.subscribe("_aodMode",(value)=>{
+    if (value){
+        widget.style.display="none";
+        stopHRM();
+        stopInterval();
+    }else{
+        widget.style.display="inline";
+        setSensor(sensorIndex);
+    }
+});
+    
 document.getElementById("fitWidgetTouch").onclick=function(){
     next();
 }

@@ -24,7 +24,9 @@ export let defaultValues={
     "weatherWidgetColor":"white",
     "datumDOWColor":"dodgerblue",
     "clockDialMinutesColor":"grey",
- 
+    
+    "_aodMode":false,
+    
     "_dialGraphic":JSON.stringify({"selected":[1],"values":[{ name: "Small hexagon pattern", value: "small_hex" }]}),
     "dialGraphic": "small_hex",
  

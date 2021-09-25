@@ -29,6 +29,11 @@ settings.subscribe("datumDOWColor", (color) => {
   dayOfWeek.style.fill = color;
 }, "red");
 
+
+settings.subscribe("_aodMode",(value)=>{
+  let display=value?"none":"inline";
+  document.getElementById("datum").getElementById("graphics").style.display=display;
+});
 let hiBatteryReadTime=null;
 let hiBatteryLevel=null;
 let lastBatteryLevel=-1;
