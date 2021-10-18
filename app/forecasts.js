@@ -57,16 +57,13 @@ export function show() {
         //console.log(h,m,s);
         let msg = "";
         if (h >= 1) {
-            msg += h + " hour" + (m == 1 ? "" : "s");
-            if (m>0){
-                 msg+= " " + m + " min" + (m == 1 ? "" : "s")
-            }
-            msg+=  " ago";
+            msg += h + " hour" + (h == 1 ? "" : "s")
         }else if (m > 0) {
-            msg += m + " min" + (m == 1 ? "" : "s") + " ago";
+            msg += m + " min" + (m == 1 ? "" : "s")
         } else {
-            msg += s + " sec" + (s == 1 ? "" : "s") + " ago";
+            msg += s + " sec" + (s == 1 ? "" : "s")
         }
+        msg+=" ago";
     }else{
         msg="You need a valid apikey.";
     }
