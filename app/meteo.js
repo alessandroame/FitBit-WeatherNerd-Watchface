@@ -88,86 +88,95 @@ function resetError(){
     document.getElementById("error").style.display="none";
     document.getElementById("alerts").style.display="inline";
 }
+
 export function fetchMeteo() {
-    console.error("fetchMeteo");
-    try {
-        let mode=settings.get("meteoMode");
-        let windMode=settings.get("windMode");
-        console.log("meteo fetchMeteo");
-        let alerts = [];
-        let forecasts = [];
-        let nextHourProbabilities={ ice:0,prec:0,wind:0};
-        let meteoData = readDataFromFile(METEO_FN);
-        if (meteoData==null) {
-            settings.set("messageToShow","waiting_for_smartphone");
-            return;
-        }
-        if (!meteoData || !meteoData.data){
-            //settings.set("messageToShow","unknown_error");
-            return;
-        }
-        
-        settings.set("messageToShow","");
-
-        let dt=new Date(meteoData.data[0].d);
-        let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
-        let offset=Math.floor(angle/360*60);
-        let minWind=settings.get("minWind");
-        let maxWind=settings.get("maxWind");
-        for (let i=0;i<meteoData.data.length;i++){
-            let d=meteoData.data[i];
-            let index=i+offset;
-            if (index>59) index=index-60;
-            alerts[index]={
-                wind: {
-                    speed:normalizeValue(d.ws,minWind,maxWind,true),
-                    gust:normalizeValue(d.wg,minWind,maxWind,true)
-                },
-                precipitation: {
-                    probability: normalizeValue(d.pp,0,100),
-                    quantity: normalizeValue(d.pi, 0, 10)
-                },
-                ice: {
-                    probability: d.t < 0 ? d.t/(-2): 0,
-                    quantity: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
-                }
-            }
-            if (i>=0 && i<=5){
-                nextHourProbabilities.ice=Math.max(nextHourProbabilities.ice,alerts[index].ice.quantity);
-                nextHourProbabilities.prec=Math.max(nextHourProbabilities.prec,alerts[index].precipitation.probability);
-                nextHourProbabilities.wind=Math.max(nextHourProbabilities.wind,alerts[index].wind.speed);
-            }
-
-            if (i%5==0){
-                let forecastIndex=Math.floor(index/5);
-                //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
-                forecasts[forecastIndex] = {
-                    icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
-                    temp: d.t,
-                    windSpeed: d.ws,
-                    windGust: d.wg,
-                    windDirection:d.wd
-                };
-                //console.warn(JSON.stringify(d));
-            }
-            //console.log(d.d+" - "+d.p.q+" "+d.p.p);
-            //console.log(new Date(d.d)+" - "+alerts[index].precipitation.probability+" "+alerts[index].precipitation.quantity);
-        }
-        //console.log(JSON.stringify(alerts));
-        
-        memStats(9999);
-        if (alertsAvailableCallback) alertsAvailableCallback({
-            lastUpdate: new Date(meteoData.lu),
-            alerts: alerts,
-            nextHourProbabilities: nextHourProbabilities, 
-            forecasts: forecasts,
-            sunset: meteoData.ss,
-            sunrise: meteoData.sr
-        },mode,windMode);
-    }catch(e){
-        settings.set("messageToShow","unknown_error");
-        logger.error("fetchMeteo throws: "+e);
+    memStats("FetchMeteo BEGIN");
+    if (memory.js.used / memory.js.total>0.8){
+        console.warn("fetchMeteo skipped due to memory pressure");
+        return;
     }
+    
+    console.warn("fetchMeteo");
+    let mode=settings.get("meteoMode");
+    let windMode=settings.get("windMode");
+    console.log("meteo fetchMeteo");
+    let alerts = [];
+    let forecasts = [];
+    let nextHourProbabilities={ ice:0,prec:0,wind:0};
+    let meteoData = readDataFromFile(METEO_FN);
+    if (meteoData==null) {
+        settings.set("messageToShow","waiting_for_smartphone");
+        return;
+    }
+    if (!meteoData || !meteoData.data){
+        //settings.set("messageToShow","unknown_error");
+        return;
+    }
+    
+    settings.set("messageToShow","");
+    
+    memStats("FetchMeteo BEFORE parse");
+
+    let dt=new Date(meteoData.data[0].d);
+    let angle=geom.hoursToAngle(dt.getHours(),dt.getMinutes());
+    let offset=Math.floor(angle/360*60);
+    let minWind=settings.get("minWind");
+    let maxWind=settings.get("maxWind");
+    for (let i=0;i<meteoData.data.length;i++){
+        let d=meteoData.data[i];
+        let index=i+offset;
+        if (index>59) index=index-60;
+        alerts[index]={
+            wind: {
+                s:normalizeValue(d.ws,minWind,maxWind,true),
+                g:normalizeValue(d.wg,minWind,maxWind,true)
+            },
+            prec: {
+                p: normalizeValue(d.pp,0,100),
+                q: normalizeValue(d.pi, 0, 10)
+            },
+            ice: {
+                p: d.t < 0 ? d.t/(-2): 0,
+                q: d.t > 0 ? 0 : normalizeValue(d.t * -1, 0, 5)
+            }
+        }
+        if (i>=0 && i<=5){
+            nextHourProbabilities.ice=Math.max(nextHourProbabilities.ice,alerts[index].ice.q);
+            nextHourProbabilities.prec=Math.max(nextHourProbabilities.prec,alerts[index].prec.p);
+            nextHourProbabilities.wind=Math.max(nextHourProbabilities.wind,alerts[index].wind.s);
+        }
+
+        if (i%5==0){
+            let forecastIndex=Math.floor(index/5);
+            //console.error(i+" "+offset+" "+index+" "+forecastIndex+" "+d.t.r);
+            forecasts[forecastIndex] = {
+                icon: iconName(d.wc,d.d,meteoData.sr,meteoData.ss),
+                temp: d.t,
+                windSpeed: d.ws,
+                windGust: d.wg,
+                windDirection:d.wd
+            };
+            //console.warn(JSON.stringify(d));
+        }
+        //console.log(d.d+" - "+d.p.q+" "+d.p.p);
+        //console.log(new Date(d.d)+" - "+alerts[index].prec.probability+" "+alerts[index].prec.quantity);
+    }
+    //console.log(JSON.stringify(alerts));
+    
+    memStats("FetchMeteo AFTER parse");
+        if (alertsAvailableCallback){
+            setTimeout(()=>{
+                alertsAvailableCallback({
+                lastUpdate: new Date(meteoData.lu),
+                alerts: alerts,
+                nextHourProbabilities: nextHourProbabilities, 
+                forecasts: forecasts,
+                sunset: meteoData.ss,
+                sunrise: meteoData.sr
+            },mode,windMode);
+        },1);
+    }
+    memStats("FetchMeteo END");
 }
     
 function iconName(code, dt,sr,ss) {

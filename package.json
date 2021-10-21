@@ -4,8 +4,9 @@
     "@fitbit/sdk-cli": "^1.7.3"
   },
   "fitbit": {
+    "appUUID": "4554c69d-fd33-402e-95d5-9dae5c673d86",
     "_dev_appUUID": "4554c69d-fd33-402e-95d5-9dae5c673d86",
-    "appUUID": "f660df50-48c1-4960-8d74-063b0a657add",
+    "_prod_appUUID": "f660df50-48c1-4960-8d74-063b0a657add",
     "appType": "clockface",
     "appDisplayName": "WeatherNerd",
     "iconFile": "resources/icon.png",
