@@ -1,26 +1,31 @@
-import { me as appbit } from "appbit";
-import document from "document";
+import * as logger from "./logger"
 import { memory } from "system";
-import { display } from "display";
-import * as settings from "./settings";
-
 
 function memStats(desc) {
-    let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc}`;
+    let msg = `MEM:${(memory.js.used / memory.js.total * 100).toFixed(1)}% ${desc??""} ${(memory.js.used/1000).toFixed(0)}KB / ${(memory.js.total/1000).toFixed(0)}KB ${memory.monitor.pressure}`;
     logger.debug(msg);
     return msg;
 }
-
+memory.monitor.onmemorypressurechange=()=>{
+    var msg=`Mem is ${memory.monitor.pressure} ${(memory.js.used / memory.js.total * 100).toFixed(1)}%`;
+    switch (memory.monitor.pressure){
+        case "normal": logger.info(msg); break;
+        case "high": logger.warning(msg); break;
+        case "critical": logger.error(msg); break;
+    }
+}
 memStats("start");
+//setInterval( memStats, 1000);
+
+import { me as appbit } from "appbit";
+import document from "document";
+import { display } from "display";
 import * as clock from "./clock"
 import * as connection from "./connection"
 import * as settings from "./settings"
-//import * as battery from "./battery"
 import * as meteo from "./meteo"
 import * as meteo_alerts from "./meteo_alerts"
-//import * as touch_areas from "./touch_areas"
 import * as log_viewer from "./log_viewer"
-import * as logger from "./logger"
 import * as mediator from "../common/mediator"
 import { vibration } from "haptics"
 import * as ping from "./ping"
@@ -28,8 +33,7 @@ import * as forecasts from "./forecasts"
 import * as sunDial from './sun_dial'
 import * as fitWidget from "./fit_widget"
 import * as weatherWidget from "./weather_widget"
-import { display } from "display";
-//setInterval( memStats, 3000);
+
 // setInterval( ping.ping, 60000);
 
 memStats("after imports");
@@ -37,18 +41,10 @@ memStats("after imports");
 settings.init();
 clock.init();
 connection.init();
-//battery.init();
 forecasts.init(showClock);
 meteo_alerts.init();
 fitWidget.init();
 meteo.init(onMeteoDataAvailable);
-/*touch_areas.init(() => {
-    logger.info("meteo requested");
-    mediator.publish("requestGetCurrentPosition", null);
-    vibration.start("bump");
-    meteo_alerts.test();
-}, log_viewer.showLogger, showWeather, fitWidget.prev, fitWidget.next);
-*/
 
 document.getElementById("btTouch").onclick=()=>{
     log_viewer.showLogger();
@@ -101,19 +97,36 @@ showClock();
 
 function onMeteoDataAvailable(data,mode,windMode) {
     //logger.warning(memStats("onMeteoDataAvailable"));
-    meteo_alerts.update(data.alerts,data.nextHourProbabilities,mode);
+    try{
+        meteo_alerts.update(data.alerts,data.nextHourProbabilities,mode);
+    }catch(e){
+        logger.error("alerts.update throws"+e);
+        throw e;
+    }
 
-    forecasts.setData(data,mode,windMode);
-    weatherWidget.update(data,mode,windMode);
+    try{
+        forecasts.setData(data,mode,windMode);
+    }catch(e){
+        logger.error("forecasts.setData throws"+e);
+        throw e;
+    }
 
-    let sr = new Date(data.sunrise);
-    let ss = new Date(data.sunset);
-    // console.log(ss,sr);
-    sunDial.update(sr, ss);
-
-    //logger.warning(memStats("end Meteo"));
-
-    //setTimeout(()=>{     logger.warning(memStats("after Meteo"));}, 5000);
+    try{
+        weatherWidget.update(data,mode,windMode);
+    }catch(e){
+        logger.error("weatherWidget.update throws"+e);
+        throw e;
+    }
+    
+    try{
+        let sr = new Date(data.sunrise);
+        let ss = new Date(data.sunset);
+        // console.log(ss,sr);
+        sunDial.update(sr, ss);
+    }catch(e){
+        logger.error("sunDial.update throws"+e);
+        throw e;
+    }
 }
 
 function showClock() {
@@ -187,6 +200,5 @@ function startClockDispayTimeout() {
         showClock();
     }, 20000);
 }
-
 
 memStats("app started");

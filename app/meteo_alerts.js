@@ -18,41 +18,47 @@ export function update(alerts,nextHourProbabilities,mode) {
 //    console.log(JSON.stringify(alerts));
     for (let i = 0; i < 60; i++) {
         let a=alerts[i];
-        updateAlertItem(i,a.ice.probability, a.precipitation.probability, a.precipitation.quantity,windMode==0?a.wind.speed:a.wind.gust,mode);
-        //logger.warning("ws: "+a.wind.speed+" "+a.wind.temp);
+        setTimeout(()=>{
+            updateAlertItem(i,a.ice.p, a.prec.p, a.prec.q,windMode==0?a.wind.s:a.wind.g,mode);
+        },100);
     }
     updateBackground(nextHourProbabilities.ice,nextHourProbabilities.prec,nextHourProbabilities.wind);
     currentMode=mode;
 }
 
 function updateBackground(iceProb,precProb,windProb){
-    try {   
-        //console.warn(iceProb,precProb,windProb);
-        if (settings.get("automaticBackgroundColor")=="true"){
-            let color="dimgrey";
-            if (precProb>0){
-                //console.warn("precProb: "+precProb);
-                let offset=70;
-                color="#"+byteToHex(precProb*(155-offset)+offset)+"0000";
-            }else if (iceProb>0){
-                let offset=100;
-                let hex=byteToHex(iceProb*(255-offset)+offset);
-                color="#00"+hex+hex;
-                //console.warn("iceProb: "+iceProb,hex,color);
-            }else if (windProb>0){
-                //onsole.warn("windProb: "+windProb);
-                let offset=80;
-                color="#00"+byteToHex(windProb*(110-offset)+offset)+byteToHex(windProb*(214-offset)+offset);
-            }
-            //console.warn("clockBackgroundColor: "+color);
-            settings.set("clockBackgroundColor",color);
+    //console.warn(iceProb,precProb,windProb);
+    if (settings.get("automaticBackgroundColor")=="true"){
+        let color="dimgrey";
+        if (precProb>0){
+            //console.warn("precProb: "+precProb);
+            let offset=70;
+            color="#"+byteToHex(precProb*(155-offset)+offset)+"0000";
+        }else if (iceProb>0){
+            let offset=100;
+            let hex=byteToHex(iceProb*(255-offset)+offset);
+            color="#00"+hex+hex;
+            //console.warn("iceProb: "+iceProb,hex,color);
+        }else if (windProb>0){
+            //onsole.warn("windProb: "+windProb);
+            let offset=80;
+            color="#00"+byteToHex(windProb*(110-offset)+offset)+byteToHex(windProb*(214-offset)+offset);
         }
-    }catch(e){
-        logger.error("updateBackground throws"+e);
+        //console.warn("clockBackgroundColor: "+color);
+        settings.set("clockBackgroundColor",color);
     }
 }
 
+function ReplaceIsNan(value,defaultValue){
+    return isNaN(value)?defaultValue:value;
+}
+
 function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) {
+    precProb=ReplaceIsNan(precProb,0);
+    iceProb=ReplaceIsNan(iceProb,0);
+    precQuantity=ReplaceIsNan(precQuantity,0);
+    windSpeed=ReplaceIsNan(windSpeed,0);
+
     let mainAlert = document.getElementById("m_" + index);
     let secondaryUI = document.getElementById("s_" + index);
 
@@ -63,15 +69,14 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
     if (precProb > 0) {
         precProb=(0.3 + 0.7 * precProb);
     }
-    
     let precColor="#"+ byteToHex(precProb*255)+"0000";
-    
+    let maxSixe=24;
     if (mode==0){
         //console.warn(precProb)
         //prec
         if (precProb>0){
             mainAlert.style.fill = precColor;
-            mainAlert.arcWidth = aodActive? 4 : 4 + 16* precQuantity;
+            mainAlert.arcWidth = aodActive? 4 : 4 + maxSixe* precQuantity;
         }else{
             mainAlert.style.fill = primaryOffColor;
             mainAlert.arcWidth = aodActive? 4 : 8;
@@ -86,7 +91,7 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
         //wind
         if (windSpeed>0){
             mainAlert.style.fill = "#006ED6";
-            mainAlert.arcWidth = aodActive? 4 : 4 + 16 * (windSpeed);
+            mainAlert.arcWidth = aodActive? 4 : 4 + maxSixe * (windSpeed);
         }else{
             mainAlert.style.fill = primaryOffColor;
             mainAlert.arcWidth = aodActive? 4 : 8;
@@ -109,9 +114,10 @@ function updateAlertItem(index, iceProb, precProb, precQuantity,windSpeed,mode) 
         ice.style.fill = iceOffColor;
         ice.style.opacity = 1;
     }
-/*    document.getElementById("ia_" + index).to=ice.style.fill;
-    ice.animate("enable");*/
+    /*    document.getElementById("ia_" + index).to=ice.style.fill;
+        ice.animate("enable");*/
 }
+
 export function test() {
     console.log("meteo_alerts test");
     for (let i = 0; i < 60; i++) {

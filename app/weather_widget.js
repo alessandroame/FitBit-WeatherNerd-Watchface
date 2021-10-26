@@ -28,7 +28,6 @@ export function update(meteo,mode,windMode) {
     //    console.error(JSON.stringify(currentWeather));
     let container = document.getElementById("currentWeather");
     let icon = container.getElementById("icon");
-    let windSpeed = container.getElementById("windSpeed");
     let weatherContainer = container.getElementById("weatherContainer");
     let windContainer = container.getElementById("windContainer");
     
