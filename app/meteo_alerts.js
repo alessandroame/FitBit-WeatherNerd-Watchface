@@ -20,7 +20,7 @@ export function update(alerts,nextHourProbabilities,mode) {
         let a=alerts[i];
         setTimeout(()=>{
             updateAlertItem(i,a.ice.p, a.prec.p, a.prec.q,windMode==0?a.wind.s:a.wind.g,mode);
-        },i*50);
+        },100);
     }
     updateBackground(nextHourProbabilities.ice,nextHourProbabilities.prec,nextHourProbabilities.wind);
     currentMode=mode;
