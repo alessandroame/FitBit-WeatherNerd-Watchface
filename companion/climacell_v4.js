@@ -107,7 +107,7 @@ function getClimacellUrl(lat, lon,fields,timesteps,from, to){
     now.setSeconds(0);
     now.setMilliseconds(0);
     let startTime=now.toISOString();
-    let url = "https://data.climacell.co/v4/timelines?" +
+    let url = "https://api.tomorrow.io/v4/timelines?" +
     "apikey=" + getApiKey() +
     "&units=metric"+
     "&location=" + lat +"," + lon +

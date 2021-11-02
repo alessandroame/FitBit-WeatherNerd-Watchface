@@ -156,7 +156,7 @@ function SettingsPage(props) {
 
       <Section
         title={<Text bold align="center">Meteo</Text>}
-        description={<Text> Forecast api powerd by <Link source="http://climacell.co">Climacell™</Link>. To obtian a free APIkey go <Link source="https://www.climacell.co/pricing/">https://www.climacell.co/pricing/</Link></Text>}>
+        description={<Text> Forecast api powerd by <Link source="https://www.tomorrow.io/">Tomorrow™</Link>. To obtian a free APIkey go to <Link source="https://app.tomorrow.io/signup?planid=6036283133bb2ff6d4bd82a7&vid=ac80ed8d-8ad6-4ad1-ac98-bd2718ae6664">free plan sign up</Link></Text>}>
 
         <Select
           label={`Update interval`}
@@ -207,7 +207,7 @@ function SettingsPage(props) {
 
         <TextInput
           align="right"
-          title="Climacell™"
+          title="Tomorrow.io"
           label="API key"
           settingsKey="_APIKey"
           onChange={(value) => {
